@@ -25,6 +25,10 @@ That's not a rounding error. That's the market telling you what it actually want
 
 ## Why it ranks so high
 
+
+![A multicultural team engaged in a collaborative office meeting, discussing ideas around a table.](/images/blog/stakeholder-management-unsexy-skill-on-every-martech-job-ad-1.jpg)
+
+*Photo by Thirdman on Pexels*
 MarTech and Salesforce roles sit in the middle of an organisation. You usually report to marketing, but you build for sales. You implement tools paid for by finance. You're governed by legal and IT. And you run processes that directly affect commercial revenue.
 
 That means your real job — the one they're paying for — isn't configuring Salesforce. It's getting four groups of people who don't speak the same language to agree on what to configure.
@@ -39,6 +43,10 @@ They count more than the tools do.
 
 ## How to show stakeholder skills with no direct MarTech experience
 
+
+![Close-up of hands holding resume during interview with coffee on table, highlighting workplace setting.](/images/blog/stakeholder-management-unsexy-skill-on-every-martech-job-ad-2.jpg)
+
+*Photo by cottonbro studio on Pexels*
 Three moves:
 
 **1. Reframe your old roles.** If you led a retail team, you managed stakeholders every day — customers, head office, suppliers. Write the line as:

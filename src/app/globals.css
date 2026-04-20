@@ -107,7 +107,17 @@ body {
 
 .prose img {
   border-radius: 8px;
-  margin: 1.5em 0;
+  margin: 1.75em 0 0.5em;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Italic paragraph directly after an image acts as a caption */
+.prose p:has(> img:only-child) + p > em:only-child {
+  display: block;
+  font-size: 0.85em;
+  color: var(--color-muted);
+  margin-top: -0.5em;
 }
 
 .prose hr {

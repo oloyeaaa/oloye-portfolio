@@ -22,6 +22,10 @@ Here's a 90-day plan that actually factors in that gap. It assumes you can put 8
 
 ## Days 1–30: Foundations and Orientation
 
+
+![Desk elements like calendar and pins for effective planning.](/images/blog/salesforce-admin-90-days-honest-roadmap-1.jpg)
+
+*Photo by Towfiqu barbhuiya on Pexels*
 **Goal:** Be fluent in the object model and the Trailhead ecosystem.
 
 - Open a free Salesforce Developer Org this week.
@@ -44,6 +48,10 @@ This is the month most people skip, and it's the difference between passing the 
 
 ## Days 61–90: Certify and Position
 
+
+![Smiling graduate proudly holding a certificate in cap and gown.](/images/blog/salesforce-admin-90-days-honest-roadmap-2.jpg)
+
+*Photo by Ron Lach on Pexels*
 **Goal:** Pass the ADM-201 exam and rework your CV around what you now have.
 
 - Subscribe to Focus on Force practice exams (£39/month). Do two or three full timed runs before booking the real one.

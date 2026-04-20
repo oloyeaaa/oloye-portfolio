@@ -21,12 +21,20 @@ Someone downloads three whitepapers? 30 points. Visits the pricing page once? 10
 
 ## The Activity Trap
 
+
+![Intricate abstract 3D render of white geometric shapes, perfect for modern backgrounds.](/images/blog/why-your-lead-scoring-model-is-probably-wrong-1.jpg)
+
+*Photo by Steve A Johnson on Pexels*
 Traditional lead scoring treats every interaction as equal. Open an email? Points. Click a link? Points. Attend a webinar? Lots of points. But volume of engagement doesn't correlate with readiness to buy.
 
 The data backs this up. When I audited one company's scoring model against their actual closed-won deals, only 23% of their "marketing qualified" leads had any of the top-scoring behaviours in their model.
 
 ## What to Score Instead
 
+
+![Top-down view of a laptop keyboard and colorful printed charts on a desk.](/images/blog/why-your-lead-scoring-model-is-probably-wrong-2.jpg)
+
+*Photo by Lukas Blazek on Pexels*
 Here's what I've started building into scoring models:
 
 1. **Intent signals** — pricing page visits, competitor comparison searches, case study downloads

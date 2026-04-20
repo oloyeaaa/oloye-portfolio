@@ -24,6 +24,10 @@ That's the reporting problem nobody talks about. We're measuring everything and 
 
 ## Vanity Metrics vs. Decision Metrics
 
+
+![Abstract visualization of data analytics with graphs and charts showing dynamic growth.](/images/blog/the-reporting-problem-nobody-talks-about-1.jpg)
+
+*Photo by Negative Space on Pexels*
 A vanity metric makes you feel good. A decision metric tells you what to do next.
 
 **Vanity:** "We generated 500 MQLs this month."
@@ -33,6 +37,10 @@ The first tells you volume. The second tells you where to invest.
 
 ## Building a Decision-First Dashboard
 
+
+![Detailed charts and graphs on a document next to a laptop, representing data analysis.](/images/blog/the-reporting-problem-nobody-talks-about-2.jpg)
+
+*Photo by Lukas Blazek on Pexels*
 Here's the framework I use:
 
 ### 1. Start with the Decision

@@ -27,6 +27,10 @@ That's a 9.5× difference in a dataset built from UK ads for roles like *Marketi
 
 ## Why HubSpot dominates UK demand
 
+
+![Overhead view of a laptop showing data visualizations and charts on its screen.](/images/blog/hubspot-vs-marketo-uk-2026-where-to-focus-1.jpg)
+
+*Photo by Lukas Blazek on Pexels*
 Three reasons, from sitting across both worlds:
 
 **1. SMB and mid-market hire more frequently.** HubSpot's pricing and onboarding are tuned for companies under 500 employees. The UK has a long tail of businesses in that bracket, and they all eventually need someone who "knows HubSpot."
@@ -45,6 +49,10 @@ So the framing shifts. HubSpot is a way *in*. Marketo is a way *up*.
 
 ## What to actually do
 
+
+![A person writing notes while researching online courses on a laptop in a home setting.](/images/blog/hubspot-vs-marketo-uk-2026-where-to-focus-2.jpg)
+
+*Photo by ROMAN ODINTSOV on Pexels*
 If you're starting:
 
 1. **Spin up a free HubSpot account today.** No credit card required.

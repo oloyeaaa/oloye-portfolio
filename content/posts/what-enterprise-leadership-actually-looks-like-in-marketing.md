@@ -21,12 +21,20 @@ It's not. Enterprise marketing leadership is a completely different skill set.
 
 ## The Shift Nobody Prepares You For
 
+
+![Colleagues engaged in a presentation meeting inside a modern office setting.](/images/blog/what-enterprise-leadership-actually-looks-like-in-marketing-1.jpg)
+
+*Photo by cottonbro studio on Pexels*
 As a specialist, your value is in your hands — the campaigns you build, the automations you set up, the analysis you deliver. As a leader, your value is in your decisions and the systems you create.
 
 This is genuinely uncomfortable at first. You go from being the person who builds the thing to the person who decides what gets built, and then trusts someone else to build it.
 
 ## Three Things That Actually Matter
 
+
+![Team of developers working together on computers in a modern tech office.](/images/blog/what-enterprise-leadership-actually-looks-like-in-marketing-2.jpg)
+
+*Photo by cottonbro studio on Pexels*
 ### 1. Stakeholder Translation
 
 Enterprise marketing sits at the intersection of sales, product, finance, and the executive team. Every one of those groups speaks a different language and has different priorities.

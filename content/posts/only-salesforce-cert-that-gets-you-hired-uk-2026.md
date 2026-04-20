@@ -31,6 +31,10 @@ That's it. Every other Salesforce certification — Advanced Admin, Service Clou
 
 ## What this means in practice
 
+
+![Two students focused on study in a contemporary library setting with laptops and books.](/images/blog/only-salesforce-cert-that-gets-you-hired-uk-2026-1.jpg)
+
+*Photo by Mikhail Nilov on Pexels*
 If you're new to Salesforce and trying to break into the UK market, the only cert that moves the needle on a CV scan is the Administrator. Everything else is a *post-hire* credential — earned once you're already in a role and trying to move up. Not a way in.
 
 Put another way: you don't need five certs to get your first interview. You need one, plus proof you've actually built something.
@@ -58,6 +62,10 @@ Total, realistically: £200–£300 and 60–100 hours of study.
 
 ## Why the cert alone isn't enough
 
+
+![Close-up of hands typing on a laptop keyboard, Python book in sight, coding in progress.](/images/blog/only-salesforce-cert-that-gets-you-hired-uk-2026-2.jpg)
+
+*Photo by Christina Morillo on Pexels*
 Here's the part most trainers gloss over. A Salesforce Admin cert is a minimum threshold, not a differentiator. The market has a lot of certified admins without hands-on experience.
 
 What gets you to an interview, in my experience reviewing CVs:

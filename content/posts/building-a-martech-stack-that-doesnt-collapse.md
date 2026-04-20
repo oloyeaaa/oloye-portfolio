@@ -21,10 +21,18 @@ The problem isn't the tools. It's the architecture — or lack of it.
 
 ## The Integration Tax
 
+
+![Detailed view of network cables plugged into a server rack in a data center.](/images/blog/building-a-martech-stack-that-doesnt-collapse-1.jpg)
+
+*Photo by Brett Sayles on Pexels*
 Every tool you add to your stack creates integration overhead. Not just the technical connection, but the data mapping, the workflow dependencies, and the cognitive load on your team. At some point, the cost of managing the stack exceeds the value of the tools in it.
 
 ## Three Principles for a Sustainable Stack
 
+
+![A person creates a flowchart diagram with red pen on a whiteboard, detailing plans and budgeting.](/images/blog/building-a-martech-stack-that-doesnt-collapse-2.jpg)
+
+*Photo by Christina Morillo on Pexels*
 ### 1. Start with Data Flow, Not Features
 
 Before evaluating any tool, map your data flow. Where does lead data originate? Where does it need to end up? What transformations happen along the way?

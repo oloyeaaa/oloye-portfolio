@@ -24,6 +24,10 @@ It's also the platform I use most weeks in my day job. So for anyone weighing up
 
 ## SFMC is a stack, not a tool
 
+
+![A digital 3D rendering showcasing a minimalist geometric structure made of white cubes arranged in a step-like formation](/images/blog/what-marketing-cloud-sfmc-actually-does-1.jpg)
+
+*Photo by Steve A Johnson on Pexels*
 When a job ad says "experience with Marketing Cloud," they usually mean some subset of these:
 
 - **Email Studio** — where emails are built, sent, and measured. If you've used Mailchimp, this is the closest analogue, but more configurable.
@@ -48,6 +52,10 @@ The parts most beginners focus on — building a single email, previewing on mob
 
 ## The two hardest ideas
 
+
+![A detailed close-up of handwritten financial planning notes on paper, emphasizing savings and investments.](/images/blog/what-marketing-cloud-sfmc-actually-does-2.jpg)
+
+*Photo by Jessica Lewis 🦋 thepaintedsquare on Pexels*
 If you decide to learn SFMC, these two concepts throw everyone:
 
 **1. Data Extensions vs Lists.** Lists are the old way. Data Extensions are the real way. Once you understand why sendable data extensions have to be linked to a subscriber key and a contact record, the rest of the platform makes sense. Before that point, nothing does.

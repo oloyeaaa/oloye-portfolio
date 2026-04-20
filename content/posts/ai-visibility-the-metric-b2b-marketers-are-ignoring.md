@@ -22,6 +22,10 @@ That means when a buyer asks ChatGPT, Perplexity, or Google's AI Mode to recomme
 
 ## What Is AI Visibility?
 
+
+![A detailed view of the DeepSeek AI interface, displaying a welcoming message on a dark background.](/images/blog/ai-visibility-the-metric-b2b-marketers-are-ignoring-1.jpg)
+
+*Photo by Matheus Bertelli on Pexels*
 AI visibility measures how well AI platforms can find, understand, and recommend your business. It's not the same as SEO — you can rank on page one of Google and still be completely invisible to AI search.
 
 AI platforms don't just crawl pages. They synthesise information from across the web, looking for entities they can confidently recommend. If your content isn't structured in a way that AI can parse, cite, and attribute, you're invisible.
@@ -34,6 +38,10 @@ If your company isn't in those answers, you're losing deals before you even know
 
 ## Four Dimensions of AI Visibility
 
+
+![Closeup of rows of tiny round white electrical connectors and long thin blue wires in data center](/images/blog/ai-visibility-the-metric-b2b-marketers-are-ignoring-2.jpg)
+
+*Photo by Brett Sayles on Pexels*
 From our research scanning 150+ B2B companies, we score AI visibility across four dimensions:
 
 1. **Citation Presence** — Does the AI mention your brand when asked about your category?

@@ -16,7 +16,18 @@ function getCategoryColor(category: string): string {
 
 export default function PostCard({ post }: { post: PostMeta }) {
   return (
-    <article className="group border border-border rounded-lg p-6 hover:shadow-md transition-shadow bg-white">
+    <article className="group border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-white flex flex-col">
+      {post.coverImage && (
+        <Link href={`/blog/${post.slug}`} className="block aspect-[16/9] overflow-hidden bg-surface-alt">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform group-hover:scale-[1.02]"
+          />
+        </Link>
+      )}
+      <div className="p-6">
       <div className="flex items-center gap-3 mb-3">
         <Link
           href={`/blog/category/${slugify(post.category)}`}
@@ -50,6 +61,7 @@ export default function PostCard({ post }: { post: PostMeta }) {
           ))}
         </div>
       )}
+      </div>
     </article>
   );
 }

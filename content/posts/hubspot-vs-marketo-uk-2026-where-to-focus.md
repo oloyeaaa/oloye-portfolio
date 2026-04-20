@@ -1,9 +1,19 @@
 ---
-title: "HubSpot vs Marketo in the UK: Where Should You Focus in 2026?"
-date: "2026-04-09"
-category: "Playbooks"
-excerpt: "Among 1,256 live UK MarTech job ads, HubSpot was mentioned 38 times. Marketo? Four. If you're picking a platform to learn, the data is clear — and so is the exception."
-tags: ["hubspot", "marketo", "marketing automation", "career"]
+title: 'HubSpot vs Marketo in the UK: Where Should You Focus in 2026?'
+date: '2026-04-09'
+category: Playbooks
+excerpt: >-
+  Among 1,256 live UK MarTech job ads, HubSpot was mentioned 38 times. Marketo?
+  Four. If you're picking a platform to learn, the data is clear — and so is the
+  exception.
+tags:
+  - hubspot
+  - marketo
+  - marketing automation
+  - career
+coverImage: /images/blog/hubspot-vs-marketo-uk-2026-where-to-focus.jpg
+coverImageCredit: Photo by Negative Space on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/blue-and-green-pie-chart-97080/'
 ---
 
 I pulled 1,256 live UK MarTech job ads this month. Among mainstream marketing automation platforms, the gap between HubSpot and Marketo was larger than I expected.

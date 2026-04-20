@@ -1,9 +1,19 @@
 ---
-title: "AI Visibility: The Metric B2B Marketers Are Ignoring"
-date: "2026-04-08"
-category: "AI & Enterprise"
-excerpt: "81% of B2B companies are invisible to AI search platforms. If your buyers are using ChatGPT and Perplexity to research vendors, this matters."
-tags: ["AI visibility", "AI search", "B2B marketing", "enterprise AI"]
+title: 'AI Visibility: The Metric B2B Marketers Are Ignoring'
+date: '2026-04-08'
+category: AI & Enterprise
+excerpt: >-
+  81% of B2B companies are invisible to AI search platforms. If your buyers are
+  using ChatGPT and Perplexity to research vendors, this matters.
+tags:
+  - AI visibility
+  - AI search
+  - B2B marketing
+  - enterprise AI
+coverImage: /images/blog/ai-visibility-the-metric-b2b-marketers-are-ignoring.jpg
+coverImageCredit: Photo by Matheus Bertelli on Pexels
+coverImageCreditUrl: >-
+  https://www.pexels.com/photo/close-up-of-deepseek-ai-interface-on-screen-30530404/
 ---
 
 Here's a stat that should worry every B2B marketer: 81% of companies in our latest benchmark scored below 30 out of 100 on AI visibility.

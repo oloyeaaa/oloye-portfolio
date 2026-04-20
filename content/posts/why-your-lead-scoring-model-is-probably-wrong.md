@@ -1,9 +1,18 @@
 ---
-title: "Why Your Lead Scoring Model Is Probably Wrong"
-date: "2026-04-15"
-category: "Marketing Automation"
-excerpt: "Most B2B lead scoring models are built on assumptions that made sense five years ago. Here's how to rebuild yours around actual buying signals."
-tags: ["lead scoring", "HubSpot", "buying signals", "B2B"]
+title: Why Your Lead Scoring Model Is Probably Wrong
+date: '2026-04-15'
+category: Marketing Automation
+excerpt: >-
+  Most B2B lead scoring models are built on assumptions that made sense five
+  years ago. Here's how to rebuild yours around actual buying signals.
+tags:
+  - lead scoring
+  - HubSpot
+  - buying signals
+  - B2B
+coverImage: /images/blog/why-your-lead-scoring-model-is-probably-wrong.jpg
+coverImageCredit: Photo by RDNE Stock project on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/a-variety-of-charts-on-a-cellphone-7947970/'
 ---
 
 Most lead scoring models I've inherited share the same problem: they score activity, not intent.

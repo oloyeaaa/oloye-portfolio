@@ -1,9 +1,20 @@
 ---
-title: "The Only Salesforce Certification That Actually Gets You Hired in the UK (2026 Data)"
-date: "2026-04-20"
-category: "Playbooks"
-excerpt: "I pulled 1,256 live UK job ads. Only three Salesforce certs show up at all — and one of them takes 86% of the mentions."
-tags: ["salesforce", "certification", "career", "uk jobs"]
+title: >-
+  The Only Salesforce Certification That Actually Gets You Hired in the UK (2026
+  Data)
+date: '2026-04-20'
+category: Playbooks
+excerpt: >-
+  I pulled 1,256 live UK job ads. Only three Salesforce certs show up at all —
+  and one of them takes 86% of the mentions.
+tags:
+  - salesforce
+  - certification
+  - career
+  - uk jobs
+coverImage: /images/blog/only-salesforce-cert-that-gets-you-hired-uk-2026.jpg
+coverImageCredit: Photo by Pavel Danilyuk on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/diploma-figurine-and-documents-on-a-desk-8112185/'
 ---
 
 Earlier this month I pulled 1,256 live UK job ads mentioning Salesforce or MarTech. I wanted to answer one specific question for anyone thinking about a move into the space: **which Salesforce certification do UK recruiters actually ask for?**

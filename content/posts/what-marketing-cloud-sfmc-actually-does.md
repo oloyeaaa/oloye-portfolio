@@ -1,9 +1,21 @@
 ---
-title: "What Marketing Cloud (SFMC) Actually Does — From Someone Who Ships It Every Day"
-date: "2026-03-27"
-category: "Playbooks"
-excerpt: "SFMC isn't one tool. It's six, held together by ideas most job postings assume you already know. Here's the version I wish someone had given me before I started."
-tags: ["salesforce", "marketing cloud", "sfmc", "how-to"]
+title: >-
+  What Marketing Cloud (SFMC) Actually Does — From Someone Who Ships It Every
+  Day
+date: '2026-03-27'
+category: Playbooks
+excerpt: >-
+  SFMC isn't one tool. It's six, held together by ideas most job postings assume
+  you already know. Here's the version I wish someone had given me before I
+  started.
+tags:
+  - salesforce
+  - marketing cloud
+  - sfmc
+  - how-to
+coverImage: /images/blog/what-marketing-cloud-sfmc-actually-does.jpg
+coverImageCredit: Photo by Negative Space on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/blue-and-green-pie-chart-97080/'
 ---
 
 Salesforce Marketing Cloud (SFMC) came up 21 times in my recent scan of 1,256 UK job ads — and commanded a median advertised salary of around £60,000, the highest of any Salesforce-branded skill in the dataset.

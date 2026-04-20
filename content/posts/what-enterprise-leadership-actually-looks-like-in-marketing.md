@@ -1,9 +1,18 @@
 ---
-title: "What Enterprise Leadership Actually Looks Like in Marketing"
-date: "2026-04-01"
-category: "Leadership"
-excerpt: "Enterprise marketing leadership isn't about being the smartest person in the room. It's about building systems that make the whole team smarter."
-tags: ["leadership", "enterprise", "management", "career"]
+title: What Enterprise Leadership Actually Looks Like in Marketing
+date: '2026-04-01'
+category: Leadership
+excerpt: >-
+  Enterprise marketing leadership isn't about being the smartest person in the
+  room. It's about building systems that make the whole team smarter.
+tags:
+  - leadership
+  - enterprise
+  - management
+  - career
+coverImage: /images/blog/what-enterprise-leadership-actually-looks-like-in-marketing.jpg
+coverImageCredit: Photo by Tima Miroshnichenko on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/group-of-people-having-a-meeting-5686014/'
 ---
 
 When I moved from specialist to manager, I expected the job to be about doing more of what I was already good at, but at a bigger scale.

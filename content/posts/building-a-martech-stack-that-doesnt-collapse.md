@@ -1,9 +1,18 @@
 ---
-title: "Building a MarTech Stack That Doesn't Collapse Under Its Own Weight"
-date: "2026-04-10"
-category: "MarTech"
-excerpt: "The average enterprise uses 91 marketing tools. Most of them don't talk to each other. Here's how to build a stack that actually works."
-tags: ["MarTech", "integration", "enterprise", "tech stack"]
+title: Building a MarTech Stack That Doesn't Collapse Under Its Own Weight
+date: '2026-04-10'
+category: MarTech
+excerpt: >-
+  The average enterprise uses 91 marketing tools. Most of them don't talk to
+  each other. Here's how to build a stack that actually works.
+tags:
+  - MarTech
+  - integration
+  - enterprise
+  - tech stack
+coverImage: /images/blog/building-a-martech-stack-that-doesnt-collapse.jpg
+coverImageCredit: Photo by Godfrey  Atima on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/close-up-of-codes-on-a-computer-screen-4976710/'
 ---
 
 I've seen MarTech stacks with 40+ tools where the marketing team still can't answer basic questions like "which campaign drove this deal?"

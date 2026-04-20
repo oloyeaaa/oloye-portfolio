@@ -1,9 +1,20 @@
 ---
-title: "Stakeholder Management: The Unsexy Skill on Every MarTech Job Ad"
-date: "2026-04-15"
-category: "Playbooks"
-excerpt: "In 1,256 UK MarTech job ads, 'stakeholder management' was the single most-mentioned skill — more than HubSpot, Salesforce, or any certification. Here's why, and how to show you have it."
-tags: ["career", "stakeholder management", "soft skills", "uk jobs"]
+title: 'Stakeholder Management: The Unsexy Skill on Every MarTech Job Ad'
+date: '2026-04-15'
+category: Playbooks
+excerpt: >-
+  In 1,256 UK MarTech job ads, 'stakeholder management' was the single
+  most-mentioned skill — more than HubSpot, Salesforce, or any certification.
+  Here's why, and how to show you have it.
+tags:
+  - career
+  - stakeholder management
+  - soft skills
+  - uk jobs
+coverImage: /images/blog/stakeholder-management-unsexy-skill-on-every-martech-job-ad.jpg
+coverImageCredit: Photo by Vitaly Gariev on Pexels
+coverImageCreditUrl: >-
+  https://www.pexels.com/photo/business-meeting-presentation-with-team-interaction-36733318/
 ---
 
 When I scanned 1,256 live UK MarTech and Salesforce job ads this month, I expected the top skill to be a platform name. HubSpot, maybe. Or "Salesforce Administrator."

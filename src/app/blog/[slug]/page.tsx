@@ -78,6 +78,33 @@ export default async function BlogPost({ params }: Props) {
         )}
       </header>
 
+      {post.coverImage && (
+        <figure className="mb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className="w-full rounded-lg"
+          />
+          {post.coverImageCredit && (
+            <figcaption className="text-xs text-muted mt-2">
+              {post.coverImageCreditUrl ? (
+                <a
+                  href={post.coverImageCreditUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent"
+                >
+                  {post.coverImageCredit}
+                </a>
+              ) : (
+                post.coverImageCredit
+              )}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
       <div
         className="prose"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}

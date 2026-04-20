@@ -1,9 +1,19 @@
 ---
-title: "Salesforce Admin in 90 Days: An Honest Roadmap"
-date: "2026-04-02"
-category: "Playbooks"
-excerpt: "Most 'become a Salesforce Admin' guides skip the awkward reality of weeks 10 to 12. Here's a 90-day plan written from what actually gets people hired, not what sells courses."
-tags: ["salesforce", "admin", "roadmap", "career"]
+title: 'Salesforce Admin in 90 Days: An Honest Roadmap'
+date: '2026-04-02'
+category: Playbooks
+excerpt: >-
+  Most 'become a Salesforce Admin' guides skip the awkward reality of weeks 10
+  to 12. Here's a 90-day plan written from what actually gets people hired, not
+  what sells courses.
+tags:
+  - salesforce
+  - admin
+  - roadmap
+  - career
+coverImage: /images/blog/salesforce-admin-90-days-honest-roadmap.jpg
+coverImageCredit: Photo by Mikhail Nilov on Pexels
+coverImageCreditUrl: 'https://www.pexels.com/photo/a-woman-working-in-the-office-8101400/'
 ---
 
 Most Salesforce roadmaps I've read online stop at "pass the exam and apply." The awkward bit — the gap between a cert in your hand and a first offer letter — is where most people stall.

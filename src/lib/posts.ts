@@ -14,6 +14,8 @@ export interface PostMeta {
   excerpt: string;
   tags: string[];
   coverImage?: string;
+  coverImageCredit?: string;
+  coverImageCreditUrl?: string;
 }
 
 export interface Post extends PostMeta {
@@ -39,6 +41,8 @@ export function getAllPosts(): PostMeta[] {
         excerpt: data.excerpt,
         tags: data.tags || [],
         coverImage: data.coverImage,
+        coverImageCredit: data.coverImageCredit,
+        coverImageCreditUrl: data.coverImageCreditUrl,
       } as PostMeta;
     });
 
@@ -84,6 +88,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     excerpt: data.excerpt,
     tags: data.tags || [],
     coverImage: data.coverImage,
+    coverImageCredit: data.coverImageCredit,
+    coverImageCreditUrl: data.coverImageCreditUrl,
     contentHtml,
   };
 }

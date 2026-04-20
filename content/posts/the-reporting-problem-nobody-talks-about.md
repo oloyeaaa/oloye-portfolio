@@ -1,9 +1,19 @@
 ---
-title: "The Reporting Problem Nobody Talks About"
-date: "2026-04-05"
-category: "Marketing Operations"
-excerpt: "Most marketing reports measure what's easy to measure, not what matters. Here's how to build reporting that actually drives decisions."
-tags: ["reporting", "analytics", "marketing ops", "data"]
+title: The Reporting Problem Nobody Talks About
+date: '2026-04-05'
+category: Marketing Operations
+excerpt: >-
+  Most marketing reports measure what's easy to measure, not what matters.
+  Here's how to build reporting that actually drives decisions.
+tags:
+  - reporting
+  - analytics
+  - marketing ops
+  - data
+coverImage: /images/blog/the-reporting-problem-nobody-talks-about.jpg
+coverImageCredit: Photo by Kindel Media on Pexels
+coverImageCreditUrl: >-
+  https://www.pexels.com/photo/person-holding-black-pen-on-white-printer-paper-7054417/
 ---
 
 I've sat in hundreds of marketing meetings where someone presents a dashboard full of metrics and the room nods along. Open rates. Click rates. MQLs. Pipeline influenced.

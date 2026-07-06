@@ -1,203 +1,193 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { webPageSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Oloye. — Agentic AI Systems for Owner-Operated Businesses",
   description:
-    "Oloye Adeosun — Enterprise Marketing Manager specialising in automation, MarTech, and AI-powered marketing infrastructure.",
+    "Oloye. builds agentic AI systems that respond in under 60 seconds and complete the next step. Four modules under one back office. Priced under a single support seat.",
+  alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: {
+    title: "About Oloye. — Agentic AI Systems for Owner-Operated Businesses",
+    description:
+      "Four modules under one back office. The Front Desk, the Ad Watchdog, the Retention Rail, the Sunday Read.",
+    url: `${SITE_URL}/about`,
+    type: "website",
+  },
 };
 
-const timeline = [
+const modules = [
   {
-    year: "2026",
-    title: "Marketing Manager, Enterprise & Automation",
-    org: "Sorenson UK",
-    description:
-      "Leading enterprise campaign strategy, MarTech stack ownership, automation workflows, tracking/analytics, and web performance.",
-    current: true,
+    name: "The Front Desk",
+    body: "First-response agent. Reads, replies in your voice in under 60 seconds, does the next step. Six vertical action lists on day one.",
+    live: true,
   },
   {
-    year: "2025",
-    title: "Marketing Automation Specialist",
-    org: "Sorenson UK",
-    description:
-      "Built and optimised marketing automation workflows, managed campaign execution, and improved lead scoring systems.",
+    name: "The Ad Watchdog",
+    body: "Watches Meta and TikTok spend, flags anomaly campaigns before they burn a day of budget.",
+    live: false,
   },
   {
-    year: "2020–2024",
-    title: "Self-Taught Marketing & Tech",
-    org: "",
-    description:
-      "4+ years learning web development, copywriting, email marketing, AI, and automation. Built real projects, not just completed courses.",
+    name: "The Retention Rail",
+    body: "Klaviyo and Omnisend flows that adapt by RFM and behaviour, not \"if X then Y\".",
+    live: false,
   },
   {
-    year: "2009–2020",
-    title: "PMO Analyst & Corporate Career",
-    org: "",
-    description:
-      "Project Management Office — developed discipline in process design, stakeholder management, and structured delivery.",
+    name: "The Sunday Read",
+    body: "Weekly PDF covering the numbers your platform can't show you. Real margin after fees + returns. Cross-marketplace P&L. Top 3 profit leaks.",
+    live: false,
   },
 ];
 
-const education = [
+const proof = [
   {
-    degree: "MSc International Business & Enterprise",
-    institution: "UK University",
-    year: "2009",
+    number: "Under 60 seconds",
+    label: "Response SLA. Any hour, every day.",
   },
   {
-    degree: "BSc Business Administration",
-    institution: "",
-    year: "",
+    number: "12 agents",
+    label:
+      "Our AI team runs on the Airtable Brain plus a scheduled worker. Same architecture we deploy for you.",
   },
-];
-
-const technicalSkills = [
-  "HubSpot", "Marketo", "Pardot", "Salesforce",
-  "Google Analytics 4", "Google Tag Manager", "Looker Studio",
-  "HTML/CSS/JavaScript", "Python", "TypeScript",
-  "Next.js", "Tailwind CSS", "Node.js",
-  "Make.com", "Zapier", "n8n",
-  "Claude AI", "OpenAI API", "Prompt Engineering",
-  "A/B Testing", "CRO", "Technical SEO",
-];
-
-const domainSkills = [
-  "Enterprise Campaign Strategy",
-  "Marketing Automation Architecture",
-  "MarTech Stack Selection & Integration",
-  "Lead Scoring & Attribution Modelling",
-  "Account-Based Marketing (ABM)",
-  "Data Governance & Compliance",
-  "Multi-Channel Orchestration",
-  "AI-Powered Marketing Systems",
-  "Stakeholder Communication",
-  "Process Design & Documentation",
+  {
+    number: "Every action logged",
+    label:
+      "Real time, real cost, real outcome. Recorded on production. Pricing set from unit economics.",
+  },
 ];
 
 export default function About() {
+  const aboutPage = webPageSchema({
+    path: "/about",
+    title: "About Oloye. — Agentic AI Systems for Owner-Operated Businesses",
+    description:
+      "Oloye. builds agentic AI systems that respond in under 60 seconds and complete the next step.",
+    breadcrumb: [
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+    ],
+    type: "AboutPage",
+  });
+
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16">
+    <>
+      <JsonLd data={aboutPage} />
+
       {/* Intro */}
-      <section className="mb-16">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6">About Me</h1>
-        <div className="text-muted leading-relaxed space-y-4">
-          <p>
-            I&apos;m Oloye Adeosun, a Marketing Manager for Enterprise & Automation based in Kent, UK.
-            I specialise in building the systems that make enterprise marketing actually work — automation
-            workflows, MarTech integrations, tracking infrastructure, and increasingly, AI-powered tools
-            that give marketing teams a genuine edge.
-          </p>
-          <p>
-            My path here wasn&apos;t traditional. I spent 4+ years teaching myself web development, copywriting,
-            email marketing, and AI alongside a corporate career in project management. That combination of
-            PMO discipline and marketing creativity is what I bring to every project.
-          </p>
-          <p>
-            I write about what I&apos;m building and learning — not textbook theory, but practical insights from
-            the systems I work on every day. If you&apos;re an enterprise marketer trying to make sense of automation,
-            AI, or your MarTech stack, you&apos;re in the right place.
-          </p>
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-20 md:py-24">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-10 font-display leading-tight">
+            Oloye<span className="text-accent">.</span> builds agentic AI systems for owner-operated businesses.
+          </h1>
+          <div className="text-primary-dim leading-relaxed space-y-6 text-lg">
+            <p>
+              Speed is the biggest lever most owners never touch. The message came in. You were on the job, on the call, on the school run. Three hours later you replied. By then they&apos;d booked with someone else. That&apos;s not a customer service problem, that&apos;s a revenue problem, and it repeats every day. Every one of those hours is a customer you already had and lost.
+            </p>
+            <p>
+              We build agentic AI systems that take the first response off your plate. The Front Desk reads every inbound, replies in your voice in under 60 seconds, and does the next step. Books the slot. Sends the quote. Takes the deposit. Refunds under your rules. Priced under a single support seat. You&apos;re told what happened, not asked to do it.
+            </p>
+            <p>
+              Everything we sell we run first. The Front Desk runs on our own scalp-wellness brand before it runs on yours. Every response, every action, every escalation is logged. That&apos;s how we prove it works and how we set the price.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Career Timeline */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-primary mb-8">Career Timeline</h2>
-        <div className="space-y-0">
-          {timeline.map((item, index) => (
-            <div key={index} className="relative pl-8 pb-10 border-l-2 border-border last:pb-0">
-              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-primary bg-white" />
-              <div className="flex items-center gap-3 mb-1">
-                <span className="text-xs font-semibold text-accent bg-red-50 px-2 py-0.5 rounded">
-                  {item.year}
+      {/* Modules */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-foreground mb-3 font-display">
+            What we build
+          </h2>
+          <p className="text-muted mb-10 max-w-2xl">
+            The Front Desk is the entry. Same read-decide-act pattern extends across four modules.
+          </p>
+          <div className="space-y-4">
+            {modules.map((m) => (
+              <div
+                key={m.name}
+                className="bg-surface border border-border rounded-lg p-6 flex items-start justify-between gap-6"
+              >
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2 font-display text-lg">
+                    {m.name}
+                  </h3>
+                  <p className="text-sm text-primary-dim leading-relaxed">
+                    {m.body}
+                  </p>
+                </div>
+                <span
+                  className={`text-xs font-semibold uppercase tracking-widest px-2 py-1 rounded shrink-0 ${
+                    m.live
+                      ? "bg-accent text-background"
+                      : "border border-border-strong text-muted"
+                  }`}
+                >
+                  {m.live ? "Live" : "Next"}
                 </span>
-                {item.current && (
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                    Current
-                  </span>
-                )}
               </div>
-              <h3 className="font-semibold text-primary">
-                {item.title}
-                {item.org && <span className="text-muted font-normal"> — {item.org}</span>}
-              </h3>
-              <p className="text-sm text-muted mt-1">{item.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Education */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-primary mb-6">Education</h2>
-        <div className="space-y-4">
-          {education.map((item, index) => (
-            <div key={index} className="border border-border rounded-lg p-5 bg-white">
-              <h3 className="font-semibold text-primary">{item.degree}</h3>
-              {(item.institution || item.year) && (
-                <p className="text-sm text-muted mt-1">
-                  {item.institution}
-                  {item.institution && item.year && " · "}
-                  {item.year}
+      {/* Proof */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-foreground mb-10 font-display">
+            Where the discipline comes from
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {proof.map((p) => (
+              <div
+                key={p.number}
+                className="bg-surface border border-border rounded-lg p-6"
+              >
+                <p className="text-2xl font-bold text-accent mb-3 font-display leading-tight">
+                  {p.number}
                 </p>
-              )}
-            </div>
-          ))}
+                <p className="text-sm text-primary-dim leading-relaxed">
+                  {p.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Technical Skills */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-primary mb-6">Technical Skills</h2>
-        <div className="flex flex-wrap gap-2">
-          {technicalSkills.map((skill) => (
-            <span
-              key={skill}
-              className="text-sm px-3 py-1.5 rounded-full bg-surface-alt text-foreground border border-border"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* Domain Skills */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-primary mb-6">Domain Expertise</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {domainSkills.map((skill) => (
-            <div key={skill} className="flex items-center gap-2 text-sm text-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-              {skill}
-            </div>
-          ))}
+      {/* How we work */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-foreground mb-6 font-display">
+            How we work
+          </h2>
+          <p className="text-primary-dim leading-relaxed text-lg max-w-2xl">
+            Send us 10 real messages from your last week. We show you what the Front Desk would have replied and done, side by side with what actually happened. If you like it, we install it on your live channels. If you don&apos;t, you keep the log. Nothing goes live without your approval on the thresholds.
+          </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-primary text-white rounded-xl p-8 text-center">
-        <h2 className="text-2xl font-bold mb-3">Want to connect?</h2>
-        <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-          I&apos;m always happy to talk about enterprise marketing, automation, or AI.
-          Reach out on LinkedIn or check the blog for my latest thinking.
-        </p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <a
-            href="https://www.linkedin.com/in/oloyeadeosun/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-accent hover:bg-accent-light text-white px-6 py-3 rounded-lg font-medium transition-colors"
-          >
-            Connect on LinkedIn
-          </a>
-          <a
-            href="/blog"
-            className="border border-white/30 hover:border-white text-white px-6 py-3 rounded-lg font-medium transition-colors"
-          >
-            Read the Blog
-          </a>
+      <section>
+        <div className="mx-auto max-w-4xl px-6 py-20">
+          <div className="border border-accent/40 rounded-xl p-10 bg-surface text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 font-display">
+              Ready to see it on your own inbound?
+            </h2>
+            <p className="text-primary-dim mb-6 max-w-xl mx-auto">
+              10 real messages. A side-by-side report. Yours to keep either way.
+            </p>
+            <Link
+              href="/test-drive"
+              className="inline-block bg-accent hover:bg-accent-light text-background px-6 py-3 rounded-md font-semibold transition-colors"
+            >
+              Book my test
+            </Link>
+          </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

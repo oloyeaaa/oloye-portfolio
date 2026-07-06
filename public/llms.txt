@@ -15,18 +15,18 @@ Book a call: https://calendly.com/oloye-getclarioiq/audit
 
 ## Key pages
 
-- [Home](https://oloye.co.uk/): product overview
-- [What Is an Agentic AI System](https://oloye.co.uk/agentic-ai-systems): the pillar guide covering definition, architecture, thresholds, examples, and how to build one
-- [About](https://oloye.co.uk/about): four modules, the discipline behind them
-- [Test the Front Desk](https://oloye.co.uk/test-drive): free 10-message report
-- [Blog](https://oloye.co.uk/blog): guides on building agentic AI systems for real business workflows
-- [Contact](https://oloye.co.uk/contact): reach out
+- [Home](https://www.oloye.co.uk/): product overview
+- [What Is an Agentic AI System](https://www.oloye.co.uk/agentic-ai-systems): the pillar guide covering definition, architecture, thresholds, examples, and how to build one
+- [About](https://www.oloye.co.uk/about): four modules, the discipline behind them
+- [Test the Front Desk](https://www.oloye.co.uk/test-drive): free 10-message report
+- [Blog](https://www.oloye.co.uk/blog): guides on building agentic AI systems for real business workflows
+- [Contact](https://www.oloye.co.uk/contact): reach out
 
 ## Practical guides by industry
 
-- [For plumbers, HVAC and roofers](https://oloye.co.uk/for/plumbers): AI receptionist that answers calls, qualifies jobs, sends estimates, and dispatches the tech
-- [For coaches and consultants](https://oloye.co.uk/for/coaches): AI lead-response agent that qualifies enquiries, sends intake and Calendly, ships proposals, chases invoices
-- [For salons, med-spas and clinics](https://oloye.co.uk/for/salons): AI receptionist that books appointments, takes deposits, sends prep instructions, handles reschedules
-- [For ecom (£200+ AOV)](https://oloye.co.uk/for/ecom): AI support agent for WISMO, refunds under threshold, returns and escalations on Shopify/Klaviyo/Gorgias
-- [For estate agents and mortgage brokers](https://oloye.co.uk/for/real-estate): AI first-response for Rightmove/Zoopla enquiries, qualifies buyers, books viewings, updates CRM
-- [For restaurants](https://oloye.co.uk/for/restaurants): AI receptionist for reservations, allergen questions, private dining, waitlist
+- [For plumbers, HVAC and roofers](https://www.oloye.co.uk/for/plumbers): AI receptionist that answers calls, qualifies jobs, sends estimates, and dispatches the tech
+- [For coaches and consultants](https://www.oloye.co.uk/for/coaches): AI lead-response agent that qualifies enquiries, sends intake and Calendly, ships proposals, chases invoices
+- [For salons, med-spas and clinics](https://www.oloye.co.uk/for/salons): AI receptionist that books appointments, takes deposits, sends prep instructions, handles reschedules
+- [For ecom (£200+ AOV)](https://www.oloye.co.uk/for/ecom): AI support agent for WISMO, refunds under threshold, returns and escalations on Shopify/Klaviyo/Gorgias
+- [For estate agents and mortgage brokers](https://www.oloye.co.uk/for/real-estate): AI first-response for Rightmove/Zoopla enquiries, qualifies buyers, books viewings, updates CRM
+- [For restaurants](https://www.oloye.co.uk/for/restaurants): AI receptionist for reservations, allergen questions, private dining, waitlist

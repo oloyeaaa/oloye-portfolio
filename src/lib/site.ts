@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://oloye.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oloye.co.uk";
 
 export const SITE_NAME = "Oloye.";
 export const SITE_LEGAL_NAME = "Oloye";

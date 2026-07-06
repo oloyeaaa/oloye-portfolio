@@ -211,6 +211,40 @@ export function howToSchema({
   };
 }
 
+export function articleSchema({
+  path,
+  headline,
+  description,
+  image,
+  datePublished,
+  dateModified,
+  keywords,
+}: {
+  path: string;
+  headline: string;
+  description: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  keywords?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${SITE_URL}${path}#article`,
+    mainEntityOfPage: { "@id": `${SITE_URL}${path}#webpage` },
+    headline,
+    description,
+    ...(image ? { image } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    ...(keywords && keywords.length ? { keywords: keywords.join(", ") } : {}),
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
+    inLanguage: "en-GB",
+  };
+}
+
 export function reservationActionSchema() {
   return {
     "@context": "https://schema.org",

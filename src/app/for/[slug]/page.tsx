@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -9,8 +10,8 @@ import {
 } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 import {
-  VERTICALS,
   VERTICAL_SLUGS,
+  VERTICAL_IMAGES,
   getVertical,
   getRelatedVerticals,
 } from "@/lib/verticals";
@@ -107,6 +108,21 @@ export default async function VerticalPage({ params }: Props) {
       </section>
 
       {/* Body */}
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-10 md:py-14">
+          <Image
+            src={VERTICAL_IMAGES[v.slug].src}
+            alt={VERTICAL_IMAGES[v.slug].alt}
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
+        </div>
+      </section>
+
       <article className="mx-auto max-w-3xl px-6 py-16">
         {/* What it does */}
         <section className="mb-16">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -63,6 +64,18 @@ export default function Contact() {
           <p className="text-primary-dim leading-relaxed mb-12 text-lg max-w-2xl">
             Fastest way is Calendly. If it&apos;s a fit for the Front Desk you&apos;ll see a report by Friday. If it&apos;s not, we&apos;ll say so and point you at what we&apos;d actually use in your seat.
           </p>
+
+          <div className="mb-10 rounded-xl overflow-hidden border border-border">
+            <Image
+              src="/images/pages/contact-book-front-desk-test.png"
+              alt="Owner-operator on a phone call by a warm window at dusk, phone glowing lime — book a Front Desk test with Oloye."
+              width={1600}
+              height={900}
+              priority
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="w-full h-auto"
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
             {channels.map((c) => (

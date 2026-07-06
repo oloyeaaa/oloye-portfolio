@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import {
   webPageSchema,
@@ -142,6 +143,21 @@ export default function TestDrive() {
           <p className="text-sm text-muted mt-4">
             Bookings open for the next 5 businesses this month. First come, first served.
           </p>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-10 md:py-14">
+          <Image
+            src="/images/pages/test-drive-front-desk-report.png"
+            alt="Reading a printed Front Desk report on 10 real customer messages, lime marker highlights on the pages — free test of the AI first-response agent"
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
         </div>
       </section>
 

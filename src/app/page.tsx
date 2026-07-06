@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getAllPosts } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -179,6 +180,21 @@ export default function Home() {
           <p className="text-sm text-muted mt-8 max-w-2xl">
             First response under 60 seconds, any hour. Actions completed while you sleep. You only touch the ones that need your judgment.
           </p>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
+          <Image
+            src="/images/pages/home-ai-first-response-agent.png"
+            alt="An owner captured by an unread customer message glowing on their phone late at night — the first-response leak agentic AI systems close for owner-operated businesses"
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 1152px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
         </div>
       </section>
 

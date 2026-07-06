@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import {
   webPageSchema,
@@ -234,6 +235,21 @@ export default function AgenticAiSystems() {
               </li>
             </ol>
           </nav>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-10 md:py-14">
+          <Image
+            src="/images/pages/agentic-ai-systems-pillar.png"
+            alt="Sketching an agentic AI system architecture at a whiteboard with a lime marker — trigger, context, tools, action and the human-in-the-loop threshold gate"
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
         </div>
       </section>
 

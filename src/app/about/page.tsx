@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -92,6 +93,21 @@ export default function About() {
               Everything we sell we run first. The Front Desk runs on our own scalp-wellness brand before it runs on yours. Every response, every action, every escalation is logged. That&apos;s how we prove it works and how we set the price.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-4xl px-6 py-10 md:py-14">
+          <Image
+            src="/images/pages/about-agentic-ai-systems.png"
+            alt="Building agentic AI systems on a laptop lit by lime accent — modular AI back office for owner-operated businesses"
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
         </div>
       </section>
 

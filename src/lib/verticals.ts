@@ -620,3 +620,30 @@ export function getRelatedVerticals(slug: string): Vertical[] {
     .map((s) => getVertical(s))
     .filter((v): v is Vertical => Boolean(v));
 }
+
+export const VERTICAL_IMAGES: Record<string, { src: string; alt: string }> = {
+  plumbers: {
+    src: "/images/pages/for-plumbers-ai-receptionist.png",
+    alt: "A plumber taking a job call on a lime-glowing phone at a residential job site, wrench in hand — AI receptionist for plumbers, HVAC contractors and roofers",
+  },
+  coaches: {
+    src: "/images/pages/for-coaches-ai-assistant.png",
+    alt: "A coach on a video call at a home office desk, laptop screen casting lime accent light — AI assistant for coaches and consultants",
+  },
+  salons: {
+    src: "/images/pages/for-salons-ai-receptionist.png",
+    alt: "A salon stylist checking a smartphone between clients, phone screen glowing lime — AI receptionist for salons, med-spas and clinics",
+  },
+  ecom: {
+    src: "/images/pages/for-ecom-ai-support-agent.png",
+    alt: "Ecom brand owner at a packing table with a laptop showing a lime notification — AI support agent for ecom brands",
+  },
+  "real-estate": {
+    src: "/images/pages/for-real-estate-ai-lead-response.png",
+    alt: "Estate agent standing on the path of a modern residential property with a lime enquiry glowing on their phone — AI first-response for real estate and mortgage brokers",
+  },
+  restaurants: {
+    src: "/images/pages/for-restaurants-ai-receptionist.png",
+    alt: "Restaurant host on a booking call at the podium during dinner service, phone glowing lime — AI receptionist for restaurants",
+  },
+};

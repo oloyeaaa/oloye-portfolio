@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -63,6 +64,21 @@ export default async function Blog() {
           <p className="text-lg text-primary-dim leading-relaxed max-w-2xl">
             Practical guides on first-response agents, the workflows that ship real work, and what actually converts. Written on top of production builds, not marketing round-ups.
           </p>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
+          <Image
+            src="/images/pages/blog-agentic-ai-systems-guides.png"
+            alt="Reading a long-form guide on agentic AI systems at a quiet desk lit by a single lime accent lamp — the Oloye. blog for owner-operated businesses"
+            width={1600}
+            height={900}
+            priority
+            sizes="(max-width: 768px) 100vw, 1152px"
+            className="w-full h-auto rounded-xl border border-border"
+          />
         </div>
       </section>
 

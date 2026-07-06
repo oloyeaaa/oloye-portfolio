@@ -541,6 +541,15 @@ export default function AgenticAiSystems() {
               </li>
             ))}
           </ol>
+          <p className="mt-6 text-sm text-primary-dim">
+            Want the version you can hand to anyone, no jargon?{" "}
+            <Link
+              href="/agentic-ai-systems/how-it-works"
+              className="text-accent hover:text-accent-light"
+            >
+              See the six-step framework, explained simply →
+            </Link>
+          </p>
         </section>
 
         {/* When not */}

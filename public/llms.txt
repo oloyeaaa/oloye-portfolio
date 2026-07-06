@@ -17,6 +17,7 @@ Book a call: https://calendly.com/oloye-getclarioiq/audit
 
 - [Home](https://www.oloye.co.uk/): product overview
 - [What Is an Agentic AI System](https://www.oloye.co.uk/agentic-ai-systems): the pillar guide covering definition, architecture, thresholds, examples, and how to build one
+- [How to Build an Agentic AI System, Explained Simply](https://www.oloye.co.uk/agentic-ai-systems/how-it-works): the plain-English six-step framework, grounded in a real production system
 - [About](https://www.oloye.co.uk/about): four modules, the discipline behind them
 - [Test the Front Desk](https://www.oloye.co.uk/test-drive): free 10-message report
 - [Blog](https://www.oloye.co.uk/blog): guides on building agentic AI systems for real business workflows

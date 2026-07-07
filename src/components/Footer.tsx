@@ -29,6 +29,12 @@ export default function Footer() {
                 About
               </Link>
               <Link
+                href="/oloye"
+                className="text-sm text-primary-dim hover:text-accent transition-colors"
+              >
+                Oloye Adeosun
+              </Link>
+              <Link
                 href="/blog"
                 className="text-sm text-primary-dim hover:text-accent transition-colors"
               >

@@ -23,7 +23,7 @@ export function organizationSchema() {
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     founder: { "@id": PERSON_ID },
-    sameAs: [LINKEDIN_URL],
+    sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
@@ -53,9 +53,9 @@ export function personSchema() {
     name: AUTHOR.name,
     url: AUTHOR.url,
     email: AUTHOR.email,
-    sameAs: [LINKEDIN_URL],
+    sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Founder, Oloye.",
+    jobTitle: "Agentic AI Systems Builder; Founder, Oloye.",
   };
 }
 

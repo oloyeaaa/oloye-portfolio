@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, LINKEDIN_URL } from "@/lib/site";
+import { SITE_URL, LINKEDIN_URL, AVATAR_URL } from "@/lib/site";
 
 const GTM_URL = "https://www.gtmsignalstudio.com";
 
@@ -60,6 +61,7 @@ export default function OloyeProfile() {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: "Oloye Adeosun",
+      image: AVATAR_URL,
       jobTitle: "Agentic AI Systems Builder",
       description:
         "Builder of agentic AI systems. Founder of The Front Desk and researcher at GTM Signal Studio.",
@@ -83,9 +85,14 @@ export default function OloyeProfile() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
           <div className="flex items-center gap-5 mb-8">
-            <div className="w-16 h-16 rounded-full bg-accent text-background flex items-center justify-center font-display font-bold text-2xl shrink-0">
-              O
-            </div>
+            <Image
+              src="/images/oloye-avatar.png"
+              alt="Oloye Adeosun"
+              width={72}
+              height={72}
+              priority
+              className="w-16 h-16 rounded-full object-cover shrink-0 border border-border"
+            />
             <div>
               <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em] font-display">
                 Oloye Adeosun

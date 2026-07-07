@@ -128,6 +128,26 @@ export default async function BlogPost({ params }: Props) {
               {post.excerpt}
             </p>
           )}
+
+          <div className="flex items-center gap-3 mt-6">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/oloye-avatar.png"
+              alt="Oloye Adeosun"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-full object-cover border border-border"
+            />
+            <div>
+              <Link
+                href="/oloye"
+                className="text-sm font-semibold text-foreground hover:text-accent font-display transition-colors"
+              >
+                Oloye Adeosun
+              </Link>
+              <p className="text-xs text-muted">Agentic AI Systems Builder</p>
+            </div>
+          </div>
         </header>
 
         {post.coverImage && (

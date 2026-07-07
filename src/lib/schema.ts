@@ -6,6 +6,7 @@ import {
   AUTHOR,
   LINKEDIN_URL,
   CALENDLY_URL,
+  AVATAR_URL,
 } from "./site";
 
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -53,6 +54,7 @@ export function personSchema() {
     name: AUTHOR.name,
     url: AUTHOR.url,
     email: AUTHOR.email,
+    image: AVATAR_URL,
     sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     worksFor: { "@id": ORG_ID },
     jobTitle: "Agentic AI Systems Builder; Founder, Oloye.",

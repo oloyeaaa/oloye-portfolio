@@ -16,6 +16,7 @@ export const AUTHOR = {
 
 export const CALENDLY_URL = "https://calendly.com/oloye-getclarioiq/audit";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/oloyeadeosun/";
+export const AVATAR_URL = `${SITE_URL}/images/oloye-avatar.png`;
 
 export const VERTICALS = [
   "plumbers",

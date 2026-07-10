@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { VERTICAL_SLUGS } from "@/lib/verticals";
+import { getAllSkillSlugs } from "@/lib/skills";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -10,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.85,
+  }));
+
+  const skillRoutes: MetadataRoute.Sitemap = getAllSkillSlugs().map((slug) => ({
+    url: `${SITE_URL}/skills/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   const routes: MetadataRoute.Sitemap = [
@@ -56,6 +64,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${SITE_URL}/skills`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/contact`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -63,5 +77,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...routes, ...verticalRoutes];
+  return [...routes, ...verticalRoutes, ...skillRoutes];
 }

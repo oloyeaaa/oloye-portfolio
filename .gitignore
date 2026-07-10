@@ -46,3 +46,7 @@ next-env.d.ts
 COPY-DRAFT.md
 SEO-KEYWORDS.md
 .claude/
+
+# skills packaging: personal scrub rules + staging (never commit)
+scripts/scrub-rules.local.mjs
+.skills-staging/

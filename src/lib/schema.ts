@@ -265,3 +265,70 @@ export function reservationActionSchema() {
     },
   };
 }
+
+export function softwareApplicationSchema({
+  path,
+  name,
+  description,
+  category,
+  operatingSystem = "Claude Code (Windows, macOS, Linux)",
+  downloadUrl,
+  version,
+  price,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  category: string;
+  operatingSystem?: string;
+  downloadUrl: string;
+  version?: string;
+  price: number | null;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}${path}#software`,
+    name,
+    description,
+    applicationCategory: "DeveloperApplication",
+    applicationSubCategory: category,
+    operatingSystem,
+    ...(version ? { softwareVersion: version } : {}),
+    ...(downloadUrl
+      ? {
+          downloadUrl: downloadUrl.startsWith("http")
+            ? downloadUrl
+            : `${SITE_URL}${downloadUrl}`,
+        }
+      : {}),
+    offers: {
+      "@type": "Offer",
+      price: price ? String(price) : "0",
+      priceCurrency: "GBP",
+    },
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
+    inLanguage: "en-GB",
+  };
+}
+
+export function itemListSchema({
+  path,
+  items,
+}: {
+  path: string;
+  items: Array<{ name: string; path: string }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}${path}#itemlist`,
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: `${SITE_URL}${it.path}`,
+    })),
+  };
+}

@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const navigation = [
   { name: "Agentic AI", href: "/agentic-ai-systems" },
+  { name: "Skills", href: "/skills" },
   { name: "About", href: "/about" },
   { name: "Blog", href: "/blog" },
 ];

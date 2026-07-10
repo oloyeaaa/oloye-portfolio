@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       // anything already in the wild. One entry per system.
       {
         source: "/get/marketing-team",
-        destination: "https://oloye.gumroad.com/l/marketing-team",
+        destination: "https://oloyeai.gumroad.com/l/marketing-team",
         permanent: false,
       },
     ];

@@ -3,12 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Stable product links. PDFs and bios point at /get/<system>; the target
-      // can change (Gumroad slug, Lemon Squeezy, direct page) without breaking
-      // anything already in the wild. One entry per system.
+      // Stable product links. PDFs and bios point at /get/<system>; each lands
+      // on its /systems/<system> sales page (whose button carries the checkout
+      // link). Targets can change without breaking anything in the wild.
       {
         source: "/get/marketing-team",
-        destination: "https://oloyeai.gumroad.com/l/marketing-team",
+        destination: "/systems/marketing-team",
         permanent: false,
       },
     ];

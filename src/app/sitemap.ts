@@ -2,9 +2,18 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { VERTICAL_SLUGS } from "@/lib/verticals";
 import { getAllSkillSlugs } from "@/lib/skills";
+import { getPublishedPosts } from "@/lib/airtable";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+
+  const posts = await getPublishedPosts();
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: post.updated || post.publishedDate || now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   const verticalRoutes: MetadataRoute.Sitemap = VERTICAL_SLUGS.map((slug) => ({
     url: `${SITE_URL}/for/${slug}`,
@@ -89,5 +98,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...routes, ...verticalRoutes, ...skillRoutes];
+  return [...routes, ...verticalRoutes, ...skillRoutes, ...blogRoutes];
 }

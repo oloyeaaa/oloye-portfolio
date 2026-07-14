@@ -71,6 +71,16 @@ const SKILLS = [
   { slug: "clone-studio", source: "clone-studio", type: "skill", category: "Video",
     requirements: ["Claude Code", "Higgsfield or HeyGen"],
     tags: ["talking-head", "avatar", "presenter"] },
+  // The systems-line wedges: the free taste of each paid system.
+  { slug: "idea-score", source: "idea-score", type: "skill", category: "Business",
+    requirements: ["Claude Code"],
+    tags: ["validation", "product-ideas", "scoring", "the-validator"] },
+  { slug: "first-draft", source: "first-draft", type: "skill", category: "Business",
+    requirements: ["Claude Code"],
+    tags: ["digital-products", "outline", "writing", "the-product-studio"] },
+  { slug: "question-bank", source: "question-bank", type: "skill", category: "Content",
+    requirements: ["Claude Code"],
+    tags: ["content-ideas", "posts", "hooks", "the-marketing-team"] },
 ];
 
 // ---------------------------------------------------------------------------

@@ -11,9 +11,9 @@ tags:
   - lead-magnet
   - pdf
   - giveaway
-version: "2026-07-10"
-updated: "2026-07-10"
-size: 6 KB
+version: "2026-07-14"
+updated: "2026-07-14"
+size: 7 KB
 fileCount: 3
 download: /downloads/lead-magnet.zip
 price: null

@@ -11,8 +11,8 @@ tags:
   - talking-head
   - avatar
   - presenter
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 7 KB
 fileCount: 2
 download: /downloads/clone-studio.zip

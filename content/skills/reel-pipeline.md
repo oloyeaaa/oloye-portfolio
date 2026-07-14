@@ -14,8 +14,8 @@ tags:
   - short-form
   - scripts
   - repurposing
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 44 KB
 fileCount: 21
 download: /downloads/reel-pipeline.zip

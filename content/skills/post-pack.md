@@ -10,8 +10,8 @@ tags:
   - captions
   - social
   - weekly-content
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 5 KB
 fileCount: 3
 download: /downloads/post-pack.zip

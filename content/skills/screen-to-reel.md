@@ -12,8 +12,8 @@ tags:
   - captions
   - reels
   - shorts
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 623 KB
 fileCount: 13
 download: /downloads/screen-to-reel.zip

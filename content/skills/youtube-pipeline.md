@@ -14,8 +14,8 @@ tags:
   - long-form
   - narration
   - scripts
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 4 KB
 fileCount: 2
 download: /downloads/youtube-pipeline.zip

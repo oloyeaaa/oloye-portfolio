@@ -13,8 +13,8 @@ tags:
   - video-gen
   - fal
   - upscale
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 6 KB
 fileCount: 3
 download: /downloads/render-room.zip

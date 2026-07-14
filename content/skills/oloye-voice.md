@@ -11,9 +11,9 @@ tags:
   - copywriting
   - hooks
   - human-check
-version: "2026-07-10"
-updated: "2026-07-10"
-size: 8 KB
+version: "2026-07-14"
+updated: "2026-07-14"
+size: 9 KB
 fileCount: 3
 download: /downloads/oloye-voice.zip
 price: null

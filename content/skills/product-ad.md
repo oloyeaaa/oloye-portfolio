@@ -14,8 +14,8 @@ tags:
   - ugc
   - cinematic
   - video
-version: "2026-07-10"
-updated: "2026-07-10"
+version: "2026-07-14"
+updated: "2026-07-14"
 size: 6 KB
 fileCount: 2
 download: /downloads/product-ad.zip

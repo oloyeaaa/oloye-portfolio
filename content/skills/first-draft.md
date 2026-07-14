@@ -3,7 +3,7 @@ title: first-draft
 slug: first-draft
 type: skill
 category: Business
-tagline: Your product's full outline plus the first section actually written, in one sitting.
+tagline: "Your product's full outline plus the first section actually written, in one sitting."
 requirements:
   - Claude Code
 tags:

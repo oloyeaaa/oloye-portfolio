@@ -81,6 +81,9 @@ const SKILLS = [
   { slug: "question-bank", source: "question-bank", type: "skill", category: "Content",
     requirements: ["Claude Code"],
     tags: ["content-ideas", "posts", "hooks", "the-marketing-team"] },
+  { slug: "story-bank", source: "story-bank", type: "skill", category: "Content",
+    requirements: ["Claude Code"],
+    tags: ["stories", "personal-brand", "posts", "the-ghostwriter"] },
 ];
 
 // ---------------------------------------------------------------------------

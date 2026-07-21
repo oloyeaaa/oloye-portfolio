@@ -22,6 +22,8 @@ export interface SkillMeta {
   price: number | null;
   featured: boolean;
   order: number;
+  /** true = page still builds at /skills/<slug>, but hidden from the grid */
+  unlisted: boolean;
 }
 
 export interface Skill extends SkillMeta {
@@ -53,6 +55,7 @@ function readMeta(file: string): SkillMeta {
     price: data.price ?? null,
     featured: Boolean(data.featured),
     order: data.order ?? 0,
+    unlisted: Boolean(data.unlisted),
   };
 }
 
@@ -62,6 +65,7 @@ export function getAllSkills(): SkillMeta[] {
     .readdirSync(skillsDirectory)
     .filter((f) => f.endsWith(".md"))
     .map(readMeta)
+    .filter((s) => !s.unlisted)
     .sort((a, b) => {
       if (a.featured !== b.featured) return a.featured ? -1 : 1;
       if (a.order !== b.order) return a.order - b.order;

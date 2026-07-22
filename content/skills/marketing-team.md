@@ -12,7 +12,7 @@ tags:
   - seo
   - outreach
   - analytics
-version: "1.0.2"
+version: "1.0.3"
 updated: "2026-07-21"
 size: 767 KB
 fileCount: 81

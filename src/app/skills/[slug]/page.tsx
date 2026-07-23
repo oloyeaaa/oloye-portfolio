@@ -107,10 +107,10 @@ export default async function SkillPage({ params }: Props) {
             {isFree ? (
               <a
                 href={skill.download}
-                download
+                download={skill.download.startsWith("http") ? undefined : true}
                 className="inline-block bg-accent hover:bg-accent-light text-background px-6 py-3 rounded-md font-semibold transition-colors text-sm"
               >
-                Download the .zip
+                {skill.download.startsWith("http") ? "Get it on GitHub" : "Download the .zip"}
               </a>
             ) : (
               <span className="inline-block border border-border-strong text-foreground px-6 py-3 rounded-md font-semibold text-sm">
@@ -135,6 +135,17 @@ export default async function SkillPage({ params }: Props) {
           <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-3 font-display">
             Install
           </p>
+          {skill.download.startsWith("http") ? (
+            <ol className="space-y-2 text-sm text-primary-dim list-decimal list-inside">
+              <li>
+                <code className="text-foreground bg-surface px-1.5 py-0.5 rounded border border-border">
+                  git clone {skill.download} ~/.claude/skills/{skill.slug}
+                </code>
+              </li>
+              <li>Run the install script inside the folder (install.ps1 on Windows, install.sh on Mac/Linux).</li>
+              <li>Restart Claude Code.</li>
+            </ol>
+          ) : (
           <ol className="space-y-2 text-sm text-primary-dim list-decimal list-inside">
             <li>Download and unzip.</li>
             <li>
@@ -150,6 +161,7 @@ export default async function SkillPage({ params }: Props) {
             </li>
             <li>Restart Claude Code.</li>
           </ol>
+          )}
         </div>
 
         <div

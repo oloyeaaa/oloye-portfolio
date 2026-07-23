@@ -12,9 +12,9 @@ tags:
   - hooks
   - the-marketing-team
 version: "2026-07-14"
-updated: "2026-07-14"
-size: 3 KB
-fileCount: 2
+updated: "2026-07-23"
+size: 4 KB
+fileCount: 3
 download: /downloads/question-bank.zip
 price: null
 featured: true
@@ -27,7 +27,9 @@ You are not out of ideas, you are trying to invent them instead of collecting th
 
 ## How it works
 
-It interviews you for the questions you already get (in DMs, on calls, in comments), sorts them into themes, and hands back a month of post ideas in your voice. No trend-chasing, no guessing what the algorithm wants. Your customers already told you what to post.
+It interviews you for the questions you already get (in DMs, on calls, in comments), sorts them into themes, and hands back about 30 post ideas in your voice: a hook under 10 words, what to say, and the format, grouped into weeks. No trend-chasing, no guessing what the algorithm wants. Your customers already told you what to post.
+
+In the box: the skill, a questions template you fill in rough, and a 3-step install guide (no terminal, a free claude.ai account works).
 
 ## When to reach for it
 

@@ -18,6 +18,13 @@ export const metadata: Metadata = {
       "Five steps to build a real digital income with AI, using free tools. Problem first, tool second. No hype, just steps.",
     url: `${SITE_URL}${PATH}`,
     type: "website",
+    siteName: "Practical AI Hub",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Practical Income Method — a field guide for 9–5ers",
+    description:
+      "Five steps to build a real digital income with AI, using free tools. Problem first, tool second. No hype, just steps.",
   },
 };
 

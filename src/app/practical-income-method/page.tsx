@@ -69,7 +69,7 @@ const checklist = [
 ];
 
 const skills = [
-  { name: "AI video", tool: "Sora, or Kling" },
+  { name: "AI video", tool: "Kling (free tier)" },
   { name: "UGC-style ads", tool: "HeyGen" },
   { name: "AI images", tool: "GPT Image, or Midjourney" },
   { name: "Posters & prints", tool: "Canva" },
@@ -77,7 +77,7 @@ const skills = [
 ];
 
 const platforms = [
-  { name: "Gumroad", cost: "Free", fee: "10% + $0.50" },
+  { name: "Gumroad", cost: "Free", fee: "10% flat, no monthly fee" },
   { name: "Payhip", cost: "Free", fee: "5% (or $29/mo for 2%, $99/mo for 0%)" },
   { name: "Beacons", cost: "Free", fee: "9% (or ~$25–30/mo for 0%)" },
   { name: "Stan Store", cost: "From $29/mo", fee: "0%" },

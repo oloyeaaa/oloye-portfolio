@@ -5,6 +5,8 @@ import { useState } from "react";
 
 const TIKTOK_URL = "https://www.tiktok.com/@practicalaihub4";
 const INSTAGRAM_URL = "https://www.instagram.com/practicalaihub4";
+// $5 tripwire — paste the MailerLite (Stripe) checkout link here to make the product block appear.
+const KIT_URL = "";
 
 export default function PromptPackHub() {
   const [open, setOpen] = useState(false);
@@ -123,6 +125,37 @@ export default function PromptPackHub() {
         <p className="mt-3 text-sm text-muted">
           10 free copy-paste AI prompts, straight to your inbox.
         </p>
+
+        {/* $5 tripwire — appears only once KIT_URL is set to the live checkout link */}
+        {KIT_URL && (
+          <div className="mt-10 border-t border-border pt-8">
+            <p className="text-center text-xs uppercase tracking-widest text-muted font-display mb-4">
+              Ready to go further?
+            </p>
+            <div className="rounded-2xl border border-border bg-surface p-6 text-left">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-lg font-bold text-foreground font-display">
+                  The First Product Kit
+                </h3>
+                <span className="text-accent font-display font-bold text-lg whitespace-nowrap">
+                  $5
+                </span>
+              </div>
+              <p className="mt-2 text-sm text-primary-dim leading-relaxed">
+                Build and sell your first digital product this weekend. The exact
+                steps, copy-paste prompts, and templates. No audience needed.
+              </p>
+              <a
+                href={KIT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block w-full rounded-xl border border-accent px-6 py-3.5 text-center font-semibold text-accent font-display hover:bg-accent hover:text-background transition-colors"
+              >
+                Get the Kit for $5
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Testimonials slot — hidden until real reviews are added.
         <section className="mt-16 text-left">...</section> */}

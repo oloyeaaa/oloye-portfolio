@@ -21,7 +21,7 @@ export const SITE_DESCRIPTION =
 export const AUTHOR = {
   name: "Oloye Adeosun",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
-  email: "oloyedeadeosun2.0@gmail.com",
+  email: "practicalaih@gmail.com",
 };
 
 export const SOCIAL = {

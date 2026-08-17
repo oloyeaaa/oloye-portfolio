@@ -37,6 +37,8 @@ const nextConfig: NextConfig = {
     return [
       // --- Pages about the person or the old agency -> home ---
       { source: "/about", destination: "/", permanent: true },
+      { source: "/services", destination: "/", permanent: true },
+      { source: "/services/:slug*", destination: "/", permanent: true },
       { source: "/oloye", destination: "/", permanent: true },
       { source: "/contact", destination: "/", permanent: true },
       { source: "/agentic-ai-systems", destination: "/", permanent: true },

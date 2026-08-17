@@ -59,28 +59,14 @@ export default async function Blog() {
             The blog
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display leading-tight">
-            Using AI to build extra income.
+            Extra income, built with AI.
           </h1>
           <p className="text-lg text-primary-dim leading-relaxed max-w-2xl">
-            Plain guides on using AI to earn extra income when you have a full-time job and limited time. Written from things actually built, with the real numbers, including what broke.
+            Plain guides for people with a full-time job and about two hours a night. Real builds, real numbers, and the parts that went wrong.
           </p>
         </div>
       </section>
 
-      {/* Hero image */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
-          <Image
-            src="/images/pages/blog-agentic-ai-systems-guides.png"
-            alt="A quiet desk lit by a single lime accent."
-            width={1600}
-            height={900}
-            priority
-            sizes="(max-width: 768px) 100vw, 1152px"
-            className="w-full h-auto rounded-xl border border-border"
-          />
-        </div>
-      </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         {posts.length === 0 ? (
@@ -90,7 +76,7 @@ export default async function Blog() {
             </h2>
             <p className="text-primary-dim max-w-xl mx-auto">
               {configured
-                ? "The blog agent hasn't shipped any posts to production yet. Check back once the daily pipeline is running, or read the pillar guide in the meantime."
+                ? "No posts have shipped to production yet. Check back once the daily pipeline is running, or take one of the free tools in the meantime."
                 : "The Airtable environment variables aren't set on this deployment. Once wired, this page pulls published posts from the Blog table and rebuilds every 60 seconds."}
             </p>
             <div className="mt-6 flex gap-3 justify-center flex-wrap">
@@ -98,13 +84,13 @@ export default async function Blog() {
                 href="/free"
                 className="bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
               >
-                Read the pillar guide
+                Get the free tools
               </Link>
               <Link
-                href="/free"
-                className="border border-border-strong hover:border-accent text-foreground px-5 py-2.5 rounded-md font-medium transition-colors text-sm"
+                href="/"
+                className="border border-accent hover:bg-accent/10 text-accent px-5 py-2.5 rounded-md font-medium transition-colors text-sm"
               >
-                Book the Front Desk test
+                What this is
               </Link>
             </div>
           </div>

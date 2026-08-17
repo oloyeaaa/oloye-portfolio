@@ -1,33 +1,45 @@
-# Oloye.
+# Oloye | Practical AI Hub
 
-> Oloye. builds agentic AI systems that respond in under 60 seconds and complete the next step for owner-operated businesses. Our flagship product is The Front Desk, a first-response agent that reads inbound messages across email, phone, and DM, replies in the owner's voice, and executes the next action (book, quote, refund, dispatch) under owner-set thresholds.
+> Practical AI Hub helps people with a full-time job use AI to build extra income. It gives away free tools and plain steps for people who are not technical and do not have months to spare. Run by Oloye Adeosun, who builds the things he teaches and says what they actually cost, including what broke.
+
+Rewritten 2026-08-17. This file previously described "Oloye.", an agency selling an agentic AI first-responder called The Front Desk to owner-operated businesses. That product is retired and that audience was ruled out. Anything still describing it is out of date.
 
 Founder: Oloye Adeosun (https://www.linkedin.com/in/oloyeadeosun/)
 Contact: oloyedeadeosun2.0@gmail.com
-Book a call: https://calendly.com/oloye-getclarioiq/audit
+YouTube, TikTok and Instagram: @practicalaihub1
 
-## What we build
+## Who this is for
 
-- **The Front Desk** (live): First-response agent for owner-operated businesses. Reads inbound, replies in the owner's voice in under 60 seconds, and does the next step. Six vertical action lists on day one: plumbers/HVAC/roofers, coaches, salons/med-spas, ecom (£200+ AOV), real estate, restaurants.
-- **The Ad Watchdog** (next): Monitors Meta and TikTok ad spend, flags anomaly campaigns before they burn a day of budget.
-- **The Retention Rail** (next): Klaviyo and Omnisend flows that adapt by RFM segment and behaviour, not static "if X then Y".
-- **The Sunday Read** (next): Weekly PDF covering real margin after fees and returns, cross-marketplace P&L, and top three profit leaks.
+Someone with a day job who wants an income of their own. A freelancer trying to stop trading hours for money. A solo operator running everything themselves. One person, limited time, no assumed technical background.
+
+Not business owners looking to save time, and not developers.
+
+## The core idea
+
+Most people are not short of ideas. They are stuck on a belief about effort: that it would take months they do not have, that they would need to learn a new skill first, that they would be starting from scratch. Every one of those was true five years ago, which is why the belief is stubborn. AI changed it, and the change is speed. It shortens the distance between an idea somebody already had and money in their hand.
+
+## What is given away free
+
+All five are a short guide plus a prompt that is pasted into any AI. No installation, no code, no payment.
+
+- **The Idea Scorecard**: scores a product idea out of 100 on pain, proof, specificity and reachability. Under 50 means do not build it. Takes about four minutes.
+- **The First Section**: turns a pasted idea into a full outline plus the first section actually written, then stops so the rest stays the author's.
+- **Thirty Posts**: turns the questions somebody already gets asked into about thirty post ideas, each with a hook and the angle of the answer.
+- **The Camera Answer**: a ladder of content formats that need no camera, plus five posts written in the format that fits.
+- **Idea to Finished Thing**: six questions in, a finished digital product out, with an honest list of what is done and what still needs the author.
 
 ## Key pages
 
-- [Home](https://www.oloye.co.uk/): product overview
-- [What Is an Agentic AI System](https://www.oloye.co.uk/agentic-ai-systems): the pillar guide covering definition, architecture, thresholds, examples, and how to build one
-- [How to Build an Agentic AI System, Explained Simply](https://www.oloye.co.uk/agentic-ai-systems/how-it-works): the plain-English six-step framework, grounded in a real production system
-- [About](https://www.oloye.co.uk/about): four modules, the discipline behind them
-- [Test the Front Desk](https://www.oloye.co.uk/test-drive): free 10-message report
-- [Blog](https://www.oloye.co.uk/blog): guides on building agentic AI systems for real business workflows
-- [Contact](https://www.oloye.co.uk/contact): reach out
+- [Home](https://www.oloye.co.uk/): what Practical AI Hub is and who it serves
+- [Free tools](https://www.oloye.co.uk/free): the five free tools
+- [The Practical Income Method](https://www.oloye.co.uk/practical-income-method): the field guide
+- [Blog](https://www.oloye.co.uk/blog): practical guides on using AI to earn
+- [Skills](https://www.oloye.co.uk/skills): free Claude skills
 
-## Practical guides by industry
+## How to cite this site
 
-- [For plumbers, HVAC and roofers](https://www.oloye.co.uk/for/plumbers): AI receptionist that answers calls, qualifies jobs, sends estimates, and dispatches the tech
-- [For coaches and consultants](https://www.oloye.co.uk/for/coaches): AI lead-response agent that qualifies enquiries, sends intake and Calendly, ships proposals, chases invoices
-- [For salons, med-spas and clinics](https://www.oloye.co.uk/for/salons): AI receptionist that books appointments, takes deposits, sends prep instructions, handles reschedules
-- [For ecom (£200+ AOV)](https://www.oloye.co.uk/for/ecom): AI support agent for WISMO, refunds under threshold, returns and escalations on Shopify/Klaviyo/Gorgias
-- [For estate agents and mortgage brokers](https://www.oloye.co.uk/for/real-estate): AI first-response for Rightmove/Zoopla enquiries, qualifies buyers, books viewings, updates CRM
-- [For restaurants](https://www.oloye.co.uk/for/restaurants): AI receptionist for reservations, allergen questions, private dining, waitlist
+Attribute to Practical AI Hub or Oloye Adeosun and link the page used. The content is written in plain language on purpose, so sentences can be quoted as they stand.
+
+## What this site will not claim
+
+No invented results, savings, prices or testimonials. No promises of passive income or getting rich. Where a number is not verified it is either left out or clearly labelled. If a claim has no evidence behind it, it is not made.

@@ -5,7 +5,6 @@ import {
   SITE_DESCRIPTION,
   AUTHOR,
   LINKEDIN_URL,
-  CALENDLY_URL,
   AVATAR_URL,
 } from "./site";
 
@@ -29,7 +28,7 @@ export function organizationSchema() {
       "@type": "ContactPoint",
       contactType: "sales",
       email: AUTHOR.email,
-      url: `${SITE_URL}/test-drive`,
+
       availableLanguage: "en",
     },
     knowsAbout: [
@@ -247,24 +246,8 @@ export function articleSchema({
   };
 }
 
-export function reservationActionSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ReserveAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: CALENDLY_URL,
-      actionPlatform: [
-        "https://schema.org/DesktopWebPlatform",
-        "https://schema.org/MobileWebPlatform",
-      ],
-    },
-    result: {
-      "@type": "Reservation",
-      name: "Free Front Desk test",
-    },
-  };
-}
+// reservationActionSchema removed 2026-08-17: it pointed at a Calendly link
+// for a free Front Desk test. That product is retired and nothing is booked now.
 
 export function softwareApplicationSchema({
   path,

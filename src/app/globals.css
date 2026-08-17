@@ -16,7 +16,7 @@
   --color-surface: #14161A;
   --color-surface-alt: #1A1D22;
   --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-inter); /* LOCKED 2026-08-17: Inter everywhere, one family. Hierarchy comes from weight and size. */
   --font-mono: var(--font-jetbrains);
 }
 

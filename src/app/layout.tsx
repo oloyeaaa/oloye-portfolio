@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteChrome from "@/components/SiteChrome";
@@ -15,12 +15,9 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
+// One family, every surface. Locked 2026-08-17.
+// Inter carries headlines, body and numbers; weight and size do the work a
+// second display face used to do. Archivo and Space Grotesk are both retired.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -92,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Script

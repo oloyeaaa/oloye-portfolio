@@ -23,13 +23,13 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-2">
               <Link
-                href="/about"
+                href="/free"
                 className="text-sm text-primary-dim hover:text-accent transition-colors"
               >
                 About
               </Link>
               <Link
-                href="/oloye"
+                href="/"
                 className="text-sm text-primary-dim hover:text-accent transition-colors"
               >
                 Oloye Adeosun
@@ -41,13 +41,13 @@ export default function Footer() {
                 Blog
               </Link>
               <Link
-                href="/test-drive"
+                href="/free"
                 className="text-sm text-primary-dim hover:text-accent transition-colors"
               >
                 Book a test
               </Link>
               <Link
-                href="/contact"
+                href="/blog"
                 className="text-sm text-primary-dim hover:text-accent transition-colors"
               >
                 Contact

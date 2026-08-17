@@ -95,13 +95,13 @@ export default async function Blog() {
             </p>
             <div className="mt-6 flex gap-3 justify-center flex-wrap">
               <Link
-                href="/agentic-ai-systems"
+                href="/free"
                 className="bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
               >
                 Read the pillar guide
               </Link>
               <Link
-                href="/test-drive"
+                href="/free"
                 className="border border-border-strong hover:border-accent text-foreground px-5 py-2.5 rounded-md font-medium transition-colors text-sm"
               >
                 Book the Front Desk test

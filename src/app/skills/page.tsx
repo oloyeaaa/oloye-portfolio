@@ -76,7 +76,7 @@ export default function SkillsIndex() {
               These skills are the parts. The Front Desk is the done-for-you agent that answers your customers in under 60 seconds. Test it on 10 real messages, yours to keep either way.
             </p>
             <Link
-              href="/test-drive"
+              href="/free"
               className="inline-block bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
             >
               Book my test

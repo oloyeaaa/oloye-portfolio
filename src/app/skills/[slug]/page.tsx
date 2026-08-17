@@ -199,7 +199,7 @@ export default async function SkillPage({ params }: Props) {
               These skills are the parts. The Front Desk is the done-for-you agent. 10 real messages, a side-by-side report, yours to keep either way.
             </p>
             <Link
-              href="/test-drive"
+              href="/free"
               className="inline-block bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
             >
               Book my test

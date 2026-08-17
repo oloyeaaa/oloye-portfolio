@@ -140,7 +140,7 @@ export default async function BlogPost({ params }: Props) {
             />
             <div>
               <Link
-                href="/oloye"
+                href="/"
                 className="text-sm font-semibold text-foreground hover:text-accent font-display transition-colors"
               >
                 Oloye Adeosun
@@ -196,7 +196,7 @@ export default async function BlogPost({ params }: Props) {
               10 real messages. A side-by-side report on what the Front Desk would have replied and done. Yours to keep either way.
             </p>
             <Link
-              href="/test-drive"
+              href="/free"
               className="inline-block bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
             >
               Book my test

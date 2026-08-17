@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { VERTICAL_SLUGS } from "@/lib/verticals";
 import { getAllSkillSlugs } from "@/lib/skills";
 import { getPublishedPosts } from "@/lib/airtable";
+
+// Rewritten 2026-08-17. The old sitemap listed the agency-era routes:
+// /for/<vertical> for plumbers, coaches, salons and the rest, plus /systems,
+// /agentic-ai-systems and /test-drive. Those pages are archived, so listing
+// them would have fed search engines a sitemap full of 404s.
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -15,13 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  const verticalRoutes: MetadataRoute.Sitemap = VERTICAL_SLUGS.map((slug) => ({
-    url: `${SITE_URL}/for/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.85,
-  }));
-
   const skillRoutes: MetadataRoute.Sitemap = getAllSkillSlugs().map((slug) => ({
     url: `${SITE_URL}/skills/${slug}`,
     lastModified: now,
@@ -29,80 +26,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const routes: MetadataRoute.Sitemap = [
+  return [
     {
       url: SITE_URL,
       lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1.0,
+      changeFrequency: "weekly" as const,
+      priority: 1,
     },
     {
-      url: `${SITE_URL}/test-drive`,
+      // The page the bio link points at. Highest priority after home.
+      url: `${SITE_URL}/free`,
       lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/agentic-ai-systems`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/systems`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/systems/marketing-team`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/agentic-ai-systems/how-it-works`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "weekly" as const,
+      priority: 0.95,
     },
     {
       url: `${SITE_URL}/practical-income-method`,
       lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/oloye`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/blog`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 0.7,
     },
     {
       url: `${SITE_URL}/skills`,
       lastModified: now,
-      changeFrequency: "weekly",
+      changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/contact`,
+      url: `${SITE_URL}/blog`,
       lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
     },
+    ...skillRoutes,
+    ...blogRoutes,
   ];
-
-  return [...routes, ...verticalRoutes, ...skillRoutes, ...blogRoutes];
 }

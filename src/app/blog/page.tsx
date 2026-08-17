@@ -12,12 +12,12 @@ import {
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "The Oloye. Blog — Agentic AI Systems for Small Business",
+  title: "Blog: using AI to build extra income",
   description:
     "Practical guides on agentic AI systems, first-response agents, and the workflows that ship real work for owner-operated businesses.",
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
-    title: "The Oloye. Blog — Agentic AI Systems for Small Business",
+    title: "Blog: using AI to build extra income",
     description:
       "Practical guides on agentic AI systems and first-response agents.",
     url: `${SITE_URL}/blog`,
@@ -40,7 +40,7 @@ export default async function Blog() {
 
   const webPage = webPageSchema({
     path: "/blog",
-    title: "The Oloye. Blog — Agentic AI Systems for Small Business",
+    title: "Blog: using AI to build extra income",
     description:
       "Practical guides on agentic AI systems, first-response agents, and the workflows that ship real work for owner-operated businesses.",
     breadcrumb: [
@@ -56,7 +56,7 @@ export default async function Blog() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
           <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-6 font-display">
-            The Oloye. Blog
+            The blog
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display leading-tight">
             Agentic AI systems, for owner-operated businesses.
@@ -72,7 +72,7 @@ export default async function Blog() {
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
           <Image
             src="/images/pages/blog-agentic-ai-systems-guides.png"
-            alt="Reading a long-form guide on agentic AI systems at a quiet desk lit by a single lime accent lamp — the Oloye. blog for owner-operated businesses"
+            alt="A quiet desk lit by a single lime accent."
             width={1600}
             height={900}
             priority

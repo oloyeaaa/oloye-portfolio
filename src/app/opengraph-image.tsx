@@ -1,6 +1,6 @@
 import { renderOg, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 
-export const alt = "Oloye. — Agentic AI Systems that respond in under 60 seconds";
+export const alt = "Oloye | Practical AI Hub: use AI to build extra income";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

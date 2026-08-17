@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const skill = await getSkillBySlug(slug);
   if (!skill) return { title: "Skill not found" };
-  const title = `${skill.title} — free Claude Code ${skill.type} — Oloye.`;
+  const title = `${skill.title}: free Claude Code ${skill.type}`;
   return {
     title,
     description: skill.tagline.slice(0, 155),

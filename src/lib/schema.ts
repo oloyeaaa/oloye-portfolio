@@ -56,7 +56,7 @@ export function personSchema() {
     image: AVATAR_URL,
     sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Agentic AI Systems Builder; Founder, Oloye.",
+    jobTitle: "Founder, Practical AI Hub",
   };
 }
 

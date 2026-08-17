@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 import { webPageSchema, faqPageSchema, itemListSchema } from "@/lib/schema";
 import { metaKeywords } from "@/lib/keywords";
+import { FREEBIES } from "@/lib/freebies";
 
-// SEO / AEO / GEO note, deliberate:
-// Answer engines quote whole sentences, so every answer below is written to
-// stand alone with no surrounding page. Each H2 is the question somebody
-// actually types, and the plain answer follows immediately, before any detail.
-// The plain-language rule the brand runs on is also what makes copy quotable:
-// short, jargon-free sentences survive being lifted. See MISSION.md.
+// SEO / AEO / GEO, deliberate:
+// Answer engines quote whole sentences, so every FAQ answer stands alone with
+// no surrounding page, and each heading is a question somebody actually types.
+// The plain-language rule is also what makes copy quotable: short, jargon-free
+// sentences survive being lifted. See MISSION.md.
 
 const TITLE = "Practical AI Hub: use AI to build extra income";
 const DESCRIPTION =
@@ -29,40 +29,6 @@ export const metadata: Metadata = {
   },
 };
 
-const giveaways = [
-  {
-    name: "The Idea Scorecard",
-    promise: "You already had the idea. This tells you if it is worth your evenings.",
-    detail:
-      "Four things decide whether an idea sells: whether the pain is real, whether anything like it already sells, whether you can name the buyer out loud, and whether you could reach them on a Tuesday night. Twenty five points each. Under 50, do not build it.",
-  },
-  {
-    name: "The First Section",
-    promise: "The blank page is not the hard part. It is the part already solved.",
-    detail:
-      "Paste your idea, get the full outline plus the first section actually written. Several hundred words in your voice, no placeholders. Then it stops, because section two is yours.",
-  },
-  {
-    name: "Thirty Posts",
-    promise: "You are not out of ideas. You are trying to invent them.",
-    detail:
-      "Every question somebody asks you is a post. Collect the ones you already get asked and turn them into about thirty posts, each with a hook and what to say.",
-  },
-  {
-    name: "The Camera Answer",
-    promise: "You do not have to be on camera. You do have to show up.",
-    detail:
-      "A ladder of formats that need no camera, cheapest first, and five posts written in whichever one fits what you already have.",
-  },
-  {
-    name: "Idea to Finished Thing",
-    promise: "The month of evenings is the part that changed.",
-    detail:
-      "Six answers in, a finished product out, with an honest list of what still needs you. It never hands you something half-built and calls it done.",
-  },
-];
-
-// Real questions, plain answers, each one able to stand alone if lifted.
 const faqs = [
   {
     question: "What is Practical AI Hub?",
@@ -82,12 +48,12 @@ const faqs = [
   {
     question: "What can I actually sell?",
     answer:
-      "Anything somebody already pays to avoid doing. A guide, a template pack, a service, editing clips for creators, product photos for small sellers, local content, or setting up a simple assistant inside somebody's business. Digital products earn the most because you make them once, but they are one route, not the only one.",
+      "Anything somebody already pays to avoid doing. A guide, a template pack, a service, editing clips for creators, product photos for small sellers, or setting up a simple assistant inside somebody's business. Digital products earn the most because you make them once, but they are one route, not the only one.",
   },
   {
     question: "Is it too late to start making money with AI?",
     answer:
-      "No, and the belief that it is late usually comes from a different worry, which is that starting will take months. That was true five years ago. The work is smaller now, so the honest answer is that the idea you already had is more finishable today than it has ever been.",
+      "No, and the belief that it is late usually comes from a different worry, which is that starting will take months. That was true five years ago. The work is smaller now, so the idea you already had is more finishable today than it has ever been.",
   },
   {
     question: "How do I know if my idea is any good before I waste weeks on it?",
@@ -110,42 +76,36 @@ export default function Home() {
       <JsonLd
         data={itemListSchema({
           path: "/",
-          items: giveaways.map((g) => ({ name: g.name, path: "/free" })),
+          items: FREEBIES.map((f) => ({
+            name: f.name,
+            path: `/free/${f.slug}`,
+          })),
         })}
       />
 
-      <section className="mx-auto max-w-3xl px-5 pt-16 pb-14 sm:pt-24">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent,#587109)]">
-          {SITE_NAME}
-        </p>
-        <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-5xl">
-          You already had the idea. AI just made it small enough to finish.
+      <section className="mx-auto max-w-3xl px-5 pt-20 pb-16 sm:pt-28">
+        <h1 className="text-4xl font-extrabold leading-[1.03] tracking-tight text-balance sm:text-6xl">
+          You already had the idea.
+          <span className="block text-accent">
+            AI just made it small enough to finish.
+          </span>
         </h1>
 
-        {/* The lift paragraph. Self-contained on purpose. */}
-        <p className="mt-6 max-w-[60ch] text-lg">
-          Practical AI Hub helps people with a full-time job use AI to build
-          extra income. Free tools, plain steps, honest numbers. Nothing
-          technical, nothing to install.
+        <p className="mt-7 max-w-[50ch] text-lg text-primary-dim">
+          Free tools for people with a full-time job who want extra income.
+          Nothing to install, nothing technical.
         </p>
 
-        <p className="mt-4 max-w-[60ch] text-[var(--muted,#555)]">
-          Most people are not short of ideas. They are stuck on a sum they did
-          in their head years ago: months of evenings, a skill to learn first,
-          starting from nothing. That sum was right in 2020. It is not right
-          now, and nobody sent a memo.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-9 flex flex-wrap gap-3">
           <Link
             href="/free"
-            className="rounded-md bg-[var(--fg,#0E0F12)] px-5 py-3 font-semibold text-[var(--bg,#fff)] transition hover:opacity-90"
+            className="rounded-md bg-accent px-5 py-3 font-semibold text-background transition hover:bg-accent-light"
           >
             Get the free tools
           </Link>
           <Link
             href="/blog"
-            className="rounded-md border border-current/20 px-5 py-3 font-semibold transition hover:bg-current/5"
+            className="rounded-md border border-accent px-5 py-3 font-semibold text-accent transition hover:bg-accent/10"
           >
             Read the blog
           </Link>
@@ -154,54 +114,47 @@ export default function Home() {
 
       <section
         aria-labelledby="free-heading"
-        className="mx-auto max-w-3xl border-t border-current/10 px-5 py-14"
+        className="mx-auto max-w-3xl border-t border-border px-5 py-14"
       >
         <h2 id="free-heading" className="text-2xl font-extrabold tracking-tight">
-          What can I get for free?
+          Five free tools
         </h2>
-        <p className="mt-3 max-w-[60ch] text-[var(--muted,#555)]">
-          Five tools, all free, none of them requiring an install. Each one is a
-          short guide plus a prompt you paste into whatever AI you already use.
-          They also run in order.
+        <p className="mt-3 max-w-[50ch] text-muted">
+          Each one is a prompt you paste into any AI. They run in order.
         </p>
 
-        <ol className="mt-8 space-y-7">
-          {giveaways.map((g, i) => (
-            <li key={g.name} className="grid grid-cols-[2rem_1fr] gap-4">
-              <span className="pt-1 font-bold tabular-nums text-[var(--accent,#587109)]">
+        <ol className="mt-8 space-y-5">
+          {FREEBIES.map((f, i) => (
+            <li key={f.slug} className="grid grid-cols-[2rem_1fr] gap-4">
+              <span className="pt-0.5 font-bold tabular-nums text-accent">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h3 className="font-bold">{g.name}</h3>
-                <p className="mt-1 font-medium">{g.promise}</p>
-                <p className="mt-1 text-[var(--muted,#555)]">{g.detail}</p>
+                <Link
+                  href={`/free/${f.slug}`}
+                  className="font-bold underline-offset-4 hover:text-accent hover:underline"
+                >
+                  {f.name}
+                </Link>
+                <p className="mt-0.5 text-muted">{f.promise}</p>
               </div>
             </li>
           ))}
         </ol>
-
-        <Link
-          href="/free"
-          className="mt-9 inline-block font-semibold underline underline-offset-4"
-        >
-          Get all five, free
-        </Link>
       </section>
 
       <section
         aria-labelledby="faq-heading"
-        className="mx-auto max-w-3xl border-t border-current/10 px-5 py-14"
+        className="mx-auto max-w-3xl border-t border-border px-5 py-14"
       >
         <h2 id="faq-heading" className="text-2xl font-extrabold tracking-tight">
-          Questions people actually ask
+          Questions people ask
         </h2>
         <dl className="mt-8 space-y-8">
           {faqs.map((f) => (
             <div key={f.question}>
               <dt className="text-lg font-bold text-balance">{f.question}</dt>
-              <dd className="mt-2 max-w-[62ch] text-[var(--muted,#555)]">
-                {f.answer}
-              </dd>
+              <dd className="mt-2 max-w-[62ch] text-muted">{f.answer}</dd>
             </div>
           ))}
         </dl>

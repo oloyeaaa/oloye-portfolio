@@ -1,6 +1,6 @@
 import { renderOg, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 
-export const alt = "Free Claude Code Skills & Agents — Oloye.";
+export const alt = "Free Claude Code skills and agents | Practical AI Hub";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

@@ -7,12 +7,12 @@ import { SITE_URL } from "@/lib/site";
 import { getAllSkills } from "@/lib/skills";
 
 export const metadata: Metadata = {
-  title: "Free Claude Code Skills & Agents — Oloye.",
+  title: "Free Claude Code skills and agents",
   description:
     "Download free Claude Code skills and agents and run them on your own machine. Content, video, and writing tools, code and docs only, no keys, no sign-up.",
   alternates: { canonical: `${SITE_URL}/skills` },
   openGraph: {
-    title: "Free Claude Code Skills & Agents — Oloye.",
+    title: "Free Claude Code skills and agents",
     description:
       "Download free Claude Code skills and agents and run them on your own machine.",
     url: `${SITE_URL}/skills`,

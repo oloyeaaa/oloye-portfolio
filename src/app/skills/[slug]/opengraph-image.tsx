@@ -1,7 +1,7 @@
 import { renderOg, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getAllSkillSlugs, getSkillBySlug } from "@/lib/skills";
 
-export const alt = "Free Claude Code skill — Oloye.";
+export const alt = "Free Claude Code skill | Practical AI Hub";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

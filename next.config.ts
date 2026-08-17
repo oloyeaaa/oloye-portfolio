@@ -36,7 +36,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // --- Pages about the person or the old agency -> home ---
-      { source: "/about", destination: "/", permanent: true },
+      // NOTE: /about is NOT here. It was redirected when the agency page was
+      // archived, and a real About page was written in its place 2026-08-17.
       { source: "/services", destination: "/", permanent: true },
       { source: "/services/:slug*", destination: "/", permanent: true },
       { source: "/oloye", destination: "/", permanent: true },

@@ -11,6 +11,7 @@ const explore = [
   { name: "Blog", href: "/blog" },
   { name: "Skills", href: "/skills" },
   { name: "The Practical Income Method", href: "/practical-income-method" },
+  { name: "About", href: "/about" },
 ];
 
 const social = [

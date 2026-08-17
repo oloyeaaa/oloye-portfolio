@@ -13,6 +13,7 @@ const navigation = [
   { name: "Free tools", href: "/free" },
   { name: "Skills", href: "/skills" },
   { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
 ];
 
 export default function Header() {

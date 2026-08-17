@@ -56,7 +56,24 @@ async function airtableGet<T>(
   path: string,
   revalidate: number
 ): Promise<T | null> {
-  if (!API_KEY) return null;
+  if (!API_KEY) {
+    // Loud on purpose. Without this the blog silently renders "No posts",
+    // which looks like an empty blog rather than a missing key, and that is
+    // exactly how it went unnoticed until 2026-08-17.
+    console.warn(
+      "[airtable] AIRTABLE_API_KEY is not set. The blog will render with no " +
+        "posts. Add it to .env.local; the working value is in the Vercel " +
+        "project settings. Airtable tokens start with 'pat'."
+    );
+    return null;
+  }
+  if (!API_KEY.startsWith("pat")) {
+    console.warn(
+      `[airtable] AIRTABLE_API_KEY does not look like an Airtable token. ` +
+        `Airtable personal access tokens start with 'pat'; this one starts ` +
+        `with '${API_KEY.slice(0, 3)}'. The blog will render with no posts.`
+    );
+  }
   try {
     const res = await fetch(
       `https://api.airtable.com/v0/${BASE_ID}/${BLOG_TABLE}${path}`,

@@ -59,10 +59,10 @@ export default async function Blog() {
             The blog
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display leading-tight">
-            Agentic AI systems, for owner-operated businesses.
+            Using AI to build extra income.
           </h1>
           <p className="text-lg text-primary-dim leading-relaxed max-w-2xl">
-            Practical guides on first-response agents, the workflows that ship real work, and what actually converts. Written on top of production builds, not marketing round-ups.
+            Plain guides on using AI to earn extra income when you have a full-time job and limited time. Written from things actually built, with the real numbers, including what broke.
           </p>
         </div>
       </section>

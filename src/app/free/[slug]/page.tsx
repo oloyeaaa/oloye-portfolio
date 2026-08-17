@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import CopyPrompt from "@/components/CopyPrompt";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, NOTION_PACK_URL } from "@/lib/site";
+import SignupForm from "@/components/SignupForm";
 import { FREEBIES, FREEBIE_SLUGS, getFreebie } from "@/lib/freebies";
 import { webPageSchema, howToSchema, faqPageSchema } from "@/lib/schema";
 
@@ -119,6 +120,10 @@ export default async function FreebiePage({
 
         <div className="mt-8">
           <CopyPrompt prompt={f.prompt} />
+        </div>
+
+        <div className="mt-14">
+          <SignupForm notionUrl={NOTION_PACK_URL} />
         </div>
 
         <section className="mt-14 border-t border-border pt-10">

@@ -30,6 +30,18 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/practicalaihub1",
 };
 
+/**
+ * The free tools pack in Notion, the thing the email capture hands over.
+ *
+ * This must be the PUBLIC share URL with "Duplicate as template" turned on,
+ * not the app.notion.com link, which only Oloye can open. Set it in Vercel as
+ * NEXT_PUBLIC_NOTION_PACK_URL so it can be changed without a deploy.
+ *
+ * Until it is set, the signup form still captures the email and simply does
+ * not show a link, rather than sending people to a page they cannot open.
+ */
+export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";
+
 export const LINKEDIN_URL = "https://www.linkedin.com/in/oloyeadeosun/";
 export const AVATAR_URL = `${SITE_URL}/images/oloye-avatar.png`;
 

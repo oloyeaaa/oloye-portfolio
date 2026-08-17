@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, NOTION_PACK_URL } from "@/lib/site";
+import SignupForm from "@/components/SignupForm";
 import { webPageSchema, faqPageSchema, itemListSchema } from "@/lib/schema";
 import { metaKeywords } from "@/lib/keywords";
 
@@ -155,6 +156,10 @@ export default function FreePage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 pb-4">
+        <SignupForm notionUrl={NOTION_PACK_URL} />
       </section>
 
       <section

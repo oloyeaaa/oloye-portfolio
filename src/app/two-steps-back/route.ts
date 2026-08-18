@@ -77,7 +77,7 @@ const HTML = `<!doctype html>
 </head>
 <body>
 <div class="wrap">
-  <div class="kicker">Practical AI · @practicalaihub4</div>
+  <div class="kicker">Practical AI · @practicalaihub1</div>
   <h1>Two Steps Back</h1>
   <p class="sub">50 ten-second reels to your past self. Read the big line to camera. The lime line is the text that goes <em>on screen</em>. The caption is ready to paste when you post.</p>
   <div class="tips">

@@ -4,7 +4,7 @@ import { webPageSchema, howToSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 import StepNav from "./StepNav";
 
-const TIKTOK_URL = "https://www.tiktok.com/@practicalaihub4";
+const TIKTOK_URL = "https://www.tiktok.com/@practicalaihub1";
 const PATH = "/practical-income-method";
 
 export const metadata: Metadata = {
@@ -404,7 +404,7 @@ export default function PracticalIncomeMethod() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-semibold text-background transition-colors hover:bg-accent-light"
           >
-            Follow @practicalaihub4 on TikTok
+            Follow @practicalaihub1 on TikTok
           </a>
         </div>
       </section>

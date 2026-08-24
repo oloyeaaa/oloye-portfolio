@@ -50,6 +50,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      // The marketing career tier list. Real search demand, and the one page
+      // that can be found for terms the YouTube channel cannot rank for,
+      // because the channel is named after a person.
+      url: `${SITE_URL}/marketing-career-tier-list`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/about`,
       lastModified: now,
       changeFrequency: "monthly" as const,

@@ -112,7 +112,7 @@ export default function Home() {
           I am <strong className="text-foreground">Oloye Adeosun</strong>. I bridge the gap between high-level go-to-market positioning and the technical marketing operations required to scale pipeline.
         </p>
 
-        {/* Dual Actions */}
+        {/* Actions */}
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href="#contact"
@@ -126,14 +126,12 @@ export default function Home() {
           >
             Explore My Ventures (GSS & Practical AI)
           </Link>
-          <a
-            href={SOCIAL.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md border border-border px-5 py-3.5 font-medium text-muted transition hover:text-foreground"
+          <Link
+            href="/blog"
+            className="rounded-md border border-border px-5 py-3.5 font-medium text-muted transition hover:text-foreground hover:border-border-strong"
           >
-            Watch YouTube Teardowns ↗
-          </a>
+            Read the Blog & Teardowns →
+          </Link>
         </div>
 
         {/* Credibility & Experience Badges */}
@@ -281,26 +279,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Story-Led Teardowns & YouTube Section */}
+      {/* Story-Led Teardowns & Blog Section */}
       <section id="teardowns" className="border-t border-border bg-surface/30 py-20 px-6">
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-                Video Teardowns & Case Studies
+                Case Studies & Teardowns
               </p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Deconstructing how great products win.
               </h2>
             </div>
-            <a
-              href={SOCIAL.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-accent hover:text-accent-light underline underline-offset-4"
-            >
-              Subscribe on YouTube (@oloyeadeosun) →
-            </a>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/blog"
+                className="text-sm font-semibold text-accent hover:text-accent-light underline underline-offset-4"
+              >
+                Read All Blog Posts →
+              </Link>
+              <a
+                href={SOCIAL.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-primary-dim hover:text-foreground underline underline-offset-4"
+              >
+                YouTube (@oloyeadeosun) ↗
+              </a>
+            </div>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -323,14 +329,20 @@ export default function Home() {
                     {td.description}
                   </p>
                 </div>
-                <div className="mt-6 border-t border-border pt-4">
+                <div className="mt-6 border-t border-border pt-4 flex items-center justify-between">
+                  <Link
+                    href="/blog"
+                    className="text-xs font-semibold text-accent hover:underline"
+                  >
+                    Read Breakdown →
+                  </Link>
                   <a
                     href={SOCIAL.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-accent hover:underline"
+                    className="text-xs font-mono text-muted hover:text-foreground"
                   >
-                    Watch Breakdown on YouTube ↗
+                    Watch Video ↗
                   </a>
                 </div>
               </div>
@@ -355,7 +367,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={`mailto:${AUTHOR.email}?subject=Strategic%20Inquiry%20from%20Oloye.co.uk`}
-              className="w-full sm:w-auto rounded-md bg-accent px-8 py-4 font-semibold text-background transition hover:bg-accent-light shadow-md"
+              className="w-full sm:w-auto rounded-md bg-accent px-8 py-4 font-semibold text-background transition hover:bg-accent-light shadow-md font-mono"
             >
               Email {AUTHOR.email}
             </a>

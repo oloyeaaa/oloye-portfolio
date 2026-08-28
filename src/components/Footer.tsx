@@ -5,7 +5,7 @@ import { AUTHOR, LINKEDIN_URL, SOCIAL } from "@/lib/site";
 const navigation = [
   { name: "Expertise", href: "/#expertise" },
   { name: "Ventures (GSS & Practical AI)", href: "/ventures" },
-  { name: "Teardowns & Case Studies", href: "/#teardowns" },
+  { name: "Blog & Teardowns", href: "/blog" },
   { name: "About Oloye", href: "/about" },
 ];
 
@@ -105,7 +105,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${AUTHOR.email}`}
-                  className="text-sm text-accent transition-colors hover:text-accent-light font-medium"
+                  className="text-sm text-accent transition-colors hover:text-accent-light font-medium font-mono"
                 >
                   {AUTHOR.email}
                 </a>

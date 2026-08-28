@@ -13,7 +13,7 @@ export const AUTHOR = {
   name: "Oloye Adeosun",
   title: "Product Marketer & Marketing Operations Leader",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
-  email: "oloye@oloye.co.uk",
+  email: "info@oloyea.com",
   secondaryEmail: "practicalaih@gmail.com",
 };
 

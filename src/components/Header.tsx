@@ -8,7 +8,7 @@ import { useState } from "react";
 const navigation = [
   { name: "Expertise", href: "/#expertise" },
   { name: "Ventures", href: "/ventures" },
-  { name: "Teardowns & Insights", href: "/#teardowns" },
+  { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
 ];
 
@@ -46,7 +46,7 @@ export default function Header() {
               href={item.href}
               className={`text-sm font-medium transition-colors ${
                 pathname === item.href ||
-                (item.href !== "/" && item.href !== "/#expertise" && item.href !== "/#teardowns" && pathname.startsWith(item.href))
+                (item.href !== "/" && item.href !== "/#expertise" && pathname.startsWith(item.href))
                   ? "text-accent"
                   : "text-muted hover:text-foreground"
               }`}

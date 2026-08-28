@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, AUTHOR, SOCIAL } from "@/lib/site";
 import {
   getPublishedPosts,
   isAirtableConfigured,
@@ -12,14 +11,14 @@ import {
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog: using AI to build extra income",
+  title: "GTM & Marketing Teardowns — Case Studies & Frameworks",
   description:
-    "Practical guides on agentic AI systems, first-response agents, and the workflows that ship real work for owner-operated businesses.",
+    "Deep-dive teardowns, positioning case studies, and marketing operations architectures by Oloye Adeosun.",
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
-    title: "Blog: using AI to build extra income",
+    title: "GTM & Marketing Teardowns — Case Studies & Frameworks",
     description:
-      "Practical guides on agentic AI systems and first-response agents.",
+      "Deep-dive teardowns, positioning case studies, and marketing operations architectures by Oloye Adeosun.",
     url: `${SITE_URL}/blog`,
     type: "website",
   },
@@ -40,12 +39,12 @@ export default async function Blog() {
 
   const webPage = webPageSchema({
     path: "/blog",
-    title: "Blog: using AI to build extra income",
+    title: "GTM & Marketing Teardowns — Case Studies & Frameworks",
     description:
-      "Practical guides on agentic AI systems, first-response agents, and the workflows that ship real work for owner-operated businesses.",
+      "Deep-dive teardowns, positioning case studies, and marketing operations architectures by Oloye Adeosun.",
     breadcrumb: [
       { name: "Home", path: "/" },
-      { name: "Blog", path: "/blog" },
+      { name: "Teardowns & Blog", path: "/blog" },
     ],
     type: "CollectionPage",
   });
@@ -53,44 +52,43 @@ export default async function Blog() {
   return (
     <>
       <JsonLd data={webPage} />
-      <section className="border-b border-border">
+      <section className="border-b border-border bg-surface/30">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
-          <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-6 font-display">
-            The blog
+          <p className="text-accent text-xs font-mono font-semibold uppercase tracking-[0.2em] mb-4">
+            Analysis & Teardowns
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display leading-tight">
-            Extra income, built with AI.
+          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 font-display tracking-tight leading-tight">
+            Product Marketing & Operations Teardowns.
           </h1>
           <p className="text-lg text-primary-dim leading-relaxed max-w-2xl">
-            Plain guides for people with a full-time job and about two hours a night. Real builds, real numbers, and the parts that went wrong.
+            Story-led case studies on how market leaders win, positioning psychology, and operational frameworks for modern revenue leaders.
           </p>
         </div>
       </section>
 
-
       <section className="mx-auto max-w-6xl px-6 py-16">
         {posts.length === 0 ? (
-          <div className="bg-surface border border-border rounded-lg p-10 text-center">
+          <div className="bg-surface border border-border rounded-xl p-12 text-center max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold text-foreground mb-3 font-display">
-              {configured ? "No posts yet." : "Blog CMS not connected yet."}
+              Latest Video Teardowns & Breakdowns
             </h2>
-            <p className="text-primary-dim max-w-xl mx-auto">
-              {configured
-                ? "No posts have shipped to production yet. Check back once the daily pipeline is running, or take one of the free tools in the meantime."
-                : "The Airtable environment variables aren't set on this deployment. Once wired, this page pulls published posts from the Blog table and rebuilds every 60 seconds."}
+            <p className="text-primary-dim text-sm leading-relaxed mb-6">
+              Our written case studies are being synced with the YouTube channel teardowns. In the meantime, watch the latest video breakdowns on YouTube or explore our proprietary ventures.
             </p>
-            <div className="mt-6 flex gap-3 justify-center flex-wrap">
-              <Link
-                href="/free"
-                className="bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
+            <div className="flex gap-4 justify-center flex-wrap">
+              <a
+                href={SOCIAL.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-accent hover:bg-accent-light text-background px-6 py-3 rounded-md font-semibold transition-colors text-sm shadow-sm"
               >
-                Get the free tools
-              </Link>
+                Watch on YouTube (@oloyeadeosun) ↗
+              </a>
               <Link
-                href="/"
-                className="border border-accent hover:bg-accent/10 text-accent px-5 py-2.5 rounded-md font-medium transition-colors text-sm"
+                href="/ventures"
+                className="border border-border hover:border-accent text-foreground px-6 py-3 rounded-md font-semibold transition-colors text-sm"
               >
-                What this is
+                Explore Ventures
               </Link>
             </div>
           </div>
@@ -115,12 +113,12 @@ export default async function Blog() {
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-3 mb-3">
                     {post.category && (
-                      <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded font-display uppercase tracking-widest">
+                      <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded font-mono uppercase tracking-wider">
                         {post.category}
                       </span>
                     )}
                     {post.publishedDate && (
-                      <time className="text-xs text-muted">
+                      <time className="text-xs text-muted font-mono">
                         {formatDate(post.publishedDate)}
                       </time>
                     )}

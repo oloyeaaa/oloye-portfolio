@@ -26,20 +26,19 @@ export function organizationSchema() {
     sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "sales",
+      contactType: "business inquiry",
       email: AUTHOR.email,
-
       availableLanguage: "en",
     },
     knowsAbout: [
-      "Agentic AI Systems",
-      "AI Agents",
-      "AI-Powered Customer Support",
-      "AI First Response",
-      "AI Automation for Small Business",
-      "AI Receptionist",
-      "AI Answering Service",
-      "Small Business Automation",
+      "Product Marketing",
+      "Marketing Operations",
+      "Go-To-Market Strategy",
+      "Counter-Positioning & Narrative Design",
+      "Lifecycle Automation & Lead Scoring",
+      "Accessible Technology GTM",
+      "Marketing Systems Architecture",
+      "B2B & Public Sector Commercial Strategy",
     ],
     areaServed: "Global",
   };
@@ -56,7 +55,7 @@ export function personSchema() {
     image: AVATAR_URL,
     sameAs: [LINKEDIN_URL, "https://www.gtmsignalstudio.com"],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Founder, Practical AI Hub",
+    jobTitle: "Product Marketing & Marketing Operations Leader",
   };
 }
 
@@ -246,15 +245,12 @@ export function articleSchema({
   };
 }
 
-// reservationActionSchema removed 2026-08-17: it pointed at a Calendly link
-// for a free Front Desk test. That product is retired and nothing is booked now.
-
 export function softwareApplicationSchema({
   path,
   name,
   description,
   category,
-  operatingSystem = "Claude Code (Windows, macOS, Linux)",
+  operatingSystem = "Cloud / Web Application",
   downloadUrl,
   version,
   price,
@@ -274,7 +270,7 @@ export function softwareApplicationSchema({
     "@id": `${SITE_URL}${path}#software`,
     name,
     description,
-    applicationCategory: "DeveloperApplication",
+    applicationCategory: "BusinessApplication",
     applicationSubCategory: category,
     operatingSystem,
     ...(version ? { softwareVersion: version } : {}),

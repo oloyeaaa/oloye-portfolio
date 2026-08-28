@@ -1,47 +1,48 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.oloye.co.uk";
 
-// Rebranded 2026-08-17. One brand, every platform: Practical AI Hub.
-// This used to be "Oloye." with the tagline "Agentic AI Systems that respond
-// in under 60 seconds", selling The Front Desk to owner-operated businesses.
-// That product is retired and that audience was ruled out. See
-// Oloye-OS/1-Foundation/MISSION.md.
-export const SITE_NAME = "Oloye | Practical AI Hub";
-// The brand short name, for tight spaces like the header and the wordmark.
-export const SITE_SHORT_NAME = "Practical AI Hub";
-export const SITE_LEGAL_NAME = "Practical AI Hub";
-// The person presents the brand. The brand is not the person's name.
-export const SITE_TAGLINE = "Use AI to build extra income";
+export const SITE_NAME = "Oloye Adeosun";
+export const SITE_SHORT_NAME = "Oloye";
+export const SITE_LEGAL_NAME = "Oloye Adeosun";
+export const SITE_TAGLINE = "Product Marketing, Marketing Operations & GTM Strategy";
 
-// Written to be lifted. Answer engines quote whole sentences, so the first one
-// has to stand on its own and say who this is for without any surrounding page.
 export const SITE_DESCRIPTION =
-  "Practical AI Hub helps people with a full-time job use AI to build extra income. Free tools, plain steps, and honest numbers, for people who are not technical and do not have months to spare.";
+  "Oloye Adeosun is a Senior Product Marketer and Marketing Operations leader. Specializing in story-led positioning, accessible technology GTM, and scalable revenue infrastructure. Founder of GTM Signal Studio (GSS) and Practical AI Hub.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
+  title: "Product Marketer & Marketing Operations Leader",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
-  email: "practicalaih@gmail.com",
+  email: "oloye@oloye.co.uk",
+  secondaryEmail: "practicalaih@gmail.com",
 };
 
 export const SOCIAL = {
-  youtube: "https://www.youtube.com/@practicalaihub1",
+  youtube: "https://www.youtube.com/@oloyeadeosun",
+  linkedin: "https://www.linkedin.com/in/oloyeadeosun/",
   tiktok: "https://www.tiktok.com/@practicalaihub1",
   instagram: "https://www.instagram.com/practicalaihub1",
 };
 
-/**
- * The free tools pack in Notion, the thing the email capture hands over.
- *
- * This must be the PUBLIC share URL with "Duplicate as template" turned on,
- * not the app.notion.com link, which only Oloye can open. Set it in Vercel as
- * NEXT_PUBLIC_NOTION_PACK_URL so it can be changed without a deploy.
- *
- * Until it is set, the signup form still captures the email and simply does
- * not show a link, rather than sending people to a page they cannot open.
- */
-export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";
+export const VENTURES = {
+  gss: {
+    name: "GTM Signal Studio (GSS)",
+    tagline: "AI-Powered GTM Signal Intelligence & Visibility Engine",
+    description: "An operational intelligence system that monitors market signals, buyer intent shifts, and competitor movements to power proactive product marketing decisions.",
+    status: "Active Product",
+    badge: "B2B SaaS / GTM Intelligence",
+  },
+  practicalAI: {
+    name: "Practical AI Hub",
+    tagline: "Actionable AI Workflows & Digital Product Systems",
+    description: "An educational workflow engine helping busy professionals and creators transform domain knowledge into scalable digital assets without code.",
+    status: "Active Venture",
+    badge: "AI Automation & Education",
+    url: "/practical-ai-hub",
+  }
+};
 
+export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/oloyeadeosun/";
 export const AVATAR_URL = `${SITE_URL}/images/oloye-avatar.png`;
 

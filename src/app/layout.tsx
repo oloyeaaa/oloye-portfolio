@@ -15,9 +15,6 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 
-// One family, every surface. Locked 2026-08-17.
-// Inter carries headlines, body and numbers; weight and size do the work a
-// second display face used to do. Archivo and Space Grotesk are both retired.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -41,15 +38,18 @@ export const metadata: Metadata = {
   creator: AUTHOR.name,
   publisher: SITE_NAME,
   keywords: [
-    "agentic AI systems",
-    "AI first responder",
-    "AI answering service",
-    "AI receptionist",
-    "AI reply agent",
-    "AI for small business",
-    "AI for owner-operated business",
-    "AI booking agent",
-    "AI customer support automation",
+    "Product Marketing",
+    "Marketing Operations",
+    "Go-To-Market Strategy",
+    "PMM Consultant",
+    "Marketing Ops Leader",
+    "Story-Led Teardowns",
+    "Counter-Positioning",
+    "The Curb-Cut Effect",
+    "Accessible Technology Marketing",
+    "B2B GTM Strategy",
+    "GTM Signal Studio",
+    "Practical AI Hub",
   ],
   alternates: {
     canonical: SITE_URL,

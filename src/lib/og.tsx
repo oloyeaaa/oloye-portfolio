@@ -35,13 +35,13 @@ export function renderOg({ kicker, title, sub }: OgProps) {
           style={{
             display: "flex",
             alignItems: "center",
-            fontSize: 48,
+            fontSize: 44,
             fontWeight: 700,
             color: FG,
             letterSpacing: "-0.02em",
           }}
         >
-          Oloye<span style={{ color: ACCENT }}>.</span>
+          Oloye Adeosun<span style={{ color: ACCENT, marginLeft: 4 }}>.</span>
         </div>
 
         {/* Middle: title block */}
@@ -49,13 +49,13 @@ export function renderOg({ kicker, title, sub }: OgProps) {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 24,
+            gap: 20,
           }}
         >
           <div
             style={{
               display: "flex",
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: 600,
               color: ACCENT,
               letterSpacing: "0.15em",
@@ -67,10 +67,10 @@ export function renderOg({ kicker, title, sub }: OgProps) {
           <div
             style={{
               display: "flex",
-              fontSize: 72,
+              fontSize: 64,
               fontWeight: 700,
               color: FG,
-              lineHeight: 1.05,
+              lineHeight: 1.08,
               letterSpacing: "-0.02em",
               maxWidth: 1000,
             }}
@@ -81,11 +81,11 @@ export function renderOg({ kicker, title, sub }: OgProps) {
             <div
               style={{
                 display: "flex",
-                fontSize: 28,
+                fontSize: 26,
                 color: DIM,
                 lineHeight: 1.35,
                 maxWidth: 900,
-                marginTop: 8,
+                marginTop: 6,
               }}
             >
               {sub}
@@ -98,7 +98,7 @@ export function renderOg({ kicker, title, sub }: OgProps) {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            gap: 18,
           }}
         >
           <div
@@ -111,11 +111,12 @@ export function renderOg({ kicker, title, sub }: OgProps) {
           <div
             style={{
               display: "flex",
-              fontSize: 22,
+              fontSize: 20,
               color: DIM,
+              letterSpacing: "0.02em",
             }}
           >
-            Agentic AI Systems that respond in under 60 seconds.
+            Product Marketing • Marketing Operations • GTM Strategy
           </div>
         </div>
       </div>

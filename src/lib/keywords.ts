@@ -73,7 +73,7 @@ export const KEYWORDS: Record<string, PageKeywords> = {
     supporting: [
       "Product Marketer UK",
       "Marketing Operations Leader",
-      "Sorenson UK Marketing",
+      "Accessible Tech GTM",
       "PMO and Systems background",
     ],
     questions: [

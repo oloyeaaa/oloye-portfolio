@@ -57,7 +57,7 @@ export default function AboutPage() {
               Oloye Adeosun
             </h1>
             <p className="text-xs font-mono text-muted">
-              London, UK · Sorenson UK · Founder, GSS & Practical AI Hub
+              London, UK · Product Marketing & Operations Leader · Founder, GSS & Practical AI Hub
             </p>
           </div>
         </div>
@@ -97,13 +97,13 @@ export default function AboutPage() {
           </ul>
         </div>
 
-        {/* Accessible Tech & Sorenson Context */}
+        {/* Accessible Tech & Multi-Stakeholder Ecosystems */}
         <h3 className="mt-14 text-2xl font-extrabold tracking-tight text-foreground">
           Specialized GTM: Accessible Tech & Complex Ecosystems
         </h3>
         <div className="mt-5 space-y-4 text-primary-dim leading-relaxed">
           <p>
-            In my day-to-day work with <strong className="text-foreground">Sorenson UK</strong>—a global leader in accessible communication technology and interpreting services—I navigate the complex dynamics of marketing hardware, software, and critical public/private sector service ecosystems.
+            In my day-to-day enterprise marketing leadership across accessible communication technology and service ecosystems, I navigate the complex dynamics of marketing hardware, software, and critical public/private sector frameworks.
           </p>
           <p>
             This experience gives me deep insight into <strong className="text-accent">The Curb-Cut Effect</strong>: how building products for high-constraint, mission-critical accessibility requirements accidentally unlocks category-dominating advantages in the broader commercial market.

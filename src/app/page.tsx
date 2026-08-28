@@ -145,8 +145,8 @@ export default function Home() {
             <p className="mt-1 text-xs text-muted">Marketing Ops, Automation & Growth</p>
           </div>
           <div>
-            <p className="text-2xl font-bold font-mono text-foreground">Sorenson UK</p>
-            <p className="mt-1 text-xs text-muted">Accessible Tech & Enterprise Comm</p>
+            <p className="text-2xl font-bold font-mono text-foreground">Enterprise GTM</p>
+            <p className="mt-1 text-xs text-muted">Accessible Tech & Multi-Stakeholder</p>
           </div>
           <div>
             <p className="text-2xl font-bold font-mono text-foreground">2 Products</p>

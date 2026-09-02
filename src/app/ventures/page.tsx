@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, AUTHOR, SOCIAL } from "@/lib/site";
+import { SITE_URL, AUTHOR, SOCIAL, LINKEDIN_URL } from "@/lib/site";
 import { webPageSchema } from "@/lib/schema";
 
 const TITLE = "Ventures & Products Owned — GSS & Practical AI Hub";
@@ -188,14 +188,24 @@ export default function VenturesPage() {
             Want to collaborate or discuss a custom GTM engine?
           </h2>
           <p className="mt-3 text-sm text-primary-dim">
-            I am available for strategic advisory, product marketing audits, and executive leadership roles.
+            Available for strategic advisory, buyer psychology workshops, and AI distribution system builds.
           </p>
           <div className="mt-6 flex justify-center gap-4">
             <a
-              href={`mailto:${AUTHOR.email}?subject=Collaboration%20Inquiry%20regarding%20Ventures`}
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-md bg-accent px-6 py-3 text-sm font-semibold text-background hover:bg-accent-light transition"
             >
-              Get in Touch
+              Connect on LinkedIn ↗
+            </a>
+            <a
+              href={SOCIAL.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground hover:border-accent hover:text-accent transition"
+            >
+              Watch on YouTube ↗
             </a>
           </div>
         </div>

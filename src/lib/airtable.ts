@@ -1,3 +1,6 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
@@ -52,50 +55,65 @@ export interface BlogPost {
   readTimeMinutes?: number;
 }
 
+function getLocalPosts(): BlogPost[] {
+  try {
+    const dir = path.join(process.cwd(), "content/posts");
+    if (!fs.existsSync(dir)) return [];
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
+    return files.map((file) => {
+      const fullPath = path.join(dir, file);
+      const fileContent = fs.readFileSync(fullPath, "utf8");
+      const { data, content: body } = matter(fileContent);
+      const slug = data.slug || file.replace(/\.md$/, "");
+      return {
+        id: slug,
+        title: data.title || slug,
+        slug,
+        excerpt: data.description || data.excerpt || "",
+        body: body || "",
+        coverImage: data.coverImage,
+        seoTitle: data.title,
+        metaDescription: data.description || data.excerpt || "",
+        keywords: data.tags || [],
+        category: data.category || "Buyer Psychology",
+        cluster: data.category || "Buyer Psychology",
+        publishedDate: data.date,
+        readTimeMinutes: data.readingTime
+          ? parseInt(String(data.readingTime), 10)
+          : undefined,
+      };
+    });
+  } catch (err) {
+    console.error("[posts] Error reading local markdown posts:", err);
+    return [];
+  }
+}
+
 async function airtableGet<T>(
   path: string,
   revalidate: number
 ): Promise<T | null> {
-  if (!API_KEY) {
-    // Loud on purpose. Without this the blog silently renders "No posts",
-    // which looks like an empty blog rather than a missing key, and that is
-    // exactly how it went unnoticed until 2026-08-17.
-    console.warn(
-      "[airtable] AIRTABLE_API_KEY is not set. The blog will render with no " +
-        "posts. Add it to .env.local; the working value is in the Vercel " +
-        "project settings. Airtable tokens start with 'pat'."
-    );
+  if (!API_KEY || !API_KEY.startsWith("pat")) {
     return null;
   }
-  if (!API_KEY.startsWith("pat")) {
-    console.warn(
-      `[airtable] AIRTABLE_API_KEY does not look like an Airtable token. ` +
-        `Airtable personal access tokens start with 'pat'; this one starts ` +
-        `with '${API_KEY.slice(0, 3)}'. The blog will render with no posts.`
-    );
-  }
+  const url = `https://api.airtable.com/v0/${BASE_ID}/${BLOG_TABLE}${path}`;
   try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${BASE_ID}/${BLOG_TABLE}${path}`,
-      {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-        next: { revalidate },
-      }
-    );
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+      next: { revalidate },
+    });
     if (!res.ok) {
-      console.warn(
-        `[airtable] ${res.status} on ${path}: ${await res.text().catch(() => "")}`
-      );
       return null;
     }
     return (await res.json()) as T;
-  } catch (err) {
-    console.warn(`[airtable] fetch error on ${path}:`, err);
+  } catch {
     return null;
   }
 }
 
-function parseKeywords(kw: BlogFields["Keywords"]): string[] {
+function parseKeywords(kw?: string | string[]): string[] {
   if (!kw) return [];
   if (Array.isArray(kw)) return kw;
   return kw
@@ -129,6 +147,9 @@ function mapRecord(r: AirtableRecord<BlogFields>): BlogPost | null {
 }
 
 export async function getPublishedPosts(): Promise<BlogPost[]> {
+  const localPosts = getLocalPosts();
+  let airtablePosts: BlogPost[] = [];
+
   const filter = `AND({Status}='Published',{Slug}!='')`;
   const params = new URLSearchParams({
     filterByFormula: filter,
@@ -136,18 +157,40 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
     "sort[0][direction]": "desc",
     pageSize: "50",
   });
+
   const data = await airtableGet<{
     records: AirtableRecord<BlogFields>[];
   }>(`?${params.toString()}`, REVALIDATE_LIST);
-  if (!data) return [];
-  return data.records
-    .map(mapRecord)
-    .filter((p): p is BlogPost => p !== null);
+
+  if (data && data.records) {
+    airtablePosts = data.records
+      .map(mapRecord)
+      .filter((p): p is BlogPost => p !== null);
+  }
+
+  // Combine local posts and airtable posts (local posts take precedence by slug)
+  const slugMap = new Map<string, BlogPost>();
+  localPosts.forEach((p) => slugMap.set(p.slug, p));
+  airtablePosts.forEach((p) => {
+    if (!slugMap.has(p.slug)) {
+      slugMap.set(p.slug, p);
+    }
+  });
+
+  const allPosts = Array.from(slugMap.values());
+  return allPosts.sort((a, b) => {
+    const dateA = a.publishedDate || "";
+    const dateB = b.publishedDate || "";
+    return dateA > dateB ? -1 : 1;
+  });
 }
 
 export async function getPostBySlug(
   slug: string
 ): Promise<BlogPost | null> {
+  const local = getLocalPosts().find((p) => p.slug === slug);
+  if (local) return local;
+
   const safeSlug = slug.replace(/'/g, "\\'");
   const filter = `AND({Status}='Published',{Slug}='${safeSlug}')`;
   const params = new URLSearchParams({
@@ -177,5 +220,5 @@ export function estimateReadTime(text: string): number {
 }
 
 export function isAirtableConfigured(): boolean {
-  return Boolean(API_KEY);
+  return Boolean(API_KEY && API_KEY.startsWith("pat"));
 }

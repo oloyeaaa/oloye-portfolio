@@ -102,14 +102,6 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={`mailto:${AUTHOR.email}`}
-                  className="text-sm text-accent transition-colors hover:text-accent-light font-medium font-mono"
-                >
-                  {AUTHOR.email}
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -118,8 +110,8 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} Oloye Adeosun. All rights reserved.
           </p>
-          <p className="font-mono text-[11px]">
-            Product Marketing • Marketing Operations • GTM Strategy
+          <p className="font-mono text-[11px] text-accent">
+            Buyer Psychology • AI Workflows • 0-Dollar Distribution
           </p>
         </div>
       </div>

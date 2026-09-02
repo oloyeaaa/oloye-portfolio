@@ -145,7 +145,7 @@ export default async function BlogPost({ params }: Props) {
               >
                 Oloye Adeosun
               </Link>
-              <p className="text-xs text-muted">Agentic AI Systems Builder</p>
+              <p className="text-xs text-muted">Buyer Psychology & AI Distribution Strategist</p>
             </div>
           </div>
         </header>
@@ -187,19 +187,19 @@ export default async function BlogPost({ params }: Props) {
         <div className="border-t border-border mt-12 pt-8">
           <div className="bg-surface border border-border rounded-xl p-6">
             <p className="text-xs font-semibold text-accent uppercase tracking-widest font-display mb-2">
-              See it running
+              FREE SOLOPRENEUR PLAYBOOKS
             </p>
             <p className="font-display font-semibold text-foreground mb-2">
-              The Front Desk on your own business.
+              Escape the 'Build & Pray' trap today.
             </p>
             <p className="text-sm text-primary-dim mb-4">
-              10 real messages. A side-by-side report on what the Front Desk would have replied and done. Yours to keep either way.
+              Get the free 0-Dollar Distribution Checklist and the Eugene Schwartz ICP Discovery Matrix Google Sheets. 100% free, zero friction.
             </p>
             <Link
               href="/free"
               className="inline-block bg-accent hover:bg-accent-light text-background px-5 py-2.5 rounded-md font-semibold transition-colors text-sm"
             >
-              Book my test
+              Explore Free Playbooks & Templates →
             </Link>
           </div>
         </div>

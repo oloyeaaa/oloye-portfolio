@@ -13,8 +13,6 @@ export const AUTHOR = {
   name: "Oloye Adeosun",
   title: "Buyer Psychology & AI Distribution Strategist",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
-  email: "info@oloyeaa.com",
-  secondaryEmail: "practicalaih@gmail.com",
 };
 
 export const SOCIAL = {

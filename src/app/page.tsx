@@ -62,25 +62,28 @@ const expertise = [
 
 const teardowns = [
   {
-    tag: "CASE STUDY • PMM",
-    title: "The Billion-Dollar Strategy Most Marketers Ignore: The Curb-Cut Effect",
+    tag: "BUYER PSYCHOLOGY",
+    title: "The War Room Delusion: Why 90% of Businesses Talk to Themselves",
     description:
-      "How designing and positioning products for extreme accessibility constraints created undisputed market leaders like Oxo Good Grips, Apple Accessibility, and Microsoft Adaptive.",
-    badge: "Accessibility & Tech",
+      "A founder spends 6 months building in secret, buys a domain, and launches to complete crickets. The biological reason the human brain ignores company noise and the 3-step psychology shift to fix it.",
+    badge: "Customer Awareness",
+    slug: "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves",
   },
   {
-    tag: "TEARDOWN • POSITIONING",
-    title: "Why Linear Built 80% Fewer Features (And Beat a $40B Incumbent)",
+    tag: "0-DOLLAR GTM",
+    title: "How to Build an Audience from Scratch: The 0-Dollar Marketing Blueprint",
     description:
-      "The counter-positioning masterclass: weaponizing speed as a feature, opinionated workflows over customization, and winning the end-user before the buyer.",
-    badge: "B2B SaaS Teardown",
+      "Why paid ads do not fix a broken message. The 3-step zero-dollar distribution loop: Signal Posts, Friction Magnets, and 5-minute DM language mining.",
+    badge: "Solopreneur Playbook",
+    slug: "how-to-build-an-audience-from-scratch-0-dollar-marketing",
   },
   {
-    tag: "REVENUE OPS • CRIME SCENE",
-    title: "The $2M Pipeline Leak: Why 90% of B2B Lead Scoring Is Broken",
+    tag: "AI & WORKFLOWS",
+    title: "The Solo Media Engine: How 1 Solopreneur Uses Claude & Gemini to Run a 5-Person Team",
     description:
-      "Inside the 'Activity Illusion' — how uncalibrated CRM workflows flood sales reps with junk leads while high-intent enterprise buyers slip through the cracks.",
-    badge: "Marketing Operations",
+      "How to use AI without producing robotic garbage. The prompt frameworks and automated workflows 1 solo builder uses to research, script, and distribute content.",
+    badge: "AI Automation",
+    slug: "how-1-solopreneur-uses-claude-gemini-to-run-a-5-person-marketing-team",
   },
 ];
 
@@ -333,7 +336,7 @@ export default function Home() {
                 </div>
                 <div className="mt-6 border-t border-border pt-4 flex items-center justify-between">
                   <Link
-                    href="/blog"
+                    href={`/blog/${td.slug}`}
                     className="text-xs font-semibold text-accent hover:underline"
                   >
                     Read Breakdown →
@@ -360,31 +363,39 @@ export default function Home() {
             Start a Conversation
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
-            Let&apos;s discuss your product positioning or revenue ops.
+            Let&apos;s talk about buyer psychology & distribution.
           </h2>
           <p className="mt-5 text-lg text-primary-dim leading-relaxed text-balance">
-            Whether you are an employer seeking a senior Product Marketing / MOPs leader, or a founder looking for a strategic GTM audit, I am always open to high-impact conversations.
+            Whether you are a solo builder looking to escape the 'Build & Pray' trap, an operator wanting to build an automated AI content engine, or a founder seeking an audience-first GTM strategy, let&apos;s connect.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={`mailto:${AUTHOR.email}?subject=Strategic%20Inquiry%20from%20Oloye.co.uk`}
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto rounded-md bg-accent px-8 py-4 font-semibold text-background transition hover:bg-accent-light shadow-md font-mono"
             >
-              Email {AUTHOR.email}
+              Connect on LinkedIn ↗
             </a>
             <a
-              href={LINKEDIN_URL}
+              href={SOCIAL.youtube}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto rounded-md border border-border-strong bg-surface px-8 py-4 font-semibold text-foreground transition hover:border-accent hover:text-accent"
             >
-              Connect on LinkedIn ↗
+              Subscribe on YouTube ↗
             </a>
+            <Link
+              href="/free"
+              className="w-full sm:w-auto rounded-md border border-border px-8 py-4 font-semibold text-primary-dim transition hover:border-accent hover:text-foreground"
+            >
+              Free Playbooks & Sheets →
+            </Link>
           </div>
 
           <p className="mt-8 text-xs font-mono text-muted">
-            Based in the UK · Available for Executive Roles, Advisory & GTM Teardowns
+            Based in the UK · Buyer Psychology, AI Distribution & 0-Dollar GTM
           </p>
         </div>
       </section>

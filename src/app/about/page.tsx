@@ -146,22 +146,24 @@ export default function AboutPage() {
             Let&apos;s Connect
           </h3>
           <p className="mt-3 text-base text-primary-dim">
-            I am always open to discussing senior marketing leadership roles, strategic advisory, or product marketing teardowns.
+            I am always open to discussing buyer psychology, solopreneur GTM strategy, and AI-powered distribution engines.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
-            <a
-              href={`mailto:${AUTHOR.email}?subject=Inquiry%20from%20About%20Page`}
-              className="rounded-md bg-accent px-6 py-3 font-semibold text-background transition hover:bg-accent-light"
-            >
-              Email {AUTHOR.email}
-            </a>
             <a
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md border border-border bg-surface px-6 py-3 font-semibold text-foreground transition hover:border-accent hover:text-accent"
+              className="rounded-md bg-accent px-6 py-3 font-semibold text-background transition hover:bg-accent-light"
             >
               Connect on LinkedIn ↗
+            </a>
+            <a
+              href="https://www.youtube.com/@oloyeadeosun"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md border border-border bg-surface px-6 py-3 font-semibold text-foreground transition hover:border-accent hover:text-accent"
+            >
+              Watch on YouTube ↗
             </a>
           </div>
         </div>

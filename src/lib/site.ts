@@ -22,6 +22,9 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/practicalaihub1",
 };
 
+export const ICP_MATRIX_GOOGLE_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1MYfu9JAOiKApzaugFL3ejLHkSbSGEc95/edit?usp=drive_link&ouid=112866508787256042157&rtpof=true&sd=true";
+
 export const VENTURES = {
   gss: {
     name: "GTM Signal Studio (GSS)",

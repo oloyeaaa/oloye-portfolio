@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, NOTION_PACK_URL } from "@/lib/site";
+import { SITE_URL, NOTION_PACK_URL, ICP_MATRIX_GOOGLE_SHEET_URL, SOCIAL } from "@/lib/site";
 import SignupForm from "@/components/SignupForm";
-import { webPageSchema, faqPageSchema, itemListSchema } from "@/lib/schema";
-import { metaKeywords } from "@/lib/keywords";
+import { webPageSchema, faqPageSchema } from "@/lib/schema";
 
-// This is the page the bio link points at. Its one job is to hand somebody
-// something useful in under thirty seconds. Written for AEO and GEO too:
-// each question is a heading with a plain, self-contained answer underneath.
-
-const TITLE = "Free AI tools to build extra income";
+const TITLE = "Free Solopreneur Playbooks, Google Sheets & Prompt Vaults";
 const DESCRIPTION =
-  "Five free tools for people with a full-time job. Each is a short guide plus a prompt you paste into any AI. No install, nothing technical, no payment.";
+  "Plug-and-play Google Sheets, Eugene Schwartz customer language mining matrices, 0-dollar distribution checklists, and AI prompt architectures. 100% free with zero gatekeeping.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: metaKeywords("free"),
   alternates: { canonical: `${SITE_URL}/free` },
   openGraph: {
     title: TITLE,
@@ -27,69 +21,92 @@ export const metadata: Metadata = {
   },
 };
 
+const featuredAssets = [
+  {
+    badge: "FEATURED SPREADSHEET · VIDEO 02",
+    title: "The Customer Language Mining & ICP Discovery Matrix",
+    description:
+      "A complete 3-tab Google Sheet to diagnose your customer across all 5 Eugene Schwartz awareness levels, mine Reddit & G2 for bleeding-neck phrases, and assemble high-converting hooks.",
+    link: ICP_MATRIX_GOOGLE_SHEET_URL,
+    actionText: "Open Google Sheet (Free) ↗",
+    format: "Google Sheets · Instant Access",
+    isExternal: true,
+  },
+  {
+    badge: "FEATURED FRAMEWORK · VIDEO 03",
+    title: "The 0-Dollar Solopreneur Distribution Checklist",
+    description:
+      "The plug-and-play framework to build organic attention from scratch. Includes the 3-step Signal Post formula, the Friction-Magnet quality audit, and 5-minute DM language mining scripts.",
+    link: "/blog/how-to-build-an-audience-from-scratch-0-dollar-marketing",
+    actionText: "View Full Checklist Breakdown →",
+    format: "Interactive Playbook & Template",
+    isExternal: false,
+  },
+];
+
 const tools = [
   {
     n: "01",
-    name: "The Idea Scorecard",
-    promise: "You already had the idea. This tells you if it is worth your evenings.",
+    name: "The 5 Levels of Customer Awareness Audit",
+    promise: "Diagnose where your buyers sit before you write a single line of copy.",
     detail:
-      "Score an idea out of 100 on four things: whether the pain is real, whether anything like it already sells, whether you can name the buyer out loud, and whether you could reach them on a Tuesday night. Under 50, do not build it, and be glad you found out in four minutes.",
-    time: "4 minutes",
+      "Never pitch 'Buy Now' to a cold audience. This prompt and framework diagnoses your market between Unaware, Problem-Aware, and Solution-Aware so your messaging resonates immediately.",
+    time: "5 minutes",
   },
   {
     n: "02",
-    name: "The First Section",
-    promise: "The blank page is not the hard part. It is the part already solved.",
+    name: "The Customer Language Mining Prompt Vault",
+    promise: "Extract high-converting headlines from 1-star competitor reviews.",
     detail:
-      "Paste your idea and get the full outline plus the first section written properly. Several hundred words in your voice, no placeholders. Then it stops on purpose, because section two is yours.",
-    time: "One sitting",
+      "Paste 20 raw customer reviews into Claude or Gemini and get back the exact 2:00 AM bleeding-neck words and emotional pain phrases your prospects use.",
+    time: "2 minutes",
   },
   {
     n: "03",
-    name: "Thirty Posts",
-    promise: "You are not out of ideas. You are trying to invent them.",
+    name: "The Signal Post Daily Hook Generator",
+    promise: "Never stare at a blank screen wondering what to post.",
     detail:
-      "Every question somebody asks you is a post. Collect the ones you already get asked, and get about thirty posts back, each with a hook of ten words or fewer and the angle of the answer.",
+      "Transform your daily build struggles, bug fixes, and customer conversations into high-engagement organic posts that stop the scroll.",
     time: "10 minutes",
   },
   {
     n: "04",
-    name: "The Camera Answer",
-    promise: "You do not have to be on camera. You do have to show up.",
+    name: "The Friction-Magnet Lead Magnet Checklist",
+    promise: "Audit your free tools and templates before sharing them.",
     detail:
-      "A ladder of formats that need no camera, cheapest first, and five real posts written in whichever one fits what you already have. It is honest that a face does help, and honest that it is not required.",
-    time: "15 minutes",
+      "A 5-point quality checklist to ensure your free asset delivers instant value in under 60 seconds with zero signup friction.",
+    time: "3 minutes",
   },
   {
     n: "05",
-    name: "Idea to Finished Thing",
-    promise: "The month of evenings is the part that changed.",
+    name: "The 1-Person AI Media Engine Setup",
+    promise: "The complete one-to-many repurposing workflow for solo builders.",
     detail:
-      "Six answers in, a finished product out, plus a cover idea, a sales page and the steps to put it on sale. It gives you a straight list of what is done and what still needs you.",
-    time: "A weekend",
+      "How to take 1 raw video take and transform it into an SEO blog post, social carousels, and an email newsletter in under 15 minutes.",
+    time: "15 minutes",
   },
 ];
 
 const faqs = [
   {
-    question: "What do I get, and is it really free?",
+    question: "Are these spreadsheets and playbooks really free?",
     answer:
-      "Five tools, completely free, with no payment and no card. Each one is a short guide plus a prompt you copy and paste. There is nothing to buy on this site at the moment.",
+      "Yes, 100% free with no payment, no paywalls, and no credit card required. You can make a copy of the Google Sheets directly into your Google Drive and start using them immediately.",
   },
   {
-    question: "Do I need to install anything?",
+    question: "Do I need to sign up or give an email to open the Google Sheet?",
     answer:
-      "No. Nothing is installed and no code is involved. You copy a block of text and paste it into an AI you already use. That is the whole process.",
+      "No. The Customer Language Mining & ICP Matrix Google Sheet is a direct public link. You can open it, inspect it, and click 'File > Make a copy' with zero barriers.",
   },
   {
-    question: "Which AI do these work in?",
+    question: "Which AI models do these prompt frameworks work in?",
     answer:
-      "Any of them. ChatGPT, Claude, Gemini, Copilot, whichever you already have open. The prompts are plain instructions, so they are not tied to one product.",
+      "They work in Claude (Sonnet/Opus), Google Gemini, and ChatGPT. The prompts are based on qualitative research constraints rather than specific software plugins.",
   },
   {
-    question: "Where should I start?",
+    question: "Where should I start first?",
     answer:
-      "Start with The Idea Scorecard. It takes about four minutes and tells you whether the idea is worth your evenings before you spend any. If it scores well, The First Section is the next one.",
+      "Start by opening The Customer Language Mining & ICP Discovery Matrix Google Sheet. It gives you the foundational clarity you need on your customer's awareness stage before writing copy.",
   },
 ];
 
@@ -103,53 +120,100 @@ export default function FreePage() {
           description: DESCRIPTION,
           breadcrumb: [
             { name: "Home", path: "/" },
-            { name: "Free tools", path: "/free" },
+            { name: "Free Playbooks", path: "/free" },
           ],
         })}
       />
       <JsonLd data={faqPageSchema(faqs)} />
-      <JsonLd
-        data={itemListSchema({
-          path: "/free",
-          items: tools.map((t) => ({ name: t.name, path: "/free" })),
-        })}
-      />
 
-      <section className="mx-auto max-w-3xl px-5 pt-16 pb-12 sm:pt-20">
-        <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-5xl">
-          Five free tools to build extra income with AI
+      {/* Hero Header */}
+      <section className="mx-auto max-w-4xl px-6 pt-16 pb-12 sm:pt-20">
+        <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-mono font-semibold tracking-wider text-accent uppercase mb-6">
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+          100% Free Resources · Zero Gatekeeping
+        </div>
+        <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl font-display">
+          Free Solopreneur Playbooks & <span className="text-accent">Google Sheets.</span>
         </h1>
-        <p className="mt-6 max-w-[60ch] text-lg">
-          Each one is a short guide plus a prompt you paste into whatever AI you
-          already have open. Nothing to install, nothing technical, no payment.
-        </p>
-        <p className="mt-4 max-w-[60ch] text-[var(--muted,#555)]">
-          They also run in order: score the idea, start it, build it, get seen
-          without the camera, and never run out of things to say.
+        <p className="mt-6 max-w-[65ch] text-lg text-primary-dim leading-relaxed">
+          Plug-and-play tools to help you escape the &lsquo;Build & Pray&rsquo; trap. Master buyer psychology, mine customer pain, and deploy a 0-dollar distribution engine without ad spend.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl px-5 pb-14">
-        <ol className="space-y-9">
+      {/* Top Featured Google Sheet & Playbook Cards */}
+      <section className="mx-auto max-w-4xl px-6 pb-16">
+        <div className="grid gap-6 md:grid-cols-2">
+          {featuredAssets.map((asset) => (
+            <div
+              key={asset.title}
+              className="rounded-2xl border-2 border-accent/40 bg-surface p-7 flex flex-col justify-between shadow-md hover:border-accent transition"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-mono font-bold tracking-wider text-accent uppercase">
+                    {asset.badge}
+                  </span>
+                  <span className="text-xs font-mono text-muted">
+                    {asset.format}
+                  </span>
+                </div>
+                <h2 className="text-2xl font-bold tracking-tight text-foreground font-display leading-snug">
+                  {asset.title}
+                </h2>
+                <p className="mt-3 text-sm text-primary-dim leading-relaxed">
+                  {asset.description}
+                </p>
+              </div>
+
+              <div className="mt-8 pt-5 border-t border-border">
+                {asset.isExternal ? (
+                  <a
+                    href={asset.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center block rounded-md bg-accent px-6 py-3.5 font-semibold text-background transition hover:bg-accent-light shadow-sm"
+                  >
+                    {asset.actionText}
+                  </a>
+                ) : (
+                  <Link
+                    href={asset.link}
+                    className="w-full text-center block rounded-md border border-border-strong bg-surface-alt px-6 py-3.5 font-semibold text-foreground transition hover:border-accent hover:text-accent"
+                  >
+                    {asset.actionText}
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5 Core Frameworks List */}
+      <section className="mx-auto max-w-4xl px-6 pb-16 border-t border-border pt-16">
+        <h2 className="text-2xl font-bold tracking-tight text-foreground font-display mb-8">
+          The 5 Core Solopreneur Frameworks
+        </h2>
+        <ol className="space-y-8">
           {tools.map((t) => (
             <li
               key={t.name}
-              className="grid grid-cols-[2.5rem_1fr] gap-4 border-t border-current/10 pt-7"
+              className="grid grid-cols-[2.5rem_1fr] gap-4 border-t border-border pt-6"
             >
-              <span className="pt-1 font-bold tabular-nums text-[var(--accent,#587109)]">
+              <span className="pt-1 font-mono font-bold tabular-nums text-accent text-lg">
                 {t.n}
               </span>
               <div>
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h2 className="text-xl font-extrabold tracking-tight">
+                  <h3 className="text-xl font-bold tracking-tight text-foreground font-display">
                     {t.name}
-                  </h2>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted,#666)]">
+                  </h3>
+                  <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted">
                     {t.time}
                   </span>
                 </div>
-                <p className="mt-2 font-medium">{t.promise}</p>
-                <p className="mt-2 max-w-[62ch] text-[var(--muted,#555)]">
+                <p className="mt-2 font-medium text-foreground text-sm">{t.promise}</p>
+                <p className="mt-2 text-sm text-primary-dim leading-relaxed">
                   {t.detail}
                 </p>
               </div>
@@ -158,34 +222,40 @@ export default function FreePage() {
         </ol>
       </section>
 
-      <section className="mx-auto max-w-3xl px-5 pb-4">
+      {/* Optional Newsletter Form */}
+      <section className="mx-auto max-w-4xl px-6 pb-16">
         <SignupForm notionUrl={NOTION_PACK_URL} />
       </section>
 
+      {/* FAQs */}
       <section
         aria-labelledby="faq-heading"
-        className="mx-auto max-w-3xl border-t border-current/10 px-5 py-14"
+        className="mx-auto max-w-4xl border-t border-border px-6 py-16"
       >
-        <h2 id="faq-heading" className="text-2xl font-extrabold tracking-tight">
-          Questions people ask before they start
+        <h2 id="faq-heading" className="text-2xl font-bold tracking-tight text-foreground font-display">
+          Frequently Asked Questions
         </h2>
         <dl className="mt-8 space-y-8">
           {faqs.map((f) => (
             <div key={f.question}>
-              <dt className="text-lg font-bold text-balance">{f.question}</dt>
-              <dd className="mt-2 max-w-[62ch] text-[var(--muted,#555)]">
+              <dt className="text-lg font-bold text-foreground font-display">{f.question}</dt>
+              <dd className="mt-2 text-sm text-primary-dim leading-relaxed">
                 {f.answer}
               </dd>
             </div>
           ))}
         </dl>
 
-        <Link
-          href="/"
-          className="mt-10 inline-block font-semibold underline underline-offset-4"
-        >
-          What Practical AI Hub is
-        </Link>
+        <div className="mt-12 flex items-center gap-4">
+          <a
+            href={SOCIAL.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-accent hover:text-accent-light underline underline-offset-4"
+          >
+            Watch Video Breakdowns on YouTube (@oloyeadeosun) →
+          </a>
+        </div>
       </section>
     </>
   );

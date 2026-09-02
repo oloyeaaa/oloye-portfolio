@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, AUTHOR, SOCIAL, LINKEDIN_URL } from "@/lib/site";
 import { webPageSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "Oloye Adeosun — Product Marketing & Marketing Operations Leader";
+const TITLE = "Oloye Adeosun — Buyer Psychology, AI Workflows & 0-Dollar Distribution";
 const DESCRIPTION =
-  "Senior Product Marketer and Marketing Operations leader bridging narrative positioning with scalable revenue infrastructure. Founder of GTM Signal Studio (GSS) and Practical AI Hub.";
+  "Helping solopreneurs and solo builders escape the 'Build & Pray' trap. Master buyer psychology, 0-dollar distribution, and AI-assisted workflows.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -23,39 +23,39 @@ export const metadata: Metadata = {
 
 const expertise = [
   {
-    kicker: "PMM & POSITIONING",
-    title: "Product Marketing & Narrative Design",
+    kicker: "01 · BUYER PSYCHOLOGY",
+    title: "The 5 Levels of Customer Awareness",
     description:
-      "Transforming complex, technical products into undeniable, story-led positioning. Moving away from generic feature checklists to counter-positioning, category disruption, and message-market fit.",
+      "Escaping the 'War Room Delusion'. Moving away from self-centered feature checklists to deep customer psychology, 2:00 AM bleeding-neck pain points, and Eugene Schwartz awareness levels.",
     bullets: [
-      "Counter-Positioning & Incumbent Displacement",
-      "Story-Led Messaging Architectures",
-      "Accessible Tech GTM (The Curb-Cut Effect)",
-      "Win/Loss Analysis & Customer Intelligence",
+      "Customer Language Mining (Reddit & G2)",
+      "The 5 Levels of Buyer Awareness",
+      "Story-Led Counter-Positioning",
+      "Bleeding-Neck Pain Point Audits",
     ],
   },
   {
-    kicker: "MOPS & REVENUE ENGINE",
-    title: "Marketing Operations & Infrastructure",
+    kicker: "02 · AI WORKFLOWS & AUTOMATION",
+    title: "AI-Powered Research & Content Engines",
     description:
-      "Eliminating the invisible operational leaks that silently drain pipeline. Architecting CRM lifecycles, precision data scoring, and speed-to-lead automation.",
+      "Leveraging Claude, Gemini, and Python to execute deep buyer psychology in seconds. Automated customer research, high-CTR script architectures, and frictionless lead systems.",
     bullets: [
-      "Fit × Intent Lead Scoring & Routing",
-      "Full-Funnel CRM & Tech Stack Orchestration",
-      "Attribution Models vs. Pipeline Reality",
-      "Speed-to-Lead & API Workflow Optimization",
+      "Automated Customer Voice & Language Miners",
+      "High-CTR YouTube & Script Prompt Banks",
+      "API & Speed-to-Lead Webhook Workflows",
+      "AI Leverage for One-Person Media Engines",
     ],
   },
   {
-    kicker: "SYSTEMS & AI STRATEGY",
-    title: "GTM Intelligence & Scalable Systems",
+    kicker: "03 · 0-DOLLAR DISTRIBUTION",
+    title: "Organic Solopreneur Go-To-Market",
     description:
-      "10+ years of PMO and systems rigor applied to go-to-market. Building intelligent signal monitoring engines and automated workflows that scale.",
+      "The organic distribution playbook to get your first 100 paying customers without spending a single pound on paid ads. Documenting the real journey to build high trust.",
     bullets: [
-      "AI-Powered Market Signal Tracking (GSS)",
-      "B2B/B2G Multi-Stakeholder Enablement",
-      "Cross-Functional Team & Agency Governance",
-      "No-Code Workflow Automation",
+      "The Daily 'Signal Post' Content Loop",
+      "Friction-Magnet Free Template Creation",
+      "5-Minute Direct Conversation Outreach",
+      "Audience-First Launch Frameworks",
     ],
   },
 ];
@@ -100,31 +100,33 @@ export default function Home() {
       <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-mono font-semibold tracking-wider text-accent uppercase">
           <span className="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
-          Product Marketing • Marketing Operations • GTM Strategy
+          Buyer Psychology • AI Workflows • 0-Dollar Distribution
         </div>
 
         <h1 className="mt-8 text-4xl font-extrabold leading-[1.08] tracking-tight text-balance sm:text-6xl md:text-7xl">
-          Where product narrative meets{" "}
-          <span className="text-accent">scalable revenue infrastructure.</span>
+          Master the psychology of attention &{" "}
+          <span className="text-accent">AI-powered distribution.</span>
         </h1>
 
         <p className="mt-7 max-w-[58ch] text-lg text-primary-dim sm:text-xl leading-relaxed">
-          I am <strong className="text-foreground">Oloye Adeosun</strong>. I bridge the gap between high-level go-to-market positioning and the technical marketing operations required to scale pipeline.
+          I am <strong className="text-foreground">Oloye Adeosun</strong>. I help solopreneurs and solo builders escape the 'Build & Pray' trap by combining deep buyer psychology with automated AI workflows to turn zero views into a queue of paying customers.
         </p>
 
         {/* Actions */}
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Link
-            href="#contact"
-            className="rounded-md bg-accent px-6 py-3.5 font-semibold text-background transition hover:bg-accent-light shadow-md"
+          <a
+            href="https://www.youtube.com/@oloyeadeosun"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md bg-accent px-6 py-3.5 font-semibold text-background transition hover:bg-accent-light shadow-md inline-flex items-center gap-2"
           >
-            Start a Conversation
-          </Link>
+            <span>▶</span> Watch on YouTube
+          </a>
           <Link
-            href="/ventures"
+            href="/free"
             className="rounded-md border border-border-strong bg-surface px-6 py-3.5 font-semibold text-foreground transition hover:border-accent hover:text-accent"
           >
-            Explore My Ventures (GSS & Practical AI)
+            Free Playbooks & Templates
           </Link>
           <Link
             href="/blog"
@@ -134,23 +136,23 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Credibility & Experience Badges */}
+        {/* Credibility & Trench Badges */}
         <div className="mt-16 grid grid-cols-2 gap-4 border-t border-border pt-10 sm:grid-cols-4">
           <div>
-            <p className="text-2xl font-bold font-mono text-accent">10+ Yrs</p>
-            <p className="mt-1 text-xs text-muted">Systems, PMO & Project Governance</p>
+            <p className="text-2xl font-bold font-mono text-accent">6+ Years</p>
+            <p className="mt-1 text-xs text-muted">In the Marketing Trenches</p>
           </div>
           <div>
-            <p className="text-2xl font-bold font-mono text-accent">6+ Yrs</p>
-            <p className="mt-1 text-xs text-muted">Marketing Ops, Automation & Growth</p>
+            <p className="text-2xl font-bold font-mono text-accent">0-Dollar GTM</p>
+            <p className="mt-1 text-xs text-muted">Audience-First Distribution</p>
           </div>
           <div>
-            <p className="text-2xl font-bold font-mono text-foreground">Enterprise GTM</p>
-            <p className="mt-1 text-xs text-muted">Accessible Tech & Multi-Stakeholder</p>
+            <p className="text-2xl font-bold font-mono text-foreground">5 Levels</p>
+            <p className="mt-1 text-xs text-muted">Customer Awareness Engine</p>
           </div>
           <div>
-            <p className="text-2xl font-bold font-mono text-foreground">2 Products</p>
-            <p className="mt-1 text-xs text-muted">Built & Owned: GSS & Practical AI</p>
+            <p className="text-2xl font-bold font-mono text-foreground">AI Workflows</p>
+            <p className="mt-1 text-xs text-muted">One-Person Media Leverage</p>
           </div>
         </div>
       </section>
@@ -160,13 +162,13 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="max-w-xl">
             <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-              Core Capabilities
+              HOW WE ESCAPE THE BUILD & PRAY TRAP
             </p>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Disciplines built for modern revenue growth.
+              The 3 engines that turn silent products into paying customers.
             </h2>
             <p className="mt-3 text-muted">
-              Most teams have great storytellers who don’t understand CRM data, or technical operators who can’t write messaging. I combine both.
+              Most builders spend months building in isolation only to get complete crickets on launch day. Here are the 3 systems to fix that.
             </p>
           </div>
 

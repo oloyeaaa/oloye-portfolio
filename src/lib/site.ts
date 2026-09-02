@@ -4,14 +4,14 @@ export const SITE_URL =
 export const SITE_NAME = "Oloye Adeosun";
 export const SITE_SHORT_NAME = "Oloye";
 export const SITE_LEGAL_NAME = "Oloye Adeosun";
-export const SITE_TAGLINE = "Product Marketing, Marketing Operations & GTM Strategy";
+export const SITE_TAGLINE = "The Psychology of Attention & AI-Powered Distribution";
 
 export const SITE_DESCRIPTION =
-  "Oloye Adeosun is a Senior Product Marketer and Marketing Operations leader. Specializing in story-led positioning, accessible technology GTM, and scalable revenue infrastructure. Founder of GTM Signal Studio (GSS) and Practical AI Hub.";
+  "Oloye Adeosun helps solopreneurs and builders escape the 'Build & Pray' trap by mastering buyer psychology, 0-dollar distribution, and AI-assisted workflows.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
-  title: "Product Marketer & Marketing Operations Leader",
+  title: "Buyer Psychology & AI Distribution Strategist",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
   email: "info@oloyeaa.com",
   secondaryEmail: "practicalaih@gmail.com",

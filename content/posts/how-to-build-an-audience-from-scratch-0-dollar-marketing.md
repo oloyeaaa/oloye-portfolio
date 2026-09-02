@@ -1,11 +1,12 @@
 ---
-title: "How to Build an Audience from Scratch: The 0-Dollar Marketing Blueprint for Solopreneurs"
+title: "How to Build an Audience from Scratch (for $0)"
 slug: "how-to-build-an-audience-from-scratch-0-dollar-marketing"
 date: "2026-09-02"
 author: "Oloye Adeosun"
 category: "0-Dollar Distribution"
 tags: ["0-Dollar Marketing", "Solopreneurs", "Audience Building", "Content Strategy", "One Person Business"]
 description: "How solo founders escape the build & pray loop. The 3-step zero-dollar distribution engine: Signal Posts, Friction Magnets, and 5-minute DM language mining."
+coverImage: "/images/blog/cover-audience-from-scratch.png"
 readingTime: "6 min read"
 featured: true
 ---

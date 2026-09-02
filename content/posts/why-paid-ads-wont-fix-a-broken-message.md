@@ -1,11 +1,12 @@
 ---
-title: "Paid Ads Won't Fix a Broken Message: Why Cold Traffic Bounces (And How to Fix It for Free)"
+title: "Why Paid Ads Won't Fix a Broken Message"
 slug: "why-paid-ads-wont-fix-a-broken-message"
 date: "2026-09-02"
 author: "Oloye Adeosun"
 category: "0-Dollar Distribution"
 tags: ["Paid Ads", "Go-To-Market", "Solopreneurs", "Customer Acquisition", "Copywriting"]
 description: "Why spending £1,000 on Facebook or Google ads with an unvalidated offer burns cash. How solopreneurs validate their messaging for zero dollars before running paid traffic."
+coverImage: "/images/blog/cover-paid-ads-trap.png"
 readingTime: "5 min read"
 featured: true
 ---

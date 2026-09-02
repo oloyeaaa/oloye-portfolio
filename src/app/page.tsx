@@ -63,27 +63,30 @@ const expertise = [
 const teardowns = [
   {
     tag: "BUYER PSYCHOLOGY",
-    title: "The War Room Delusion: Why 90% of Businesses Talk to Themselves",
+    title: "The War Room Delusion: Why 90% of Businesses Get Ignored",
     description:
       "A founder spends 6 months building in secret, buys a domain, and launches to complete crickets. The biological reason the human brain ignores company noise and the 3-step psychology shift to fix it.",
     badge: "Customer Awareness",
     slug: "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves",
+    coverImage: "/images/blog/cover-war-room-delusion.png",
   },
   {
     tag: "0-DOLLAR GTM",
-    title: "How to Build an Audience from Scratch: The 0-Dollar Marketing Blueprint",
+    title: "How to Build an Audience from Scratch (for $0)",
     description:
       "Why paid ads do not fix a broken message. The 3-step zero-dollar distribution loop: Signal Posts, Friction Magnets, and 5-minute DM language mining.",
     badge: "Solopreneur Playbook",
     slug: "how-to-build-an-audience-from-scratch-0-dollar-marketing",
+    coverImage: "/images/blog/cover-audience-from-scratch.png",
   },
   {
     tag: "AI & WORKFLOWS",
-    title: "The Solo Media Engine: How 1 Solopreneur Uses Claude & Gemini to Run a 5-Person Team",
+    title: "The 1-Person AI Media Engine (Claude & Gemini)",
     description:
       "How to use AI without producing robotic garbage. The prompt frameworks and automated workflows 1 solo builder uses to research, script, and distribute content.",
     badge: "AI Automation",
     slug: "how-1-solopreneur-uses-claude-gemini-to-run-a-5-person-marketing-team",
+    coverImage: "/images/blog/cover-ai-media-engine.png",
   },
 ];
 

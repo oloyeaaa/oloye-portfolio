@@ -1,11 +1,12 @@
 ---
-title: "Customer Language Mining: How to Steal High-Converting Copy from 1-Star Competitor Reviews"
+title: "How to Steal High-Converting Copy from 1-Star Reviews"
 slug: "how-to-steal-high-converting-copy-from-1-star-competitor-reviews"
 date: "2026-09-02"
 author: "Oloye Adeosun"
 category: "Buyer Psychology"
 tags: ["Language Mining", "Copywriting", "Buyer Psychology", "ICP Discovery", "Solopreneurs"]
 description: "Stop guessing what your customers want. A step-by-step guide to mining G2, Trustpilot, and Reddit for the exact words that make prospects buy."
+coverImage: "/images/blog/cover-language-mining.png"
 readingTime: "5 min read"
 featured: true
 ---

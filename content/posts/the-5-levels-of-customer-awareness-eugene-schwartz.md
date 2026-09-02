@@ -1,11 +1,12 @@
 ---
-title: "The 5 Levels of Customer Awareness: How to Sell When Nobody Knows Your Name"
+title: "The 5 Levels of Customer Awareness (Eugene Schwartz)"
 slug: "the-5-levels-of-customer-awareness-eugene-schwartz"
 date: "2026-09-02"
 author: "Oloye Adeosun"
 category: "Buyer Psychology"
 tags: ["Buyer Psychology", "Eugene Schwartz", "Customer Awareness", "Copywriting", "Positioning"]
 description: "Why 80% of marketing messages fail. A breakdown of Eugene Schwartz's 5 stages of customer awareness and how solopreneurs can write copy that converts cold traffic."
+coverImage: "/images/blog/cover-customer-awareness.png"
 readingTime: "5 min read"
 featured: true
 ---

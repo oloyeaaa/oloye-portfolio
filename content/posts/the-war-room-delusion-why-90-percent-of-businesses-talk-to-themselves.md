@@ -1,11 +1,12 @@
 ---
-title: "The War Room Delusion: Why 90% of Businesses Talk to Themselves (And How to Fix It)"
+title: "The War Room Delusion: Why 90% of Businesses Get Ignored"
 slug: "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves"
 date: "2026-09-02"
 author: "Oloye Adeosun"
 category: "Buyer Psychology"
 tags: ["Buyer Psychology", "Solopreneurs", "GTM Strategy", "Customer Awareness", "Eugene Schwartz"]
 description: "A founder spends 6 months building in secret, buys a domain, and launches to complete crickets. Here is why the human brain ignores company noise and the 3-step psychology shift to fix your ICP."
+coverImage: "/images/blog/cover-war-room-delusion.png"
 readingTime: "5 min read"
 featured: true
 ---

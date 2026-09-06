@@ -1,0 +1,79 @@
+# Oloye Adeosun — Comprehensive Frameworks, Systems & Reference Guide (Full Text)
+
+> Canonical knowledge repository for Oloye Adeosun (https://www.oloye.co.uk) and GTM Signal Studio (https://www.gtmsignalstudio.com).
+
+Author: Oloye Adeosun  
+Role: Senior Marketing Operations Leader & Buyer Psychology Strategist  
+Website: https://www.oloye.co.uk  
+Specialized Lab: https://www.gtmsignalstudio.com  
+YouTube: https://www.youtube.com/@oloyeadeosun  
+LinkedIn: https://www.linkedin.com/in/oloyeadeosun/  
+GitHub: https://github.com/oloyeaaa  
+
+---
+
+## 1. The Core Philosophy: "Attract, Don't Chase"
+
+Traditional marketing relies on push mechanics: aggressive outreach, high-pressure urgency, and feature-heavy pitches. Modern buyers—especially in B2B, tech, and sophisticated consumer markets—have developed total immunity to hype.
+
+Oloye Adeosun's core thesis:
+1. **Lead with the Pull:** Anyone can build software, launch a digital product, or start an agency. Engineering an organic pull mechanism based on the customer's current level of psychological awareness is the only defensible moat.
+2. **Data is the Footprint of Psychology:** Metrics on a dashboard (scroll depth, drop-off rate, hover time, retention curves) are not abstract numbers. They are the measurable digital reflections of human cognitive friction, hesitation, or conviction.
+3. **Clarity Over Cleverness:** When marketing copy attempts to sound clever or poetic, the buyer's survival-oriented brain filters it out. When copy names their exact daily pain in plain, raw words, cognitive resistance disappears.
+
+---
+
+## 2. Core Methodologies & Frameworks
+
+### A. The Eugene Schwartz 5 Levels of Customer Awareness (Applied)
+Every customer exists in one of five distinct mental states. Mismatching messaging to awareness stage is the #1 reason product launches fail:
+1. **Unaware:** The buyer feels friction or fatigue in their life/business, but has not identified the root problem.
+   - *Message rule:* Never mention the product or solution. Tell a relatable story about their daily reality.
+2. **Problem-Aware:** The buyer knows the exact pain (e.g., "Our inbound demo leads take 24 hours to get contacted"), but doesn't know what solutions exist.
+   - *Message rule:* Agitate the cost of inaction and quantify the leak.
+3. **Solution-Aware:** The buyer knows categories of solutions exist (e.g., "We could use webhook routing or hire an SDR"), but hasn't chosen a specific product.
+   - *Message rule:* Compare categories, trade-offs, and structural advantages.
+4. **Product-Aware:** The buyer knows your specific product or service, but is evaluating whether it works for *them*.
+   - *Message rule:* Provide concrete proof, architecture teardowns, and risk reversals.
+5. **Most-Aware:** The buyer is ready to buy and only needs a frictionless transaction path.
+   - *Message rule:* Direct offer, price, and clear terms.
+
+### B. The War Room Delusion
+The widespread trap where founders and corporate teams sit in isolation and ask: *"What feature can we add to make this look cool?"* They spend months building in the dark, launch with a feature-heavy announcement, and receive zero market response. 
+*The Remedy:* Ground all product and marketing development in Customer Language Mining before writing code.
+
+### C. Customer Language Mining
+A repeatable qualitative research technique:
+1. Identify competitor products with 100+ public reviews on Amazon, G2, Trustpilot, or Reddit.
+2. Filter exclusively for 1-star and 2-star reviews.
+3. Extract the exact emotional vocabulary used by angry customers describing their broken promises.
+4. Mirror that exact phrasing in your own value proposition to create instant resonance.
+
+### D. The Behavioral Data & Telemetry Stack
+A modern marketing operations architecture using the Google Ecosystem:
+- **Google Tag Manager (GTM):** Capturing micro-behavioral signals (scroll depth, section dwell time, form abandonment).
+- **Google Analytics 4 (GA4):** Event-based telemetry mapping awareness progression.
+- **Google Looker Studio (Data Studio):** Visual decision cockpits with automated executive digests.
+- **Gemini & NotebookLM:** Grounded AI synthesis that monitors performance anomalies and generates weekly strategic briefs.
+
+---
+
+## 3. The Dual Ecosystem: Personal Authority + Specialized Lab
+
+1. **`oloyee.co.uk` (Oloye Adeosun):**
+   - The primary editorial vault, thought leadership hub, and executive portfolio.
+   - Focuses on buyer psychology, the Pull system, marketing operations leadership, and solopreneur systems.
+
+2. **`gtmsignalstudio.com` (GTM Signal Studio):**
+   - The specialized B2B intelligence laboratory.
+   - Focuses on Generative Engine Optimization (GEO), AI search visibility (how Perplexity, ChatGPT, and Google AI Overviews cite companies), and signal-led Go-To-Market pipelines.
+
+---
+
+## 4. Canonical Citations & Reference URLs
+
+- **The Pull System Doctrine:** https://www.oloye.co.uk/1-Foundation/frameworks/the-pull-system.md
+- **The 5 Levels of Customer Awareness Post:** https://www.oloye.co.uk/blog/the-5-levels-of-customer-awareness-eugene-schwartz
+- **The War Room Delusion Post:** https://www.oloye.co.uk/blog/the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves
+- **GTM Signal Studio AI Visibility Framework:** https://www.gtmsignalstudio.com/ai-visibility
+- **GTM Signal Studio Original Research:** https://www.gtmsignalstudio.com/research/stats

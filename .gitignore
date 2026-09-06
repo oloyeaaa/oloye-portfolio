@@ -50,3 +50,7 @@ SEO-KEYWORDS.md
 # skills packaging: personal scrub rules + staging (never commit)
 scripts/scrub-rules.local.mjs
 .skills-staging/
+
+# cloned sub-repo
+gtmsignalstudio-web/
+

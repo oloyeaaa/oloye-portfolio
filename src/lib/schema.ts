@@ -19,20 +19,27 @@ export function organizationSchema() {
     "@id": ORG_ID,
     name: SITE_NAME,
     legalName: SITE_LEGAL_NAME,
-    alternateName: "Oloye",
+    alternateName: "Oloye Adeosun Operations",
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     founder: { "@id": PERSON_ID },
-    sameAs: [LINKEDIN_URL, "https://www.youtube.com/@oloyeadeosun"],
+    sameAs: [
+      LINKEDIN_URL,
+      "https://www.youtube.com/@oloyeadeosun",
+      "https://github.com/oloyeaaa",
+      "https://www.gtmsignalstudio.com",
+    ],
     knowsAbout: [
       "Buyer Psychology",
-      "Solopreneur Marketing",
-      "Eugene Schwartz Awareness Levels",
-      "0-Dollar Distribution",
+      "Eugene Schwartz 5 Levels of Customer Awareness",
+      "Generative Engine Optimization (GEO)",
+      "The Pull Copywriting System",
+      "Behavioral Data Engineering",
+      "Marketing Operations & RevOps",
+      "Google Tag Manager Telemetry",
+      "Looker Studio Decision Dashboards",
+      "0-Dollar Distribution Systems",
       "Customer Language Mining",
-      "AI Workflows & Automation",
-      "Go-To-Market Strategy",
-      "Marketing Operations",
     ],
     areaServed: "Global",
   };
@@ -46,9 +53,23 @@ export function personSchema() {
     name: AUTHOR.name,
     url: AUTHOR.url,
     image: AVATAR_URL,
-    sameAs: [LINKEDIN_URL, "https://www.youtube.com/@oloyeadeosun"],
+    sameAs: [
+      LINKEDIN_URL,
+      "https://www.youtube.com/@oloyeadeosun",
+      "https://github.com/oloyeaaa",
+      "https://www.gtmsignalstudio.com",
+    ],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Buyer Psychology & AI Distribution Strategist",
+    jobTitle: "Senior Marketing Operations Leader & Buyer Psychology Strategist",
+    knowsAbout: [
+      "Buyer Psychology",
+      "Eugene Schwartz 5 Levels of Customer Awareness",
+      "Generative Engine Optimization (GEO)",
+      "Looker Studio Data Architecture",
+      "Google Tag Manager Telemetry",
+      "Marketing Automation",
+      "The Pull System",
+    ],
   };
 }
 
@@ -235,6 +256,10 @@ export function articleSchema({
     author: { "@id": PERSON_ID },
     publisher: { "@id": ORG_ID },
     inLanguage: "en-GB",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "article header p", "article > div > p:first-of-type"],
+    },
   };
 }
 

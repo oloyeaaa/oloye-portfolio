@@ -23,6 +23,16 @@ export const metadata: Metadata = {
 
 const featuredAssets = [
   {
+    badge: "FEATURED PROMPT ENGINE • VIDEO 01",
+    title: "The 10-Minute Market Research Engine",
+    description:
+      "The exact Eugene Schwartz buyer psychology prompt to turn competitor 1-star reviews into validated digital product offers in 10 minutes on Google AI Studio.",
+    link: "/free/market-research-engine",
+    actionText: "Get Free System Prompt →",
+    format: "Google AI Studio Prompt • Free",
+    isExternal: false,
+  },
+  {
     badge: "FEATURED SPREADSHEET · VIDEO 02",
     title: "The Customer Language Mining & ICP Discovery Matrix",
     description:

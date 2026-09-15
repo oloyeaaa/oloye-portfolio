@@ -32,6 +32,41 @@ export type Freebie = {
 
 export const FREEBIES: Freebie[] = [
   {
+    slug: "market-research-engine",
+    name: "The 10-Minute Market Research Engine",
+    promise: "Find what customers are already begging for before you write a single line of code.",
+    time: "About 10 minutes",
+    what: "The Market Research Engine takes 1-star and 2-star reviews from competitors, runs them through a direct-response buyer psychology framework (the Eugene Schwartz awareness model), and extracts the Core Frustration, 3 Fatal Flaws, and 3 validated digital product opportunities with impulse pricing and high-converting hooks.",
+    how: [
+      "Open Google AI Studio (aistudio.google.com) with Gemini 2.5 Flash, or whichever AI you use.",
+      "Copy the System Prompt below and paste it into the System Instructions box.",
+      "Paste 10 to 50 real 1-star customer complaints from Trustpilot, G2, or Amazon into the chat.",
+      "Hit Run to get structured product opportunities, pricing ranges, and landing page headlines.",
+    ],
+    next: "idea-scorecard",
+    prompt: `You are an expert Direct-Response Market Research Analyst specializing in customer psychology and buyer awareness models (Eugene Schwartz).
+
+TASK:
+Analyze the provided customer complaints and 1-star or 2-star reviews from competitor products.
+
+OUTPUT FORMAT:
+1. THE CORE FRUSTRATION:
+Summarize the single biggest unmet emotional desire in plain, punchy English. What is the real headache they are desperate to make go away?
+
+2. THE 3 FATAL FLAWS:
+The top 3 recurring reasons why existing tools or services failed these customers. (Be specific: e.g. bloat, slow support, hidden fees, complex setup).
+
+3. THE 3 PRODUCT OPPORTUNITIES:
+For each opportunity, provide:
+- Product Name: Short, catchy, benefit-driven name.
+- The One Problem It Solves: Exactly 1 sentence.
+- The Fast Delivery Format: (e.g. 1-page smart template, automated script, 15-minute workflow, checklist).
+- Target Impulse Price Range: (£19 - £97 impulse buy).
+- High-Converting Hook: 1 headline in the customer's exact words.
+
+Rules: Plain words, no corporate jargon, no fluff, no em dashes. Ground every recommendation in the real evidence provided.`,
+  },
+  {
     slug: "idea-scorecard",
     name: "The Idea Scorecard",
     promise: "You already had the idea. This tells you if it is worth your evenings.",

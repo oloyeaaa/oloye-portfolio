@@ -35,6 +35,7 @@ const VERTICALS = [
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      { source: "/lab", destination: "/free/market-research-engine", permanent: true },
       // --- Pages about the person or the old agency -> home ---
       // NOTE: /about is NOT here. It was redirected when the agency page was
       // archived, and a real About page was written in its place 2026-08-17.

@@ -4,10 +4,13 @@ import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, AUTHOR, SOCIAL, LINKEDIN_URL } from "@/lib/site";
 import { webPageSchema, personSchema } from "@/lib/schema";
+import TerminalPromptCard from "@/components/TerminalPromptCard";
+import CopyPrompt from "@/components/CopyPrompt";
+import { FREEBIES } from "@/lib/freebies";
 
 const TITLE = "Oloye Adeosun — Marketing Automation, Buyer Psychology & Google AI Stack";
 const DESCRIPTION =
-  "Enterprise Marketing Automation Specialist showing 9-to-5 operators and quiet builders how to build real AI systems and digital assets step by step.";
+  "Enterprise Marketing Automation Specialist showing 9-to-5 operators how to build real AI systems and digital assets with Google AI Studio.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -21,85 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-const expertise = [
-  {
-    kicker: "01 · BUYER PSYCHOLOGY",
-    title: "The 5 Levels of Customer Awareness",
-    description:
-      "Escaping the 'War Room Delusion'. Moving away from self-centered feature checklists to deep customer psychology, 2:00 AM bleeding-neck pain points, and Eugene Schwartz awareness levels.",
-    bullets: [
-      "Customer Language Mining (Reddit & G2)",
-      "The 5 Levels of Buyer Awareness",
-      "Story-Led Counter-Positioning",
-      "Bleeding-Neck Pain Point Audits",
-    ],
-  },
-  {
-    kicker: "02 · AI WORKFLOWS & AUTOMATION",
-    title: "AI-Powered Research & Content Engines",
-    description:
-      "Leveraging Claude, Gemini, and Python to execute deep buyer psychology in seconds. Automated customer research, high-CTR script architectures, and frictionless lead systems.",
-    bullets: [
-      "Automated Customer Voice & Language Miners",
-      "High-CTR YouTube & Script Prompt Banks",
-      "API & Speed-to-Lead Webhook Workflows",
-      "AI Leverage for One-Person Media Engines",
-    ],
-  },
-  {
-    kicker: "03 · 0-DOLLAR DISTRIBUTION",
-    title: "Organic Solopreneur Go-To-Market",
-    description:
-      "The organic distribution playbook to get your first 100 paying customers without spending a single pound on paid ads. Documenting the real journey to build high trust.",
-    bullets: [
-      "The Daily 'Signal Post' Content Loop",
-      "Friction-Magnet Free Template Creation",
-      "5-Minute Direct Conversation Outreach",
-      "Audience-First Launch Frameworks",
-    ],
-  },
-];
+const scannerPrompt = FREEBIES.find((f) => f.slug === "problem-awareness-scanner")?.prompt || "";
 
-const teardowns = [
-  {
-    tag: "BUYER PSYCHOLOGY",
-    title: "The $1.75 Billion Mistake That Kills 90% of AI & Digital Products",
-    description:
-      "Why Quibi burned $1.75B in 6 months while Dollar Shave Club made $1B with a 90-second video. How to use Eugene Schwartz's 5 Levels of Awareness and Google AI Studio to validate your offer for £0.",
-    badge: "Case Study & Free Prompt",
-    slug: "the-1-75-billion-dollar-mistake-customer-awareness",
-    coverImage: "/images/blog/cover-war-room-delusion.png",
-  },
-  {
-    tag: "BUYER PSYCHOLOGY",
-    title: "The War Room Delusion: Why 90% of Businesses Get Ignored",
-    description:
-      "A founder spends 6 months building in secret, buys a domain, and launches to complete crickets. The biological reason the human brain ignores company noise and the 3-step psychology shift to fix it.",
-    badge: "Customer Awareness",
-    slug: "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves",
-    coverImage: "/images/blog/cover-war-room-delusion.png",
-  },
-  {
-    tag: "0-DOLLAR GTM",
-    title: "How to Build an Audience from Scratch (for $0)",
-    description:
-      "Why paid ads do not fix a broken message. The 3-step zero-dollar distribution loop: Signal Posts, Friction Magnets, and 5-minute DM language mining.",
-    badge: "Solopreneur Playbook",
-    slug: "how-to-build-an-audience-from-scratch-0-dollar-marketing",
-    coverImage: "/images/blog/cover-audience-from-scratch.png",
-  },
-  {
-    tag: "AI & WORKFLOWS",
-    title: "The 1-Person AI Media Engine (Claude & Gemini)",
-    description:
-      "How to use AI without producing robotic garbage. The prompt frameworks and automated workflows 1 solo builder uses to research, script, and distribute content.",
-    badge: "AI Automation",
-    slug: "how-1-solopreneur-uses-claude-gemini-to-run-a-5-person-marketing-team",
-    coverImage: "/images/blog/cover-ai-media-engine.png",
-  },
-];
+export default function HomePage() {
+  const featuredPrompts = FREEBIES.slice(0, 4);
 
-export default function Home() {
   return (
     <>
       <JsonLd
@@ -107,310 +36,219 @@ export default function Home() {
           path: "/",
           title: TITLE,
           description: DESCRIPTION,
+          type: "WebPage",
         })}
       />
       <JsonLd data={personSchema()} />
 
-      {/* Hero Section */}
-      <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
-        <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-mono font-semibold tracking-wider text-accent uppercase">
-          <span className="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
-          Buyer Psychology • AI Workflows • 0-Dollar Distribution
-        </div>
+      <div className="space-y-16 py-8 sm:py-12">
+        {/* ============================================================ */}
+        {/* 1. SPLIT HERO SECTION (Visual 50/50 Layout)                  */}
+        {/* ============================================================ */}
+        <section className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* Left Column: Punchy Hook & CTA */}
+          <div className="space-y-6 lg:col-span-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-foreground">
+              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+              <span>Active 9-to-5 Operator • MarOps Lead</span>
+            </div>
 
-        <h1 className="mt-8 text-4xl font-extrabold leading-[1.08] tracking-tight text-balance sm:text-6xl md:text-7xl">
-          Master the psychology of attention &{" "}
-          <span className="text-accent">AI-powered distribution.</span>
-        </h1>
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.1]">
+              Build Real AI Systems <br className="hidden sm:inline" />
+              <span className="text-accent">& Digital Assets.</span>
+            </h1>
 
-        <p className="mt-7 max-w-[58ch] text-lg text-primary-dim sm:text-xl leading-relaxed">
-          I am <strong className="text-foreground">Oloye Adeosun</strong>. I help solopreneurs and solo builders escape the 'Build & Pray' trap by combining deep buyer psychology with automated AI workflows to turn zero views into a queue of paying customers.
-        </p>
-
-        {/* Actions */}
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="https://www.youtube.com/@oloyeadeosun"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md bg-accent px-6 py-3.5 font-semibold text-background transition hover:bg-accent-light shadow-md inline-flex items-center gap-2"
-          >
-            <span>▶</span> Watch on YouTube
-          </a>
-          <Link
-            href="/free"
-            className="rounded-md border border-border-strong bg-surface px-6 py-3.5 font-semibold text-foreground transition hover:border-accent hover:text-accent"
-          >
-            Free Playbooks & Templates
-          </Link>
-          <Link
-            href="/blog"
-            className="rounded-md border border-border px-5 py-3.5 font-medium text-muted transition hover:text-foreground hover:border-border-strong"
-          >
-            Read the Blog & Teardowns →
-          </Link>
-        </div>
-
-        {/* Credibility & Trench Badges */}
-        <div className="mt-16 grid grid-cols-2 gap-4 border-t border-border pt-10 sm:grid-cols-4">
-          <div>
-            <p className="text-2xl font-bold font-mono text-accent">6+ Years</p>
-            <p className="mt-1 text-xs text-muted">In the Marketing Trenches</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold font-mono text-accent">0-Dollar GTM</p>
-            <p className="mt-1 text-xs text-muted">Audience-First Distribution</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold font-mono text-foreground">5 Levels</p>
-            <p className="mt-1 text-xs text-muted">Customer Awareness Engine</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold font-mono text-foreground">AI Workflows</p>
-            <p className="mt-1 text-xs text-muted">One-Person Media Leverage</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Expertise & Disciplines */}
-      <section id="expertise" className="border-t border-border bg-surface/30 py-20 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="max-w-xl">
-            <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-              HOW WE ESCAPE THE BUILD & PRAY TRAP
+            <p className="text-sm sm:text-base text-muted leading-relaxed max-w-lg">
+              Turn domain knowledge into automated workflows with Google’s AI stack. Built for active 9-to-5 operators and quiet builders.
             </p>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              The 3 engines that turn silent products into paying customers.
-            </h2>
-            <p className="mt-3 text-muted">
-              Most builders spend months building in isolation only to get complete crickets on launch day. Here are the 3 systems to fix that.
-            </p>
-          </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {expertise.map((exp) => (
-              <div
-                key={exp.title}
-                className="flex flex-col justify-between rounded-xl border border-border bg-surface p-7 shadow-sm transition hover:border-border-strong hover:shadow-md"
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <Link
+                href="/free"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-background transition hover:bg-accent/90 shadow-md"
               >
-                <div>
-                  <span className="text-[11px] font-mono font-bold tracking-wider text-accent uppercase">
-                    {exp.kicker}
-                  </span>
-                  <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground">
-                    {exp.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-primary-dim leading-relaxed">
-                    {exp.description}
-                  </p>
-                </div>
-                <ul className="mt-6 space-y-2 border-t border-border pt-5 text-xs text-muted">
-                  {exp.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2">
-                      <span className="text-accent">✓</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ventures Owned: GSS & Practical AI Hub */}
-      <section id="ventures" className="border-t border-border py-20 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-                Proof of Building
-              </p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Ventures & Products I Own.
-              </h2>
-            </div>
-            <Link
-              href="/ventures"
-              className="text-sm font-semibold text-accent hover:text-accent-light underline underline-offset-4"
-            >
-              View Full Ventures Architecture →
-            </Link>
-          </div>
-
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            {/* Venture 1: GSS */}
-            <div className="rounded-xl border border-border bg-surface p-8 relative overflow-hidden group hover:border-accent/50 transition">
-              <div className="flex items-center justify-between">
-                <span className="rounded-full bg-secondary/10 border border-secondary/30 px-3 py-1 text-xs font-mono text-secondary font-semibold">
-                  GTM INTELLIGENCE
-                </span>
-                <span className="text-xs font-mono text-muted">Active Engine</span>
-              </div>
-              <h3 className="mt-5 text-2xl font-bold tracking-tight text-foreground">
-                GTM Signal Studio (GSS)
-              </h3>
-              <p className="mt-2 text-accent font-medium text-sm">
-                AI-Powered Go-To-Market Signal Intelligence
-              </p>
-              <p className="mt-4 text-sm text-primary-dim leading-relaxed">
-                An operational intelligence platform designed to eliminate market blind spots. GSS monitors real-time market sentiment, buyer intent indicators, and competitor repositioning shifts to drive proactive product marketing decisions.
-              </p>
-              <div className="mt-6 flex items-center gap-3 pt-6 border-t border-border">
-                <Link
-                  href="/ventures#gss"
-                  className="text-sm font-semibold text-foreground group-hover:text-accent transition"
-                >
-                  Explore GSS Architecture →
-                </Link>
-              </div>
-            </div>
-
-            {/* Venture 2: Practical AI Hub */}
-            <div className="rounded-xl border border-border bg-surface p-8 relative overflow-hidden group hover:border-accent/50 transition">
-              <div className="flex items-center justify-between">
-                <span className="rounded-full bg-accent/10 border border-accent/30 px-3 py-1 text-xs font-mono text-accent font-semibold">
-                  AI WORKFLOWS & EDUCATION
-                </span>
-                <span className="text-xs font-mono text-muted">Active Venture</span>
-              </div>
-              <h3 className="mt-5 text-2xl font-bold tracking-tight text-foreground">
-                Practical AI Hub
-              </h3>
-              <p className="mt-2 text-accent font-medium text-sm">
-                Actionable AI Systems for Busy Professionals
-              </p>
-              <p className="mt-4 text-sm text-primary-dim leading-relaxed">
-                A structured educational and workflow ecosystem built to help professionals and creators productize their expertise. Home to the 18-Prompt Master System, digital product teardowns, and practical automation frameworks.
-              </p>
-              <div className="mt-6 flex items-center gap-3 pt-6 border-t border-border">
-                <Link
-                  href="/practical-ai-hub"
-                  className="text-sm font-semibold text-foreground group-hover:text-accent transition"
-                >
-                  Visit Practical AI Hub →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Story-Led Teardowns & Blog Section */}
-      <section id="teardowns" className="border-t border-border bg-surface/30 py-20 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-                Case Studies & Teardowns
-              </p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Deconstructing how great products win.
-              </h2>
-            </div>
-            <div className="flex items-center gap-4">
+                <span>Explore Prompt Lab</span>
+                <span>⚡</span>
+              </Link>
               <Link
                 href="/blog"
-                className="text-sm font-semibold text-accent hover:text-accent-light underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-surface px-4 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-raised hover:border-border-hover"
               >
-                Read All Blog Posts →
+                <span>Read Case Studies</span>
+                <span>→</span>
               </Link>
-              <a
-                href={SOCIAL.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-primary-dim hover:text-foreground underline underline-offset-4"
-              >
-                YouTube (@oloyeadeosun) ↗
-              </a>
             </div>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {teardowns.map((td) => (
-              <div
-                key={td.title}
-                className="flex flex-col justify-between rounded-xl border border-border bg-surface p-6 transition hover:border-accent/40"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-[11px] font-mono text-muted">
-                    <span>{td.tag}</span>
-                    <span className="rounded bg-surface-alt px-2 py-0.5 border border-border text-foreground">
-                      {td.badge}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground leading-snug">
-                    {td.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-primary-dim leading-relaxed">
-                    {td.description}
-                  </p>
+          {/* Right Column: Interactive AI Studio Terminal Mockup */}
+          <div className="lg:col-span-6">
+            <div className="relative rounded-2xl border border-border bg-surface p-4 sm:p-6 shadow-2xl backdrop-blur-md">
+              <div className="flex items-center justify-between border-b border-border/80 pb-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-red-500/90 inline-block" />
+                  <span className="h-3 w-3 rounded-full bg-yellow-500/90 inline-block" />
+                  <span className="h-3 w-3 rounded-full bg-green-500/90 inline-block" />
+                  <span className="ml-2 text-xs font-mono font-medium text-foreground">
+                    awareness-scanner.v2
+                  </span>
                 </div>
-                <div className="mt-6 border-t border-border pt-4 flex items-center justify-between">
-                  <Link
-                    href={`/blog/${td.slug}`}
-                    className="text-xs font-semibold text-accent hover:underline"
-                  >
-                    Read Breakdown →
-                  </Link>
-                  <a
-                    href={SOCIAL.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-mono text-muted hover:text-foreground"
-                  >
-                    Watch Video ↗
-                  </a>
+                <span className="rounded bg-background px-2 py-0.5 text-[10px] font-mono text-accent border border-border">
+                  Gemini 2.5 Flash
+                </span>
+              </div>
+
+              <div className="space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between text-[11px] text-muted">
+                  <span>// GOOGLE AI STUDIO SYSTEM PROMPT</span>
+                  <span className="text-accent">1-CLICK EXECUTION</span>
+                </div>
+                <div className="rounded-lg bg-background p-3.5 text-[11px] leading-relaxed text-foreground/90 border border-border/60">
+                  <p className="text-accent font-semibold mb-1">▶ Step 1: 2 AM Bleed Diagnosis</p>
+                  <p className="text-muted">Map raw customer complaints from Reddit & G2 directly into Eugene Schwartz’s 5 awareness levels.</p>
+                  <p className="text-accent font-semibold mt-2 mb-1">▶ Step 2: Friction Elimination</p>
+                  <p className="text-muted">Translate features into instant psychological relief before ever pitching a solution.</p>
                 </div>
               </div>
-            ))}
+
+              <div className="mt-4 pt-2">
+                <CopyPrompt prompt={scannerPrompt} />
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact / Conversation Section */}
-      <section id="contact" className="border-t border-border py-24 px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-mono font-semibold uppercase tracking-[0.16em] text-accent">
-            Start a Conversation
-          </p>
-          <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
-            Let&apos;s talk about buyer psychology & distribution.
-          </h2>
-          <p className="mt-5 text-lg text-primary-dim leading-relaxed text-balance">
-            Whether you are a solo builder looking to escape the 'Build & Pray' trap, an operator wanting to build an automated AI content engine, or a founder seeking an audience-first GTM strategy, let&apos;s connect.
-          </p>
+        {/* ============================================================ */}
+        {/* 2. VISUAL 3-PILLAR FRAMEWORK (Max 2 Lines per Card)         */}
+        {/* ============================================================ */}
+        <section className="space-y-6">
+          <div className="flex flex-col gap-1">
+            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              The 3-Pillar Systems Framework
+            </h2>
+            <p className="text-xs sm:text-sm text-muted">
+              How quiet 9-to-5 operators build automated media and customer engines without noise.
+            </p>
+          </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto rounded-md bg-accent px-8 py-4 font-semibold text-background transition hover:bg-accent-light shadow-md font-mono"
-            >
-              Connect on LinkedIn ↗
-            </a>
-            <a
-              href={SOCIAL.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto rounded-md border border-border-strong bg-surface px-8 py-4 font-semibold text-foreground transition hover:border-accent hover:text-accent"
-            >
-              Subscribe on YouTube ↗
-            </a>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {/* Pillar 1 */}
+            <div className="rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-raised border border-border text-lg">
+                🪜
+              </div>
+              <span className="mt-3 inline-block rounded bg-background px-2 py-0.5 text-[10px] font-mono uppercase text-accent border border-border">
+                Buyer Psychology
+              </span>
+              <h3 className="mt-2 text-base font-semibold text-foreground">
+                5 Awareness Rooms
+              </h3>
+              <p className="mt-1 text-xs text-muted leading-relaxed">
+                Meet the customer’s 2 AM bleed with Eugene Schwartz psychology. Stop proposing on the first date.
+              </p>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-raised border border-border text-lg">
+                ⚡
+              </div>
+              <span className="mt-3 inline-block rounded bg-background px-2 py-0.5 text-[10px] font-mono uppercase text-accent border border-border">
+                Google AI Stack
+              </span>
+              <h3 className="mt-2 text-base font-semibold text-foreground">
+                Google AI Studio Engine
+              </h3>
+              <p className="mt-1 text-xs text-muted leading-relaxed">
+                Deploy production workflows with Google AI Studio and Gemini 2.5 Flash. £0 setup, zero vendor lock-in.
+              </p>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-raised border border-border text-lg">
+                ☕
+              </div>
+              <span className="mt-3 inline-block rounded bg-background px-2 py-0.5 text-[10px] font-mono uppercase text-accent border border-border">
+                Operator Reality
+              </span>
+              <h3 className="mt-2 text-base font-semibold text-foreground">
+                Kitchen-Table Standard
+              </h3>
+              <p className="mt-1 text-xs text-muted leading-relaxed">
+                Plain English test for real operators. Build dependable assets that buy back your Saturday mornings.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 3. PROMPT LAB SHOWCASE (Interactive Cards)                   */}
+        {/* ============================================================ */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                Prompt Lab Vault
+              </h2>
+              <p className="text-xs sm:text-sm text-muted">
+                Battle-tested system prompts. Copy, paste, and run in Google AI Studio.
+              </p>
+            </div>
             <Link
               href="/free"
-              className="w-full sm:w-auto rounded-md border border-border px-8 py-4 font-semibold text-primary-dim transition hover:border-accent hover:text-foreground"
+              className="text-xs font-semibold text-accent hover:underline"
             >
-              Free Playbooks & Sheets →
+              View all 7 engines →
             </Link>
           </div>
 
-          <p className="mt-8 text-xs font-mono text-muted">
-            Based in the UK · Buyer Psychology, AI Distribution & 0-Dollar GTM
-          </p>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {featuredPrompts.map((freebie) => (
+              <TerminalPromptCard
+                key={freebie.slug}
+                slug={freebie.slug}
+                name={freebie.name}
+                tag="System Prompt"
+                model="Gemini 2.5 Flash"
+                promise={freebie.promise}
+                prompt={freebie.prompt}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 4. FEATURED CASE STUDY BANNER (Visual Comparison)            */}
+        {/* ============================================================ */}
+        <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-center">
+            <div className="space-y-3 md:col-span-8">
+              <div className="flex items-center gap-2">
+                <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-[11px] font-semibold text-accent border border-accent/20">
+                  Featured Teardown
+                </span>
+                <span className="text-xs text-muted">• 5 Min Read</span>
+              </div>
+              <h3 className="text-xl font-bold text-foreground sm:text-2xl leading-snug">
+                The $1.75 Billion Customer Awareness Mistake
+              </h3>
+              <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-xl">
+                Why Quibi burnt $1.75B pitching features, while Dollar Shave Club built a $1B exit addressing pain.
+              </p>
+            </div>
+
+            <div className="md:col-span-4 md:text-right">
+              <Link
+                href="/blog/the-1-75-billion-dollar-mistake-customer-awareness"
+                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-4 py-2.5 text-xs font-semibold text-background transition hover:bg-accent hover:text-background"
+              >
+                <span>Read Teardown</span>
+                <span>→</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

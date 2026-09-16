@@ -2,82 +2,51 @@ import Link from "next/link";
 import Image from "next/image";
 import { AUTHOR, LINKEDIN_URL, SOCIAL } from "@/lib/site";
 
-const navigation = [
-  { name: "Expertise", href: "/#expertise" },
-  { name: "Ventures (GSS & Practical AI)", href: "/ventures" },
-  { name: "Blog & Teardowns", href: "/blog" },
-  { name: "About Oloye", href: "/about" },
-];
-
-const ventures = [
-  { name: "GTM Signal Studio (GSS)", href: "/ventures#gss" },
-  { name: "Practical AI Hub", href: "/practical-ai-hub" },
+const quickLinks = [
+  { name: "Prompt Lab", href: "/free" },
+  { name: "Case Studies", href: "/blog" },
+  { name: "About", href: "/about" },
+  { name: "RSS Feed", href: "/feed.xml" },
 ];
 
 const channels = [
-  { name: "YouTube (@oloyeadeosun)", href: SOCIAL.youtube },
   { name: "LinkedIn", href: LINKEDIN_URL },
-  { name: "TikTok (@practicalaihub1)", href: SOCIAL.tiktok },
-  { name: "Instagram (@practicalaihub1)", href: SOCIAL.instagram },
+  { name: "YouTube", href: SOCIAL.youtube },
+  { name: "TikTok", href: SOCIAL.tiktok },
+  { name: "Instagram", href: SOCIAL.instagram },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border mt-24 bg-surface/40">
-      <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
-          <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/images/oloye-avatar.png"
-                alt="Oloye Adeosun"
-                width={42}
-                height={42}
-                className="rounded-full ring-1 ring-border"
-              />
-              <div>
-                <p className="font-display font-bold text-base text-primary">
-                  Oloye Adeosun
-                </p>
-                <p className="text-xs text-muted font-mono">
-                  GTM & Marketing Operations
-                </p>
+    <footer className="border-t border-border bg-surface/50 text-sm text-muted">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {/* Brand & Identity */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <div className="relative h-7 w-7 overflow-hidden rounded-full ring-1 ring-border">
+                <Image
+                  src="/images/oloye-avatar.png"
+                  alt="Oloye Adeosun"
+                  fill
+                  className="object-cover"
+                  sizes="28px"
+                />
               </div>
-            </Link>
-            <p className="mt-4 text-sm text-primary-dim leading-relaxed">
-              Bridging narrative product positioning with scalable revenue operations and intelligent automation.
+              <span className="font-semibold text-foreground">{AUTHOR.name}</span>
+            </div>
+            <p className="text-xs leading-relaxed text-muted max-w-sm">
+              Marketing Automation Specialist & AI Systems Operator. Showing 9-to-5 operators how to build real assets and buy back their time.
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h2 className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent">
-              Navigation
-            </h2>
-            <ul className="mt-4 space-y-2.5">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-primary-dim transition-colors hover:text-accent"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent">
-              Ventures Owned
-            </h2>
-            <ul className="mt-4 space-y-2.5">
-              {ventures.map((item) => (
+            <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Systems & Content</p>
+            <ul className="mt-3 space-y-2">
+              {quickLinks.map((item) => (
                 <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-primary-dim transition-colors hover:text-accent"
-                  >
+                  <Link href={item.href} className="text-xs text-muted transition hover:text-accent">
                     {item.name}
                   </Link>
                 </li>
@@ -85,20 +54,19 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Channels */}
           <div>
-            <h2 className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent">
-              Connect & Media
-            </h2>
-            <ul className="mt-4 space-y-2.5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Connect</p>
+            <ul className="mt-3 space-y-2">
               {channels.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary-dim transition-colors hover:text-accent"
+                    className="text-xs text-muted transition hover:text-accent"
                   >
-                    {item.name}
+                    {item.name} ↗
                   </a>
                 </li>
               ))}
@@ -106,13 +74,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-          <p>
-            © {new Date().getFullYear()} Oloye Adeosun. All rights reserved.
-          </p>
-          <p className="font-mono text-[11px] text-accent">
-            Buyer Psychology • AI Workflows • 0-Dollar Distribution
-          </p>
+        <div className="mt-10 border-t border-border/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
+          <p>© {new Date().getFullYear()} {AUTHOR.name}. All rights reserved.</p>
+          <p className="text-[11px]">Powered by Google AI Studio, Gemini & Next.js</p>
         </div>
       </div>
     </footer>

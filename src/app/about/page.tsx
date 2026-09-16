@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, LINKEDIN_URL, SOCIAL } from "@/lib/site";
 import { webPageSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "About Oloye Adeosun — Marketing Automation Specialist & AI Systems Operator";
+const TITLE = "About Oloye Adeosun — Marketing Automation Specialist & Systems Operator";
 const DESCRIPTION =
-  "Enterprise Marketing Automation Specialist and hands-on AI builder showing 9-to-5 operators how to build practical systems and digital assets.";
+  "Enterprise Marketing Automation Specialist showing 9-to-5 operators how to build AI systems and buy back time.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -20,6 +20,37 @@ export const metadata: Metadata = {
     type: "profile",
   },
 };
+
+const timelineSteps = [
+  {
+    icon: "📻",
+    era: "1990s",
+    badge: "Analog Foundation",
+    title: "Analog Roots & Discipline",
+    desc: "Rewinding cassette tapes with a Bic biro and writing by hand. The early discipline of manual systems and craftsmanship.",
+  },
+  {
+    icon: "🏢",
+    era: "2009 — Present",
+    badge: "14+ Years Corporate",
+    title: "London Arrival & Enterprise PMO",
+    desc: "Stepping out into Barking rain. 14+ years in UK banking operations, stakeholder management, and marketing automation.",
+  },
+  {
+    icon: "🔨",
+    era: "Late 2023",
+    badge: "Resilience & Grit",
+    title: "The Demolition Sledgehammer",
+    desc: "Redundancy and the real-world test. Breaking down HMO walls with a sledgehammer to rebuild true resilience and clarity.",
+  },
+  {
+    icon: "⚡",
+    era: "July 2025 — Today",
+    badge: "Current Mission",
+    title: "AI Systems & Time Buy-Back",
+    desc: "Marketing Automation Specialist fusing buyer psychology with Google’s AI stack to build assets and buy back Saturday mornings.",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -38,149 +69,123 @@ export default function AboutPage() {
       />
       <JsonLd data={personSchema()} />
 
-      <article className="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-20">
-        {/* Header Avatar & Identity */}
-        <div className="flex items-center gap-5">
-          <Image
-            src="/images/oloye-avatar.png"
-            alt="Oloye Adeosun"
-            width={84}
-            height={84}
-            className="rounded-full ring-2 ring-accent shadow-md"
-            priority
-          />
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-[11px] font-mono font-semibold tracking-wider text-accent uppercase">
-              The Guide 2 Steps Ahead
+      <div className="space-y-16 py-8 sm:py-12">
+        {/* Top Profile Header */}
+        <section className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8 border-b border-border pb-8">
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-border">
+            <Image
+              src="/images/oloye-avatar.png"
+              alt="Oloye Adeosun"
+              fill
+              className="object-cover"
+              sizes="96px"
+              priority
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-0.5 text-xs font-medium text-accent">
+              <span>Active 9-to-5 Enterprise Specialist</span>
             </div>
-            <h1 className="mt-1 font-display text-2xl font-bold text-foreground sm:text-3xl">
-              Oloye Adeosun
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+              Operator. Builder. System Architect.
             </h1>
-            <p className="text-xs font-mono text-muted">
-              London, UK · Buyer Psychology · AI Workflows · 0-Dollar Distribution
+            <p className="text-sm text-muted max-w-xl">
+              Marketing Automation Specialist by day. Building AI systems and buying back time by night.
             </p>
           </div>
-        </div>
+        </section>
 
-        {/* Narrative Intro */}
-        <h2 className="mt-12 text-3xl font-extrabold leading-[1.15] tracking-tight text-foreground sm:text-4xl font-display">
-          From 6 years in the marketing trenches to building in the open.
-        </h2>
-
-        <div className="mt-6 space-y-5 text-lg text-primary-dim leading-relaxed">
-          <p>
-            For almost six years, I fell into the exact same trap that kills ninety-five percent of solo founders and builders:
-          </p>
-          <p className="border-l-2 border-accent pl-5 italic text-foreground bg-surface/50 py-3 rounded-r-md">
-            &ldquo;I would get an exciting idea for a product. I would lock myself away for months building it, tweaking every feature, perfecting the logo, and making sure the code was spotless. And then I would launch... and get hit with complete silence. Zero comments. Zero sales. Zero likes.&rdquo;
-          </p>
-          <p>
-            I could build systems and technical workflows, but I had zero idea how to get attention. That disconnect delayed my progress for years.
-          </p>
-        </div>
-
-        {/* The Epiphany */}
-        <h3 className="mt-14 text-2xl font-extrabold tracking-tight text-foreground font-display">
-          The War Room Delusion & Buyer Psychology
-        </h3>
-        <div className="mt-5 space-y-4 text-primary-dim leading-relaxed">
-          <p>
-            I realized that solopreneurs and solo founders don&apos;t fail because their products are bad. They fail because they are trapped in <strong className="text-foreground">The War Room Delusion</strong>: building based on what they think is cool in isolation, instead of what real buyers are desperately trying to fix in their daily lives.
-          </p>
-          <p>
-            The human brain filters out 99% of company noise. It doesn&apos;t care about your feature updates or how many hours you worked. It only pays attention when you name its <strong className="text-accent">2:00 AM bleeding-neck headache</strong> in its own words.
-          </p>
-        </div>
-
-        {/* The Guide 2 Steps Ahead */}
-        <h3 className="mt-14 text-2xl font-extrabold tracking-tight text-foreground font-display">
-          The Role: The Guide 2 Steps Ahead
-        </h3>
-        <div className="mt-5 space-y-4 text-primary-dim leading-relaxed">
-          <p>
-            I am not an untouchable billionaire guru preaching from an ivory tower. I am an active practitioner in the arena. 
-          </p>
-          <p>
-            I am using YouTube, my blog, and free Google Sheet frameworks to document the real journey, test buyer psychology live, and help fellow builders who are two steps behind me escape the &lsquo;Build & Pray&rsquo; loop.
-          </p>
-        </div>
-
-        {/* The 3 Core Pillars */}
-        <h3 className="mt-14 text-2xl font-extrabold tracking-tight text-foreground font-display">
-          The 3 Pillars of What I Preach (and Practice)
-        </h3>
-        <div className="mt-6 space-y-4">
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <span className="text-xs font-mono font-bold text-accent uppercase">
-              01 · Buyer Psychology
-            </span>
-            <h4 className="mt-1 text-lg font-bold text-foreground">
-              The 5 Levels of Customer Awareness
-            </h4>
-            <p className="mt-2 text-sm text-primary-dim leading-relaxed">
-              Applying Eugene Schwartz frameworks and customer language mining to write messaging that speaks directly to cold buyers before pitching.
+        {/* Visual Timeline Section */}
+        <section className="space-y-6">
+          <div className="flex flex-col gap-1">
+            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              The Journey Timeline
+            </h2>
+            <p className="text-xs sm:text-sm text-muted">
+              From analog tape decks to enterprise marketing automation and Google AI systems.
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <span className="text-xs font-mono font-bold text-accent uppercase">
-              02 · AI Workflows & Automation
-            </span>
-            <h4 className="mt-1 text-lg font-bold text-foreground">
-              The One-Person Media Engine
-            </h4>
-            <p className="mt-2 text-sm text-primary-dim leading-relaxed">
-              Using Claude, Gemini, and Python to automate customer research, script drafting, and multi-format distribution without producing robotic fluff.
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {timelineSteps.map((step) => (
+              <div
+                key={step.title}
+                className="flex flex-col justify-between rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{step.icon}</span>
+                      <span className="text-xs font-mono font-semibold text-foreground">{step.era}</span>
+                    </div>
+                    <span className="rounded bg-background px-2 py-0.5 text-[10px] font-mono text-accent border border-border">
+                      {step.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs text-muted leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Operating Values (Visual Cards) */}
+        <section className="space-y-6">
+          <div className="flex flex-col gap-1">
+            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              Core Operating Rules
+            </h2>
+            <p className="text-xs sm:text-sm text-muted">
+              The non-negotiables that guide every system and prompt we build.
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <span className="text-xs font-mono font-bold text-accent uppercase">
-              03 · 0-Dollar Distribution
-            </span>
-            <h4 className="mt-1 text-lg font-bold text-foreground">
-              Organic Audience Building
-            </h4>
-            <p className="mt-2 text-sm text-primary-dim leading-relaxed">
-              Deploying daily Signal Posts, friction-magnet free templates, and direct DM outreach to get your first 100 paying customers without spending £1 on ads.
-            </p>
-          </div>
-        </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border border-border bg-surface p-5">
+              <span className="text-lg">🚫</span>
+              <h3 className="mt-2 text-sm font-semibold text-foreground">Zero Guru Fluff</h3>
+              <p className="mt-1 text-xs text-muted">No fake revenue screenshots, rented lambos, or hustle porn.</p>
+            </div>
 
-        {/* Contact & Next Steps */}
-        <div className="mt-16 border-t border-border pt-10">
-          <h3 className="text-2xl font-bold tracking-tight text-foreground font-display">
-            Let&apos;s Connect & Build
-          </h3>
-          <p className="mt-3 text-base text-primary-dim">
-            I believe in pure value first. Grab my free playbooks, check out the weekly video teardowns on YouTube, or connect with me on LinkedIn.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <a
-              href={SOCIAL.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md bg-accent px-6 py-3 font-semibold text-background transition hover:bg-accent-light inline-flex items-center gap-2 shadow-sm"
-            >
-              <span>▶</span> Subscribe on YouTube
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-border-strong bg-surface px-6 py-3 font-semibold text-foreground transition hover:border-accent hover:text-accent"
-            >
-              Connect on LinkedIn ↗
-            </a>
-            <Link
-              href="/free"
-              className="rounded-md border border-border px-6 py-3 font-semibold text-primary-dim transition hover:border-accent hover:text-foreground"
-            >
-              Free Templates & Sheets →
-            </Link>
+            <div className="rounded-xl border border-border bg-surface p-5">
+              <span className="text-lg">💼</span>
+              <h3 className="mt-2 text-sm font-semibold text-foreground">Active 9-to-5 Reality</h3>
+              <p className="mt-1 text-xs text-muted">Grounded in corporate enterprise ops. Systems built for real calendars.</p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-surface p-5">
+              <span className="text-lg">⚽</span>
+              <h3 className="mt-2 text-sm font-semibold text-foreground">Buy Back Saturdays</h3>
+              <p className="mt-1 text-xs text-muted">Building automated assets so you can enjoy Saturday mornings with family.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </section>
+
+        {/* CTAs */}
+        <section className="flex flex-wrap items-center gap-4 rounded-xl border border-border bg-surface p-6">
+          <Link
+            href="/free"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-background transition hover:bg-accent/90"
+          >
+            <span>Explore Prompt Lab ⚡</span>
+          </Link>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-4 py-2.5 text-xs font-semibold text-foreground transition hover:bg-surface"
+          >
+            <span>Connect on LinkedIn ↗</span>
+          </a>
+        </section>
+      </div>
     </>
   );
 }

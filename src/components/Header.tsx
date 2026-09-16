@@ -17,16 +17,16 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
+      <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3.5 sm:px-6">
         {/* Brand / Logo */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="relative h-9 w-9 overflow-hidden rounded-full ring-1 ring-border transition group-hover:ring-accent">
+          <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-border transition group-hover:ring-accent">
             <Image
               src="/images/oloye-avatar.png"
               alt="Oloye Adeosun"
               fill
               className="object-cover"
-              sizes="36px"
+              sizes="32px"
               priority
             />
           </div>
@@ -41,7 +41,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
           {navigation.map((item) => {
             const active =
               item.href === "/"
@@ -51,7 +51,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition ${
+                className={`text-xs font-medium transition ${
                   active
                     ? "text-accent font-semibold"
                     : "text-muted hover:text-foreground"
@@ -67,7 +67,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             href="/free"
-            className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-background transition hover:bg-accent/90 shadow-sm"
+            className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-xs font-semibold text-background transition hover:bg-accent/90 shadow-sm"
           >
             <span>Get Free Prompts</span>
             <span>⚡</span>
@@ -109,7 +109,7 @@ export default function Header() {
             <Link
               href="/free"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-4 py-2.5 text-xs font-semibold text-background"
+              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold text-background"
             >
               <span>Get Free Prompts ⚡</span>
             </Link>

@@ -69,65 +69,65 @@ export default function AboutPage() {
       />
       <JsonLd data={personSchema()} />
 
-      <div className="space-y-16 py-8 sm:py-12">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 space-y-12 py-8 sm:py-12">
         {/* Top Profile Header */}
-        <section className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8 border-b border-border pb-8">
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-border">
+        <section className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6 border-b border-border pb-6">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl ring-2 ring-border">
             <Image
               src="/images/oloye-avatar.png"
               alt="Oloye Adeosun"
               fill
               className="object-cover"
-              sizes="96px"
+              sizes="80px"
               priority
             />
           </div>
 
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-0.5 text-xs font-medium text-accent">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-2.5 py-0.5 text-[11px] font-medium text-accent">
               <span>Active 9-to-5 Enterprise Specialist</span>
             </div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
               Operator. Builder. System Architect.
             </h1>
-            <p className="text-sm text-muted max-w-xl">
+            <p className="text-xs sm:text-sm text-muted max-w-lg">
               Marketing Automation Specialist by day. Building AI systems and buying back time by night.
             </p>
           </div>
         </section>
 
         {/* Visual Timeline Section */}
-        <section className="space-y-6">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+        <section className="space-y-4">
+          <div className="flex flex-col gap-0.5">
+            <h2 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
               The Journey Timeline
             </h2>
-            <p className="text-xs sm:text-sm text-muted">
+            <p className="text-xs text-muted">
               From analog tape decks to enterprise marketing automation and Google AI systems.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {timelineSteps.map((step) => (
               <div
                 key={step.title}
-                className="flex flex-col justify-between rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40"
+                className="flex flex-col justify-between rounded-xl border border-border bg-surface p-4 transition hover:border-accent/40"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl">{step.icon}</span>
+                      <span className="text-lg">{step.icon}</span>
                       <span className="text-xs font-mono font-semibold text-foreground">{step.era}</span>
                     </div>
-                    <span className="rounded bg-background px-2 py-0.5 text-[10px] font-mono text-accent border border-border">
+                    <span className="rounded bg-background px-2 py-0.5 text-[9px] font-mono text-accent border border-border">
                       {step.badge}
                     </span>
                   </div>
 
-                  <h3 className="mt-3 text-base font-semibold text-foreground">
+                  <h3 className="mt-2.5 text-sm font-semibold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 text-xs text-muted leading-relaxed">
+                  <p className="mt-1 text-xs text-muted leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -137,42 +137,42 @@ export default function AboutPage() {
         </section>
 
         {/* Operating Values (Visual Cards) */}
-        <section className="space-y-6">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+        <section className="space-y-4">
+          <div className="flex flex-col gap-0.5">
+            <h2 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
               Core Operating Rules
             </h2>
-            <p className="text-xs sm:text-sm text-muted">
+            <p className="text-xs text-muted">
               The non-negotiables that guide every system and prompt we build.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-xl border border-border bg-surface p-5">
-              <span className="text-lg">🚫</span>
-              <h3 className="mt-2 text-sm font-semibold text-foreground">Zero Guru Fluff</h3>
-              <p className="mt-1 text-xs text-muted">No fake revenue screenshots, rented lambos, or hustle porn.</p>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="rounded-xl border border-border bg-surface p-4">
+              <span className="text-base">🚫</span>
+              <h3 className="mt-1.5 text-xs font-semibold text-foreground">Zero Guru Fluff</h3>
+              <p className="mt-1 text-[11px] text-muted leading-relaxed">No fake revenue screenshots, rented cars, or hype.</p>
             </div>
 
-            <div className="rounded-xl border border-border bg-surface p-5">
-              <span className="text-lg">💼</span>
-              <h3 className="mt-2 text-sm font-semibold text-foreground">Active 9-to-5 Reality</h3>
-              <p className="mt-1 text-xs text-muted">Grounded in corporate enterprise ops. Systems built for real calendars.</p>
+            <div className="rounded-xl border border-border bg-surface p-4">
+              <span className="text-base">💼</span>
+              <h3 className="mt-1.5 text-xs font-semibold text-foreground">Active 9-to-5 Reality</h3>
+              <p className="mt-1 text-[11px] text-muted leading-relaxed">Grounded in enterprise ops. Systems built for real calendars.</p>
             </div>
 
-            <div className="rounded-xl border border-border bg-surface p-5">
-              <span className="text-lg">⚽</span>
-              <h3 className="mt-2 text-sm font-semibold text-foreground">Buy Back Saturdays</h3>
-              <p className="mt-1 text-xs text-muted">Building automated assets so you can enjoy Saturday mornings with family.</p>
+            <div className="rounded-xl border border-border bg-surface p-4">
+              <span className="text-base">⚽</span>
+              <h3 className="mt-1.5 text-xs font-semibold text-foreground">Buy Back Saturdays</h3>
+              <p className="mt-1 text-[11px] text-muted leading-relaxed">Automated assets so you can enjoy weekends with family.</p>
             </div>
           </div>
         </section>
 
         {/* CTAs */}
-        <section className="flex flex-wrap items-center gap-4 rounded-xl border border-border bg-surface p-6">
+        <section className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-5">
           <Link
             href="/free"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-background transition hover:bg-accent/90"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-bold text-background transition hover:bg-accent/90"
           >
             <span>Explore Prompt Lab ⚡</span>
           </Link>
@@ -180,7 +180,7 @@ export default function AboutPage() {
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-4 py-2.5 text-xs font-semibold text-foreground transition hover:bg-surface"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground transition hover:bg-surface"
           >
             <span>Connect on LinkedIn ↗</span>
           </a>

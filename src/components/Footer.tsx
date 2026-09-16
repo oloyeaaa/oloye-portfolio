@@ -19,7 +19,7 @@ const channels = [
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface/50 text-sm text-muted">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand & Identity */}
           <div className="space-y-3">
@@ -35,7 +35,7 @@ export default function Footer() {
               </div>
               <span className="font-semibold text-foreground">{AUTHOR.name}</span>
             </div>
-            <p className="text-xs leading-relaxed text-muted max-w-sm">
+            <p className="text-xs leading-relaxed text-muted max-w-xs">
               Marketing Automation Specialist & AI Systems Operator. Showing 9-to-5 operators how to build real assets and buy back their time.
             </p>
           </div>

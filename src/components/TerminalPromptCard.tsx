@@ -10,8 +10,6 @@ interface TerminalPromptCardProps {
   model: string;
   promise: string;
   prompt: string;
-  previewInput?: string;
-  previewOutput?: string;
 }
 
 export default function TerminalPromptCard({
@@ -21,8 +19,6 @@ export default function TerminalPromptCard({
   model,
   promise,
   prompt,
-  previewInput,
-  previewOutput,
 }: TerminalPromptCardProps) {
   const [copied, setCopied] = useState(false);
 
@@ -38,11 +34,11 @@ export default function TerminalPromptCard({
   }
 
   return (
-    <div className="group flex flex-col justify-between rounded-xl border border-border bg-surface p-5 transition hover:border-accent/40 hover:shadow-lg">
+    <div className="group flex flex-col justify-between rounded-xl border border-border bg-surface p-4 sm:p-5 transition hover:border-accent/40 hover:shadow-lg">
       <div>
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2">
-          <span className="rounded-full bg-surface-raised px-2.5 py-0.5 text-[11px] font-semibold text-accent border border-border">
+          <span className="rounded-full bg-surface-raised px-2.5 py-0.5 text-[10px] font-semibold text-accent border border-border">
             {tag}
           </span>
           <span className="rounded-full bg-background px-2 py-0.5 text-[10px] font-mono text-muted border border-border">
@@ -51,16 +47,16 @@ export default function TerminalPromptCard({
         </div>
 
         {/* Title & 2-Line Subtitle */}
-        <h3 className="mt-3 text-base font-semibold text-foreground group-hover:text-accent transition">
+        <h3 className="mt-2.5 text-sm font-bold text-foreground group-hover:text-accent transition">
           {name}
         </h3>
-        <p className="mt-1.5 text-xs text-muted leading-relaxed line-clamp-2">
+        <p className="mt-1 text-xs text-muted leading-relaxed line-clamp-2">
           {promise}
         </p>
 
         {/* Terminal Preview Frame */}
-        <div className="mt-4 rounded-lg border border-border/80 bg-background/90 p-3 font-mono text-[11px] text-muted">
-          <div className="flex items-center justify-between border-b border-border/60 pb-2 mb-2 text-[10px] text-muted">
+        <div className="mt-3 rounded-lg border border-border/80 bg-background/90 p-2.5 font-mono text-[11px] text-muted">
+          <div className="flex items-center justify-between border-b border-border/60 pb-1.5 mb-1.5 text-[10px] text-muted">
             <div className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-red-500/80 inline-block" />
               <span className="h-2 w-2 rounded-full bg-yellow-500/80 inline-block" />
@@ -70,18 +66,18 @@ export default function TerminalPromptCard({
             <span>AI Studio</span>
           </div>
 
-          <p className="text-foreground/90 line-clamp-3 leading-relaxed whitespace-pre-line">
-            {prompt.slice(0, 180)}...
+          <p className="text-foreground/90 line-clamp-3 leading-relaxed whitespace-pre-line text-[10.5px]">
+            {prompt.slice(0, 160)}...
           </p>
         </div>
       </div>
 
       {/* Actions */}
-      <div className="mt-4 flex items-center justify-between gap-2 border-t border-border/60 pt-3">
+      <div className="mt-3.5 flex items-center justify-between gap-2 border-t border-border/60 pt-2.5">
         <button
           type="button"
           onClick={copy}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition hover:bg-accent hover:text-background"
+          className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-2.5 py-1 text-xs font-semibold text-background transition hover:bg-accent hover:text-background"
         >
           <span>{copied ? "Copied! ✓" : "Copy Prompt 📋"}</span>
         </button>

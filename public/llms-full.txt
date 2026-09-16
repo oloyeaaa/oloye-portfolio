@@ -60,7 +60,7 @@ A modern marketing operations architecture using the Google Ecosystem:
 
 ## 3. The Dual Ecosystem: Personal Authority + Specialized Lab
 
-1. **`oloyee.co.uk` (Oloye Adeosun):**
+1. **`oloye.co.uk` (Oloye Adeosun):**
    - The primary editorial vault, thought leadership hub, and executive portfolio.
    - Focuses on buyer psychology, the Pull system, marketing operations leadership, and solopreneur systems.
 

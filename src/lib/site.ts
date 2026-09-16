@@ -4,14 +4,14 @@ export const SITE_URL =
 export const SITE_NAME = "Oloye Adeosun";
 export const SITE_SHORT_NAME = "Oloye";
 export const SITE_LEGAL_NAME = "Oloye Adeosun";
-export const SITE_TAGLINE = "The Psychology of Attention & AI-Powered Distribution";
+export const SITE_TAGLINE = "Marketing Automation • Buyer Psychology • Google AI Stack";
 
 export const SITE_DESCRIPTION =
-  "Oloye Adeosun helps solopreneurs and builders escape the 'Build & Pray' trap by mastering buyer psychology, 0-dollar distribution, and AI-assisted workflows.";
+  "Oloye Adeosun is an enterprise Marketing Automation Specialist and hands-on AI builder showing 9-to-5 operators how to build practical systems and digital assets.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
-  title: "Buyer Psychology & AI Distribution Strategist",
+  title: "Marketing Automation Specialist & AI Systems Operator",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
 };
 

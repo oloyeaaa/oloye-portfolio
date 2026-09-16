@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, AUTHOR, SOCIAL, LINKEDIN_URL } from "@/lib/site";
 import { webPageSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "Oloye Adeosun — Buyer Psychology, AI Workflows & 0-Dollar Distribution";
+const TITLE = "Oloye Adeosun — Marketing Automation, Buyer Psychology & Google AI Stack";
 const DESCRIPTION =
-  "Helping solopreneurs and solo builders escape the 'Build & Pray' trap. Master buyer psychology, 0-dollar distribution, and AI-assisted workflows.";
+  "Enterprise Marketing Automation Specialist showing 9-to-5 operators and quiet builders how to build real AI systems and digital assets step by step.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -61,6 +61,15 @@ const expertise = [
 ];
 
 const teardowns = [
+  {
+    tag: "BUYER PSYCHOLOGY",
+    title: "The $1.75 Billion Mistake That Kills 90% of AI & Digital Products",
+    description:
+      "Why Quibi burned $1.75B in 6 months while Dollar Shave Club made $1B with a 90-second video. How to use Eugene Schwartz's 5 Levels of Awareness and Google AI Studio to validate your offer for £0.",
+    badge: "Case Study & Free Prompt",
+    slug: "the-1-75-billion-dollar-mistake-customer-awareness",
+    coverImage: "/images/blog/cover-war-room-delusion.png",
+  },
   {
     tag: "BUYER PSYCHOLOGY",
     title: "The War Room Delusion: Why 90% of Businesses Get Ignored",

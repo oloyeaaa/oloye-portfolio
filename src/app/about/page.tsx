@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, LINKEDIN_URL, SOCIAL } from "@/lib/site";
 import { webPageSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "About Oloye Adeosun — Buyer Psychology & AI Distribution";
+const TITLE = "About Oloye Adeosun — Marketing Automation Specialist & AI Systems Operator";
 const DESCRIPTION =
-  "Oloye Adeosun is a marketing practitioner and builder helping solopreneurs escape the 'Build & Pray' trap with buyer psychology, 0-dollar distribution, and AI workflows.";
+  "Enterprise Marketing Automation Specialist and hands-on AI builder showing 9-to-5 operators how to build practical systems and digital assets.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -5,9 +5,9 @@ import { SITE_URL, NOTION_PACK_URL, ICP_MATRIX_GOOGLE_SHEET_URL, SOCIAL } from "
 import SignupForm from "@/components/SignupForm";
 import { webPageSchema, faqPageSchema } from "@/lib/schema";
 
-const TITLE = "Free Solopreneur Playbooks, Google Sheets & Prompt Vaults";
+const TITLE = "The Free Prompt Lab & Systems Vault — Oloye Adeosun";
 const DESCRIPTION =
-  "Plug-and-play Google Sheets, Eugene Schwartz customer language mining matrices, 0-dollar distribution checklists, and AI prompt architectures. 100% free with zero gatekeeping.";
+  "Tested Google AI Studio prompts, Eugene Schwartz customer awareness scanners, and automated workflow blueprints. 100% free.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -23,33 +23,43 @@ export const metadata: Metadata = {
 
 const featuredAssets = [
   {
-    badge: "FEATURED PROMPT ENGINE • VIDEO 01",
-    title: "The 10-Minute Market Research Engine",
+    badge: "FEATURED PROMPT ENGINE • VIDEO 02",
+    title: "The Customer Problem-Awareness Scanner",
     description:
-      "The exact Eugene Schwartz buyer psychology prompt to turn competitor 1-star reviews into validated digital product offers in 10 minutes on Google AI Studio.",
-    link: "/free/market-research-engine",
-    actionText: "Get Free System Prompt →",
+      "Test any product idea or AI workflow against Eugene Schwartz's 5 Levels of Awareness. Catch the $1.75B First-Date Mistake before you write code.",
+    link: "/free/problem-awareness-scanner",
+    actionText: "Get Free Awareness Scanner →",
     format: "Google AI Studio Prompt • Free",
     isExternal: false,
   },
   {
-    badge: "FEATURED SPREADSHEET · VIDEO 02",
-    title: "The Customer Language Mining & ICP Discovery Matrix",
+    badge: "PROMPT ENGINE • VIDEO 01",
+    title: "The 10-Minute Market Research Engine",
     description:
-      "A complete 3-tab Google Sheet to diagnose your customer across all 5 Eugene Schwartz awareness levels, mine Reddit & G2 for bleeding-neck phrases, and assemble high-converting hooks.",
-    link: ICP_MATRIX_GOOGLE_SHEET_URL,
-    actionText: "Open Google Sheet (Free) ↗",
-    format: "Google Sheets · Instant Access",
-    isExternal: true,
+      "The exact Eugene Schwartz buyer psychology prompt to turn competitor 1-star reviews into validated digital product offers in 10 minutes on Google AI Studio.",
+    link: "/free/market-research-engine",
+    actionText: "Get Market Research Prompt →",
+    format: "Google AI Studio Prompt • Free",
+    isExternal: false,
   },
   {
-    badge: "FEATURED FRAMEWORK · VIDEO 03",
-    title: "The 0-Dollar Solopreneur Distribution Checklist",
+    badge: "VALUE PROP ENGINE",
+    title: "The Jargon-to-Kitchen-Table Translator",
     description:
-      "The plug-and-play framework to build organic attention from scratch. Includes the 3-step Signal Post formula, the Friction-Magnet quality audit, and 5-minute DM language mining scripts.",
-    link: "/blog/how-to-build-an-audience-from-scratch-0-dollar-marketing",
-    actionText: "View Full Checklist Breakdown →",
-    format: "Interactive Playbook & Template",
+      "Turn complex technical specs and AI workflows into 10th-grade buyer outcomes following the Steve Jobs iPod standard ('1,000 songs in your pocket').",
+    link: "/free/value-prop-translator",
+    actionText: "Get Translator Prompt →",
+    format: "Google AI Studio Prompt • Free",
+    isExternal: false,
+  },
+  {
+    badge: "AUTOMATION BLUEPRINT",
+    title: "The Zero-Friction System Blueprint",
+    description:
+      "Turn messy 10-step manual admin tasks and spreadsheet headaches into 1-prompt Google AI Studio workflows for £0.",
+    link: "/free/zero-friction-blueprint",
+    actionText: "Get Automation Blueprint →",
+    format: "Google AI Studio Prompt • Free",
     isExternal: false,
   },
 ];

@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={webPageSchema({ url: SITE_URL, title: TITLE, description: DESCRIPTION })} />
+      <JsonLd data={webPageSchema({ path: "/", title: TITLE, description: DESCRIPTION })} />
       <JsonLd data={personSchema()} />
 
       <main className="min-h-screen">

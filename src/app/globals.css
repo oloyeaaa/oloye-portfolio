@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #FFFFFF;
-  --color-foreground: #0F172A;
-  --color-primary: #0F172A;
-  --color-primary-dim: #334155;
-  --color-accent: #059669;
-  --color-accent-light: #10B981;
-  --color-accent-dark: #047857;
+  --color-background: #F4F5F7;
+  --color-foreground: #0E0F12;
+  --color-primary: #0E0F12;
+  --color-primary-dim: #374151;
+  --color-accent: #C6F23C;
+  --color-accent-light: #D9F86A;
+  --color-accent-dark: #446100;
   --color-secondary: #0284C7;
   --color-alert: #DC2626;
-  --color-muted: #64748B;
-  --color-border: #E2E8F0;
-  --color-border-strong: #CBD5E1;
-  --color-surface: #F8FAFC;
-  --color-surface-alt: #F1F5F9;
+  --color-muted: #6B7280;
+  --color-border: #E2E4E8;
+  --color-border-strong: #CBD0D8;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #E9EBEF;
   --font-sans: var(--font-inter);
   --font-display: var(--font-inter);
   --font-mono: var(--font-jetbrains);
@@ -38,14 +38,14 @@ h1, h2, h3, h4, h5 {
 .prose {
   max-width: 68ch;
   line-height: 1.8;
-  color: #334155;
+  color: #374151;
 }
 
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: #0F172A;
+  color: #0E0F12;
   font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 700;
   margin-top: 1.8em;
@@ -63,19 +63,25 @@ h1, h2, h3, h4, h5 {
 }
 
 .prose strong {
-  color: #0F172A;
+  color: #0E0F12;
   font-weight: 600;
 }
 
 .prose a {
-  color: var(--color-accent);
+  color: #0E0F12;
   text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
   text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  background-color: rgba(198, 242, 60, 0.25);
 }
 
 .prose code {
   background: var(--color-surface-alt);
-  color: #0F172A;
+  color: #0E0F12;
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
@@ -83,12 +89,13 @@ h1, h2, h3, h4, h5 {
 }
 
 .prose pre {
-  background: #0F172A;
+  background: #0E0F12;
   color: #F8FAFC;
   padding: 1.25em;
   border-radius: 8px;
   overflow-x: auto;
   margin: 1.5em 0;
+  border: 1px solid #1E2229;
 }
 
 .prose pre code {
@@ -101,8 +108,12 @@ h1, h2, h3, h4, h5 {
 .prose blockquote {
   border-left: 4px solid var(--color-accent);
   padding-left: 1.25em;
-  color: #475569;
-  font-style: italic;
+  color: #4B5563;
+  font-style: normal;
+  background: var(--color-surface);
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  border-radius: 0 8px 8px 0;
   margin: 1.5em 0;
 }
 

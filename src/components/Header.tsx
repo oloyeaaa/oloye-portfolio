@@ -16,85 +16,87 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md shadow-xs">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3.5 sm:px-6">
-        {/* Brand / Logo */}
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-border transition group-hover:ring-accent">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
+        {/* Logo / Brand */}
+        <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-foreground transition hover:opacity-80">
+          <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-border bg-surface">
             <Image
-              src="/images/oloye-avatar.png"
+              src="/branding/avatar/photo-master.png"
               alt="Oloye Adeosun"
               fill
-              className="object-cover"
               sizes="36px"
+              className="object-cover"
               priority
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-bold tracking-tight text-foreground group-hover:text-accent transition">
-              Oloye Adeosun
-            </span>
-            <span className="text-[11px] font-medium text-muted">
-              Pipeline Architecture & AI
-            </span>
-          </div>
+          <span className="text-xl font-black">
+            Oloye<span className="text-accent text-2xl font-black">.</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 md:flex">
-          {navigation.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-xs font-semibold transition ${
-                  active ? "text-accent" : "text-foreground/80 hover:text-foreground"
-                }`}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
-          <Link
-            href="/free/lean-owned-pipeline-blueprint"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition hover:bg-accent-dark"
-          >
-            <span>Get Blueprint</span>
-            <span>→</span>
-          </Link>
-        </nav>
-
-        {/* Mobile menu toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground md:hidden"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? "✕" : "☰"}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <div className="border-b border-border bg-surface px-4 py-4 md:hidden space-y-3">
+        <nav className="hidden items-center gap-7 md:flex">
           {navigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
-              onClick={() => setMobileOpen(false)}
-              className="block text-sm font-semibold text-foreground py-1"
+              className={`text-sm font-medium transition ${
+                pathname === item.href
+                  ? "text-foreground font-semibold underline decoration-accent decoration-2 underline-offset-8"
+                  : "text-muted hover:text-foreground"
+              }`}
             >
               {item.name}
             </Link>
           ))}
           <Link
             href="/free/lean-owned-pipeline-blueprint"
-            onClick={() => setMobileOpen(false)}
-            className="block w-full text-center rounded-lg bg-accent py-2.5 text-xs font-semibold text-white"
+            className="rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-accent transition hover:bg-foreground/90 hover:shadow-md"
           >
-            Get Free Blueprint →
+            Get Free Blueprint
           </Link>
+        </nav>
+
+        {/* Mobile menu toggle */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="rounded-lg p-2 text-muted hover:bg-surface md:hidden"
+          aria-label="Toggle Menu"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {mobileOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Nav Dropdown */}
+      {mobileOpen && (
+        <div className="border-b border-border bg-surface px-4 py-4 md:hidden">
+          <nav className="flex flex-col gap-3">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium text-muted hover:text-foreground"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Link
+              href="/free/lean-owned-pipeline-blueprint"
+              onClick={() => setMobileOpen(false)}
+              className="mt-2 rounded-lg bg-foreground py-2.5 text-center text-sm font-semibold text-accent"
+            >
+              Get Free Blueprint
+            </Link>
+          </nav>
         </div>
       )}
     </header>

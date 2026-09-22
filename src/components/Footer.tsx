@@ -13,42 +13,42 @@ const channels = [
   { name: "LinkedIn", href: LINKEDIN_URL },
   { name: "YouTube", href: SOCIAL.youtube },
   { name: "TikTok", href: SOCIAL.tiktok },
-  { name: "Instagram", href: SOCIAL.instagram },
+  { name: "GitHub", href: SOCIAL.github },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface text-sm text-muted">
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* Brand & Identity */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <div className="relative h-7 w-7 overflow-hidden rounded-full ring-1 ring-border">
+    <footer className="border-t border-border bg-surface pt-16 pb-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+          {/* Brand Info */}
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-foreground">
+              <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border bg-surface">
                 <Image
-                  src="/images/oloye-avatar.png"
+                  src="/branding/avatar/photo-master.png"
                   alt="Oloye Adeosun"
                   fill
+                  sizes="32px"
                   className="object-cover"
-                  sizes="28px"
                 />
               </div>
-              <span className="font-bold text-foreground">{AUTHOR.name}</span>
-            </div>
-            <p className="text-xs leading-relaxed text-muted max-w-xs">
-              Audience-to-Asset Pipeline Architect. Helping content creators and solo founders turn social engagement into an automated, owned pipeline using simple AI.
+              <span className="text-lg font-black">
+                Oloye<span className="text-accent text-xl font-black">.</span>
+              </span>
+            </Link>
+            <p className="mt-3.5 max-w-md text-sm text-muted">
+              Helping content creators and non-tech founders turn social views and engagement into an automated, owned pipeline using simple AI—without expensive software, coding, or tech overwhelm.
             </p>
           </div>
 
-          {/* Navigation Links */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Resources & Systems
-            </h4>
-            <ul className="space-y-2 text-xs">
+          {/* Resources */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">Resources</h4>
+            <ul className="mt-3.5 space-y-2.5 text-sm text-muted">
               {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-muted hover:text-foreground transition">
+                <li key={link.href}>
+                  <Link href={link.href} className="transition hover:text-foreground">
                     {link.name}
                   </Link>
                 </li>
@@ -57,20 +57,18 @@ export default function Footer() {
           </div>
 
           {/* Social Channels */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Connect
-            </h4>
-            <ul className="space-y-2 text-xs">
-              {channels.map((channel) => (
-                <li key={channel.name}>
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">Connect</h4>
+            <ul className="mt-3.5 space-y-2.5 text-sm text-muted">
+              {channels.map((ch) => (
+                <li key={ch.name}>
                   <a
-                    href={channel.href}
+                    href={ch.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted hover:text-foreground transition"
+                    className="transition hover:text-foreground"
                   >
-                    {channel.name} ↗
+                    {ch.name}
                   </a>
                 </li>
               ))}
@@ -78,9 +76,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-3">
-          <p>© {new Date().getFullYear()} Oloye Adeosun. All rights reserved.</p>
-          <p className="text-[11px]">Built with lean tools. Zero software bloat.</p>
+        <div className="mt-12 flex flex-col items-center justify-between border-t border-border pt-6 text-xs text-muted sm:flex-row">
+          <p>© {new Date().getFullYear()} Oloye Adeosun. Kent, UK.</p>
+          <p className="mt-2 sm:mt-0">Simple AI Pipelines for Creators & Founders</p>
         </div>
       </div>
     </footer>

@@ -7,9 +7,9 @@ import { webPageSchema, personSchema } from "@/lib/schema";
 import { getAllPosts } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
 
-const TITLE = "Turn Social Views Into an Owned Pipeline • Oloye Adeosun";
+const TITLE = "Turn Social Views Into an Owned Pipeline \u2014 Oloye Adeosun";
 const DESCRIPTION =
-  "I help creators and non-tech founders turn social views and engagement into an automated, owned pipeline using simple AI—without expensive software or coding.";
+  "I help creators and non-tech founders turn social views and comments into an automated, owned pipeline using simple AI\u2014without expensive software or code.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -20,311 +20,337 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: SITE_URL,
     type: "website",
+    images: [{ url: "/images/hero-pipeline.jpg", width: 1200, height: 630 }],
   },
 };
 
 export default function HomePage() {
-  const posts = getAllPosts().slice(0, 4);
+  const posts = getAllPosts().slice(0, 3);
 
   return (
     <>
-      <JsonLd
-        data={webPageSchema({
-          path: "/",
-          title: TITLE,
-          description: DESCRIPTION,
-          type: "WebPage",
-        })}
-      />
+      <JsonLd data={webPageSchema({ url: SITE_URL, title: TITLE, description: DESCRIPTION })} />
       <JsonLd data={personSchema()} />
 
-      <div className="space-y-16 py-10 sm:py-16">
-        {/* ============================================================ */}
-        {/* 1. HERO SECTION (Classic 50/50 Split with High-Res Image)    */}
-        {/* ============================================================ */}
-        <section className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-            {/* Left: Text & Pitch */}
-            <div className="space-y-5 lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Zero Software Bloat • 100% Owned Audience</span>
-              </div>
-
-              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl leading-[1.15]">
-                Turn Social Views Into an <span className="text-emerald-700">Owned Pipeline.</span>
-              </h1>
-
-              <p className="text-base text-slate-600 leading-relaxed max-w-xl">
-                Stop building your business on rented land. I help content creators and non-tech founders turn social engagement into an automated, owned email database using simple AI—without expensive software or tech overwhelm.
-              </p>
-
-              {/* 3 Core Checkpoints */}
-              <div className="space-y-2 pt-1">
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">✓</span>
-                  <span><strong>Replace £300/mo software</strong> with free Google Workspace & Airtable</span>
+      <main className="min-h-screen">
+        {/* =========================================================================
+            1. HERO SECTION: 50/50 SPLIT (Text Left, Photorealistic Image Right)
+        ========================================================================= */}
+        <section className="relative border-b border-border py-16 sm:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+              {/* Left Column: Core Value Proposition & Email Capture */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground px-3.5 py-1 text-xs font-medium text-accent">
+                  <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+                  <span>The Honest Practitioner Approach</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">✓</span>
-                  <span><strong>1-field intake</strong> that stops losing 80% of your audience</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">✓</span>
-                  <span><strong>Automated instant delivery</strong> & 3-day welcome sequence</span>
-                </div>
-              </div>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3 pt-4">
-                <Link
-                  href="/free/lean-owned-pipeline-blueprint"
-                  className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-emerald-800 hover:shadow-lg"
-                >
-                  <span>Get the Free 3-Step Blueprint</span>
-                  <span>→</span>
-                </Link>
-                <Link
-                  href="#how-it-works"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 hover:border-slate-400"
-                >
-                  <span>See How It Works</span>
-                </Link>
-              </div>
-            </div>
+                <h1 className="mt-5 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl leading-tight">
+                  Turn Social Views into an{" "}
+                  <span className="underline decoration-accent decoration-4 underline-offset-4">
+                    Automated, Owned Pipeline
+                  </span>
+                </h1>
 
-            {/* Right: High-Res Real Image Mockup */}
-            <div className="lg:col-span-5">
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-2 shadow-xl">
-                <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-slate-100">
-                  <Image
-                    src="/images/hero-pipeline.jpg"
-                    alt="Automated Marketing Pipeline Setup"
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                </div>
-                <div className="p-3 bg-white rounded-lg mt-2 border border-slate-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                    <span className="text-xs font-semibold text-slate-800">Live Owned Pipeline Engine</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-slate-500">Google + Airtable</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 2. THE RENTED LAND CONTRAST (Why You Need This)              */}
-        {/* ============================================================ */}
-        <section className="bg-slate-50 border-y border-slate-200 py-14">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 space-y-8">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                The Fundamental Problem
-              </span>
-              <h2 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
-                Are You Building on Rented Land?
-              </h2>
-              <p className="text-sm text-slate-600">
-                Social media is great for attention, but terrible for business longevity. Here is the difference between surviving on algorithms and owning your pipeline.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Box 1: The Rented Trap */}
-              <div className="rounded-2xl border border-red-200 bg-white p-6 shadow-sm space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-md bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700">
-                  <span>❌ The Social-Only Trap</span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  10,000 Followers & Zero Asset
-                </h3>
-                <ul className="space-y-2.5 text-xs text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 font-bold">•</span>
-                    <span>Algorithms decide if your audience sees your content today.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 font-bold">•</span>
-                    <span>80% of viewers watch, leave, and never find you again.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500 font-bold">•</span>
-                    <span>One account strike or shadowban can wipe out years of effort.</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Box 2: The Owned Pipeline */}
-              <div className="rounded-2xl border border-emerald-300 bg-white p-6 shadow-sm space-y-4 ring-1 ring-emerald-500/20">
-                <div className="inline-flex items-center gap-2 rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700">
-                  <span>✅ The Owned Pipeline</span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  Direct Line to Your Customers Forever
-                </h3>
-                <ul className="space-y-2.5 text-xs text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-emerald-600 font-bold">✓</span>
-                    <span>Every video moves engaged viewers into your private database.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-emerald-600 font-bold">✓</span>
-                    <span>Send emails directly to their inbox whenever you launch a solution.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-emerald-600 font-bold">✓</span>
-                    <span>Runs automatically in the background for £0 additional software.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 3. HOW IT WORKS: THE 3-NODE ENGINE                           */}
-        {/* ============================================================ */}
-        <section id="how-it-works" className="mx-auto max-w-5xl px-4 sm:px-6 space-y-10">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-              The 3-Step Simple Architecture
-            </span>
-            <h2 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
-              How the Owned Pipeline Works
-            </h2>
-            <p className="text-sm text-slate-600">
-              You don’t need 20 tools or a developer. Just 3 simple nodes that connect seamlessly.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {/* Step 1 */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 font-extrabold text-base">
-                1
-              </div>
-              <h3 className="mt-4 text-base font-bold text-slate-900">
-                The Simple Front Door
-              </h3>
-              <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                A 1-field Google Form or DM keyword. Zero signup friction so your visitors don’t bounce before giving their email.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 font-extrabold text-base">
-                2
-              </div>
-              <h3 className="mt-4 text-base font-bold text-slate-900">
-                The Zero-Cost Database
-              </h3>
-              <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                Automatically logs every lead into Airtable or Google Sheets with clean timestamps. Total cost: £0.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 font-extrabold text-base">
-                3
-              </div>
-              <h3 className="mt-4 text-base font-bold text-slate-900">
-                The 3-Day Welcome Bridge
-              </h3>
-              <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                Delivers your blueprint instantly, followed by 2 honest follow-up emails that build genuine connection.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 4. FEATURED LEAD MAGNET BOX (Visual 3D Mockup + Download)     */}
-        {/* ============================================================ */}
-        <section className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-slate-50 p-8 sm:p-10 shadow-md">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-center">
-              {/* Left Column: 3D Mockup */}
-              <div className="md:col-span-5 flex justify-center">
-                <div className="relative aspect-square w-64 max-w-full overflow-hidden rounded-2xl border border-slate-200 shadow-xl bg-white p-2">
-                  <Image
-                    src="/images/blueprint-mockup.jpg"
-                    alt="The Lean Owned Pipeline Blueprint Mockup"
-                    fill
-                    className="object-cover rounded-xl"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Copy & Form */}
-              <div className="space-y-4 md:col-span-7">
-                <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
-                  Free 1-Page Resource
-                </span>
-
-                <h2 className="text-2xl font-extrabold text-slate-900 sm:text-3xl leading-snug">
-                  The Lean Owned Pipeline Blueprint
-                </h2>
-
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Get the exact 3-step setup guide, copy-paste welcome email templates, and the 1-prompt Gemini AI assistant to build your owned pipeline this afternoon.
+                <p className="mt-5 text-base sm:text-lg text-primary-dim leading-relaxed">
+                  Stop renting your audience from algorithm updates. I help creators and non-tech founders turn DMs, views, and comments into an automated lead database using simple AI—without expensive software or code.
                 </p>
 
-                <div className="space-y-2 pt-2 text-xs text-slate-700">
-                  <p>✓ 1-Field Google Form setup guide</p>
-                  <p>✓ Word-for-word 3-day welcome email sequence</p>
-                  <p>✓ Gemini AI assistant prompt for lead sorting</p>
+                {/* Email Capture Intake Form */}
+                <div className="mt-8 rounded-xl border border-border bg-surface p-6 shadow-sm">
+                  <p className="text-sm font-bold text-foreground">
+                    Get the 1-Page Blueprint: "The Lean Owned Pipeline"
+                  </p>
+                  <p className="mt-1 text-xs text-muted">
+                    No 5-day email spam sequences. Just the direct 3-node diagram, tool setup, and prompt templates.
+                  </p>
+
+                  <form
+                    action="/api/subscribe"
+                    method="POST"
+                    className="mt-4 flex flex-col gap-3 sm:flex-row"
+                  >
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Enter your best email address..."
+                      className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+                    />
+                    <button
+                      type="submit"
+                      className="whitespace-nowrap rounded-lg bg-foreground px-6 py-3 text-sm font-bold text-accent transition hover:bg-foreground/90 hover:shadow-md cursor-pointer"
+                    >
+                      Send Blueprint &rarr;
+                    </button>
+                  </form>
                 </div>
 
-                <div className="pt-3">
+                {/* Trust Badges */}
+                <div className="mt-6 flex items-center gap-6 text-xs text-muted">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <svg className="h-4 w-4 text-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    0% Tech Overwhelm
+                  </span>
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <svg className="h-4 w-4 text-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Under $50/mo Stack
+                  </span>
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <svg className="h-4 w-4 text-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Live Screen-Share Builds
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: High-Res Real Product / Pipeline Image Mockup */}
+              <div className="lg:col-span-5">
+                <div className="relative mx-auto overflow-hidden rounded-2xl border border-border bg-surface p-2 shadow-lg">
+                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-surface-alt">
+                    <Image
+                      src="/images/hero-pipeline.jpg"
+                      alt="Lean Automated Owned Pipeline Setup Mockup"
+                      fill
+                      priority
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 500px"
+                    />
+                  </div>
+                  <div className="p-3 text-center">
+                    <p className="text-xs font-semibold text-foreground">
+                      The 3-Node Architecture: ManyChat + Airtable + Gemini
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            2. THE PROBLEM: Rented Audience vs Owned Pipeline
+        ========================================================================= */}
+        <section className="py-16 sm:py-20 border-b border-border bg-surface">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
+                Why 10,000 Social Views Often Equal Zero Dollars
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-muted">
+                Most creators and builders spend 40 hours a week creating content, only to lose every single interested lead into an algorithm black hole.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+              {/* Problem Card */}
+              <div className="rounded-xl border border-red-200 bg-red-50/50 p-8">
+                <div className="inline-flex rounded-md bg-red-100 px-2.5 py-1 text-xs font-bold text-red-700">
+                  THE RENTED AUDIENCE TRAP
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-gray-900">
+                  Relying 100% on Algorithms & DMs
+                </h3>
+                <ul className="mt-4 space-y-3 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 font-bold">&times;</span>
+                    <span>When an algorithm changes, your reach and revenue drop by 80% overnight.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 font-bold">&times;</span>
+                    <span>You waste 3 hours manually replying to "link in bio" comments.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 font-bold">&times;</span>
+                    <span>Zero customer database or email addresses you actually own.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Solution Card */}
+              <div className="rounded-xl border-2 border-foreground bg-surface p-8 shadow-sm">
+                <div className="inline-flex rounded-md bg-foreground px-2.5 py-1 text-xs font-bold text-accent">
+                  THE OWNED PIPELINE
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-foreground">
+                  The Simple Automated Intake Engine
+                </h3>
+                <ul className="mt-4 space-y-3 text-sm text-primary-dim">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-dark font-bold">&#10003;</span>
+                    <span>Every comment automatically sends a private trigger link via ManyChat.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-dark font-bold">&#10003;</span>
+                    <span>Leads and pain points are logged directly into a clean Airtable database.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-dark font-bold">&#10003;</span>
+                    <span>Instant, personalized follow-ups sent automatically via simple AI triggers.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            3. HOW IT WORKS: THE 3-NODE SIMPLE ARCHITECTURE
+        ========================================================================= */}
+        <section id="how-it-works" className="py-16 sm:py-24 border-b border-border">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="text-center max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
+                The Practical Setup
+              </div>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
+                The 3-Node Architecture (No Overkill Stack)
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-muted">
+                You don't need $300/month HubSpot, Salesforce, or complex custom code. We use 3 lean tools that connect in 10 minutes.
+              </p>
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {/* Step 1 */}
+              <div className="flex flex-col rounded-xl border border-border bg-surface p-7 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-black text-accent">
+                  1
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-foreground">
+                  Frictionless Capture
+                </h3>
+                <p className="mt-2 text-sm text-muted">
+                  Use ManyChat keyword automations on TikTok & Instagram so interested viewers get your blueprint immediately in their DMs without navigating 5 menu screens.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex flex-col rounded-xl border border-border bg-surface p-7 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-black text-accent">
+                  2
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-foreground">
+                  Airtable Intake Database
+                </h3>
+                <p className="mt-2 text-sm text-muted">
+                  All leads, lead magnets, and engagement metadata flow straight into your private Airtable base. You own the records forever—no platform lock-in.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex flex-col rounded-xl border border-border bg-surface p-7 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-black text-accent">
+                  3
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-foreground">
+                  Automated Nurture & Delivery
+                </h3>
+                <p className="mt-2 text-sm text-muted">
+                  A lightweight automation sends the requested asset via Gmail or your email provider instantly, alongside practical weekly teardowns.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            4. THE FLAGSHIP LEAD MAGNET (The Lean Blueprint)
+        ========================================================================= */}
+        <section className="py-16 sm:py-24 border-b border-border bg-foreground text-background">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+              {/* Left Column: Offer Details & Download Form */}
+              <div className="lg:col-span-7">
+                <span className="inline-block rounded-md bg-accent px-2.5 py-1 text-xs font-bold text-foreground uppercase tracking-wider">
+                  Free 1-Page PDF Blueprint
+                </span>
+                <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl leading-tight text-white">
+                  The Lean Owned Pipeline Blueprint
+                </h2>
+                <p className="mt-4 text-sm sm:text-base text-gray-300 leading-relaxed">
+                  Download the exact 3-Node visual architecture diagram, recommended software audit, and step-by-step setup guide to build your owned pipeline this weekend.
+                </p>
+
+                <div className="mt-6 space-y-2.5 text-sm text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <span className="text-accent font-bold">&#10003;</span>
+                    <span>Visual 3-node flowchart: Social &rarr; Airtable &rarr; Gmail</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-accent font-bold">&#10003;</span>
+                    <span>Exact ManyChat keyword trigger templates</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-accent font-bold">&#10003;</span>
+                    <span>Ready-to-use Airtable base schema definition</span>
+                  </div>
+                </div>
+
+                <div className="mt-8">
                   <Link
                     href="/free/lean-owned-pipeline-blueprint"
-                    className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-emerald-800"
+                    className="inline-flex items-center justify-center rounded-lg bg-accent px-8 py-3.5 text-sm font-bold text-foreground transition hover:bg-accent-light shadow-md"
                   >
-                    <span>Download Free Blueprint (Google Doc)</span>
-                    <span>→</span>
+                    Download Free Blueprint (PDF) &rarr;
                   </Link>
                 </div>
               </div>
+
+              {/* Right Column: Blueprint 3D Mockup */}
+              <div className="lg:col-span-5">
+                <div className="relative mx-auto overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-sm">
+                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-black/40">
+                    <Image
+                      src="/images/blueprint-mockup.jpg"
+                      alt="Lean Owned Pipeline Blueprint 3D Guide Mockup"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 500px"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ============================================================ */}
-        {/* 5. LATEST BLOG TUTORIALS (Weekly Wednesday Walkthroughs)       */}
-        {/* ============================================================ */}
-        <section className="mx-auto max-w-5xl px-4 sm:px-6 space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-5">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                Weekly Wednesday Deep Dives
-              </span>
-              <h2 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
-                Pipeline Tutorials & Guides
-              </h2>
+        {/* =========================================================================
+            5. WEDNESDAY BLOG & TEARDOWNS
+        ========================================================================= */}
+        <section className="py-16 sm:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                  Every Wednesday
+                </span>
+                <h2 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
+                  Weekly Pipeline Teardowns & AI Builds
+                </h2>
+              </div>
+              <Link
+                href="/blog"
+                className="text-sm font-bold text-foreground hover:underline decoration-accent decoration-2"
+              >
+                View all articles &rarr;
+              </Link>
             </div>
-            <Link
-              href="/blog"
-              className="text-sm font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
-            >
-              View all tutorials →
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
+            <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }

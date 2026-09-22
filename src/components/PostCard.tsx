@@ -20,7 +20,7 @@ export default function PostCard({ post }: { post: PostMeta }) {
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between gap-2 text-xs text-muted">
           <span className="rounded-full bg-foreground px-2.5 py-0.5 text-[11px] font-semibold text-accent">
-            {post.readingTime}
+            {post.category || "Tutorial"}
           </span>
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString("en-GB", {
@@ -38,7 +38,7 @@ export default function PostCard({ post }: { post: PostMeta }) {
         </h3>
 
         <p className="mt-2.5 line-clamp-2 text-sm text-muted">
-          {post.description}
+          {post.excerpt}
         </p>
 
         <div className="mt-auto pt-4">

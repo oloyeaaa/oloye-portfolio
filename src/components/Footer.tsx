@@ -3,9 +3,9 @@ import Image from "next/image";
 import { AUTHOR, LINKEDIN_URL, SOCIAL } from "@/lib/site";
 
 const quickLinks = [
-  { name: "Prompt Lab", href: "/free" },
-  { name: "Case Studies", href: "/blog" },
-  { name: "About", href: "/about" },
+  { name: "The Lean Blueprint", href: "/free/lean-owned-pipeline-blueprint" },
+  { name: "Blog Tutorials", href: "/blog" },
+  { name: "How It Works", href: "/#how-it-works" },
   { name: "RSS Feed", href: "/feed.xml" },
 ];
 
@@ -18,8 +18,8 @@ const channels = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/50 text-sm text-muted">
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <footer className="border-t border-border bg-surface text-sm text-muted">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand & Identity */}
           <div className="space-y-3">
@@ -33,40 +33,44 @@ export default function Footer() {
                   sizes="28px"
                 />
               </div>
-              <span className="font-semibold text-foreground">{AUTHOR.name}</span>
+              <span className="font-bold text-foreground">{AUTHOR.name}</span>
             </div>
             <p className="text-xs leading-relaxed text-muted max-w-xs">
-              Marketing Automation Specialist & AI Systems Operator. Showing 9-to-5 operators how to build real assets and buy back their time.
+              Audience-to-Asset Pipeline Architect. Helping content creators and solo founders turn social engagement into an automated, owned pipeline using simple AI.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Systems & Content</p>
-            <ul className="mt-3 space-y-2">
-              {quickLinks.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-xs text-muted transition hover:text-accent">
-                    {item.name}
+          {/* Navigation Links */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Resources & Systems
+            </h4>
+            <ul className="space-y-2 text-xs">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-muted hover:text-foreground transition">
+                    {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Channels */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Connect</p>
-            <ul className="mt-3 space-y-2">
-              {channels.map((item) => (
-                <li key={item.name}>
+          {/* Social Channels */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Connect
+            </h4>
+            <ul className="space-y-2 text-xs">
+              {channels.map((channel) => (
+                <li key={channel.name}>
                   <a
-                    href={item.href}
+                    href={channel.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-muted transition hover:text-accent"
+                    className="text-muted hover:text-foreground transition"
                   >
-                    {item.name} ↗
+                    {channel.name} ↗
                   </a>
                 </li>
               ))}
@@ -74,9 +78,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-          <p>© {new Date().getFullYear()} {AUTHOR.name}. All rights reserved.</p>
-          <p className="text-[11px]">Powered by Google AI Studio, Gemini & Next.js</p>
+        <div className="mt-10 border-t border-border/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-3">
+          <p>© {new Date().getFullYear()} Oloye Adeosun. All rights reserved.</p>
+          <p className="text-[11px]">Built with lean tools. Zero software bloat.</p>
         </div>
       </div>
     </footer>

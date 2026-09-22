@@ -32,6 +32,37 @@ export type Freebie = {
 
 export const FREEBIES: Freebie[] = [
   {
+    slug: "lean-owned-pipeline-blueprint",
+    name: "The Lean Owned Pipeline Blueprint",
+    promise: "Turn social views and engagement into an automated, owned email pipeline in 3 simple steps (for £0).",
+    time: "About 10 minutes",
+    what: "The Lean Owned Pipeline Blueprint shows creators and solo founders how to escape the Rented Land trap. It connects a simple 1-field Google Form to an automated Airtable or Google Sheets database, delivering your lead magnet and follow-up emails instantly without £300/month software.",
+    how: [
+      "Open Google AI Studio (aistudio.google.com) or Gemini with the system prompt below.",
+      "Paste your incoming lead responses or social inquiries into the chat.",
+      "The AI categorizes hot leads and drafts plain-English, conversational follow-up emails in seconds.",
+      "Deploy your 1-field intake form to your bio link and watch your owned database grow."
+    ],
+    next: "problem-awareness-scanner",
+    prompt: `You are an expert Marketing Automation & Pipeline Architect.
+
+TASK:
+Analyze the provided audience comments, inquiries, and form submissions.
+
+OUTPUT:
+1. CORE STRUGGLE DIAGNOSIS:
+Identify the #1 bottleneck the person is facing (e.g. tool overwhelm, no email list, broken funnel, low conversions).
+
+2. INTAKE CATEGORIZATION:
+Assign each lead to one of 3 buckets:
+- [Bucket A] Needs Instant Blueprint / Free Tool
+- [Bucket B] Needs 10-Minute Micro-Fix Tutorial
+- [Bucket C] High-Intent / Ready for Done-For-You Pipeline Sprint
+
+3. CONVERSATIONAL FOLLOW-UP (The Kitchen Test):
+Write a warm, 3-sentence plain-English email reply to the lead. No corporate jargon, no sales pressure. Offer direct, actionable clarity.`,
+  },
+  {
     slug: "problem-awareness-scanner",
     name: "The Customer Problem-Awareness Scanner",
     promise: "Test any product idea or AI tool against Eugene Schwartz's 5 Levels of Customer Awareness before writing a single line of code.",

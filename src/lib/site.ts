@@ -4,43 +4,22 @@ export const SITE_URL =
 export const SITE_NAME = "Oloye Adeosun";
 export const SITE_SHORT_NAME = "Oloye";
 export const SITE_LEGAL_NAME = "Oloye Adeosun";
-export const SITE_TAGLINE = "Marketing Automation • Buyer Psychology • Google AI Stack";
+export const SITE_TAGLINE = "Automated Owned Pipelines for Creators & Non-Tech Founders";
 
 export const SITE_DESCRIPTION =
-  "Oloye Adeosun is an enterprise Marketing Automation Specialist and hands-on AI builder showing 9-to-5 operators how to build practical systems and digital assets.";
+  "Turn social media views and engagement into an automated, owned pipeline using simple AI—without expensive software, coding, or tech overwhelm.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
-  title: "Marketing Automation Specialist & AI Systems Operator",
+  title: "Audience-to-Asset Pipeline Builder & Marketing Automation Specialist",
   url: "https://www.linkedin.com/in/oloyeadeosun/",
 };
 
 export const SOCIAL = {
   youtube: "https://www.youtube.com/@oloyeadeosun",
   linkedin: "https://www.linkedin.com/in/oloyeadeosun/",
-  tiktok: "https://www.tiktok.com/@practicalaihub1",
-  instagram: "https://www.instagram.com/practicalaihub1",
-};
-
-export const ICP_MATRIX_GOOGLE_SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1MYfu9JAOiKApzaugFL3ejLHkSbSGEc95/edit?usp=drive_link&ouid=112866508787256042157&rtpof=true&sd=true";
-
-export const VENTURES = {
-  gss: {
-    name: "GTM Signal Studio (GSS)",
-    tagline: "AI-Powered GTM Signal Intelligence & Visibility Engine",
-    description: "An operational intelligence system that monitors market signals, buyer intent shifts, and competitor movements to power proactive product marketing decisions.",
-    status: "Active Product",
-    badge: "B2B SaaS / GTM Intelligence",
-  },
-  practicalAI: {
-    name: "Practical AI Hub",
-    tagline: "Actionable AI Workflows & Digital Product Systems",
-    description: "An educational workflow engine helping busy professionals and creators transform domain knowledge into scalable digital assets without code.",
-    status: "Active Venture",
-    badge: "AI Automation & Education",
-    url: "/practical-ai-hub",
-  }
+  tiktok: "https://www.tiktok.com/@oloyeadeosun",
+  instagram: "https://www.instagram.com/oloyeadeosun",
 };
 
 export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";
@@ -50,5 +29,5 @@ export const AVATAR_URL = `${SITE_URL}/images/oloye-avatar.png`;
 export const OG_DEFAULT = {
   width: 1200,
   height: 630,
-  alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  alt: `${SITE_NAME} • ${SITE_TAGLINE}`,
 };

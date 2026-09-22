@@ -1,63 +1,48 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { PostMeta } from "@/lib/posts";
+import { PostMeta } from "@/lib/posts";
 
 export default function PostCard({ post }: { post: PostMeta }) {
+  const imageSrc = post.coverImage || "/images/hero-pipeline.jpg";
+
   return (
-    <article className="group flex flex-col justify-between rounded-xl border border-border bg-surface overflow-hidden transition hover:border-accent/40 hover:shadow-lg">
-      <div>
-        {post.coverImage && (
-          <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/9] w-full overflow-hidden bg-background">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 450px"
-            />
-          </Link>
-        )}
+    <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition hover:border-accent hover:shadow-md">
+      <Link href={`/blog/${post.slug}`} className="relative aspect-16/9 w-full overflow-hidden bg-surface-alt">
+        <Image
+          src={imageSrc}
+          alt={post.title}
+          fill
+          className="object-cover transition duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </Link>
 
-        <div className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="rounded-full bg-surface-raised px-2 py-0.5 text-[10px] font-semibold text-accent border border-border">
-              {post.category}
-            </span>
-            <time className="text-[11px] text-muted">
-              {new Date(post.date).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              })}
-            </time>
-          </div>
+      <div className="flex flex-1 flex-col p-5 space-y-3">
+        <div className="flex items-center gap-2 text-[11px] text-muted">
+          <span className="font-semibold text-accent">{post.category}</span>
+          <span>•</span>
+          <time dateTime={post.date}>{post.date}</time>
+        </div>
 
+        <h3 className="text-base font-bold text-foreground group-hover:text-accent transition line-clamp-2 leading-snug">
           <Link href={`/blog/${post.slug}`}>
-            <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-accent transition leading-snug line-clamp-2">
-              {post.title}
-            </h3>
+            {post.title}
           </Link>
+        </h3>
 
-          <p className="mt-1.5 text-xs text-muted leading-relaxed line-clamp-2">
-            {post.excerpt}
-          </p>
-        </div>
-      </div>
+        <p className="text-xs text-muted line-clamp-2 leading-relaxed">
+          {post.excerpt}
+        </p>
 
-      <div className="p-4 sm:p-5 pt-0 mt-auto flex items-center justify-between border-t border-border/40 pt-2.5">
-        <div className="flex flex-wrap gap-1.5">
-          {post.tags.slice(0, 2).map((tag) => (
-            <span key={tag} className="text-[10px] font-mono text-muted bg-background px-2 py-0.5 rounded border border-border/60">
-              #{tag}
-            </span>
-          ))}
+        <div className="pt-2 mt-auto">
+          <Link
+            href={`/blog/${post.slug}`}
+            className="inline-flex items-center gap-1 text-xs font-semibold text-accent group-hover:text-accent-dark"
+          >
+            <span>Read Walkthrough</span>
+            <span>→</span>
+          </Link>
         </div>
-        <Link
-          href={`/blog/${post.slug}`}
-          className="text-xs font-semibold text-accent hover:underline"
-        >
-          Read →
-        </Link>
       </div>
     </article>
   );

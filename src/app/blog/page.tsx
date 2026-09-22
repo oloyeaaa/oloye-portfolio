@@ -9,14 +9,14 @@ import PostCard from "@/components/PostCard";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Buyer Psychology Teardowns & Case Studies — Oloye Adeosun",
+  title: "Pipeline Architecture, AI Systems & Teardowns • Oloye Adeosun",
   description:
-    "Real teardowns of buyer psychology, customer awareness, marketing automation, and AI workflows.",
+    "Weekly Wednesday deep dives: turn social views and engagement into an automated, owned pipeline using simple AI and lean tools.",
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
-    title: "Buyer Psychology Teardowns & Case Studies — Oloye Adeosun",
+    title: "Pipeline Architecture, AI Systems & Teardowns • Oloye Adeosun",
     description:
-      "Real teardowns of buyer psychology, customer awareness, marketing automation, and AI workflows.",
+      "Weekly Wednesday deep dives: turn social views and engagement into an automated, owned pipeline using simple AI and lean tools.",
     url: `${SITE_URL}/blog`,
     type: "website",
   },
@@ -30,13 +30,13 @@ export default function BlogPage() {
       <JsonLd
         data={webPageSchema({
           path: "/blog",
-          title: "Buyer Psychology Teardowns & Case Studies — Oloye Adeosun",
+          title: "Pipeline Architecture, AI Systems & Teardowns • Oloye Adeosun",
           description:
-            "Real teardowns of buyer psychology, customer awareness, marketing automation, and AI workflows.",
+            "Weekly Wednesday deep dives: turn social views and engagement into an automated, owned pipeline using simple AI and lean tools.",
           type: "CollectionPage",
           breadcrumb: [
             { name: "Home", path: "/" },
-            { name: "Case Studies", path: "/blog" },
+            { name: "Blog & Tutorials", path: "/blog" },
           ],
         })}
       />
@@ -45,13 +45,13 @@ export default function BlogPage() {
         {/* Header */}
         <div className="space-y-2 border-b border-border pb-5">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-2.5 py-0.5 text-[11px] font-medium text-accent">
-            <span>Deconstructed Systems</span>
+            <span>Weekly Wednesday Deep Dives</span>
           </div>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-            Case Studies & Teardowns
+            Pipeline Tutorials & System Teardowns
           </h1>
           <p className="text-xs sm:text-sm text-muted max-w-xl">
-            Real teardowns of buyer psychology, marketing automation, and AI workflows.
+            Practical walkthroughs for creators and non-tech founders: escape rented land, build automated lead engines, and simplify your tech stack.
           </p>
         </div>
 

@@ -13,7 +13,7 @@ const channels = [
   { name: "LinkedIn", href: LINKEDIN_URL },
   { name: "YouTube", href: SOCIAL.youtube },
   { name: "TikTok", href: SOCIAL.tiktok },
-  { name: "GitHub", href: SOCIAL.github },
+  { name: "Instagram", href: SOCIAL.instagram },
 ];
 
 export default function Footer() {

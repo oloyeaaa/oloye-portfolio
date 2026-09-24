@@ -95,4 +95,4 @@ Caveat: Adzuna returns description snippets, not full JDs. Use *ordering* as the
 
 - Global auto-memory: `C:\Users\Oloye\.claude\projects\C--Users-Oloye\memory\`
 - GSS project: `C:\Users\Oloye\OneDrive\GSS\` (side business, separate site at gtmsignalstudio.com)
-- Day job: Enterprise Marketing Manager + Marketing Automation Specialist at Sorenson
+- Day job: Enterprise Marketing Manager + Marketing Automation Specialist at Enterprise

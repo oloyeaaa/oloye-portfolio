@@ -80,15 +80,14 @@ const PRESETS: Record<string, AuditState> = {
 
 export default function FunnelAuditorClient() {
   const [state, setState] = useState<AuditState>(DEFAULT_STATE);
+  const [activeTab, setActiveTab] = useState<"overview" | "p1" | "p2" | "p3" | "p4" | "roadmap">("overview");
   const [copied, setCopied] = useState(false);
+  const [activePreset, setActivePreset] = useState<string>("enterprise_gold");
 
-  // Pillar 1: Inbound Capture (Max 100)
+  // Scoring
   const p1Total = state.leadCaptureMethod + state.slaResponseTime + state.dataValidation;
-  // Pillar 2: CRM & Attribution (Max 100)
   const p2Total = state.crmPlatform + state.utmTaxonomy + state.analyticsDashboards;
-  // Pillar 3: UK GDPR & Governance (Max 100)
   const p3Total = state.cookieConsent + state.marketingOptIn + state.dataRetentionJurisdiction;
-  // Pillar 4: Nurture & Resilience (Max 100)
   const p4Total = state.nurtureFlows + state.errorMonitoring + state.aiAugmentation;
 
   const compositeScore = Math.round((p1Total + p2Total + p3Total + p4Total) / 4);
@@ -97,117 +96,168 @@ export default function FunnelAuditorClient() {
   const riskInfo = useMemo(() => {
     if (compositeScore < 50 || p3Total === 0) {
       return {
-        label: "Critical Friction & Regulatory Risk",
-        colorClass: "bg-red-500/10 text-red-700 border-red-200",
+        label: "Critical Friction",
+        badgeClass: "bg-red-50 text-red-700 border-red-200",
         gaugeColor: "#DC2626",
-        leakage: "35% - 50% Lead Drop-off",
-        gdpr: "High ICO Regulatory Exposure",
+        leakage: "35% - 50%",
+        gdpr: "Non-Compliant (High Risk)",
+        slaStatus: "> 24h Delay",
       };
     }
     if (compositeScore < 80) {
       return {
-        label: "Moderate Operational Inefficiency",
-        colorClass: "bg-amber-500/10 text-amber-800 border-amber-200",
+        label: "Moderate Leakage",
+        badgeClass: "bg-amber-50 text-amber-700 border-amber-200",
         gaugeColor: "#D97706",
-        leakage: "15% - 25% Lead Drop-off",
-        gdpr: "Moderate (Missing Granular Consent)",
+        leakage: "15% - 25%",
+        gdpr: "Partial Consent Gap",
+        slaStatus: "4-12h Routing",
       };
     }
     if (compositeScore < 95) {
       return {
         label: "Optimized & Compliant",
-        colorClass: "bg-emerald-500/10 text-emerald-800 border-emerald-200",
+        badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
         gaugeColor: "#059669",
-        leakage: "< 5% (Clean Ingestion)",
-        gdpr: "Low Risk / UK GDPR & PECR Compliant",
+        leakage: "< 5%",
+        gdpr: "UK GDPR / PECR Verified",
+        slaStatus: "< 1h SLA",
       };
     }
     return {
-      label: "Enterprise Gold Standard",
-      colorClass: "bg-accent/20 text-accent-dark border-accent-dark/30 font-semibold",
-      gaugeColor: "#446100",
-      leakage: "< 1% (Zero-Latency Pipeline)",
-      gdpr: "Fully Compliant & Documented",
+      label: "Enterprise Standard",
+      badgeClass: "bg-foreground text-accent border-foreground font-semibold",
+      gaugeColor: "#0E0F12",
+      leakage: "< 1%",
+      gdpr: "100% PECR Compliant",
+      slaStatus: "< 30s Instant",
     };
   }, [compositeScore, p3Total]);
 
   // Findings & Action Plan Generation
   const { findings, roadmap } = useMemo(() => {
-    const list: { title: string; desc: string; type: "danger" | "warn" | "ok" }[] = [];
-    const steps: string[] = [];
+    const list: { title: string; desc: string; severity: "HIGH" | "MEDIUM" | "OPTIMIZED"; area: string }[] = [];
+    const steps: { phase: string; title: string; desc: string }[] = [];
 
     if (state.leadCaptureMethod === 0 || state.slaResponseTime === 0) {
       list.push({
         title: "Ingestion Latency & Manual CSV Bottleneck",
-        desc: "Manual CSV exports or >24h lead routing delays cause immediate drop-off in prospect intent and sales conversion.",
-        type: "danger",
+        desc: "Manual CSV exports or >24h lead routing delays cause immediate drop-off in sales conversion.",
+        severity: "HIGH",
+        area: "Lead Ingestion",
       });
-      steps.push("Deploy zero-latency webhooks (Make/Zapier) connecting all lead forms directly to your CRM with <5 min team alerts.");
+      steps.push({
+        phase: "Phase 1 (Immediate)",
+        title: "Zero-Latency Webhook Ingestion",
+        desc: "Deploy webhook listeners connecting lead forms directly to CRM with instant <5 min notification alerts.",
+      });
     }
 
     if (state.marketingOptIn === 0) {
       list.push({
         title: "PECR Marketing Consent Non-Compliance",
-        desc: "Pre-ticked opt-in checkboxes or bundled consent in T&Cs violate UK PECR regulations, exposing the business to ICO enforcement.",
-        type: "danger",
+        desc: "Pre-ticked opt-in checkboxes or bundled consent in T&Cs violate UK PECR regulations.",
+        severity: "HIGH",
+        area: "UK GDPR Governance",
       });
-      steps.push("Reconfigure intake forms with explicit, unticked, unbundled marketing consent and transparent privacy notices.");
+      steps.push({
+        phase: "Phase 1 (Regulatory)",
+        title: "Unbundled Consent Architecture",
+        desc: "Reconfigure intake forms with explicit, unticked, unbundled marketing consent and transparent privacy notices.",
+      });
     } else if (state.cookieConsent === 0) {
       list.push({
-        title: "Unconsented Analytics & Pixel Tracking",
-        desc: "Firing tracking pixels before explicit user consent breaches UK privacy standards. A compliant CMP is required.",
-        type: "warn",
+        title: "Unconsented Analytics & Tracking Pixels",
+        desc: "Firing tracking pixels before explicit user consent breaches UK privacy standards.",
+        severity: "MEDIUM",
+        area: "Privacy Compliance",
       });
-      steps.push("Integrate a Consent Management Platform (e.g. Cookiebot/Meru) via GTM with Consent Mode v2.");
+      steps.push({
+        phase: "Phase 1 (Privacy)",
+        title: "CMP & Consent Mode v2 Deployment",
+        desc: "Integrate a Consent Management Platform via GTM with Consent Mode v2.",
+      });
     }
 
     if (state.utmTaxonomy <= 10) {
       list.push({
         title: "Missing Corporate UTM Attribution Taxonomy",
-        desc: "Ad-hoc or absent UTM tagging prevents closed-loop attribution, obscuring which campaigns drive actual revenue.",
-        type: "warn",
+        desc: "Ad-hoc or absent UTM tagging prevents closed-loop attribution, obscuring ad ROI.",
+        severity: "MEDIUM",
+        area: "Attribution",
       });
-      steps.push("Standardize a corporate UTM generator and map attribution parameters into custom CRM fields.");
+      steps.push({
+        phase: "Phase 2 (Data Governance)",
+        title: "Standardized UTM Generator & CRM Mapping",
+        desc: "Deploy a corporate UTM taxonomy tool and capture UTM parameters into custom CRM fields.",
+      });
     }
 
     if (state.crmPlatform <= 10) {
       list.push({
         title: "Unstructured Spreadsheets / Database Risk",
-        desc: "Relying on spreadsheets for client pipelines creates version collisions, data leakage, and zero stage visibility.",
-        type: "danger",
+        desc: "Relying on spreadsheets for client pipelines creates version collisions and zero stage visibility.",
+        severity: "HIGH",
+        area: "CRM Infrastructure",
       });
-      steps.push("Migrate pipeline data into a structured relational CRM (Salesforce, HubSpot, or custom Airtable OS).");
+      steps.push({
+        phase: "Phase 2 (Database Architecture)",
+        title: "Relational CRM Migration",
+        desc: "Migrate pipeline data into a structured relational CRM (Salesforce / HubSpot / Airtable OS).",
+      });
     }
 
     if (state.nurtureFlows <= 10) {
       list.push({
         title: "Absence of Automated Lifecycle Nurture",
-        desc: "Leads receive only static confirmations or sit cold, losing momentum before sales engagement.",
-        type: "warn",
+        desc: "Leads receive only static confirmations or sit cold, losing momentum before sales calls.",
+        severity: "MEDIUM",
+        area: "Automation",
       });
-      steps.push("Build an automated 3-to-5 day welcome sequence with dynamic personalization based on lead intake answers.");
+      steps.push({
+        phase: "Phase 3 (Lifecycle Nurture)",
+        title: "Behavioral Email Welcome Sequence",
+        desc: "Build an automated 3-to-5 day welcome sequence with dynamic personalization based on intake answers.",
+      });
     }
 
     if (state.errorMonitoring === 0) {
       list.push({
         title: "Silent Webhook & Integration Failure Risk",
-        desc: "No automated alerting means broken forms or expired API tokens can stay undetected for days.",
-        type: "warn",
+        desc: "No automated alerting means broken forms or expired API tokens stay undetected for days.",
+        severity: "MEDIUM",
+        area: "Operational Resilience",
       });
-      steps.push("Implement automated webhook monitoring with real-time Slack/email failure notifications.");
+      steps.push({
+        phase: "Phase 3 (Resilience)",
+        title: "Automated Error Monitoring & Retries",
+        desc: "Implement automated webhook dead-letter monitoring with real-time Slack/email failure notifications.",
+      });
     }
 
     if (list.length === 0) {
       list.push({
         title: "All Core Governance & Funnel Nodes Operating Optimally",
-        desc: "Your pipeline combines instant ingestion, structured CRM taxonomy, full UK GDPR compliance, and automated nurture.",
-        type: "ok",
+        desc: "Zero-latency lead routing, closed-loop UTM attribution, 100% UK GDPR compliance, and automated nurture active.",
+        severity: "OPTIMIZED",
+        area: "Full Stack",
       });
-      steps.push("Maintain quarterly UTM audits and review data retention schedules annually.");
+      steps.push({
+        phase: "Ongoing Governance",
+        title: "Quarterly Audit Cadence",
+        desc: "Maintain quarterly UTM taxonomy audits and review data retention schedules annually.",
+      });
     }
 
     return { findings: list, roadmap: steps };
   }, [state]);
+
+  const applyPreset = (key: string) => {
+    setActivePreset(key);
+    if (PRESETS[key]) {
+      setState(PRESETS[key]);
+    }
+  };
 
   const copyMarkdownSummary = () => {
     const summary = `# 🛡️ Marketing Funnel & UK GDPR Diagnostic Report
@@ -222,11 +272,11 @@ export default function FunnelAuditorClient() {
 * **Governance Score:** ${p3Total}/100
 * **Nurture & Resilience Score:** ${p4Total}/100
 
-### 🔍 Key Diagnostic Findings:
-${findings.map((f) => `- [${f.type.toUpperCase()}] ${f.title}: ${f.desc}`).join("\n")}
+### 🔍 Diagnostic Findings:
+${findings.map((f) => `- [${f.severity}] ${f.area}: ${f.title} - ${f.desc}`).join("\n")}
 
 ### 🚀 Recommended 3-Phase Execution Roadmap:
-${roadmap.map((s, idx) => `${idx + 1}. ${s}`).join("\n")}
+${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join("\n")}
 
 ---
 *Report generated via oloye.co.uk/portfolio/funnel-auditor*`;
@@ -237,434 +287,715 @@ ${roadmap.map((s, idx) => `${idx + 1}. ${s}`).join("\n")}
   };
 
   return (
-    <div className="space-y-10">
-      {/* Header & Preset Selector */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
-        <div>
-          <span className="inline-block rounded-md bg-accent/20 px-2.5 py-1 text-xs font-mono font-semibold text-foreground uppercase tracking-wide">
-            Interactive Diagnostic Engine
-          </span>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Marketing Funnel & Governance Auditor
-          </h2>
-          <p className="mt-1 text-sm text-muted">
-            Configure your funnel parameters below to calculate real-time lead leakage, attribution gaps, and UK GDPR/PECR compliance risks.
-          </p>
+    <div className="rounded-2xl border border-border bg-background shadow-xl overflow-hidden">
+      {/* 1. SAAS APPLICATION TOP BAR */}
+      <div className="border-b border-border bg-surface px-4 py-3 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+        {/* Left: App Logo & Workspace Selector */}
+        <div className="flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground text-accent font-black text-sm">
+            FG
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold text-foreground tracking-tight">FunnelGuard Pro</span>
+              <span className="rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-mono font-bold text-foreground">
+                v2.4 Enterprise
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[11px] text-muted">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Pipeline Telemetry: Active</span>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Center/Right: Presets & Primary Action */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div className="inline-flex rounded-lg border border-border bg-background p-0.5 text-xs">
+            <button
+              onClick={() => applyPreset("leaky_b2b")}
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                activePreset === "leaky_b2b" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
+              }`}
+            >
+              Leaky Funnel
+            </button>
+            <button
+              onClick={() => applyPreset("growth_agency")}
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                activePreset === "growth_agency" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
+              }`}
+            >
+              Growth Tier
+            </button>
+            <button
+              onClick={() => applyPreset("enterprise_gold")}
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                activePreset === "enterprise_gold" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
+              }`}
+            >
+              Enterprise Gold
+            </button>
+          </div>
+
           <button
-            onClick={() => setState(PRESETS.leaky_b2b)}
-            className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground hover:bg-surface-alt transition"
+            onClick={copyMarkdownSummary}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-3.5 py-1.5 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm"
           >
-            🚨 Load Leaky B2B
-          </button>
-          <button
-            onClick={() => setState(PRESETS.growth_agency)}
-            className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground hover:bg-surface-alt transition"
-          >
-            📈 Load Growth Funnel
-          </button>
-          <button
-            onClick={() => setState(PRESETS.enterprise_gold)}
-            className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground hover:bg-surface-alt transition"
-          >
-            🏛️ Load Enterprise Gold
+            <span>{copied ? "✓ Copied!" : "Export Diagnostic Report"}</span>
           </button>
         </div>
       </div>
 
-      {/* 2-Column Grid Layout */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
-        {/* Left Column: Interactive Form Controls (7 cols) */}
-        <div className="space-y-6 lg:col-span-7">
-          {/* Pillar 1 */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-xs font-mono font-bold text-accent">
-                  01
-                </span>
-                <h3 className="text-base font-bold text-foreground">
-                  Inbound Lead Ingestion & Latency
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-semibold text-muted">{p1Total}/100 pts</span>
-            </div>
+      {/* 2. SAAS NAVIGATION TABS */}
+      <div className="border-b border-border bg-surface px-4 sm:px-6 flex items-center gap-1 overflow-x-auto text-xs font-medium">
+        <button
+          onClick={() => setActiveTab("overview")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap ${
+            activeTab === "overview"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          📊 Overview &amp; Health Matrix
+        </button>
+        <button
+          onClick={() => setActiveTab("p1")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+            activeTab === "p1"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          <span>01. Ingestion Latency</span>
+          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p1Total}%</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("p2")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+            activeTab === "p2"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          <span>02. CRM &amp; Taxonomy</span>
+          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p2Total}%</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("p3")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+            activeTab === "p3"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          <span>03. UK GDPR Governance</span>
+          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p3Total}%</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("p4")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+            activeTab === "p4"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          <span>04. Nurture &amp; Resilience</span>
+          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p4Total}%</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("roadmap")}
+          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap ${
+            activeTab === "roadmap"
+              ? "border-foreground font-semibold text-foreground"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          🚀 3-Phase Sprint ({roadmap.length})
+        </button>
+      </div>
 
-            <div className="space-y-3.5 text-xs">
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Lead Ingestion Mechanism
-                </label>
-                <select
-                  value={state.leadCaptureMethod}
-                  onChange={(e) => setState({ ...state, leadCaptureMethod: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>Manual CSV download / sporadic batch import (0 pts)</option>
-                  <option value={10}>Email notification with manual copy-paste (10 pts)</option>
-                  <option value={20}>Standard form plugin with daily scheduled sync (20 pts)</option>
-                  <option value={30}>Zero-Latency Webhook / Direct API (Make / Zapier / Native) (30 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Initial Lead Routing SLA
-                </label>
-                <select
-                  value={state.slaResponseTime}
-                  onChange={(e) => setState({ ...state, slaResponseTime: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>&gt; 24 Hours or whenever someone checks inbox (0 pts)</option>
-                  <option value={10}>Within 4 to 12 Hours (Manual sales assignment) (10 pts)</option>
-                  <option value={20}>Within 1 Hour (Semi-automated notification) (20 pts)</option>
-                  <option value={30}>&lt; 5 Minutes (Instant webhook routing &amp; rep alert) (30 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Input Sanitization &amp; Deduplication
-                </label>
-                <select
-                  value={state.dataValidation}
-                  onChange={(e) => setState({ ...state, dataValidation: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>No validation; duplicates and junk pollute CRM (0 pts)</option>
-                  <option value={10}>Basic HTML form required fields only (10 pts)</option>
-                  <option value={20}>Corporate email validation &amp; deduplication check (20 pts)</option>
-                  <option value={40}>Full phone sanitization (E.164), domain lookup &amp; auto-merge (40 pts)</option>
-                </select>
-              </div>
-            </div>
+      {/* 3. SAAS METRIC RIBBON (4 Key KPIs) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 border-b border-border bg-surface">
+        <div className="border-r border-border p-4 sm:p-5">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Overall Health Score</div>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-foreground">{compositeScore}</span>
+            <span className="text-xs text-muted">/100</span>
           </div>
-
-          {/* Pillar 2 */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-xs font-mono font-bold text-accent">
-                  02
-                </span>
-                <h3 className="text-base font-bold text-foreground">
-                  CRM Architecture &amp; Attribution Taxonomy
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-semibold text-muted">{p2Total}/100 pts</span>
-            </div>
-
-            <div className="space-y-3.5 text-xs">
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Central Database Architecture
-                </label>
-                <select
-                  value={state.crmPlatform}
-                  onChange={(e) => setState({ ...state, crmPlatform: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>Chaotic spreadsheets / email inbox storage (0 pts)</option>
-                  <option value={10}>Basic spreadsheet with manual stage updates (10 pts)</option>
-                  <option value={25}>Standard CRM (HubSpot / Pipedrive / Airtable) with basic stages (25 pts)</option>
-                  <option value={35}>Structured Relational CRM (Salesforce / Airtable OS) with strict lifecycle stages (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Campaign UTM &amp; Attribution Standards
-                </label>
-                <select
-                  value={state.utmTaxonomy}
-                  onChange={(e) => setState({ ...state, utmTaxonomy: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>No UTMs; all traffic shows as Direct/Unknown (0 pts)</option>
-                  <option value={10}>Ad-hoc UTMs created manually with no convention (10 pts)</option>
-                  <option value={20}>Standard UTM builder used by marketing team (20 pts)</option>
-                  <option value={35}>Enforced Corporate UTM Taxonomy with closed-loop CRM attribution (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Executive Dashboards &amp; Reporting
-                </label>
-                <select
-                  value={state.analyticsDashboards}
-                  onChange={(e) => setState({ ...state, analyticsDashboards: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>No centralized reporting; guessing results (0 pts)</option>
-                  <option value={10}>Native GA4 reports only (sporadic check) (10 pts)</option>
-                  <option value={20}>Weekly manual spreadsheet compilation (20 pts)</option>
-                  <option value={30}>Live automated Looker Studio dashboard connected to CRM + GA4 (30 pts)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-xs font-mono font-bold text-accent">
-                  03
-                </span>
-                <h3 className="text-base font-bold text-foreground">
-                  UK GDPR &amp; PECR Governance
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-semibold text-muted">{p3Total}/100 pts</span>
-            </div>
-
-            <div className="space-y-3.5 text-xs">
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Cookie &amp; Tracking Pixel Consent (PECR)
-                </label>
-                <select
-                  value={state.cookieConsent}
-                  onChange={(e) => setState({ ...state, cookieConsent: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>No cookie banner / scripts fire before consent (0 pts - HIGH RISK)</option>
-                  <option value={10}>Simple &apos;OK&apos; disclaimer without opt-out controls (10 pts)</option>
-                  <option value={20}>Standard CMP banner (cookies blocked prior to consent) (20 pts)</option>
-                  <option value={35}>Enterprise CMP (Cookiebot/OneTrust/Meru) + GTM Consent Mode v2 (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Marketing Opt-In Checkboxes (PECR Rules)
-                </label>
-                <select
-                  value={state.marketingOptIn}
-                  onChange={(e) => setState({ ...state, marketingOptIn: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>Pre-ticked opt-in box or bundled in T&amp;Cs (0 pts - PECR VIOLATION)</option>
-                  <option value={15}>Unticked checkbox with generic disclaimer (15 pts)</option>
-                  <option value={35}>Granular, unbundled opt-in with explicit channels &amp; privacy link (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Data Retention &amp; Sovereignty
-                </label>
-                <select
-                  value={state.dataRetentionJurisdiction}
-                  onChange={(e) => setState({ ...state, dataRetentionJurisdiction: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>Indefinite customer data storage in unencrypted sheets (0 pts)</option>
-                  <option value={15}>Standard cloud CRM without documented retention schedule (15 pts)</option>
-                  <option value={30}>Documented retention schedule, encryption &amp; UK/EEA adequacy (30 pts)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* Pillar 4 */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-xs font-mono font-bold text-accent">
-                  04
-                </span>
-                <h3 className="text-base font-bold text-foreground">
-                  Automated Nurture &amp; Resilience
-                </h3>
-              </div>
-              <span className="text-xs font-mono font-semibold text-muted">{p4Total}/100 pts</span>
-            </div>
-
-            <div className="space-y-3.5 text-xs">
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Automated Lead Nurture Sequences
-                </label>
-                <select
-                  value={state.nurtureFlows}
-                  onChange={(e) => setState({ ...state, nurtureFlows: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>No follow-up; leads sit cold until manual outreach (0 pts)</option>
-                  <option value={10}>Single automated confirmation email only (10 pts)</option>
-                  <option value={20}>Basic 3-part generic email sequence (20 pts)</option>
-                  <option value={35}>Behavioral dynamic multi-touch sequence (Email + SMS/WhatsApp + CRM sync) (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  Webhook Error Handling &amp; Alerting
-                </label>
-                <select
-                  value={state.errorMonitoring}
-                  onChange={(e) => setState({ ...state, errorMonitoring: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>Silent failures; nobody knows when integration breaks (0 pts)</option>
-                  <option value={10}>Checking error logs manually once a week (10 pts)</option>
-                  <option value={20}>Automated email notifications on failed runs (20 pts)</option>
-                  <option value={35}>Dead-letter queue with instant Slack/Teams alerts &amp; auto-retries (35 pts)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold text-foreground mb-1">
-                  AI Process Augmentation
-                </label>
-                <select
-                  value={state.aiAugmentation}
-                  onChange={(e) => setState({ ...state, aiAugmentation: Number(e.target.value) })}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  <option value={0}>100% manual review and classification (0 pts)</option>
-                  <option value={15}>Manual prompting in ChatGPT/Claude as needed (15 pts)</option>
-                  <option value={30}>Embedded AI workflows (LLM auto-summarizing briefs, tagging intent &amp; urgency) (30 pts)</option>
-                </select>
-              </div>
-            </div>
+          <div className={`mt-1.5 inline-block rounded border px-2 py-0.5 text-[10px] font-semibold ${riskInfo.badgeClass}`}>
+            {riskInfo.label}
           </div>
         </div>
 
-        {/* Right Column: Live Executive Scorecard & Action Roadmap (5 cols) */}
-        <div className="space-y-6 lg:col-span-5 lg:sticky lg:top-24">
-          {/* Main Scorecard */}
-          <div className="rounded-xl border border-border bg-surface p-6 shadow-md space-y-6">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-muted uppercase">
-                Overall Pipeline Health
-              </span>
-              <span className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${riskInfo.colorClass}`}>
-                {riskInfo.label}
-              </span>
-            </div>
+        <div className="border-r border-border p-4 sm:p-5">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Est. Lead Drop-Off</div>
+          <div className="mt-1 text-2xl sm:text-3xl font-black font-mono text-foreground">
+            {riskInfo.leakage}
+          </div>
+          <div className="mt-1 text-[11px] text-muted">
+            {compositeScore > 85 ? "Zero Ingestion Bleed" : "Friction in Intake SLA"}
+          </div>
+        </div>
 
-            {/* Score Ring Display */}
-            <div className="flex items-center gap-5 border-b border-border pb-5">
-              <div className="flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-border bg-surface-alt">
-                <span className="text-3xl font-black font-mono text-foreground">{compositeScore}</span>
-                <span className="text-[10px] font-mono text-muted">/ 100</span>
+        <div className="border-r border-border p-4 sm:p-5">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">UK GDPR / PECR Status</div>
+          <div className="mt-1 text-sm sm:text-base font-bold text-foreground line-clamp-1">
+            {riskInfo.gdpr}
+          </div>
+          <div className="mt-1 text-[11px] text-muted">
+            {p3Total === 100 ? "ICO Audit Ready" : "Requires Consent Review"}
+          </div>
+        </div>
+
+        <div className="p-4 sm:p-5">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Routing Speed SLA</div>
+          <div className="mt-1 text-2xl sm:text-3xl font-black font-mono text-foreground">
+            {riskInfo.slaStatus}
+          </div>
+          <div className="mt-1 text-[11px] text-muted">Lead-to-Sales Webhook</div>
+        </div>
+      </div>
+
+      {/* 4. MAIN CANVAS CONTENT AREA */}
+      <div className="p-4 sm:p-6 space-y-6">
+        {/* TAB 1: OVERVIEW & HEALTH MATRIX */}
+        {activeTab === "overview" && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left: 4 Pillar Matrix Cards (7 cols) */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-foreground">Governance &amp; Funnel Sub-Systems</h3>
+                <span className="text-xs text-muted font-mono">4 Modules Configured</span>
               </div>
 
-              <div className="space-y-1.5 text-xs">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-muted">Lead Drop-Off:</span>
-                  <span className="font-semibold text-foreground">{riskInfo.leakage}</span>
+              {/* Module 1 */}
+              <div
+                onClick={() => setActiveTab("p1")}
+                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                      01
+                    </span>
+                    <span className="text-xs font-bold text-foreground">Inbound Ingestion &amp; Latency</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-foreground">{p1Total}%</span>
                 </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-muted">UK GDPR Risk:</span>
-                  <span className="font-semibold text-foreground">{riskInfo.gdpr}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-muted">Audited By:</span>
-                  <span className="font-semibold text-foreground">Oloye Adeosun</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Category Progress Bars */}
-            <div className="space-y-3 text-xs">
-              <div>
-                <div className="flex justify-between font-mono text-[11px] text-muted mb-1">
-                  <span>01. Ingestion Latency</span>
-                  <span className="font-semibold text-foreground">{p1Total}%</span>
-                </div>
-                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p1Total}%` }} />
                 </div>
+                <div className="flex justify-between text-[11px] text-muted">
+                  <span>Routing: {state.slaResponseTime === 30 ? "< 5 min SLA" : "> 4h Delay"}</span>
+                  <span className="text-accent-dark font-medium">Configure →</span>
+                </div>
               </div>
 
-              <div>
-                <div className="flex justify-between font-mono text-[11px] text-muted mb-1">
-                  <span>02. CRM &amp; UTM Taxonomy</span>
-                  <span className="font-semibold text-foreground">{p2Total}%</span>
+              {/* Module 2 */}
+              <div
+                onClick={() => setActiveTab("p2")}
+                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                      02
+                    </span>
+                    <span className="text-xs font-bold text-foreground">CRM Architecture &amp; Attribution</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-foreground">{p2Total}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p2Total}%` }} />
                 </div>
+                <div className="flex justify-between text-[11px] text-muted">
+                  <span>UTM Standard: {state.utmTaxonomy === 35 ? "Closed-Loop" : "Ad-hoc / Missing"}</span>
+                  <span className="text-accent-dark font-medium">Configure →</span>
+                </div>
               </div>
 
-              <div>
-                <div className="flex justify-between font-mono text-[11px] text-muted mb-1">
-                  <span>03. UK GDPR Governance</span>
-                  <span className="font-semibold text-foreground">{p3Total}%</span>
+              {/* Module 3 */}
+              <div
+                onClick={() => setActiveTab("p3")}
+                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                      03
+                    </span>
+                    <span className="text-xs font-bold text-foreground">UK GDPR &amp; PECR Governance</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-foreground">{p3Total}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p3Total}%` }} />
                 </div>
+                <div className="flex justify-between text-[11px] text-muted">
+                  <span>Marketing Opt-in: {state.marketingOptIn === 35 ? "Unbundled & Explicit" : "Risk / Pre-ticked"}</span>
+                  <span className="text-accent-dark font-medium">Configure →</span>
+                </div>
               </div>
 
-              <div>
-                <div className="flex justify-between font-mono text-[11px] text-muted mb-1">
-                  <span>04. Nurture &amp; Resilience</span>
-                  <span className="font-semibold text-foreground">{p4Total}%</span>
+              {/* Module 4 */}
+              <div
+                onClick={() => setActiveTab("p4")}
+                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                      04
+                    </span>
+                    <span className="text-xs font-bold text-foreground">Automated Nurture &amp; Resilience</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-foreground">{p4Total}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p4Total}%` }} />
+                </div>
+                <div className="flex justify-between text-[11px] text-muted">
+                  <span>Error Monitoring: {state.errorMonitoring === 35 ? "Slack / Dead-Letter Queue" : "Silent Failures"}</span>
+                  <span className="text-accent-dark font-medium">Configure →</span>
                 </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="pt-2">
+            {/* Right: Real-time Findings Log (5 cols) */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-foreground">Diagnostic Findings Log</h3>
+                <span className="rounded bg-surface-alt px-2 py-0.5 text-[10px] font-mono text-muted">
+                  {findings.length} Flagged
+                </span>
+              </div>
+
+              <div className="rounded-xl border border-border bg-surface p-4 space-y-3">
+                {findings.map((f, idx) => (
+                  <div key={idx} className="border-b border-border/60 pb-3 last:border-b-0 last:pb-0 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-wider">{f.area}</span>
+                      <span
+                        className={`rounded px-1.5 py-0.2 text-[9px] font-mono font-bold ${
+                          f.severity === "HIGH"
+                            ? "bg-red-100 text-red-800"
+                            : f.severity === "MEDIUM"
+                            ? "bg-amber-100 text-amber-800"
+                            : "bg-emerald-100 text-emerald-800"
+                        }`}
+                      >
+                        {f.severity}
+                      </span>
+                    </div>
+                    <div className="text-xs font-bold text-foreground">{f.title}</div>
+                    <div className="text-[11px] text-muted leading-relaxed">{f.desc}</div>
+                  </div>
+                ))}
+              </div>
+
               <button
-                onClick={copyMarkdownSummary}
-                className="w-full flex items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm"
+                onClick={() => setActiveTab("roadmap")}
+                className="w-full rounded-lg border border-border bg-surface py-2 text-xs font-semibold text-foreground hover:bg-surface-alt transition text-center"
               >
-                <span>{copied ? "✓ Copied to Clipboard!" : "Copy Executive Diagnostic Summary"}</span>
+                View 14-Day Remediation Sprint Roadmap →
               </button>
             </div>
           </div>
+        )}
 
-          {/* Diagnostic Findings Box */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-4">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-muted">
-              Diagnostic Findings ({findings.length})
-            </h4>
+        {/* TAB 2: PILLAR 01 CONFIGURATION */}
+        {activeTab === "p1" && (
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
+            <div>
+              <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 01</span>
+              <h3 className="text-lg font-bold text-foreground">Inbound Ingestion &amp; Routing Latency</h3>
+              <p className="text-xs text-muted">Configure how web form payloads move into sales routing and CRM distribution.</p>
+            </div>
 
-            <div className="space-y-2.5">
-              {findings.map((f, idx) => (
-                <div
-                  key={idx}
-                  className={`rounded-lg border p-3 text-xs leading-relaxed ${
-                    f.type === "danger"
-                      ? "border-red-200 bg-red-50 text-red-900"
-                      : f.type === "warn"
-                      ? "border-amber-200 bg-amber-50 text-amber-900"
-                      : "border-emerald-200 bg-emerald-50 text-emerald-900"
-                  }`}
-                >
-                  <p className="font-bold">{f.title}</p>
-                  <p className="mt-0.5 text-[11px] opacity-90">{f.desc}</p>
+            <div className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Lead Capture Mechanism</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "Manual CSV export / sporadic batch", pts: "0 pts (High Leak)" },
+                    { val: 10, label: "Email notifications with manual entry", pts: "10 pts" },
+                    { val: 20, label: "Standard form plugin (daily sync)", pts: "20 pts" },
+                    { val: 30, label: "Zero-Latency Webhook / API", pts: "30 pts (Instant)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, leadCaptureMethod: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.leadCaptureMethod === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Initial Lead Routing SLA</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "> 24h Response Delay", pts: "0 pts (High Drop-off)" },
+                    { val: 10, label: "Within 4 to 12 Hours", pts: "10 pts (Manual)" },
+                    { val: 20, label: "Within 1 Hour", pts: "20 pts (Semi-auto)" },
+                    { val: 30, label: "< 5 Minutes (Instant Routing)", pts: "30 pts (Optimal)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, slaResponseTime: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.slaResponseTime === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Input Validation &amp; Sanitization</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "No validation (Junk in CRM)", pts: "0 pts" },
+                    { val: 10, label: "Basic HTML required fields only", pts: "10 pts" },
+                    { val: 20, label: "Corporate email validation", pts: "20 pts" },
+                    { val: 40, label: "E.164 phone + auto-deduplication", pts: "40 pts (Enterprise)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, dataValidation: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.dataValidation === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: PILLAR 02 CONFIGURATION */}
+        {activeTab === "p2" && (
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
+            <div>
+              <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 02</span>
+              <h3 className="text-lg font-bold text-foreground">CRM Architecture &amp; Attribution Taxonomy</h3>
+              <p className="text-xs text-muted">Configure database structure, lifecycle stages, and campaign attribution.</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Database &amp; CRM Architecture</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "Chaotic spreadsheets / email threads", pts: "0 pts" },
+                    { val: 10, label: "Basic spreadsheet with manual stages", pts: "10 pts" },
+                    { val: 25, label: "Standard CRM with basic stages", pts: "25 pts" },
+                    { val: 35, label: "Relational CRM with strict lifecycle", pts: "35 pts (Enterprise)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, crmPlatform: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.crmPlatform === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">UTM &amp; Attribution Governance</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "No UTMs (Direct/Unknown traffic)", pts: "0 pts" },
+                    { val: 10, label: "Ad-hoc UTMs with no taxonomy", pts: "10 pts" },
+                    { val: 20, label: "Standard UTM spreadsheet builder", pts: "20 pts" },
+                    { val: 35, label: "Enforced Corporate Taxonomy + CRM Map", pts: "35 pts (Closed-Loop)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, utmTaxonomy: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.utmTaxonomy === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Executive Reporting &amp; Dashboards</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "No reporting / manual guessing", pts: "0 pts" },
+                    { val: 10, label: "Native GA4 reports only", pts: "10 pts" },
+                    { val: 20, label: "Weekly manual spreadsheet compilation", pts: "20 pts" },
+                    { val: 30, label: "Live Looker Studio (GA4 + CRM)", pts: "30 pts (Automated)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, analyticsDashboards: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.analyticsDashboards === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: PILLAR 03 CONFIGURATION */}
+        {activeTab === "p3" && (
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
+            <div>
+              <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 03</span>
+              <h3 className="text-lg font-bold text-foreground">UK GDPR &amp; PECR Regulatory Governance</h3>
+              <p className="text-xs text-muted">Audit consent mechanisms, privacy notices, and data sovereignty compliance.</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Cookie &amp; Pixel Consent (PECR Rules)</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "No banner / scripts fire prior to consent", pts: "0 pts (PECR Breach)" },
+                    { val: 10, label: "Simple 'OK' disclaimer without opt-out", pts: "10 pts" },
+                    { val: 20, label: "Standard CMP banner (cookies blocked)", pts: "20 pts" },
+                    { val: 35, label: "Enterprise CMP + GTM Consent Mode v2", pts: "35 pts (Compliant)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, cookieConsent: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.cookieConsent === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Marketing Opt-In Checkboxes</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "Pre-ticked box or bundled in T&Cs", pts: "0 pts (Illegal)" },
+                    { val: 15, label: "Unticked box with generic text", pts: "15 pts" },
+                    { val: 35, label: "Unbundled, granular opt-in + privacy link", pts: "35 pts (Compliant)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, marketingOptIn: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.marketingOptIn === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Data Retention &amp; Sovereignty</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "Indefinite storage in plain spreadsheets", pts: "0 pts" },
+                    { val: 15, label: "Cloud CRM without retention schedule", pts: "15 pts" },
+                    { val: 30, label: "Documented schedule + UK/EEA adequacy", pts: "30 pts (Enterprise)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, dataRetentionJurisdiction: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.dataRetentionJurisdiction === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 5: PILLAR 04 CONFIGURATION */}
+        {activeTab === "p4" && (
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
+            <div>
+              <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 04</span>
+              <h3 className="text-lg font-bold text-foreground">Automated Nurture &amp; Resilience</h3>
+              <p className="text-xs text-muted">Configure multi-channel nurture flows, AI categorization, and error handling.</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Lead Nurture Sequences</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "No automated follow-up (Leads sit cold)", pts: "0 pts" },
+                    { val: 10, label: "Single static confirmation email", pts: "10 pts" },
+                    { val: 20, label: "Basic 3-part email sequence", pts: "20 pts" },
+                    { val: 35, label: "Behavioral multi-touch (Email + SMS/CRM)", pts: "35 pts (Dynamic)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, nurtureFlows: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.nurtureFlows === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">Webhook Monitoring &amp; Dead-Letter Queue</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "Silent failures (Nobody knows when broken)", pts: "0 pts" },
+                    { val: 10, label: "Manual log checking once a week", pts: "10 pts" },
+                    { val: 20, label: "Automated email alerts on failure", pts: "20 pts" },
+                    { val: 35, label: "Slack alerts + automatic retry queue", pts: "35 pts (Zero-Loss)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, errorMonitoring: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.errorMonitoring === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-foreground">AI Process Augmentation</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {[
+                    { val: 0, label: "100% manual review & classification", pts: "0 pts" },
+                    { val: 15, label: "Occasional manual AI prompting", pts: "15 pts" },
+                    { val: 30, label: "Embedded LLM auto-tagging & summary", pts: "30 pts (Automated)" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.val}
+                      onClick={() => setState({ ...state, aiAugmentation: opt.val })}
+                      className={`p-3 rounded-lg border text-left transition ${
+                        state.aiAugmentation === opt.val
+                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                      }`}
+                    >
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-[10px] font-mono opacity-80">{opt.pts}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 6: ROADMAP & REMEDIATION */}
+        {activeTab === "roadmap" && (
+          <div className="rounded-xl border border-border bg-surface p-6 space-y-6 max-w-3xl mx-auto">
+            <div className="border-b border-border pb-4">
+              <span className="text-xs font-mono font-bold text-accent-dark uppercase">Execution Plan</span>
+              <h3 className="text-lg font-bold text-foreground">14-Day Technical Remediation Sprint</h3>
+              <p className="text-xs text-muted">Prioritized step-by-step engineering roadmap generated from current telemetry.</p>
+            </div>
+
+            <div className="space-y-4">
+              {roadmap.map((s, idx) => (
+                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-xl border border-border bg-background">
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
+                    {idx + 1}
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-wide">{s.phase}</span>
+                    <h4 className="text-sm font-bold text-foreground">{s.title}</h4>
+                    <p className="text-xs text-muted leading-relaxed">{s.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Recommended Roadmap */}
-          <div className="rounded-xl border border-border bg-surface p-5 shadow-sm space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-muted">
-              Recommended 3-Phase Execution Sprint
-            </h4>
-
-            <ol className="list-decimal pl-4 space-y-2 text-xs text-muted leading-relaxed">
-              {roadmap.map((step, idx) => (
-                <li key={idx} className="text-foreground">
-                  {step}
-                </li>
-              ))}
-            </ol>
+            <div className="pt-2">
+              <button
+                onClick={copyMarkdownSummary}
+                className="w-full rounded-lg bg-foreground py-2.5 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm"
+              >
+                {copied ? "✓ Copied to Clipboard!" : "Copy Full Executive Proposal"}
+              </button>
+            </div>
           </div>
+        )}
+      </div>
+
+      {/* 5. SAAS APP FOOTER STATUS */}
+      <div className="border-t border-border bg-surface-alt px-4 py-2.5 sm:px-6 flex flex-wrap items-center justify-between text-[11px] font-mono text-muted">
+        <div>
+          <span>Engine: React 19 • Tailwind CSS • UK GDPR / PECR Diagnostic Logic</span>
+        </div>
+        <div>
+          <span>Architected by Oloye Adeosun (Marketing Automation &amp; Governance Specialist)</span>
         </div>
       </div>
     </div>

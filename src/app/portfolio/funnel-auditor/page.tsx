@@ -7,7 +7,7 @@ import FunnelAuditorClient from "./FunnelAuditorClient";
 
 const TITLE = "Marketing Funnel & UK GDPR Compliance Auditor • Oloye Adeosun";
 const DESCRIPTION =
-  "Interactive diagnostic engine to audit marketing pipelines for lead leakage, CRM taxonomy gaps, and UK GDPR/PECR compliance risks.";
+  "Interactive enterprise SaaS diagnostic engine to audit marketing pipelines for lead leakage, CRM taxonomy gaps, and UK GDPR/PECR compliance risks.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -33,17 +33,25 @@ export default function FunnelAuditorPage() {
         })}
       />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 space-y-8">
-        {/* Breadcrumb / Back Link */}
-        <div className="flex items-center gap-2 text-xs text-muted">
-          <Link href="/portfolio" className="hover:text-foreground transition">
-            ← Back to Portfolio
-          </Link>
-          <span>/</span>
-          <span className="text-foreground font-medium">Funnel &amp; Compliance Auditor</span>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-10 space-y-6">
+        {/* Clean Header Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs text-muted font-medium">
+            <Link href="/portfolio" className="hover:text-foreground transition flex items-center gap-1">
+              <span>←</span>
+              <span>All Systems</span>
+            </Link>
+            <span className="text-border-strong">/</span>
+            <span className="text-foreground font-semibold">Funnel &amp; UK GDPR Diagnostic Engine</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs text-muted">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-mono text-[11px]">System Status: Operational</span>
+          </div>
         </div>
 
-        {/* Live Client Component */}
+        {/* The SaaS Application Canvas */}
         <FunnelAuditorClient />
       </div>
     </>

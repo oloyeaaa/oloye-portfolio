@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Link from "next/link";
 
 interface AuditState {
   leadCaptureMethod: number;
@@ -287,18 +286,18 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
   };
 
   return (
-    <div className="rounded-2xl border border-border bg-background shadow-xl overflow-hidden">
+    <div className="rounded-2xl border border-border bg-surface shadow-xl overflow-hidden">
       {/* 1. SAAS APPLICATION TOP BAR */}
-      <div className="border-b border-border bg-surface px-4 py-3 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+      <div className="border-b border-border bg-surface px-5 py-4 sm:px-8 flex flex-wrap items-center justify-between gap-4">
         {/* Left: App Logo & Workspace Selector */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground text-accent font-black text-sm">
+        <div className="flex items-center gap-3.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground text-accent font-black text-sm shadow-xs">
             FG
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-foreground tracking-tight">FunnelGuard Pro</span>
-              <span className="rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-mono font-bold text-foreground">
+              <span className="text-base font-bold text-foreground tracking-tight">FunnelGuard Pro</span>
+              <span className="rounded bg-accent/20 px-2 py-0.5 text-[10px] font-mono font-bold text-foreground">
                 v2.4 Enterprise
               </span>
             </div>
@@ -310,270 +309,267 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
         </div>
 
         {/* Center/Right: Presets & Primary Action */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          <div className="inline-flex rounded-lg border border-border bg-background p-0.5 text-xs">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="inline-flex rounded-lg border border-border bg-background p-1 text-xs">
             <button
               onClick={() => applyPreset("leaky_b2b")}
-              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
                 activePreset === "leaky_b2b" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
               }`}
             >
-              Leaky Funnel
+              🚨 Leaky Funnel
             </button>
             <button
               onClick={() => applyPreset("growth_agency")}
-              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
                 activePreset === "growth_agency" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
               }`}
             >
-              Growth Tier
+              📈 Growth Tier
             </button>
             <button
               onClick={() => applyPreset("enterprise_gold")}
-              className={`rounded-md px-2.5 py-1 text-xs font-medium transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
                 activePreset === "enterprise_gold" ? "bg-surface font-semibold text-foreground shadow-xs" : "text-muted hover:text-foreground"
               }`}
             >
-              Enterprise Gold
+              🏛️ Enterprise Gold
             </button>
           </div>
 
           <button
             onClick={copyMarkdownSummary}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-3.5 py-1.5 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-2 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm"
           >
-            <span>{copied ? "✓ Copied!" : "Export Diagnostic Report"}</span>
+            <span>{copied ? "✓ Copied to Clipboard!" : "Export Diagnostic Report"}</span>
           </button>
         </div>
       </div>
 
       {/* 2. SAAS NAVIGATION TABS */}
-      <div className="border-b border-border bg-surface px-4 sm:px-6 flex items-center gap-1 overflow-x-auto text-xs font-medium">
+      <div className="border-b border-border bg-surface-alt px-5 sm:px-8 flex items-center gap-2 overflow-x-auto text-xs font-medium py-1.5">
         <button
           onClick={() => setActiveTab("overview")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap ${
             activeTab === "overview"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          📊 Overview &amp; Health Matrix
+          📊 Overview &amp; Matrix
         </button>
         <button
           onClick={() => setActiveTab("p1")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap flex items-center gap-1.5 ${
             activeTab === "p1"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          <span>01. Ingestion Latency</span>
-          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p1Total}%</span>
+          <span>01. Ingestion</span>
+          <span className="rounded bg-surface px-1.5 py-0.2 text-[10px] font-mono text-foreground">{p1Total}%</span>
         </button>
         <button
           onClick={() => setActiveTab("p2")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap flex items-center gap-1.5 ${
             activeTab === "p2"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          <span>02. CRM &amp; Taxonomy</span>
-          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p2Total}%</span>
+          <span>02. CRM Taxonomy</span>
+          <span className="rounded bg-surface px-1.5 py-0.2 text-[10px] font-mono text-foreground">{p2Total}%</span>
         </button>
         <button
           onClick={() => setActiveTab("p3")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap flex items-center gap-1.5 ${
             activeTab === "p3"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          <span>03. UK GDPR Governance</span>
-          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p3Total}%</span>
+          <span>03. UK GDPR</span>
+          <span className="rounded bg-surface px-1.5 py-0.2 text-[10px] font-mono text-foreground">{p3Total}%</span>
         </button>
         <button
           onClick={() => setActiveTab("p4")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap flex items-center gap-1.5 ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap flex items-center gap-1.5 ${
             activeTab === "p4"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          <span>04. Nurture &amp; Resilience</span>
-          <span className="rounded bg-surface-alt px-1.5 py-0.2 text-[10px] font-mono">{p4Total}%</span>
+          <span>04. Nurture Flows</span>
+          <span className="rounded bg-surface px-1.5 py-0.2 text-[10px] font-mono text-foreground">{p4Total}%</span>
         </button>
         <button
           onClick={() => setActiveTab("roadmap")}
-          className={`border-b-2 px-3.5 py-2.5 transition whitespace-nowrap ${
+          className={`rounded-lg px-3.5 py-1.5 transition whitespace-nowrap flex items-center gap-1.5 ${
             activeTab === "roadmap"
-              ? "border-foreground font-semibold text-foreground"
-              : "border-transparent text-muted hover:text-foreground"
+              ? "bg-foreground font-semibold text-accent"
+              : "text-muted hover:text-foreground hover:bg-surface"
           }`}
         >
-          🚀 3-Phase Sprint ({roadmap.length})
+          <span>🚀 14-Day Sprint</span>
+          <span className="rounded bg-surface px-1.5 py-0.2 text-[10px] font-mono text-foreground">{roadmap.length}</span>
         </button>
       </div>
 
       {/* 3. SAAS METRIC RIBBON (4 Key KPIs) */}
-      <div className="grid grid-cols-2 md:grid-cols-4 border-b border-border bg-surface">
-        <div className="border-r border-border p-4 sm:p-5">
-          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Overall Health Score</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 border-b border-border bg-surface">
+        <div className="border-r border-b lg:border-b-0 border-border p-5 sm:p-6">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold">Overall Pipeline Health</div>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black font-mono text-foreground">{compositeScore}</span>
-            <span className="text-xs text-muted">/100</span>
+            <span className="text-3xl sm:text-4xl font-black font-mono text-foreground">{compositeScore}</span>
+            <span className="text-xs text-muted font-mono">/ 100</span>
           </div>
-          <div className={`mt-1.5 inline-block rounded border px-2 py-0.5 text-[10px] font-semibold ${riskInfo.badgeClass}`}>
+          <div className={`mt-2 inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${riskInfo.badgeClass}`}>
             {riskInfo.label}
           </div>
         </div>
 
-        <div className="border-r border-border p-4 sm:p-5">
-          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Est. Lead Drop-Off</div>
-          <div className="mt-1 text-2xl sm:text-3xl font-black font-mono text-foreground">
+        <div className="border-b lg:border-b-0 lg:border-r border-border p-5 sm:p-6">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold">Est. Lead Drop-Off</div>
+          <div className="mt-1 text-3xl sm:text-4xl font-black font-mono text-foreground">
             {riskInfo.leakage}
           </div>
-          <div className="mt-1 text-[11px] text-muted">
-            {compositeScore > 85 ? "Zero Ingestion Bleed" : "Friction in Intake SLA"}
+          <div className="mt-2 text-xs text-muted font-medium">
+            {compositeScore > 85 ? "Zero Ingestion Leakage" : "High Drop-Off SLA"}
           </div>
         </div>
 
-        <div className="border-r border-border p-4 sm:p-5">
-          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">UK GDPR / PECR Status</div>
-          <div className="mt-1 text-sm sm:text-base font-bold text-foreground line-clamp-1">
+        <div className="border-r border-border p-5 sm:p-6">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold">UK GDPR / PECR Status</div>
+          <div className="mt-1 text-base sm:text-lg font-bold text-foreground line-clamp-1">
             {riskInfo.gdpr}
           </div>
-          <div className="mt-1 text-[11px] text-muted">
+          <div className="mt-2 text-xs text-muted font-medium">
             {p3Total === 100 ? "ICO Audit Ready" : "Requires Consent Review"}
           </div>
         </div>
 
-        <div className="p-4 sm:p-5">
-          <div className="text-[11px] font-mono text-muted uppercase tracking-wider">Routing Speed SLA</div>
-          <div className="mt-1 text-2xl sm:text-3xl font-black font-mono text-foreground">
+        <div className="p-5 sm:p-6">
+          <div className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold">Routing Speed SLA</div>
+          <div className="mt-1 text-3xl sm:text-4xl font-black font-mono text-foreground">
             {riskInfo.slaStatus}
           </div>
-          <div className="mt-1 text-[11px] text-muted">Lead-to-Sales Webhook</div>
+          <div className="mt-2 text-xs text-muted font-medium">Lead-to-Sales Webhook</div>
         </div>
       </div>
 
       {/* 4. MAIN CANVAS CONTENT AREA */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="p-6 sm:p-8 space-y-6">
         {/* TAB 1: OVERVIEW & HEALTH MATRIX */}
         {activeTab === "overview" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: 4 Pillar Matrix Cards (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground">Governance &amp; Funnel Sub-Systems</h3>
+              <div className="flex items-center justify-between pb-1">
+                <h3 className="text-sm font-bold text-foreground uppercase tracking-wide">Governance &amp; Funnel Sub-Systems</h3>
                 <span className="text-xs text-muted font-mono">4 Modules Configured</span>
               </div>
 
               {/* Module 1 */}
               <div
                 onClick={() => setActiveTab("p1")}
-                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+                className="cursor-pointer rounded-xl border border-border bg-background p-4 sm:p-5 transition hover:border-foreground/40 hover:shadow-xs space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
                       01
                     </span>
-                    <span className="text-xs font-bold text-foreground">Inbound Ingestion &amp; Latency</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-foreground">Inbound Ingestion &amp; Latency</h4>
+                      <p className="text-[11px] text-muted">Routing: {state.slaResponseTime === 30 ? "< 5 min SLA (Instant)" : "> 4h Delay"}</p>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono font-bold text-foreground">{p1Total}%</span>
+                  <span className="text-sm font-mono font-bold text-foreground">{p1Total}%</span>
                 </div>
-                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p1Total}%` }} />
-                </div>
-                <div className="flex justify-between text-[11px] text-muted">
-                  <span>Routing: {state.slaResponseTime === 30 ? "< 5 min SLA" : "> 4h Delay"}</span>
-                  <span className="text-accent-dark font-medium">Configure →</span>
                 </div>
               </div>
 
               {/* Module 2 */}
               <div
                 onClick={() => setActiveTab("p2")}
-                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+                className="cursor-pointer rounded-xl border border-border bg-background p-4 sm:p-5 transition hover:border-foreground/40 hover:shadow-xs space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
                       02
                     </span>
-                    <span className="text-xs font-bold text-foreground">CRM Architecture &amp; Attribution</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-foreground">CRM Architecture &amp; Attribution</h4>
+                      <p className="text-[11px] text-muted">UTM Standard: {state.utmTaxonomy === 35 ? "Closed-Loop Attribution" : "Ad-hoc / Missing"}</p>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono font-bold text-foreground">{p2Total}%</span>
+                  <span className="text-sm font-mono font-bold text-foreground">{p2Total}%</span>
                 </div>
-                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p2Total}%` }} />
-                </div>
-                <div className="flex justify-between text-[11px] text-muted">
-                  <span>UTM Standard: {state.utmTaxonomy === 35 ? "Closed-Loop" : "Ad-hoc / Missing"}</span>
-                  <span className="text-accent-dark font-medium">Configure →</span>
                 </div>
               </div>
 
               {/* Module 3 */}
               <div
                 onClick={() => setActiveTab("p3")}
-                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+                className="cursor-pointer rounded-xl border border-border bg-background p-4 sm:p-5 transition hover:border-foreground/40 hover:shadow-xs space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
                       03
                     </span>
-                    <span className="text-xs font-bold text-foreground">UK GDPR &amp; PECR Governance</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-foreground">UK GDPR &amp; PECR Governance</h4>
+                      <p className="text-[11px] text-muted">Marketing Opt-in: {state.marketingOptIn === 35 ? "Unbundled & Explicit" : "Regulatory Risk"}</p>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono font-bold text-foreground">{p3Total}%</span>
+                  <span className="text-sm font-mono font-bold text-foreground">{p3Total}%</span>
                 </div>
-                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p3Total}%` }} />
-                </div>
-                <div className="flex justify-between text-[11px] text-muted">
-                  <span>Marketing Opt-in: {state.marketingOptIn === 35 ? "Unbundled & Explicit" : "Risk / Pre-ticked"}</span>
-                  <span className="text-accent-dark font-medium">Configure →</span>
                 </div>
               </div>
 
               {/* Module 4 */}
               <div
                 onClick={() => setActiveTab("p4")}
-                className="cursor-pointer rounded-xl border border-border bg-surface p-4 transition hover:border-foreground/40 space-y-2.5"
+                className="cursor-pointer rounded-xl border border-border bg-background p-4 sm:p-5 transition hover:border-foreground/40 hover:shadow-xs space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-[11px] font-mono font-bold text-accent">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
                       04
                     </span>
-                    <span className="text-xs font-bold text-foreground">Automated Nurture &amp; Resilience</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-foreground">Automated Nurture &amp; Resilience</h4>
+                      <p className="text-[11px] text-muted">Error Monitoring: {state.errorMonitoring === 35 ? "Slack / Dead-Letter Queue" : "Silent Failures"}</p>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono font-bold text-foreground">{p4Total}%</span>
+                  <span className="text-sm font-mono font-bold text-foreground">{p4Total}%</span>
                 </div>
-                <div className="h-1.5 w-full rounded-full bg-surface-alt overflow-hidden">
+                <div className="h-2 w-full rounded-full bg-surface-alt overflow-hidden">
                   <div className="h-full bg-foreground transition-all duration-300" style={{ width: `${p4Total}%` }} />
-                </div>
-                <div className="flex justify-between text-[11px] text-muted">
-                  <span>Error Monitoring: {state.errorMonitoring === 35 ? "Slack / Dead-Letter Queue" : "Silent Failures"}</span>
-                  <span className="text-accent-dark font-medium">Configure →</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Real-time Findings Log (5 cols) */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground">Diagnostic Findings Log</h3>
+              <div className="flex items-center justify-between pb-1">
+                <h3 className="text-sm font-bold text-foreground uppercase tracking-wide">Diagnostic Findings Log</h3>
                 <span className="rounded bg-surface-alt px-2 py-0.5 text-[10px] font-mono text-muted">
                   {findings.length} Flagged
                 </span>
               </div>
 
-              <div className="rounded-xl border border-border bg-surface p-4 space-y-3">
+              <div className="rounded-xl border border-border bg-background p-4 sm:p-5 space-y-3.5">
                 {findings.map((f, idx) => (
-                  <div key={idx} className="border-b border-border/60 pb-3 last:border-b-0 last:pb-0 space-y-1">
+                  <div key={idx} className="border-b border-border/80 pb-3 last:border-b-0 last:pb-0 space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-wider">{f.area}</span>
                       <span
@@ -596,7 +592,7 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
               <button
                 onClick={() => setActiveTab("roadmap")}
-                className="w-full rounded-lg border border-border bg-surface py-2 text-xs font-semibold text-foreground hover:bg-surface-alt transition text-center"
+                className="w-full rounded-lg bg-foreground py-2.5 text-xs font-semibold text-accent transition hover:bg-foreground/90 shadow-sm text-center"
               >
                 View 14-Day Remediation Sprint Roadmap →
               </button>
@@ -606,30 +602,30 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
         {/* TAB 2: PILLAR 01 CONFIGURATION */}
         {activeTab === "p1" && (
-          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
-            <div>
+          <div className="rounded-xl border border-border bg-background p-6 space-y-6 max-w-3xl mx-auto">
+            <div className="border-b border-border pb-4">
               <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 01</span>
               <h3 className="text-lg font-bold text-foreground">Inbound Ingestion &amp; Routing Latency</h3>
               <p className="text-xs text-muted">Configure how web form payloads move into sales routing and CRM distribution.</p>
             </div>
 
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Lead Capture Mechanism</label>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Lead Ingestion Mechanism</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "Manual CSV export / sporadic batch", pts: "0 pts (High Leak)" },
                     { val: 10, label: "Email notifications with manual entry", pts: "10 pts" },
                     { val: 20, label: "Standard form plugin (daily sync)", pts: "20 pts" },
-                    { val: 30, label: "Zero-Latency Webhook / API", pts: "30 pts (Instant)" },
+                    { val: 30, label: "Zero-Latency Webhook / Direct API", pts: "30 pts (Instant)" },
                   ].map((opt) => (
                     <button
                       key={opt.val}
                       onClick={() => setState({ ...state, leadCaptureMethod: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.leadCaptureMethod === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -639,8 +635,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Initial Lead Routing SLA</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Initial Lead Routing SLA</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "> 24h Response Delay", pts: "0 pts (High Drop-off)" },
@@ -653,8 +649,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, slaResponseTime: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.slaResponseTime === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -664,8 +660,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Input Validation &amp; Sanitization</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Input Validation &amp; Sanitization</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "No validation (Junk in CRM)", pts: "0 pts" },
@@ -678,8 +674,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, dataValidation: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.dataValidation === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -694,16 +690,16 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
         {/* TAB 3: PILLAR 02 CONFIGURATION */}
         {activeTab === "p2" && (
-          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
-            <div>
+          <div className="rounded-xl border border-border bg-background p-6 space-y-6 max-w-3xl mx-auto">
+            <div className="border-b border-border pb-4">
               <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 02</span>
               <h3 className="text-lg font-bold text-foreground">CRM Architecture &amp; Attribution Taxonomy</h3>
               <p className="text-xs text-muted">Configure database structure, lifecycle stages, and campaign attribution.</p>
             </div>
 
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Database &amp; CRM Architecture</label>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Database &amp; CRM Architecture</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "Chaotic spreadsheets / email threads", pts: "0 pts" },
@@ -716,8 +712,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, crmPlatform: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.crmPlatform === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -727,8 +723,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">UTM &amp; Attribution Governance</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">UTM &amp; Attribution Governance</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "No UTMs (Direct/Unknown traffic)", pts: "0 pts" },
@@ -741,8 +737,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, utmTaxonomy: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.utmTaxonomy === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -752,8 +748,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Executive Reporting &amp; Dashboards</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Executive Reporting &amp; Dashboards</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "No reporting / manual guessing", pts: "0 pts" },
@@ -766,8 +762,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, analyticsDashboards: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.analyticsDashboards === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -782,16 +778,16 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
         {/* TAB 4: PILLAR 03 CONFIGURATION */}
         {activeTab === "p3" && (
-          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
-            <div>
+          <div className="rounded-xl border border-border bg-background p-6 space-y-6 max-w-3xl mx-auto">
+            <div className="border-b border-border pb-4">
               <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 03</span>
               <h3 className="text-lg font-bold text-foreground">UK GDPR &amp; PECR Regulatory Governance</h3>
               <p className="text-xs text-muted">Audit consent mechanisms, privacy notices, and data sovereignty compliance.</p>
             </div>
 
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Cookie &amp; Pixel Consent (PECR Rules)</label>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Cookie &amp; Pixel Consent (PECR Rules)</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "No banner / scripts fire prior to consent", pts: "0 pts (PECR Breach)" },
@@ -804,8 +800,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, cookieConsent: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.cookieConsent === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -815,8 +811,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Marketing Opt-In Checkboxes</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Marketing Opt-In Checkboxes</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "Pre-ticked box or bundled in T&Cs", pts: "0 pts (Illegal)" },
@@ -828,8 +824,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, marketingOptIn: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.marketingOptIn === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -839,8 +835,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Data Retention &amp; Sovereignty</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Data Retention &amp; Sovereignty</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "Indefinite storage in plain spreadsheets", pts: "0 pts" },
@@ -852,8 +848,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, dataRetentionJurisdiction: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.dataRetentionJurisdiction === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -868,16 +864,16 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
         {/* TAB 5: PILLAR 04 CONFIGURATION */}
         {activeTab === "p4" && (
-          <div className="rounded-xl border border-border bg-surface p-5 space-y-6 max-w-3xl mx-auto">
-            <div>
+          <div className="rounded-xl border border-border bg-background p-6 space-y-6 max-w-3xl mx-auto">
+            <div className="border-b border-border pb-4">
               <span className="text-xs font-mono font-bold text-accent-dark uppercase">Module 04</span>
               <h3 className="text-lg font-bold text-foreground">Automated Nurture &amp; Resilience</h3>
               <p className="text-xs text-muted">Configure multi-channel nurture flows, AI categorization, and error handling.</p>
             </div>
 
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Lead Nurture Sequences</label>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Lead Nurture Sequences</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "No automated follow-up (Leads sit cold)", pts: "0 pts" },
@@ -890,8 +886,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, nurtureFlows: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.nurtureFlows === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -901,8 +897,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Webhook Monitoring &amp; Dead-Letter Queue</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">Webhook Monitoring &amp; Dead-Letter Queue</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "Silent failures (Nobody knows when broken)", pts: "0 pts" },
@@ -915,8 +911,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, errorMonitoring: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.errorMonitoring === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -926,8 +922,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">AI Process Augmentation</label>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-foreground">AI Process Augmentation</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {[
                     { val: 0, label: "100% manual review & classification", pts: "0 pts" },
@@ -939,8 +935,8 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
                       onClick={() => setState({ ...state, aiAugmentation: opt.val })}
                       className={`p-3 rounded-lg border text-left transition ${
                         state.aiAugmentation === opt.val
-                          ? "border-foreground bg-surface-alt font-semibold text-foreground shadow-xs"
-                          : "border-border bg-surface text-muted hover:border-foreground/30"
+                          ? "border-foreground bg-surface font-semibold text-foreground shadow-xs"
+                          : "border-border bg-surface-alt/50 text-muted hover:border-foreground/30"
                       }`}
                     >
                       <div className="font-medium text-foreground">{opt.label}</div>
@@ -955,7 +951,7 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
         {/* TAB 6: ROADMAP & REMEDIATION */}
         {activeTab === "roadmap" && (
-          <div className="rounded-xl border border-border bg-surface p-6 space-y-6 max-w-3xl mx-auto">
+          <div className="rounded-xl border border-border bg-background p-6 space-y-6 max-w-3xl mx-auto">
             <div className="border-b border-border pb-4">
               <span className="text-xs font-mono font-bold text-accent-dark uppercase">Execution Plan</span>
               <h3 className="text-lg font-bold text-foreground">14-Day Technical Remediation Sprint</h3>
@@ -964,7 +960,7 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
 
             <div className="space-y-4">
               {roadmap.map((s, idx) => (
-                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-xl border border-border bg-background">
+                <div key={idx} className="flex items-start gap-3.5 p-4 rounded-xl border border-border bg-surface">
                   <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-foreground text-xs font-mono font-bold text-accent">
                     {idx + 1}
                   </div>
@@ -990,7 +986,7 @@ ${roadmap.map((s, idx) => `${idx + 1}. [${s.phase}] ${s.title}: ${s.desc}`).join
       </div>
 
       {/* 5. SAAS APP FOOTER STATUS */}
-      <div className="border-t border-border bg-surface-alt px-4 py-2.5 sm:px-6 flex flex-wrap items-center justify-between text-[11px] font-mono text-muted">
+      <div className="border-t border-border bg-surface-alt px-5 py-3 sm:px-8 flex flex-wrap items-center justify-between text-[11px] font-mono text-muted gap-2">
         <div>
           <span>Engine: React 19 • Tailwind CSS • UK GDPR / PECR Diagnostic Logic</span>
         </div>

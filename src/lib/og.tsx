@@ -116,7 +116,7 @@ export function renderOg({ kicker, title, sub }: OgProps) {
               letterSpacing: "0.02em",
             }}
           >
-            Product Marketing • Marketing Operations • GTM Strategy
+            Coaches • Creators • Local businesses · oloye.co.uk
           </div>
         </div>
       </div>

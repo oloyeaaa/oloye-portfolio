@@ -50,6 +50,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      // The free checklist the home page points at.
+      url: `${SITE_URL}/free/10-jobs-to-automate-first`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
       // The marketing career tier list. Real search demand, and the one page
       // that can be found for terms the YouTube channel cannot rank for,
       // because the channel is named after a person.

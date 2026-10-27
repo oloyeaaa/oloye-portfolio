@@ -7,7 +7,7 @@ export const SITE_LEGAL_NAME = "Oloye Adeosun";
 export const SITE_TAGLINE = "Simple automations that save your business time and money";
 
 export const SITE_DESCRIPTION =
-  "Most small businesses lose hours every week to the same small jobs. We build simple automations that do those jobs for you, so you save time, save money and get back to the real work.";
+  "Simple automations that save small businesses time and money. We take the repeat jobs off your plate, from new leads to clients who come back.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",

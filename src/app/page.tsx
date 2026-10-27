@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { JsonLd } from "@/components/JsonLd";
-import { webPageSchema } from "@/lib/schema";
+import { webPageSchema, serviceSchema } from "@/lib/schema";
 import { SITE_URL, SITE_DESCRIPTION, BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 import Reveal from "@/components/home/Reveal";
 import TypingJobs from "@/components/home/TypingJobs";
@@ -12,6 +12,8 @@ import ProcessFlow from "@/components/home/ProcessFlow";
 import LogoMarquee from "@/components/home/LogoMarquee";
 import CountUp from "@/components/home/CountUp";
 import BlogCards from "@/components/home/BlogCards";
+import Faq from "@/components/Faq";
+import { FAQS } from "@/lib/faqs";
 
 // The home page follows the StoryBrand website wireframe (header, stakes, value,
 // guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
@@ -102,6 +104,15 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/", title: TITLE, description: DESCRIPTION, type: "WebPage" })} />
+      <JsonLd
+        data={serviceSchema({
+          name: "Process automation for small businesses",
+          description: DESCRIPTION,
+          serviceType: "Business process automation",
+          areaServed: "GB",
+          audience: ["Coaches", "Content creators", "Small business owners", "Local businesses"],
+        })}
+      />
 
       <div className="bg-surface">
         {/* 1. Header: what we offer, how life gets better, what to do next */}
@@ -332,6 +343,9 @@ export default function HomePage() {
             </Reveal>
           </div>
         </section>
+
+        {/* FAQ: the same block on every page, questions from src/lib/faqs.ts */}
+        <Faq items={FAQS.home} />
 
         {/* 8. Last call */}
         <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 pt-8 sm:px-6">

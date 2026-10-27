@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
       { source: "/services", destination: "/", permanent: true },
       { source: "/services/:slug*", destination: "/", permanent: true },
       { source: "/oloye", destination: "/", permanent: true },
-      { source: "/contact", destination: "/", permanent: true },
+      // /contact is NOT here any more: a real Contact page came back 2026-10-27.
       { source: "/agentic-ai-systems", destination: "/", permanent: true },
       {
         source: "/agentic-ai-systems/how-it-works",

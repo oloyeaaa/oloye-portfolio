@@ -11,6 +11,7 @@ const columns = [
       { name: "Proof", href: "/#proof" },
       { name: "Case studies", href: "/case-studies" },
       { name: "About the founder", href: "/about" },
+      { name: "Contact", href: "/contact" },
     ],
   },
   {

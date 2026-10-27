@@ -110,4 +110,22 @@ export const FAQS: Record<string, FaqItem[]> = {
       answer: "Oloye has been building marketing systems for over 3 years.",
     },
   ],
+  contact: [
+    {
+      question: "Is the call really free?",
+      answer: "Yes. There's no cost and no pressure to go ahead. We look at the job that eats your week and tell you what we'd build first.",
+    },
+    {
+      question: "What should I put in my message?",
+      answer: "Just the job that takes up your time, in your own words. A few lines is plenty. No need to know which tools you'd need.",
+    },
+    {
+      question: "Who reads my message?",
+      answer: "Oloye, the founder. A real person reads every one.",
+    },
+    {
+      question: "What happens to my details?",
+      answer: "They're kept in our own list so we can reply to you. We only send you other emails if you tick the box to say that's fine.",
+    },
+  ],
 };

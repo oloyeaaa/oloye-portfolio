@@ -19,6 +19,8 @@ Do them in this order. Each one is small. Tick it when it's done.
 
 - [ ] **4. Check the MailerLite key is on the live site.** On your PC the key is set. Wherever the site is hosted (Vercel), the setting `MAILERLITE_API_KEY` must be there too, or the forms will fail on the live site.
 
+- [ ] **4b. Switch on the contact form.** Its messages go into your Airtable **Leads** table (Content Engine base) as Platform "Website", Stage "New". Make an Airtable personal access token that can write to that base (airtable.com/create/tokens: scopes `data.records:read` and `data.records:write`, access to the Content Engine base). Put it in `website/.env.local` as `AIRTABLE_LEADS_TOKEN=...` and add the same setting on the live host. Until then the form politely tells people to book a call or DM instead. Then send one test message and check the row lands.
+
 - [ ] **5. Check two FAQ answers on the home page** (they're promises): the price one ("you know the price before anything starts") and "you don't have to learn how it works inside". Say yes or change them.
 
 - [ ] **6. Say "push it live".** Nothing goes live until you do.

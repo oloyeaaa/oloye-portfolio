@@ -61,6 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.95,
     },
+    { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.6 },
     {
       // The free checklist the home page points at.
       url: `${SITE_URL}/free/10-jobs-to-automate-first`,

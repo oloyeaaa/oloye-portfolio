@@ -22,7 +22,7 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, list: "free-tools", source }),
+        body: JSON.stringify({ name, email, list: `post-${freebie.key}`, source }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {

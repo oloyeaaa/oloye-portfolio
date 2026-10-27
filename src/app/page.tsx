@@ -246,7 +246,12 @@ export default function HomePage() {
             <div className="mt-28">
               <Reveal>
                 <p className="eyebrow">Case studies</p>
-                <h3 className="display mt-4 text-3xl sm:text-5xl">Real builds. Coming soon.</h3>
+                <div className="mt-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                  <h3 className="display text-3xl sm:text-5xl">Real builds. Coming soon.</h3>
+                  <Link href="/case-studies" className="text-sm font-semibold text-foreground hover:underline decoration-accent decoration-2 underline-offset-4">
+                    Case studies →
+                  </Link>
+                </div>
               </Reveal>
               <div className="mt-12 grid gap-6 sm:grid-cols-3">
                 {[0, 1, 2].map((i) => (

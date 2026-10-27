@@ -7,7 +7,7 @@ import { BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 
 const navigation = [
   { name: "How it works", href: "/#how-it-works" },
-  { name: "Proof", href: "/#proof" },
+  { name: "Case studies", href: "/case-studies" },
   { name: "Free checklist", href: CHECKLIST_URL },
   { name: "Blog", href: "/blog" },
 ];

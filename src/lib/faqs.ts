@@ -73,4 +73,21 @@ export const FAQS: Record<string, FaqItem[]> = {
         "With the free checklist, 10 jobs to automate first. Pick the one that eats most of your week, then read the post that matches it.",
     },
   ],
+  caseStudies: [
+    {
+      question: "What will the case studies show?",
+      answer:
+        "One business and one job each: what was eating their week, what we built, the tools it uses, and how it runs now, step by step.",
+    },
+    {
+      question: "Are they real businesses?",
+      answer:
+        "The first ones are demo builds: a made-up business with a real automation built for it, so you can see exactly how it works. We'll say clearly which is which.",
+    },
+    {
+      question: "Can I see one before they're ready?",
+      answer:
+        "Yes. Book a free call and we'll walk you through a build that fits your business.",
+    },
+  ],
 };

@@ -9,6 +9,7 @@ const columns = [
       { name: "Book a free call", href: BOOKING_URL },
       { name: "How it works", href: "/#how-it-works" },
       { name: "Proof", href: "/#proof" },
+      { name: "Case studies", href: "/case-studies" },
     ],
   },
   {

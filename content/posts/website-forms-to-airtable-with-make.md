@@ -34,7 +34,7 @@ The form did its job. The bit after it didn't.
 
 Most websites send a form straight to an email inbox. That feels fine until you have a few a week. Then they sit between newsletters and receipts, nobody owns them, and there's no list of who asked for what.
 
-What you want instead is simple. Every form lands in one list. Each person is one row. And the first reply goes out on its own, so nobody waits.
+What you want instead is simple. Every form lands in one list. Each person is one row. And the first reply goes out on its own, so nobody waits. No website yet? [A free form and an Airtable base](/blog/the-zero-dollar-owned-pipeline-for-creators) does the same job.
 
 ## How to send website forms to Airtable with Make
 
@@ -56,7 +56,7 @@ Each one sends a small bundle: name, email, what they asked for or said, and a l
 
 ### Step 2: Make checks the key
 
-The form doesn't go to an inbox. It goes to a private web address in Make, called a webhook. The website sends it from its own server, so the address never shows on the page.
+The form doesn't go to an inbox. It goes to a private web address in Make, called a [webhook](https://help.make.com/webhooks). The website sends it from its own server, so the address never shows on the page.
 
 Every bundle carries a secret key. The first thing Make does is check it. If the key is wrong or missing, it stops right there. Nothing is saved and nothing is sent.
 
@@ -64,7 +64,7 @@ Every bundle carries a secret key. The first thing Make does is check it. If the
 
 ### Step 3: Saved in Airtable
 
-Next, Make looks for the person in an Airtable table by their email.
+Next, Make looks for the person in an [Airtable](https://www.airtable.com) table by their email.
 
 - **New person:** a new row, marked "New", with today's date and what they said.
 - **Already there:** the same row is updated. Their stage stays as it was, and the new message is added under the old ones.
@@ -77,7 +77,7 @@ One person, one row. No duplicates.
 
 Then Make looks at the label and picks a road.
 
-**A free thing:** Gmail sends them an email with the link, straight away. Their row moves to "Free thing sent".
+**A free thing:** [Gmail](https://workspace.google.com/products/gmail/) sends them an email with the link, straight away. Their row moves to "Free thing sent".
 
 ![The email someone gets after asking for a free thing](/images/blog/website-forms/email-free-thing.png)
 
@@ -98,6 +98,6 @@ A few small things do most of the work:
 
 ## What it changes
 
-Nobody waits for a reply to a free thing. Every enquiry is in one place, with a stage, so you can see who needs a reply today. And you stop digging through your inbox on a Friday night.
+Nobody waits for a reply to a free thing. Every enquiry is in one place, with a stage, so you can see who needs a reply today. It also closes the first of [the gaps where most funnels lose people](/blog/why-ai-funnels-fail-at-the-handoff). And you stop digging through your inbox on a Friday night.
 
-We built it with tools we already used. If you'd like this set up for your own forms, book a free call and we'll look at it together.
+We built it with tools we already used. If you'd like this set up for your own forms, [book a free call](/contact) and we'll look at it together.

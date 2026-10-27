@@ -48,11 +48,11 @@ There are three pieces. Someone sees your post, signs up through a tiny form, th
 
 ### Step 1: A front door with one question
 
-Long forms put people off. Every extra question is one more reason to close the page. Ask for an email address and nothing else. A Google Form works, or a comment-to-DM message if you use Instagram.
+Long forms put people off. Every extra question is one more reason to close the page. Ask for an email address and nothing else. A [Google Form](https://www.google.com/forms/about/) works, or a comment-to-DM message if you use Instagram.
 
 ### Step 2: A free place to keep the names
 
-Connect the form to a Google Sheet or an Airtable base. When someone types their email, it shows up as a new row with the date and time. It costs nothing.
+[Connect the form to a Google Sheet](https://support.google.com/docs/answer/2917686) or an [Airtable](https://www.airtable.com) base. When someone types their email, it shows up as a new row with the date and time. It costs nothing. We walk through the full setup, with the columns to add, in [a free way to catch every enquiry from your posts](/blog/the-zero-dollar-owned-pipeline-for-creators).
 
 ### Step 3: A short welcome
 
@@ -62,7 +62,7 @@ Send the free thing they asked for straight away. Then send two short, plain ema
 
 ## Let Claude sort the replies for you
 
-Once people start writing back or commenting, it's easy to lose track. We use a simple prompt for this. Paste in the comments and messages you've had, then this prompt, into Claude:
+Once people start writing back or commenting, it's easy to lose track. We use a simple prompt for this. Paste in the comments and messages you've had, then this prompt, into [Claude](https://www.anthropic.com/claude):
 
 ```text
 You are helping a small business owner reply to the people who contact them.
@@ -88,4 +88,4 @@ You still read every reply and send it yourself. Claude just saves you the sorti
 
 ## Start small, keep it yours
 
-You don't need thousands of names. You need a few people who asked to hear from you, and a way to reach them that no app can switch off. Set up the form tonight, send one kind email, and you've started building something that's yours.
+You don't need thousands of names. You need a few people who asked to hear from you, and a way to reach them that no app can switch off. Set up the form tonight, send one kind email, and you've started building something that's yours. When replies start coming in, [close the gaps after someone signs up](/blog/why-ai-funnels-fail-at-the-handoff) so nobody waits.

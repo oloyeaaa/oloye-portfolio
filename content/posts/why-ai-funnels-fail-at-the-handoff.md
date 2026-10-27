@@ -43,13 +43,13 @@ No prompt would have saved that person. Nobody was watching the gap between the 
 
 Leads come in from Instagram messages, website forms and booking links. Nobody gets a reply straight away, and the details end up spread across three different sheets.
 
-What we do instead: every new enquiry goes straight into one Airtable table through Make. The name, email and phone number get tidied up on the way in, and you get a message to say someone new is waiting.
+What we do instead: every new enquiry goes straight into one [Airtable](https://www.airtable.com) table through [Make](https://help.make.com/). There's [a free version of this first step](/blog/the-zero-dollar-owned-pipeline-for-creators) if you're just starting. The name, email and phone number get tidied up on the way in, and you get a message to say someone new is waiting.
 
 ### From a good call to a proposal
 
 You have a great call on Tuesday. They're keen. But building the proposal takes until Sunday night, and by Monday they've gone quiet.
 
-What we do instead: each deal in Airtable is linked to a Google Slides template. When you move a deal to "Proposal sent", Make fills in the scope, what's included and the price, and saves it as a PDF ready to send.
+What we do instead: each deal in Airtable is linked to a [Google Slides](https://workspace.google.com/products/slides/) template. When you move a deal to "Proposal sent", Make fills in the scope, what's included and the price, and saves it as a PDF ready to send.
 
 ### From "yes" to getting started
 
@@ -66,11 +66,11 @@ These are the rules we build by, so a small system keeps working without someone
 | Rule | What it means |
 | --- | --- |
 | One place for the truth | One Airtable base for deals, clients, tasks and proposals. No loose sheets on the side. |
-| Keep the tools few | Make, Airtable and Google Workspace cover most of it. No big monthly software bills. |
+| Keep the tools few | Make, Airtable and Google Workspace cover most of it. No big monthly software bills ([why plain tools last](/blog/google-infrastructure-vs-ai-hype)). |
 | Get told when it breaks | Set up an email or Slack alert if a step fails, or if a lead sits untouched. |
 | Only build what repeats | Automate jobs that happen three or more times a week. Keep it simple enough to explain in plain words. |
 
-> **Try this:** write down every step from "someone finds you" to "they start working with you". Next to each one, write who does it and how long it usually takes. The longest wait is your first gap to close.
+> **Try this:** write down every step from "someone finds you" to "they start working with you". Next to each one, write who does it and how long it usually takes. The longest wait is your first gap to close. Our free [10 jobs to automate first](/free/10-jobs-to-automate-first) checklist can help you spot it.
 
 ## What it's really for
 

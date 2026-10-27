@@ -25,7 +25,7 @@ freebie: "LOOP"
 coverImage: "/images/blog/cover-ai-team.jpg"
 ---
 
-A lot of people open Claude, type "write me a post about my business" and press enter. What comes back is flat. It sounds like every other post out there, and nobody stops to read it.
+A lot of people open [Claude](https://www.anthropic.com/claude), type "write me a post about my business" and press enter. What comes back is flat. It sounds like every other post out there, and nobody stops to read it.
 
 That isn't Claude's fault. It was given nothing real to work with. Give it real words and clear rules, and it becomes a fast first-draft helper. That's how one person can get through the marketing work of a small team.
 
@@ -72,7 +72,7 @@ This is where most of the time gets saved. One recording can feed a whole week.
 
 ### Step 1: Record and get a transcript
 
-Talk through one idea on camera or as a voice note. Run it through a tool like Descript or Whisper to get the words as text.
+Talk through one idea on camera or as a voice note. Run it through a tool like [Descript](https://www.descript.com) or [Whisper](https://github.com/openai/whisper) to get the words as text.
 
 ### Step 2: Turn the transcript into a blog post
 
@@ -80,7 +80,7 @@ Give Claude the transcript and your rules. Ask it to clean up the spoken wander,
 
 ### Step 3: Pull out the short posts
 
-Ask Claude for three short pieces from the same transcript, each one able to stand on its own. Those become posts for TikTok, Instagram or LinkedIn.
+Ask Claude for three short pieces from the same transcript, each one able to stand on its own. Those become posts for TikTok, Instagram or LinkedIn. Point each one back to your email list, because [followers on their own are hard to reach](/blog/why-10k-followers-mean-nothing-without-an-email-list).
 
 > **In plain words:** repurposing just means using one thing you made in more than one place, instead of starting from scratch every time.
 
@@ -88,4 +88,4 @@ Ask Claude for three short pieces from the same transcript, each one able to sta
 
 The trap here is thinking the tool will do the thinking. It won't. If you give it nothing, you get nothing much back.
 
-What works is the other way round. You bring the real problems, the real words and the real story. Claude helps you get them down faster and in more places. Start with one recording this week and see how far it goes.
+What works is the other way round. You bring the real problems, the real words and the real story. Claude helps you get them down faster and in more places. Start with one recording this week and see how far it goes. For ideas on what else to hand over, our free [10 jobs to automate first](/free/10-jobs-to-automate-first) checklist is a good place to start.

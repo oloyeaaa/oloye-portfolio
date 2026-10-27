@@ -67,12 +67,12 @@ You don't need five new AI subscriptions. You don't need to learn to code. And y
 What we do instead is build on a plain base that you own:
 
 1. Keep your main notes in a Google Doc or in NotebookLM.
-2. Keep your leads and customers in a Google Sheet or [Airtable](https://airtable.com).
+2. Keep your leads and customers in a Google Sheet or [Airtable](https://airtable.com). Here's [a free way to set that up](/blog/the-zero-dollar-owned-pipeline-for-creators).
 3. Use Gemini inside the Google apps you already pay for.
 
 We still use Claude for the thinking and the writing. But the records stay in the plain tools, so if one app changes or goes away, your business doesn't go with it.
 
-> **Try this:** Before you sign up for the next new tool, ask one question. "Where will my notes and my leads live if I stop paying for this?" If the answer is "inside that app", keep them somewhere you own first.
+> **Try this:** Before you sign up for the next new tool, ask one question. "Where will my notes and my leads live if I stop paying for this?" If the answer is "inside that app", keep them somewhere you own first. And when the records are in one place, you can start [closing the gaps where leads get lost](/blog/why-ai-funnels-fail-at-the-handoff).
 
 ## Quiet is not the same as behind
 

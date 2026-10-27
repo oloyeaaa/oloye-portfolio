@@ -32,13 +32,13 @@ People see your posts, like them, and move on. Most of them never come back, and
 
 When I started building online, I paid for a lot of software and courses with money I didn't really have. It felt like progress. It wasn't. I was hiding behind the tools instead of putting my work out there. In the end I cut the subscriptions.
 
-If that sounds like you, you're not alone. That's the tool trap. The way out is smaller than you think: a form, a table and one email. We use Google Forms or Airtable Forms, and an Airtable base on the free plan.
+If that sounds like you, you're not alone. That's the tool trap. The way out is smaller than you think: a form, a table and one email. We use [Google Forms](https://www.google.com/forms/about/) or [Airtable Forms](https://support.airtable.com/articles/8588280258-getting-started-with-airtable-form-views), and an Airtable base on the [free plan](https://support.airtable.com/docs/airtable-plans).
 
 ## Followers are rented, your list is yours
 
 When you post on Instagram or TikTok, the app decides who sees it. If your account gets locked, those followers are gone. You can't email them or call them.
 
-Your own list is different. Once someone gives you their name and email, you can reach them whenever you need to, on any app or none.
+Your own list is different. Once someone gives you their name and email, you can reach them whenever you need to, on any app or none. We go into this more in [why 10k followers mean little without an email list](/blog/why-10k-followers-mean-nothing-without-an-email-list).
 
 > **In plain words:** your "list" is just a table of people who asked to hear from you, with their name, email and what they need help with.
 
@@ -79,7 +79,7 @@ Then put the form link in your bio. If you have your own website, you can point 
 
 ## Step 3: Send a thank-you email straight away
 
-You don't need Zapier for this. Airtable has free automations built in. Set it up like this:
+You don't need Zapier for this. Airtable has [free automations](https://support.airtable.com/docs/getting-started-with-airtable-automations) built in. Set it up like this:
 
 - **When:** a new record is created in your table.
 - **Do:** send an email from your connected Gmail.
@@ -94,4 +94,4 @@ Now every person who signs up gets what they asked for within a minute, even if 
 
 Once this is in place, your days get simpler. You make one honest post. You invite people who want the guide to click the link in your bio. The form catches them, the table keeps them, and the email gives them what you promised.
 
-You don't need a big software bill to do this. What you need is a simple setup and the nerve to press post today. Start with the three questions. You can add more later, once people are coming in.
+You don't need a big software bill to do this. What you need is a simple setup and the nerve to press post today. Start with the three questions. You can add more later, once people are coming in. Then the next job is [what happens after they sign up](/blog/why-ai-funnels-fail-at-the-handoff).

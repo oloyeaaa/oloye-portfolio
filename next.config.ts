@@ -32,7 +32,24 @@ const VERTICALS = [
   "restaurants",
 ];
 
+// Security headers on every page (2026-10-27 security pass). They tell the
+// browser: don't let other sites put us in a frame, don't guess file types,
+// always use HTTPS, share as little as possible when someone clicks away, and
+// don't ask for the camera, microphone or location.
+const SECURITY_HEADERS = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" },
+];
+
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  async headers() {
+    return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+  },
   async redirects() {
     return [
       { source: "/lab", destination: "/free", permanent: true },

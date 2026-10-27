@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
 
 /**
  * Contact form, into the Airtable Leads table (Content Engine base).
@@ -13,31 +14,31 @@ import { NextResponse } from "next/server";
 
 const BASE = process.env.AIRTABLE_LEADS_BASE_ID || "appm6XGHyuXjnhSAo";
 const TABLE = process.env.AIRTABLE_LEADS_TABLE_ID || "tbloe7mcslN4BJwPa";
-const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 type Fields = Record<string, unknown>;
 
 export async function POST(req: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  if (!fromOurSite(req)) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
   }
+  if (tooMany(req, "contact", 3)) {
+    return NextResponse.json({ error: "Too many messages. Please wait a few minutes, or book a free call." }, { status: 429 });
+  }
+  const body = await readSmallJson(req);
+  if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
   // Bots fill in the hidden field; people never see it.
   if (typeof body.website === "string" && body.website.trim() !== "") {
     return NextResponse.json({ ok: true });
   }
 
-  const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
-  const email = str(body.email, 200).toLowerCase();
-  const name = str(body.name, 80);
-  const business = str(body.business, 120);
-  const message = str(body.message, 3000);
+  const email = cleanEmail(body.email) || "";
+  const name = cleanText(body.name, 80);
+  const business = cleanText(body.business, 120);
+  const message = cleanText(body.message, 3000);
   const consent = body.consent === true;
 
-  if (!EMAIL_RE.test(email)) {
+  if (!email) {
     return NextResponse.json({ error: "That email address doesn't look right." }, { status: 400 });
   }
   if (message.length < 5) {
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
   try {
     const formula = encodeURIComponent(`LOWER({Email})='${email.replace(/'/g, "\\'")}'`);
     const found = await fetch(`${api}?maxRecords=1&filterByFormula=${formula}`, { headers, cache: "no-store" });
-    if (!found.ok) throw new Error(`lookup ${found.status}: ${await found.text()}`);
+    if (!found.ok) throw new Error(`lookup ${found.status}`);
     const existing = (await found.json()).records?.[0] as { id: string; fields: Fields } | undefined;
 
     let res: Response;
@@ -88,10 +89,10 @@ export async function POST(req: Request) {
       };
       res = await fetch(api, { method: "POST", headers, body: JSON.stringify({ fields, typecast: true }) });
     }
-    if (!res.ok) throw new Error(`save ${res.status}: ${await res.text()}`);
+    if (!res.ok) throw new Error(`save ${res.status}`);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Contact form failed", err);
+    console.error("Contact form failed", err instanceof Error ? err.message : "unknown");
     return NextResponse.json(
       { error: "Something went wrong sending that. Please try again, or book a free call." },
       { status: 502 }

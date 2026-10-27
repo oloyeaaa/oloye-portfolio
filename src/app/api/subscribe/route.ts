@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
 
 /**
  * Email capture, into MailerLite.
@@ -30,28 +31,26 @@ const GROUPS: Record<string, string> = {
 };
 const DEFAULT_GROUP = "free-tools";
 
-const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 export async function POST(req: Request) {
-  let email = "";
-  let name = "";
-  let list = DEFAULT_GROUP;
-  let consent = true;
-
-  try {
-    const body = await req.json();
-    consent = body?.consent !== false;
-    email = typeof body?.email === "string" ? body.email.trim() : "";
-    name = typeof body?.name === "string" ? body.name.trim().slice(0, 80) : "";
-    if (typeof body?.list === "string" && GROUPS[body.list]) list = body.list;
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  if (!fromOurSite(req)) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
   }
+  if (tooMany(req, "subscribe")) {
+    return NextResponse.json({ error: "Too many tries. Please wait a few minutes." }, { status: 429 });
+  }
+  const body = await readSmallJson(req);
+  if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+
+  const consent = body.consent !== false;
+  const email = cleanEmail(body.email) || "";
+  const name = cleanText(body.name, 80);
+  const list = typeof body.list === "string" && GROUPS[body.list] ? body.list : DEFAULT_GROUP;
 
   // UK rules: only add someone to the mailing list if they said yes. Forms that
   // offer a free thing send consent explicitly; a plain "keep me posted" form
   // is itself the yes, so it sends nothing and is treated as consent.
-  if (!EMAIL_RE.test(email)) {
+  if (!email) {
     return NextResponse.json(
       { error: "That email address does not look right." },
       { status: 400 }
@@ -86,8 +85,8 @@ export async function POST(req: Request) {
     });
 
     if (!res.ok) {
-      const detail = await res.text();
-      console.error("MailerLite subscribe failed", res.status, detail);
+      // Status only: the reply can contain the person's email, and logs aren't the place for it.
+      console.error("MailerLite subscribe failed", res.status);
       // 422 from MailerLite usually means the address is already subscribed.
       // That is not a failure from the reader's point of view, so treat it as
       // success rather than telling somebody their own email is wrong.
@@ -100,7 +99,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("MailerLite subscribe error", err);
+    console.error("MailerLite subscribe error", err instanceof Error ? err.message : "unknown");
     return NextResponse.json(
       { error: "Could not sign you up. Please try again." },
       { status: 502 }

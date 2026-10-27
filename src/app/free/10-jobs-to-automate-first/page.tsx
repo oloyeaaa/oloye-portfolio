@@ -77,7 +77,7 @@ export default function ChecklistPage() {
             <p className="mt-3 text-white/60">Those are the ones we&apos;d build first.</p>
             <a
               href={BOOKING_URL}
-              className="mt-8 inline-flex rounded-full bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light"
+              className="mt-8 inline-flex rounded-lg bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light"
             >
               Book a free call
             </a>

@@ -25,12 +25,14 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: SITE_URL, type: "website" },
 };
 
+// What doing it by hand costs the business, one line per block and two on the whole.
 const FRUSTRATIONS = [
-  "Typing new leads into a spreadsheet",
-  "Chasing payments, one by one",
-  "Writing the same email again",
-  "Forgetting to follow up",
-  "Evenings lost to admin",
+  "Leads going cold before anyone replies",
+  "New clients waiting days to get started",
+  "Hours every week rebuilding the same reports",
+  "Invoices paid late because nobody chased",
+  "Past clients who never hear from you again",
+  "Growth capped by the hours in your day",
 ];
 
 const VALUE = [
@@ -77,13 +79,13 @@ function Buttons({ dark = false }: { dark?: boolean }) {
     <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
       <a
         href={BOOKING_URL}
-        className="inline-flex w-full items-center justify-center rounded-full bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light sm:w-auto"
+        className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light sm:w-auto"
       >
         Book a free call
       </a>
       <Link
         href={CHECKLIST_URL}
-        className={`inline-flex w-full items-center justify-center rounded-full border px-7 py-4 text-sm font-semibold transition sm:w-auto ${
+        className={`inline-flex w-full items-center justify-center rounded-lg border px-7 py-4 text-sm font-semibold transition sm:w-auto ${
           dark
             ? "border-white/25 text-white hover:bg-white/10"
             : "border-border-strong text-foreground hover:bg-surface-alt"
@@ -195,29 +197,9 @@ export default function HomePage() {
               </h2>
             </Reveal>
 
-            <div className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="mt-16">
               <Reveal>
-                <div className="flex h-full flex-col justify-between rounded-3xl border border-border p-8">
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src="/images/brand/oloye-lime.jpg"
-                      alt="Oloye, founder"
-                      width={72}
-                      height={72}
-                      className="h-[72px] w-[72px] rounded-full object-cover"
-                    />
-                    <div>
-                      <p className="font-bold">Oloye</p>
-                      <p className="text-sm text-muted">Founder</p>
-                    </div>
-                  </div>
-                  <p className="display mt-10 text-3xl sm:text-4xl">New to posting. Not new to building.</p>
-                  <p className="mt-4 text-muted">Over 3 years building marketing systems.</p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={150}>
-                <figure className="flex h-full flex-col rounded-3xl border border-border bg-background p-6 sm:p-8">
+                <figure className="mx-auto flex max-w-3xl flex-col rounded-3xl border border-border bg-background p-6 sm:p-8">
                   <p className="eyebrow">What a client said</p>
                   <a href="/images/proof/rita-linkedin-review.png" target="_blank" rel="noopener noreferrer" className="mt-5 block">
                   <Image

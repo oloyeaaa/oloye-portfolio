@@ -37,7 +37,7 @@ export default function Header() {
           ))}
           <a
             href={BOOKING_URL}
-            className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-accent transition hover:bg-foreground/90"
+            className="rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-accent transition hover:bg-foreground/90"
           >
             Book a free call
           </a>
@@ -76,7 +76,7 @@ export default function Header() {
             <a
               href={BOOKING_URL}
               onClick={() => setMobileOpen(false)}
-              className="mt-6 rounded-full bg-accent py-4 text-center text-sm font-bold text-foreground"
+              className="mt-6 rounded-lg bg-accent py-4 text-center text-sm font-bold text-foreground"
             >
               Book a free call
             </a>

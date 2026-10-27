@@ -70,7 +70,7 @@ export default function SignupForm({
               href={notionUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-block rounded-md bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light"
+              className="mt-5 inline-block rounded-lg bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light"
             >
               Open the pack in Notion
             </a>
@@ -128,7 +128,7 @@ export default function SignupForm({
       <button
         type="submit"
         disabled={state === "sending"}
-        className="mt-5 rounded-md bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light disabled:opacity-60"
+        className="mt-5 rounded-lg bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light disabled:opacity-60"
       >
         {state === "sending" ? "Sending..." : button}
       </button>

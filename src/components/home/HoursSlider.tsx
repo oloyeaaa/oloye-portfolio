@@ -11,7 +11,7 @@ export default function HoursSlider() {
 
   return (
     <div className="mx-auto mt-16 max-w-3xl rounded-3xl border border-border bg-surface p-6 sm:p-10">
-      <p className="eyebrow">Small jobs add up</p>
+      <p className="eyebrow">The hours add up</p>
 
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         <label className="block">

@@ -8,6 +8,7 @@ import { BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 const navigation = [
   { name: "How it works", href: "/#how-it-works" },
   { name: "Case studies", href: "/case-studies" },
+  { name: "About", href: "/about" },
   { name: "Free checklist", href: CHECKLIST_URL },
   { name: "Blog", href: "/blog" },
 ];

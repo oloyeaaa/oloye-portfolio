@@ -10,6 +10,7 @@ const columns = [
       { name: "How it works", href: "/#how-it-works" },
       { name: "Proof", href: "/#proof" },
       { name: "Case studies", href: "/case-studies" },
+      { name: "About the founder", href: "/about" },
     ],
   },
   {

@@ -11,8 +11,8 @@ export const SITE_DESCRIPTION =
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
-  title: "Audience-to-Asset Pipeline Builder & Marketing Automation Specialist",
-  url: "https://www.linkedin.com/in/oloyeadeosun/",
+  title: "Founder, process automation for small businesses",
+  url: `${SITE_URL}/about`,
 };
 
 export const SOCIAL = {
@@ -28,7 +28,7 @@ export const CHECKLIST_URL = "/free/10-jobs-to-automate-first";
 
 export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/oloyeadeosun/";
-export const AVATAR_URL = `${SITE_URL}/images/oloye-avatar.png`;
+export const AVATAR_URL = `${SITE_URL}/images/brand/oloye-lime.jpg`;
 
 export const OG_DEFAULT = {
   width: 1200,

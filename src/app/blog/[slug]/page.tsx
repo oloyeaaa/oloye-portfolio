@@ -164,10 +164,10 @@ export default async function BlogPostPage({ params }: Props) {
               {post.excerpt && <p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{post.excerpt}</p>}
 
               <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted">
-                <span className="flex items-center gap-2.5">
+                <Link href="/about" rel="author" className="flex items-center gap-2.5 hover:text-foreground">
                   <Image src={author.image} alt="" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
-                  <span className="font-semibold text-foreground">{author.name}</span>
-                </span>
+                  <span className="font-semibold text-foreground underline-offset-4 hover:underline">{author.name}</span>
+                </Link>
                 {post.date && <time dateTime={post.date}>{formatDate(post.date)}</time>}
                 {post.updated && post.updated !== post.date && (
                   <span>Updated <time dateTime={post.updated}>{formatDate(post.updated)}</time></span>

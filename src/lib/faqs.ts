@@ -90,4 +90,24 @@ export const FAQS: Record<string, FaqItem[]> = {
         "Yes. Book a free call and we'll walk you through a build that fits your business.",
     },
   ],
+  about: [
+    {
+      question: "Who is behind Oloye?",
+      answer:
+        "Oloye Adeosun, the founder. He plans and checks every build. A team of AI agents, built on Claude, does the repeat work alongside him.",
+    },
+    {
+      question: "Is it just one person?",
+      answer:
+        "One person and a team of AI agents. That keeps things simple, and every build still gets a real person's eyes before it goes to you.",
+    },
+    {
+      question: "Where are you based?",
+      answer: "Kent, in the UK. Most of the work happens online, so where you are matters less than what's eating your week.",
+    },
+    {
+      question: "How long have you been doing this?",
+      answer: "Oloye has been building marketing systems for over 3 years.",
+    },
+  ],
 };

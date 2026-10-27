@@ -21,7 +21,7 @@ export const AUTHORS: Record<string, Author> = {
     role: "Founder",
     bio: "Oloye builds simple automations that save small businesses time and money, and has been building marketing systems for over 3 years. He lives in Kent with his family, and the whole point is the same for him as for you: more time for the work and the people that matter.",
     image: "/images/brand/oloye-lime.jpg",
-    url: SITE_URL,
+    url: `${SITE_URL}/about`,
     links: [
       { name: "Instagram", href: SOCIAL.instagram },
       { name: "TikTok", href: SOCIAL.tiktok },

@@ -20,7 +20,7 @@ import { FAQS } from "@/lib/faqs";
 // The home page follows the StoryBrand website wireframe (header, stakes, value,
 // guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
 
-const TITLE = "Process automation for small businesses | Oloye";
+const TITLE = "Workflow Automation for Small Businesses | Oloye";
 const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
@@ -85,7 +85,7 @@ export default function HomePage() {
       <JsonLd data={webPageSchema({ path: "/", title: TITLE, description: DESCRIPTION, type: "WebPage" })} />
       <JsonLd
         data={serviceSchema({
-          name: "Process automation for small businesses",
+          name: "Workflow automation for small businesses",
           description: DESCRIPTION,
           serviceType: "Business process automation",
           areaServed: "GB",
@@ -97,7 +97,7 @@ export default function HomePage() {
         {/* 1. Header: what we offer, how life gets better, what to do next */}
         <section className="px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-            <p className="eyebrow">Process automation for small businesses</p>
+            <p className="eyebrow">Workflow automation for small businesses</p>
             <h1 className="display mt-6 text-[2.9rem] text-foreground sm:text-7xl lg:text-[5.5rem]">
               Stop doing the same job <span className="lime-mark">twice.</span>
             </h1>

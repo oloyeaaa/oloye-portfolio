@@ -1,4 +1,4 @@
-# Oloye: process automation for small businesses
+# Oloye: workflow automation for small businesses
 
 > Oloye builds simple automations that save small businesses time and money. The repeat jobs in a business (following up new leads, onboarding new clients, delivering the work, keeping clients coming back) are joined up so they run on their own, using tools the business already knows: Google Workspace, Airtable, Make and Claude.
 

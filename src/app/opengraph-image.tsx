@@ -6,7 +6,7 @@ export const contentType = OG_CONTENT_TYPE;
 
 export default async function Image() {
   return renderOg({
-    kicker: "Process automation for small businesses",
+    kicker: "Workflow automation for small businesses",
     title: "Stop doing the same job twice.",
     sub: "Simple automations that save your business time and money.",
   });

@@ -19,7 +19,7 @@ const DESCRIPTION =
   "Simple fixes for the jobs that keep small business owners working late: leads, onboarding, delivery and keeping clients coming back.";
 
 export const metadata: Metadata = {
-  title: { absolute: `${TITLE} | Oloye blog` },
+  title: { absolute: "Small Business Automation Ideas and How-Tos | Oloye Blog" },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {

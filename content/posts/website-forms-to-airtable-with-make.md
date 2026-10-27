@@ -1,11 +1,11 @@
 ---
-title: "Every Website Form in One List, Sorted for You"
+title: "Website Forms to Airtable with Make: Auto-Reply Every Lead"
 cardLine: "One form, one list, and the right email goes out on its own."
 date: "2026-10-28"
 author: "oloye"
 category: "Leads"
-tags: ["website forms", "make", "airtable", "gmail", "lead follow-up"]
-excerpt: "How we send every form on a website to one Airtable list, then let Make send the right email on its own, with no data left sitting on the site."
+tags: ["airtable forms", "make.com automation", "website forms", "lead follow-up", "small business automation"]
+excerpt: "A simple Make.com automation that sends every website form into Airtable and emails the right reply on its own. Step by step, for small businesses."
 summary:
   - "Why forms that land in an inbox get forgotten, and what to do instead."
   - "The four steps: form, Make, Airtable, the right email."
@@ -30,13 +30,13 @@ The form did its job. The bit after it didn't.
 
 > **In plain words:** an automation here just means that when one thing happens (a form is filled in), the next things happen on their own (the person is saved, and the right email goes out).
 
-## Where form messages go to die
+## Why website forms get lost in your inbox
 
 Most websites send a form straight to an email inbox. That feels fine until you have a few a week. Then they sit between newsletters and receipts, nobody owns them, and there's no list of who asked for what.
 
 What you want instead is simple. Every form lands in one list. Each person is one row. And the first reply goes out on its own, so nobody waits.
 
-## The four steps
+## How to send website forms to Airtable with Make
 
 This is the exact setup we built for the forms on this site.
 
@@ -46,11 +46,11 @@ This is the exact setup we built for the forms on this site.
 
 There are two kinds on this site. One asks for a free thing, like a checklist or a guide.
 
-![A free thing form on the website](/images/blog/website-forms/free-thing-form.jpg)
+![A free thing form on the website](/images/blog/website-forms/free-thing-form.png)
 
 The other is a plain contact form.
 
-![The contact form on the website](/images/blog/website-forms/contact-form.jpg)
+![The contact form on the website](/images/blog/website-forms/contact-form.png)
 
 Each one sends a small bundle: name, email, what they asked for or said, and a label for which form it was.
 
@@ -71,7 +71,7 @@ Next, Make looks for the person in an Airtable table by their email.
 
 One person, one row. No duplicates.
 
-![The scenario in Make, left to right](/images/blog/website-forms/make-scenario.jpg)
+![The Make scenario, step by step: webhook, check the key, save in Airtable, router, then the two emails](/images/blog/website-forms/make-scenario.png)
 
 ### Step 4: Sorted by form
 
@@ -79,13 +79,13 @@ Then Make looks at the label and picks a road.
 
 **A free thing:** Gmail sends them an email with the link, straight away. Their row moves to "Free thing sent".
 
-![The email someone gets after asking for a free thing](/images/blog/website-forms/email-free-thing.jpg)
+![The email someone gets after asking for a free thing](/images/blog/website-forms/email-free-thing.png)
 
 **A contact message:** Gmail sends the message to you, with their email set as the reply address. Hit reply and you're talking to them.
 
-![The email you get for a contact message](/images/blog/website-forms/email-contact.jpg)
+![The email you get for a contact message](/images/blog/website-forms/email-contact.png)
 
-## Keeping it safe
+## Keeping your forms and your list safe
 
 A few small things do most of the work:
 

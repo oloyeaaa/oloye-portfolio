@@ -68,8 +68,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Post not found" };
   const url = `${SITE_URL}/blog/${post.slug}`;
   const author = getAuthor(post.author);
+  // Keep the title Google shows under 60 characters: add the brand only if it fits.
+  const pageTitle = post.title.length + 8 <= 60 ? `${post.title} | Oloye` : post.title;
   return {
-    title: post.title,
+    title: { absolute: pageTitle },
     description: post.excerpt,
     alternates: { canonical: url },
     authors: [{ name: author.name, url: author.url }],

@@ -150,7 +150,9 @@ function mapRecord(r: AirtableRecord<BlogFields>): BlogPost | null {
 }
 
 export async function getPublishedPosts(): Promise<BlogPost[]> {
-  const localPosts = getLocalPosts();
+  // Scheduled posts (date after today) aren't out yet.
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" });
+  const localPosts = getLocalPosts().filter((p) => !p.publishedDate || String(p.publishedDate).slice(0, 10) <= today);
   let airtablePosts: BlogPost[] = [];
 
   const filter = `AND({Status}='Published',{Slug}!='')`;

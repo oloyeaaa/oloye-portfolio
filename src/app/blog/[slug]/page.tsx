@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema, articleSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 import { getAllSlugs, getPostBySlug } from "@/lib/airtable";
-import { getPostFull, renderPostBody, getRelatedPosts, slugify, type PostFull } from "@/lib/posts";
+import { getPostFull, renderPostBody, getRelatedPosts, slugify, isPublished, type PostFull } from "@/lib/posts";
 import { getCategory } from "@/lib/categories";
 import { getAuthor } from "@/lib/authors";
 import { getPostFreebie } from "@/lib/postFreebies";
@@ -42,7 +42,8 @@ export async function generateStaticParams() {
 // still renders, just without the summary, FAQ and form choice.
 async function loadPost(slug: string): Promise<PostFull | null> {
   const local = getPostFull(slug);
-  if (local) return local;
+  // Scheduled for a later day: not out yet.
+  if (local) return isPublished(local.date) ? local : null;
   const remote = await getPostBySlug(slug);
   if (!remote) return null;
   return {

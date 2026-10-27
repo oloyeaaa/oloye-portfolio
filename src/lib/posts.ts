@@ -27,6 +27,16 @@ export interface Post extends PostMeta {
   contentHtml: string;
 }
 
+/**
+ * Scheduling: a post whose date is after today (UK time) isn't out yet. It stays
+ * off every list and its page says "not found" until the day comes.
+ */
+export function isPublished(date?: string): boolean {
+  if (!date) return true;
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" }); // YYYY-MM-DD
+  return String(date).slice(0, 10) <= today;
+}
+
 export function getAllPosts(): PostMeta[] {
   const files = fs.readdirSync(postsDirectory);
 
@@ -53,7 +63,7 @@ export function getAllPosts(): PostMeta[] {
       } as PostMeta;
     });
 
-  return posts.filter((p) => !p.hidden).sort((a, b) => (a.date > b.date ? -1 : 1));
+  return posts.filter((p) => !p.hidden && isPublished(p.date)).sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export function getPostsByCategory(category: string): PostMeta[] {

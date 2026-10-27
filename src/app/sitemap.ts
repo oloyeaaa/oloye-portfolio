@@ -4,6 +4,9 @@ import { getPublishedPosts } from "@/lib/airtable";
 import { CATEGORIES, getCategory } from "@/lib/categories";
 import { getAllPosts } from "@/lib/posts";
 
+// Re-check every hour, so scheduled posts appear on their day.
+export const revalidate = 3600;
+
 // Rewritten 2026-10-27 for the process automation site. Only pages we want
 // found are listed. Left out on purpose (still live by link, marked noindex):
 // hidden blog posts, tag pages, the old /free/<prompt> pages, /skills, the

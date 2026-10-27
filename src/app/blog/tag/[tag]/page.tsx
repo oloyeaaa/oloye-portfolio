@@ -5,6 +5,9 @@ import { getAllTags, getPostsByTag } from "@/lib/posts";
 import PostList from "@/components/post/PostList";
 import { LastCall } from "@/components/home/CallToAction";
 
+// Re-check every hour, so scheduled posts appear on their day.
+export const revalidate = 3600;
+
 interface Props {
   params: Promise<{ tag: string }>;
 }

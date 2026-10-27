@@ -20,14 +20,6 @@ import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/li
 const GROUPS: Record<string, string> = {
   "free-tools": "196047739383973099",
   "prompt-pack": "194953404356756635",
-  // One group per blog free thing, so MailerLite can email the right one.
-  // Add each group's ID once it's made in MailerLite (see website/TODO-OLOYE.md).
-  // Until then these fall back to free-tools, so nobody is lost.
-  // "post-checklist": "",
-  // "post-TABLE": "",
-  // "post-TOOLS": "",
-  // "post-PIECES": "",
-  // "post-LOOP": "",
 };
 const DEFAULT_GROUP = "free-tools";
 

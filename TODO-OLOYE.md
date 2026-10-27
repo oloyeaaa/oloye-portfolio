@@ -6,20 +6,11 @@ Do them in this order. Each one is small. Tick it when it's done.
 
 - [x] **1. Make the booking page.** DONE 27 Oct: https://calendar.app.google/s8FjtoLAyYZnZ1u98 is behind every button. In Google Calendar: Create > Appointment schedule. Call it "Free call", 30 minutes is a good start. Copy its link and send it to Claude. Every "Book a free call" button then points there (it's one line: `BOOKING_URL` in `src/lib/site.ts`).
 
-- [ ] **2. Make the email groups in MailerLite.** Right now every form adds people to your "free-tools" group, and the page shows them the link straight away. To also email them the right free thing, make one group per free thing:
-  - `post-checklist` (10 jobs to automate first)
-  - `post-TABLE` (The leads table)
-  - `post-TOOLS` (7 tools, one job each)
-  - `post-PIECES` (The 3-piece starter checklist)
-  - `post-LOOP` (The daily loop on one page)
+- [x] **2-4. Forms connected.** DONE 27 Oct: every form goes to Make ("oloye.co.uk website forms"), which saves the person in Airtable Leads and emails the free thing (or emails you about a contact message). No MailerLite groups or welcome emails needed. People who tick "yes to emails" are also added to MailerLite.
 
-  Send Claude each group's ID (MailerLite shows it in the group's web address). Claude adds them to the site.
+- [ ] **4a. Delete the test rows.** In Airtable Leads, the row for info@oloyeaa.com named "Test from Claude" is from the tests. Delete it (or keep it as an example).
 
-- [ ] **3. Make one welcome email per group in MailerLite.** Automations > New > "When subscriber joins a group" > pick the group > one email: "Here's your free [thing]" with its link. The links are in `src/lib/postFreebies.ts`. Claude can write the five emails for you.
-
-- [ ] **4. Check the MailerLite key is on the live site.** On your PC the key is set. Wherever the site is hosted (Vercel), the setting `MAILERLITE_API_KEY` must be there too, or the forms will fail on the live site.
-
-- [ ] **4b. Switch on the contact form.** Its messages go into your Airtable **Leads** table (Content Engine base) as Platform "Website", Stage "New". Make an Airtable personal access token that can write to that base (airtable.com/create/tokens: scopes `data.records:read` and `data.records:write`, access to the Content Engine base). Put it in `website/.env.local` as `AIRTABLE_LEADS_TOKEN=...` and add the same setting on the live host. Until then the form politely tells people to book a call or DM instead. Then send one test message and check the row lands.
+- [ ] **4b. Add two settings on the live host (Vercel) before going live:** `MAKE_FORMS_WEBHOOK_URL` and `MAKE_FORMS_SECRET`. Their values are in `website/.env.local` on your PC (copy them across, don't share them). `MAILERLITE_API_KEY` must be there too.
 
 - [ ] **5. Check two FAQ answers on the home page** (they're promises): the price one ("you know the price before anything starts") and "you don't have to learn how it works inside". Say yes or change them.
 

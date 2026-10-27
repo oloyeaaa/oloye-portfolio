@@ -1,4 +1,8 @@
-# Forms automation plan (draft for Oloye's yes, 2026-10-27)
+# Forms automation (BUILT 2026-10-27)
+
+**Live in Make:** scenario "oloye.co.uk website forms: leads, free things, contact" (ID 10054266), webhook "oloye.co.uk website forms". Tested: free thing (5 steps), contact (4 steps), wrong key and stray data stopped at step 1. MailerLite is added by the website itself for people who tick yes (its key was already there), so Make only needs Airtable and Gmail.
+
+## Original plan
 
 **Goal:** every form on the website lands in one place (Airtable Leads), gets sorted by which form it came from, and the right thing happens next, with nothing stored on the website.
 

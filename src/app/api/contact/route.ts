@@ -1,21 +1,17 @@
 import { NextResponse } from "next/server";
 import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
+import { sendToMake, addToMailerLite } from "@/lib/leads";
 
 /**
- * Contact form, into the Airtable Leads table (Content Engine base).
+ * Contact form, handed to Make (27 Oct 2026). Make saves the person in the
+ * Airtable Leads table (one row per email, existing people keep their stage)
+ * and emails Oloye the message with Reply-To set to the sender.
  *
- * One person is one row, matched on Email. A new person gets a fresh row at
- * Stage "New". Someone already in the table keeps their stage; their message
- * is added to "What They Said" and Last Contact moves to today.
- *
- * Needs AIRTABLE_LEADS_TOKEN (a personal access token that can write to that
- * base). Without it the form says so politely instead of losing the message.
+ * The website holds no Airtable or Gmail sign-in; it only knows the webhook
+ * address and its secret, as server settings.
  */
 
-const BASE = process.env.AIRTABLE_LEADS_BASE_ID || "appm6XGHyuXjnhSAo";
-const TABLE = process.env.AIRTABLE_LEADS_TABLE_ID || "tbloe7mcslN4BJwPa";
-
-type Fields = Record<string, unknown>;
+const NEWSLETTER_GROUP = "196047739383973099"; // MailerLite "free-tools"
 
 export async function POST(req: Request) {
   if (!fromOurSite(req)) {
@@ -45,57 +41,27 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Tell us a little about the job that's eating your week." }, { status: 400 });
   }
 
-  const token = process.env.AIRTABLE_LEADS_TOKEN;
-  if (!token) {
-    console.error("AIRTABLE_LEADS_TOKEN is not set");
+  const result = await sendToMake({
+    form: "CONTACT",
+    email,
+    name,
+    consent,
+    said: business ? `${business}: ${message}` : message,
+    source: "contact page",
+  });
+
+  if (result === "off") {
     return NextResponse.json(
       { error: "Messages aren't switched on yet. Please book a free call or message us on Instagram." },
       { status: 503 }
     );
   }
-
-  const api = `https://api.airtable.com/v0/${BASE}/${TABLE}`;
-  const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
-  const today = new Date().toISOString().slice(0, 10);
-  const said = `${today} (website contact form)${business ? `, ${business}` : ""}: ${message}`;
-
-  try {
-    const formula = encodeURIComponent(`LOWER({Email})='${email.replace(/'/g, "\\'")}'`);
-    const found = await fetch(`${api}?maxRecords=1&filterByFormula=${formula}`, { headers, cache: "no-store" });
-    if (!found.ok) throw new Error(`lookup ${found.status}`);
-    const existing = (await found.json()).records?.[0] as { id: string; fields: Fields } | undefined;
-
-    let res: Response;
-    if (existing) {
-      const before = typeof existing.fields["What They Said"] === "string" ? (existing.fields["What They Said"] as string) : "";
-      const fields: Fields = {
-        "What They Said": before ? `${before}\n\n${said}` : said,
-        "Last Contact": today,
-        ...(name && !existing.fields["First Name"] ? { "First Name": name } : {}),
-        ...(consent ? { "Consent to Email": true } : {}),
-      };
-      res = await fetch(`${api}/${existing.id}`, { method: "PATCH", headers, body: JSON.stringify({ fields, typecast: true }) });
-    } else {
-      const fields: Fields = {
-        Email: email,
-        "First Name": name,
-        Platform: "Website",
-        Stage: "New",
-        "What They Said": said,
-        "Date In": today,
-        "Last Contact": today,
-        "Next Step": "Reply to their contact form message",
-        "Consent to Email": consent,
-      };
-      res = await fetch(api, { method: "POST", headers, body: JSON.stringify({ fields, typecast: true }) });
-    }
-    if (!res.ok) throw new Error(`save ${res.status}`);
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("Contact form failed", err instanceof Error ? err.message : "unknown");
+  if (result === "failed") {
     return NextResponse.json(
       { error: "Something went wrong sending that. Please try again, or book a free call." },
       { status: 502 }
     );
   }
+  if (consent) await addToMailerLite(email, name, NEWSLETTER_GROUP);
+  return NextResponse.json({ ok: true });
 }

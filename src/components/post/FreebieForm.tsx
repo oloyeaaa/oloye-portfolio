@@ -5,8 +5,8 @@ import type { PostFreebie } from "@/lib/postFreebies";
 
 /**
  * The mid-post form: "Get the free [thing]". Name is optional, email is not.
- * The email goes to MailerLite through /api/subscribe, and the free thing is
- * handed over straight away on the page, so nobody waits for an email.
+ * /api/lead hands it to Make (saved in Airtable Leads, the free thing emailed),
+ * and the free thing is also shown straight away here, so nobody waits.
  */
 export default function FreebieForm({ freebie, source }: { freebie: PostFreebie; source: string }) {
   const [name, setName] = useState("");
@@ -20,10 +20,10 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
     setState("sending");
     setError("");
     try {
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, consent, list: `post-${freebie.key}`, source }),
+        body: JSON.stringify({ name, email, consent, freebie: freebie.key, source }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -49,7 +49,7 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
             {name ? `Thanks, ${name.split(" ")[0]}.` : "Thanks."} Here it is.
           </p>
           <p className="mt-3 text-white/60">
-            {consent ? "You're on the list for the occasional useful email. Unsubscribe any time." : "It's yours. We won't send you anything else."}
+            {consent ? "A copy is on its way to your inbox, and you're on the list for the occasional useful email." : "A copy is on its way to your inbox too. We won't send you anything else."}
           </p>
           <a
             href={freebie.url}

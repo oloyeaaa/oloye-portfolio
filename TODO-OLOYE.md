@@ -10,11 +10,11 @@ Do them in this order. Each one is small. Tick it when it's done.
 
 - [ ] **4a. Delete the test rows.** In Airtable Leads, the row for info@oloyeaa.com named "Test from Claude" is from the tests. Delete it (or keep it as an example).
 
-- [ ] **4b. Add two settings on the live host (Vercel) before going live:** `MAKE_FORMS_WEBHOOK_URL` and `MAKE_FORMS_SECRET`. Their values are in `website/.env.local` on your PC (copy them across, don't share them). `MAILERLITE_API_KEY` must be there too.
+- [x] **4b. DONE 27 Oct, live forms tested and working. Add two settings on the live host (Vercel):** `MAKE_FORMS_WEBHOOK_URL` and `MAKE_FORMS_SECRET`. Their values are in `website/.env.local` on your PC (copy them across, don't share them). `MAILERLITE_API_KEY` must be there too.
 
 - [ ] **5. Check two FAQ answers on the home page** (they're promises): the price one ("you know the price before anything starts") and "you don't have to learn how it works inside". Say yes or change them.
 
-- [ ] **6. Say "push it live".** Nothing goes live until you do.
+- [x] **6. Pushed live 27 Oct.**
 
 ## Nice to do
 

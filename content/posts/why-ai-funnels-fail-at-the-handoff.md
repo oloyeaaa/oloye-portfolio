@@ -1,5 +1,5 @@
 ---
-title: "I Started Automating 4+ Years Before ChatGPT: Why 90% of AI Funnels Fail at the Handoff"
+title: "Why Most AI Funnels Fail at the Handoff"
 slug: "why-ai-funnels-fail-at-the-handoff"
 date: "2026-10-07"
 author: "Oloye Adeosun"

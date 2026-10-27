@@ -2,7 +2,7 @@
 title: "The $0 Owned Pipeline: How to Route Social Views into an Automated Database Without Expensive SaaS"
 date: "2026-09-30"
 category: "Marketing Automation"
-excerpt: "A practical, 15-minute blueprint showing how solo creators and non-tech founders can capture and route leads from social media using Google Workspace, Gemini, and Airtable—at zero cost."
+excerpt: "A practical, 15-minute blueprint showing how solo creators and non-tech founders can capture and route leads from social media using Google Workspace, Gemini and Airtable, at zero cost."
 tags: ["Marketing Automation", "Owned Pipeline", "Google AI", "Airtable", "Solo Builder"]
 coverImage: "/images/blog/the-zero-dollar-owned-pipeline-for-creators.jpg"
 coverImageCredit: "Project Legacy Engine"

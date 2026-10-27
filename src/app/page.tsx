@@ -11,6 +11,7 @@ import HoursSlider from "@/components/home/HoursSlider";
 import ProcessFlow from "@/components/home/ProcessFlow";
 import LogoMarquee from "@/components/home/LogoMarquee";
 import CountUp from "@/components/home/CountUp";
+import BlogCards from "@/components/home/BlogCards";
 
 // The home page follows the StoryBrand website wireframe (header, stakes, value,
 // guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
@@ -312,8 +313,28 @@ export default function HomePage() {
           </Reveal>
         </section>
 
+        {/* 7. From the blog: three posts that tell the same story */}
+        <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-32">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                <div>
+                  <p className="eyebrow">From the blog</p>
+                  <h2 className="display mt-4 text-4xl text-foreground sm:text-5xl">Ideas you can use this week.</h2>
+                </div>
+                <Link href="/blog" className="text-sm font-semibold text-foreground hover:underline decoration-accent decoration-2 underline-offset-4">
+                  All posts →
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <BlogCards />
+            </Reveal>
+          </div>
+        </section>
+
         {/* 8. Last call */}
-        <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 sm:px-6">
+        <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 pt-8 sm:px-6">
           <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[2rem] bg-foreground px-6 py-20 text-center sm:py-28">
             <h2 className="display max-w-3xl text-4xl !text-white sm:text-6xl">
               What job would you hand over <span className="text-accent">first?</span>

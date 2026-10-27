@@ -1,117 +1,81 @@
 ---
+title: "Why Most Funnels Lose People at the Handoff"
 cardLine: "Leads don't get lost at the start. They get lost between the steps."
-title: "Why Most AI Funnels Fail at the Handoff"
-slug: "why-ai-funnels-fail-at-the-handoff"
 date: "2026-10-07"
-author: "Oloye Adeosun"
-category: "Systems & Operations"
-tags: ["Marketing Automation", "Systems Architecture", "Enterprise Governance", "Airtable", "Make.com", "Pipeline Strategy"]
-description: "Why slapping an AI prompt on a messy marketing funnel just creates faster chaos. The 4 operational principles from 14 years in Tier-1 banking that keep automation pipelines running without dropping leads."
+updated: "2026-10-27"
+author: "oloye"
+category: "Tools & systems"
+tags: ["handoffs", "lead follow-up", "onboarding", "airtable", "make"]
+excerpt: "A better Claude prompt won't fix a leaky funnel. Most people get lost in the gaps between steps. Here are the three gaps and how we close them."
+summary:
+  - "Why most funnels lose people between the steps, not at the start."
+  - "The three handoffs where leads and new clients most often go quiet."
+  - "How we close each gap with Airtable, Make and Google Workspace."
+  - "Four simple rules that keep a small system running without breaking."
+faq:
+  - question: "What is a handoff in a business?"
+    answer: "It's the moment one step ends and the next should begin, like a form being filled in and someone needing to reply. If nobody picks it up, the person waits and goes cold."
+  - question: "Will a better Claude prompt fix my funnel?"
+    answer: "Not on its own. If the steps underneath are messy, Claude just makes the mess move faster. Fix the gaps first, then add Claude where it helps."
+  - question: "Which tools do I need to close these gaps?"
+    answer: "We use Airtable as the one place the records live, Make to move things between steps, and Google Workspace for folders, documents and emails. No big expensive software."
+  - question: "What should I automate first?"
+    answer: "Only the jobs that happen three or more times a week. Start with the gap where people wait the longest."
+freebie: "checklist"
 coverImage: "/images/blog/cover-handoff.jpg"
-readingTime: "6 min read"
-featured: true
 ---
 
-In late 2022, when ChatGPT launched, the internet convinced itself that automation was invented overnight.
+When Claude and the other AI tools came along, a lot of people thought they had found the answer to their marketing. Write a smarter prompt, and the leads will follow. But most of the time, people get lost in the gaps between the steps, long before any prompt matters.
 
-Suddenly, everyone was an "AI automation engineer." Timelines were flooded with 15-second screen recordings of AI writing cold emails, AI answering customer support tickets, and AI supposedly running entire 7-figure businesses on autopilot.
+> **In plain words:** a handoff is the moment one step ends and the next one should start. Someone fills in your form. Someone books a call. Someone pays. Each time, something has to happen next.
 
-Four years later, most of those shiny "AI funnels" are completely broken.
+## Where people really get lost
 
-Here is why: **My automation journey didn't start with ChatGPT. It started over four years earlier**, back when email marketing funnels, webhook routers, API handoffs, and relational databases had to be engineered by hand with zero AI assistance.
+When coaches and small business owners say their marketing isn't working, they often think they need more posts, a new tool or a better prompt.
 
-And if you combine that with **14+ years managing operational risk, governance, and multi-million-pound handoffs across Tier-1 UK financial institutions**, you learn a hard operational law that most modern builders ignore:
+Then you look at what happens after someone shows interest. A person books a call. Their details sit in an inbox for days. Someone copies their name into a messy sheet by hand. The call goes well, but the proposal takes the best part of a week to put together. By the time it lands, the person has moved on.
 
-> **Systems almost never fail at the start. They fail at the handoffs.**
+No prompt would have saved that person. Nobody was watching the gap between the call and the proposal. Putting Claude on top of a messy process doesn't fix it. It just makes the mess move faster.
 
----
+## The three gaps we see most
 
-## 🚰 The Pipe Fitter vs. The AI Gold Rush
+### From first contact to your records
 
-When non-tech founders and boutique agency owners tell me their marketing isn't working, they usually think they have a "traffic" problem or an "AI prompt" problem.
+Leads come in from Instagram messages, website forms and booking links. Nobody gets a reply straight away, and the details end up spread across three different sheets.
 
-They say:
-* *"I need a smarter AI prompt to nurture my leads."*
-* *"I need to post 3x more content on LinkedIn."*
-* *"I need to buy another $150/month software tool."*
+What we do instead: every new enquiry goes straight into one Airtable table through Make. The name, email and phone number get tidied up on the way in, and you get a message to say someone new is waiting.
 
-Then I look at their backend.
+### From a good call to a proposal
 
-A prospect books a discovery call on their calendar. That data sits in an inbox for three days. A team member manually copies the name into a messy Google Sheet with no standardized formatting. The discovery call goes brilliantly, but the founder spends four days manually building a proposal in Canva. 
+You have a great call on Tuesday. They're keen. But building the proposal takes until Sunday night, and by Monday they've gone quiet.
 
-By the time the proposal is sent, the prospect's buying temperature has dropped to zero.
+What we do instead: each deal in Airtable is linked to a Google Slides template. When you move a deal to "Proposal sent", Make fills in the scope, what's included and the price, and saves it as a PDF ready to send.
 
-That is not an AI problem. That is a **broken handoff**.
+### From "yes" to getting started
 
-Slapping an LLM on top of a leaky operational process doesn't fix your business. It just generates faster chaos. AI is the spark—but your database and webhook architecture are the iron pipes.
+The client signs and pays. Then nothing happens for a couple of days while you set up folders, hand out tasks and write a welcome email.
 
----
+What we do instead: when a deal is marked "Won", Make creates the client's Google Drive folder, adds the usual delivery tasks with due dates, and sends the client their welcome email with a link to get started.
 
-## ⚠️ The 3 Fatal Handoffs That Kill Boutique Agency Pipelines
+> **Good to know:** you don't have to fix all three at once. Pick the gap where people wait the longest and start there.
 
-Over the last decade, whether auditing banking infrastructure or building automated client engines, I've seen the exact same three points of failure destroy service pipelines:
+## Four rules that keep it running
 
-```
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-│   HANDOFF #1    │       │   HANDOFF #2    │       │   HANDOFF #3    │
-│ INTAKE ➔ CRM    │ ────➔ │ DEAL ➔ PROPOSAL │ ────➔ │  WON ➔ ONBOARD  │
-│ (Silent Leaks)  │       │ (Buying Delay)  │       │ (Chaos & Churn) │
-└─────────────────┘       └─────────────────┘       └─────────────────┘
-```
+These are the rules we build by, so a small system keeps working without someone babysitting it.
 
-### 1. Handoff #1: The Ingestion Black Hole (Lead Capture ➔ CRM)
-* **The Symptom:** Leads arrive from Instagram DMs, website forms, or booking links, but nobody gets an instant confirmation, and data is scattered across three different spreadsheets.
-* **The Enterprise Fix:** Zero-latency webhook ingestion. When a prospect engages, a Make.com webhook writes the record into a structured relational database (like Airtable) in under 200 milliseconds, sanitizes phone numbers and emails, and notifies the team instantly.
+| Rule | What it means |
+| --- | --- |
+| One place for the truth | One Airtable base for deals, clients, tasks and proposals. No loose sheets on the side. |
+| Keep the tools few | Make, Airtable and Google Workspace cover most of it. No big monthly software bills. |
+| Get told when it breaks | Set up an email or Slack alert if a step fails, or if a lead sits untouched. |
+| Only build what repeats | Automate jobs that happen three or more times a week. Keep it simple enough to explain in plain words. |
 
-### 2. Handoff #2: The Proposal Friction Trap (Discovery ➔ Agreement)
-* **The Symptom:** You finish a great 30-minute discovery call on Tuesday. The client is excited. But formatting the proposal deck takes you until Sunday night. By Monday, the client has gone cold.
-* **The Enterprise Fix:** Dynamic template generation. By linking Deals directly to a Google Slides template engine via Make.com, moving a deal to *“Proposal Sent”* automatically populates scope, deliverables, and pricing, producing a branded PDF presentation in 60 seconds.
+> **Try this:** write down every step from "someone finds you" to "they start working with you". Next to each one, write who does it and how long it usually takes. The longest wait is your first gap to close.
 
-### 3. Handoff #3: The Onboarding Disconnect (Deal Won ➔ Delivery)
-* **The Symptom:** The client signs and pays. Then... radio silence for 48 hours while the founder scrambles to set up Google Drive folders, assign tasks to freelancers, and write a welcome email.
-* **The Enterprise Fix:** Automated SOW provisioning. When a Deal stage changes to *“Won”* in your core OS, the system automatically creates the shared Google Drive client folder, schedules the 5 standard delivery milestone tasks with due dates, and sends the client their onboarding link.
+## What it's really for
 
----
+The point of all this isn't sending more emails or showing off how many tools you've joined up. It's knowing that when a new client pays on a Friday afternoon, they get welcomed, their folder is ready and the work is lined up, without you opening your laptop over the weekend.
 
-## 🛠️ The "Durable Pipe" Checklist: 4 Rules for Real Automation
+For me, that means Saturday afternoons stay with my son's football matches, even in the rain, and with my family.
 
-If you run a boutique agency, consultancy, or creator business, here is how you build a system that runs without breaking:
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE 4-PILLAR DURABLE PIPE SYSTEM                     │
-├────────────────────┬───────────────────────────────────────────────────┤
-│ 1. SINGLE TRUTH    │ One relational Airtable base (Deals, Clients,     │
-│                    │ Tasks, Proposals)—zero disconnected Google Sheets.│
-├────────────────────┼───────────────────────────────────────────────────┤
-│ 2. LEAN TOOLS      │ Make.com + Airtable + Google Workspace.           │
-│                    │ You don't need £3,000/mo enterprise bloat.        │
-├────────────────────┼───────────────────────────────────────────────────┤
-│ 3. SLA ALERTING    │ Real-time Slack/email failure notifications if a  │
-│                    │ webhook token expires or a lead sits untouched.   │
-├────────────────────┼───────────────────────────────────────────────────┤
-│ 4. ZERO OVER-CODE  │ Build only what happens 3+ times a week.          │
-│                    │ Keep it maintainable in plain English.            │
-└────────────────────┴───────────────────────────────────────────────────┘
-```
-
----
-
-## ⏳ The Real Payoff: Buying Back Saturday Afternoons
-
-When I sit across the kitchen table with founders, I always tell them the same thing:
-
-The real goal of automation isn't vanity metrics, 10,000 cold emails, or bragging about how many AI agents you built.
-
-The real metric of automation is **peace of mind**.
-
-It’s knowing that when a new client pays on Friday afternoon, your system smoothly creates the project, assigns the tasks, and welcomes the client—without you having to open a laptop over the weekend.
-
-For me, that means Saturday afternoons belong entirely to my son's football matches in the rain, family time, and being present.
-
-Stop renting your time to manual admin. Fix the handoffs, own your pipeline, and build systems that work as hard as you do.
-
----
-
-### 🚀 Get the Free Operating System
-Want to see how this works in practice? You can duplicate the exact 7-table **[Oloye Media OS Airtable Base & Make.com Blueprint](/free/lean-owned-pipeline-blueprint)** for free, or test your current setup with our interactive **[Marketing Funnel & Governance Auditor](/portfolio/funnel-auditor)**.
+Close the gaps one at a time, keep your records in one place you own, and let the system do the passing on, so the people who find you don't slip away.

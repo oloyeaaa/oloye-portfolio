@@ -1,117 +1,97 @@
 ---
+title: "A Free Way to Catch Every Enquiry From Your Posts"
 cardLine: "Catch every enquiry in a list you own, with tools you already pay for."
-title: "The $0 Owned Pipeline: How to Route Social Views into an Automated Database Without Expensive SaaS"
 date: "2026-09-30"
-category: "Marketing Automation"
-excerpt: "A practical, 15-minute blueprint showing how solo creators and non-tech founders can capture and route leads from social media using Google Workspace, Gemini and Airtable, at zero cost."
-tags: ["Marketing Automation", "Owned Pipeline", "Google AI", "Airtable", "Solo Builder"]
+updated: "2026-10-27"
+author: "oloye"
+category: "Leads"
+tags: ["lead capture", "airtable", "google forms", "email list"]
+excerpt: "A simple, free setup that takes people from your posts into a list you own, with a short form, an Airtable base and one automatic email."
+summary:
+  - "Why followers on an app are not the same as people on your own list."
+  - "A three-question form that people will actually fill in."
+  - "The five Airtable columns to set up, and what each one is for."
+  - "How to send a thank-you email the moment someone signs up, for free."
+faq:
+  - question: "Do I need to pay for any software to set this up?"
+    answer: "No. Google Forms is free, and Airtable's free plan covers the base, the form and a simple automatic email to start with."
+  - question: "Why only three questions on the form?"
+    answer: "Every extra question is one more reason to give up halfway. Name, email and one question about their problem is enough to start."
+  - question: "Do I need Zapier to send the welcome email?"
+    answer: "No. Airtable has its own automations. When a new record comes in, it can send an email straight away."
+  - question: "What should the first email send them?"
+    answer: "The exact thing you promised in your post, like a checklist, a template or a Google Doc."
+freebie: "TABLE"
 coverImage: "/images/blog/cover-owned-list.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---
 
-![The $0 Owned Pipeline Architecture](/images/blog/the-zero-dollar-owned-pipeline-for-creators.jpg)
+People see your posts, like them, and move on. Most of them never come back, and you have no way to reach them again. This guide shows a simple setup that catches those people in a list you own. It uses free tools and takes about 15 minutes.
 
-When I first started building online, I made the classic mistake almost every creator and non-tech founder makes: 
+## Paying for tools before you have customers
 
-Before I had even published consistent videos, I had already signed up for four different software subscriptions. 
+When I started building online, I paid for a lot of software and courses with money I didn't really have. It felt like progress. It wasn't. I was hiding behind the tools instead of putting my work out there. In the end I cut the subscriptions.
 
-A landing page builder for £29 a month.  
-An email marketing tool for £45 a month.  
-An automation platform for £20 a month.  
-And a course hosting platform for £79 a month.
+If that sounds like you, you're not alone. That's the tool trap. The way out is smaller than you think: a form, a table and one email. We use Google Forms or Airtable Forms, and an Airtable base on the free plan.
 
-I was burning nearly £180 every single month before I had a single paying customer. I was hiding behind software because buying tools felt like making progress.
+## Followers are rented, your list is yours
 
-The truth is, you do not need expensive SaaS to build an automated, owned business. 
+When you post on Instagram or TikTok, the app decides who sees it. If your account gets locked, those followers are gone. You can't email them or call them.
 
-In this guide, I will show you how to build a complete **Owned Pipeline** that captures leads from your social content, stores them in an organized database, and routes personalized follow-ups—using tools that cost **£0**.
+Your own list is different. Once someone gives you their name and email, you can reach them whenever you need to, on any app or none.
 
----
+> **In plain words:** your "list" is just a table of people who asked to hear from you, with their name, email and what they need help with.
 
-## 1. The Core Principle: Renting Attention vs. Owning the Pipeline
+So the job is to give people an easy way to step off the app and onto your list. It goes like this: they see your post, they click the link in your bio, they fill in a short form, and their details land in your table.
 
-When you post a video on Instagram, TikTok, or YouTube, you are renting attention on land you do not own.
+## Step 1: Make a short form
 
-* The algorithm decides who sees your content.
-* If an account gets suspended, your audience vanishes overnight.
-* 95% of the people who watch your video will never visit your profile unless you give them a clear, frictionless bridge.
+Keep it short. Most people won't fill in a long form, so don't ask for their phone number or their life story.
 
-An **Owned Pipeline** is the bridge between a social view and your own private database. Once someone enters your database, you own that relationship permanently.
+Ask only three things:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       THE 3-NODE ZERO-DOLLAR ARCHITECTURE                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  [1. Social Hook & Bio] ──> [2. 1-Click Intake Form] ──> [3. Owned Database]│
-│      (Instagram / TikTok)        (Airtable / Google Forms)    (Google Workspace + Gemini) │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+1. **First name**, so you can say hello properly.
+2. **Email address**, so you can reach them later.
+3. **One question about their problem:** "What's the biggest thing you're stuck on right now?" Give them three choices, for example:
+   - Too many tech tools, not sure where to start.
+   - Getting views but no one on an email list.
+   - Want someone to build the setup for me.
 
----
+That last question tells you who needs what, without a long chat.
 
-## 2. The 3 Lean Tools You Already Have
+## Step 2: Set up your Airtable base
 
-To build this pipeline, you only need three free tools:
+Make a free Airtable base. Call it something simple, like "My list". Add these columns:
 
-1. **Airtable (Free Tier):** Your central CRM and database to store contact details, intake answers, and lead status.
-2. **Google Forms or Airtable Forms (Free):** A clean 3-question intake page linked directly in your social bio.
-3. **Google Gemini (Free via AI Studio / AppSheet):** To summarize intake responses, tag lead intent, and draft personalized responses.
-
-Total recurring software cost: **£0.00 / month.**
-
----
-
-## 3. Step-by-Step Build: The 15-Minute Setup
-
-### Step 1: Design the 3-Question Frictionless Intake Form
-Do not ask people for their phone number, company revenue, and life history. Every extra form field cuts your conversion rate by 20%.
-
-Ask only three questions:
-1. **First Name:** *(So you can address them personally).*
-2. **Email Address:** *(Your owned asset).*
-3. **The 1-Click Qualifier:** *"What is the single biggest bottleneck you are trying to solve right now?"*  
-   * *(Option A) Overwhelmed by complex tech tools.*  
-   * *(Option B) Getting views but zero email subscribers.*  
-   * *(Option C) Need a custom automation pipeline built.*
-
----
-
-### Step 2: Configure Your Airtable Intake Base
-Create a free Airtable base called **`Owned Pipeline Master`** with these exact columns:
-
-| Column Name | Field Type | Purpose |
+| Column | Field type | What it's for |
 | :--- | :--- | :--- |
-| **Full Name** | Single Line Text | Contact identity. |
-| **Email** | Email | Owned communication channel. |
-| **Core Bottleneck** | Single Select | Intake response from the form. |
-| **AI Intent Score** | Single Select | `Hot`, `Warm`, `Nurture` (Tagged by Gemini). |
-| **Date Captured** | Created Time | Automatic intake timestamp. |
+| Full Name | Single line text | Who they are |
+| Email | Email | How you reach them |
+| Main Problem | Single select | Their answer from the form |
+| How Ready | Single select | Hot, Warm or Not yet |
+| Date Joined | Created time | When they signed up (fills in by itself) |
 
-Share the public form link directly in your social media bio (or via a clean link hub on your own domain like `oloye.co.uk/start`).
+You can fill in "How Ready" by hand at first. Just read their answer and pick one. It only takes a few seconds each.
 
----
+Then put the form link in your bio. If you have your own website, you can point a simple page there instead.
 
-### Step 3: Connect the Instant Confirmation Trigger
-When someone submits the form, you don't need Zapier. Airtable's native **Free Automations** allow you to trigger an email immediately:
+> **Good to know:** Airtable Forms writes straight into your table, so there's nothing to connect. If you use Google Forms, the answers go into a Google Sheet first.
 
-* **Trigger:** *When a record is created in `Owned Pipeline Master`.*
-* **Action:** *Send an email from your connected Gmail account.*
-* **Subject:** *Here is the resource you requested / Thanks for reaching out, [First Name]*
-* **Body:** Send them the exact Google Doc blueprint, template, or checklist promised in your video.
+## Step 3: Send a thank-you email straight away
 
----
+You don't need Zapier for this. Airtable has free automations built in. Set it up like this:
 
-## 4. The Power of Simple Systems
+- **When:** a new record is created in your table.
+- **Do:** send an email from your connected Gmail.
+- **Subject:** "Here's the guide you asked for, [First Name]"
+- **Message:** a short thank you, plus the thing you promised in your post (a checklist, a template or a Google Doc).
 
-When you strip away the tech overwhelm, building an online business becomes very peaceful:
+> **Try this:** before you post, sign up through your own form once. Check the row lands in the table and the email reaches your inbox.
 
-1. You create one honest piece of content each day.
-2. You invite people who want the system blueprint to click the link in your bio.
-3. Your automated pipeline captures the contact, delivers the asset, and logs them into your database while you're spending time with your family.
+Now every person who signs up gets what they asked for within a minute, even if you're busy or away from your desk.
 
-You don't need permission, and you don't need a £300/month software stack. You just need a clean, owned bridge and the discipline to press record today.
+## Once it is running
 
----
+Once this is in place, your days get simpler. You make one honest post. You invite people who want the guide to click the link in your bio. The form catches them, the table keeps them, and the email gives them what you promised.
 
-*Written by **Oloye Adeosun** — Documenting the road to taking ownership of my voice.*  
-*Published on [oloye.co.uk](https://oloye.co.uk)*
+You don't need a big software bill to do this. What you need is a simple setup and the nerve to press post today. Start with the three questions. You can add more later, once people are coming in.

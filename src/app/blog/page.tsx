@@ -10,6 +10,7 @@ import Reveal from "@/components/home/Reveal";
 import PostTile from "@/components/home/PostTile";
 import { LastCall } from "@/components/home/CallToAction";
 import OneLiner from "@/components/home/OneLiner";
+import { CategoryChips } from "@/components/post/PostList";
 
 export const revalidate = 60;
 
@@ -64,6 +65,7 @@ export default function BlogPage() {
             <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
               Simple fixes for the jobs that keep you working late. Written the way we&apos;d explain it to a friend.
             </p>
+            <CategoryChips />
           </div>
         </section>
 

@@ -230,6 +230,8 @@ export function articleSchema({
   datePublished,
   dateModified,
   keywords,
+  section,
+  author,
 }: {
   path: string;
   headline: string;
@@ -238,24 +240,30 @@ export function articleSchema({
   datePublished?: string;
   dateModified?: string;
   keywords?: string[];
+  section?: string;
+  author?: { name: string; url: string; image?: string };
 }) {
+  const absImage = image && image.startsWith("/") ? `${SITE_URL}${image}` : image;
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "@id": `${SITE_URL}${path}#article`,
     mainEntityOfPage: { "@id": `${SITE_URL}${path}#webpage` },
     headline,
     description,
-    ...(image ? { image } : {}),
+    ...(absImage ? { image: absImage } : {}),
+    ...(section ? { articleSection: section } : {}),
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
     ...(keywords && keywords.length ? { keywords: keywords.join(", ") } : {}),
-    author: { "@id": PERSON_ID },
+    author: author
+      ? { "@type": "Person", name: author.name, url: author.url, ...(author.image ? { image: author.image } : {}) }
+      : { "@id": PERSON_ID },
     publisher: { "@id": ORG_ID },
     inLanguage: "en-GB",
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ["h1", "article header p", "article > div > p:first-of-type"],
+      cssSelector: ["h1", "[data-summary]"],
     },
   };
 }

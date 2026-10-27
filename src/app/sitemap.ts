@@ -3,6 +3,8 @@ import { SITE_URL } from "@/lib/site";
 import { getAllSkillSlugs } from "@/lib/skills";
 import { getPublishedPosts } from "@/lib/airtable";
 import { FREEBIE_SLUGS } from "@/lib/freebies";
+import { CATEGORIES, getCategory } from "@/lib/categories";
+import { getAllPosts } from "@/lib/posts";
 
 // Rewritten 2026-08-17. The old sitemap listed the agency-era routes:
 // /for/<vertical> for plumbers, coaches, salons and the rest, plus /systems,
@@ -17,6 +19,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: post.updated || post.publishedDate || now,
     changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const listed = getAllPosts();
+  const categoryRoutes: MetadataRoute.Sitemap = CATEGORIES.filter((c) =>
+    listed.some((p) => getCategory(p.category)?.slug === c.slug)
+  ).map((c) => ({
+    url: `${SITE_URL}/blog/category/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
 
@@ -92,5 +104,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...freebieRoutes,
     ...skillRoutes,
     ...blogRoutes,
+    ...categoryRoutes,
   ];
 }

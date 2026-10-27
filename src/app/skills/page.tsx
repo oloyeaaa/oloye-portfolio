@@ -7,6 +7,8 @@ import { SITE_URL } from "@/lib/site";
 import { getAllSkills } from "@/lib/skills";
 
 export const metadata: Metadata = {
+  // Hidden from Google since the Oct 2026 redesign; still works by link.
+  robots: { index: false, follow: true },
   title: "Free Claude Code skills and agents",
   description:
     "Download free Claude Code skills and agents and run them on your own machine. Content, video, and writing tools, code and docs only, no keys, no sign-up.",

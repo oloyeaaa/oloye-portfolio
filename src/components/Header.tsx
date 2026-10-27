@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
+import { BOOKING_URL } from "@/lib/site";
 
+// Kept short on purpose (Oloye, 27 Oct): the logo goes home, the button books the call.
 const navigation = [
-  { name: "How it works", href: "/#how-it-works" },
-  { name: "Case studies", href: "/case-studies" },
-  { name: "About", href: "/about" },
-  { name: "Free checklist", href: CHECKLIST_URL },
   { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -30,7 +29,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`text-sm transition ${
-                pathname === item.href ? "font-semibold text-foreground" : "text-muted hover:text-foreground"
+                pathname?.startsWith(item.href) ? "font-semibold text-foreground" : "text-muted hover:text-foreground"
               }`}
             >
               {item.name}

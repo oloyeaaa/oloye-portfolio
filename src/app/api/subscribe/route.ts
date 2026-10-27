@@ -36,9 +36,11 @@ export async function POST(req: Request) {
   let email = "";
   let name = "";
   let list = DEFAULT_GROUP;
+  let consent = true;
 
   try {
     const body = await req.json();
+    consent = body?.consent !== false;
     email = typeof body?.email === "string" ? body.email.trim() : "";
     name = typeof body?.name === "string" ? body.name.trim().slice(0, 80) : "";
     if (typeof body?.list === "string" && GROUPS[body.list]) list = body.list;
@@ -46,12 +48,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
+  // UK rules: only add someone to the mailing list if they said yes. Forms that
+  // offer a free thing send consent explicitly; a plain "keep me posted" form
+  // is itself the yes, so it sends nothing and is treated as consent.
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json(
       { error: "That email address does not look right." },
       { status: 400 }
     );
   }
+
+  // No yes to emails: they still get the free thing on the page, nothing is stored.
+  if (!consent) return NextResponse.json({ ok: true, stored: false });
 
   const key = process.env.MAILERLITE_API_KEY;
   if (!key) {

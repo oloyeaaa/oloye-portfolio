@@ -10,6 +10,8 @@ const DESCRIPTION =
   "Every job in UK marketing ranked by what it actually pays, whether anyone is hiring, how hard it is to get into, and whether AI is coming for it. Real median salaries, every figure sourced.";
 
 export const metadata: Metadata = {
+  // Hidden from Google since the Oct 2026 redesign; still works by link.
+  robots: { index: false, follow: true },
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/marketing-career-tier-list` },

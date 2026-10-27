@@ -27,6 +27,8 @@ export async function generateMetadata({
     description: f.what,
     keywords: [f.name, "free AI prompt", "use AI to build extra income"],
     alternates: { canonical: `${SITE_URL}/free/${f.slug}` },
+    // Old prompt pages: still live by link, hidden from Google since Oct 2026.
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description: f.what,

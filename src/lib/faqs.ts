@@ -128,4 +128,18 @@ export const FAQS: Record<string, FaqItem[]> = {
       answer: "They're kept in our own list so we can reply to you. We only send you other emails if you tick the box to say that's fine.",
     },
   ],
+  free: [
+    {
+      question: "Are these really free?",
+      answer: "Yes. Pick one, leave your email, and it opens straight away. No card, no catch.",
+    },
+    {
+      question: "Why do you ask for my email?",
+      answer: "So we can send it to you. We only send you other emails if you tick the box to say that's fine, and you can stop them any time.",
+    },
+    {
+      question: "Which one should I start with?",
+      answer: "10 jobs to automate first. Tick the jobs that eat your week, then pick the guide that matches the biggest one.",
+    },
+  ],
 };

@@ -19,8 +19,8 @@ import type { NextConfig } from "next";
  * That second rule is deliberate. Somebody who followed a link about buying
  * something should land on the thing we now give away, not on a general page.
  *
- * NOT redirected: /practical-ai-hub. It is the live email capture page and it
- * still works. Redirecting it would silently kill the opt-in.
+ * 2026-10-27: /practical-ai-hub is now redirected to /free (the brand moved to
+ * process automation; the free things page has its own email capture).
  */
 
 const VERTICALS = [
@@ -36,6 +36,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/lab", destination: "/free", permanent: true },
+
+      // --- Retired in the Oct 2026 redesign (process automation) ---
+      { source: "/portfolio", destination: "/case-studies", permanent: true },
+      { source: "/portfolio/:slug*", destination: "/case-studies", permanent: true },
+      { source: "/ventures", destination: "/about", permanent: true },
+      { source: "/practical-income-method", destination: "/", permanent: true },
+      { source: "/practical-ai-hub", destination: "/free", permanent: true },
       // --- Pages about the person or the old agency -> home ---
       // NOTE: /about is NOT here. It was redirected when the agency page was
       // archived, and a real About page was written in its place 2026-08-17.

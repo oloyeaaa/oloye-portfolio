@@ -1,26 +1,26 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { getAllSkillSlugs } from "@/lib/skills";
 import { getPublishedPosts } from "@/lib/airtable";
-import { FREEBIE_SLUGS } from "@/lib/freebies";
 import { CATEGORIES, getCategory } from "@/lib/categories";
 import { getAllPosts } from "@/lib/posts";
 
-// Rewritten 2026-08-17. The old sitemap listed the agency-era routes:
-// /for/<vertical> for plumbers, coaches, salons and the rest, plus /systems,
-// /agentic-ai-systems and /test-drive. Those pages are archived, so listing
-// them would have fed search engines a sitemap full of 404s.
+// Rewritten 2026-10-27 for the process automation site. Only pages we want
+// found are listed. Left out on purpose (still live by link, marked noindex):
+// hidden blog posts, tag pages, the old /free/<prompt> pages, /skills, the
+// marketing career tier list, and /case-studies until the first build is up.
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const posts = await getPublishedPosts();
-  const blogRoutes: MetadataRoute.Sitemap = posts.filter((post) => !post.hidden).map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: post.updated || post.publishedDate || now,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const blogRoutes: MetadataRoute.Sitemap = posts
+    .filter((post) => !post.hidden)
+    .map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: post.updated || post.publishedDate || now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
 
   const listed = getAllPosts();
   const categoryRoutes: MetadataRoute.Sitemap = CATEGORIES.filter((c) =>
@@ -32,78 +32,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // Each free tool is its own page, and each is real indexable content.
-  const freebieRoutes: MetadataRoute.Sitemap = FREEBIE_SLUGS.map((slug) => ({
-    url: `${SITE_URL}/free/${slug}`,
+  const page = (path: string, priority: number, changeFrequency: "daily" | "weekly" | "monthly" | "yearly") => ({
+    url: `${SITE_URL}${path}`,
     lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }));
-
-  const skillRoutes: MetadataRoute.Sitemap = getAllSkillSlugs().map((slug) => ({
-    url: `${SITE_URL}/skills/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+    changeFrequency,
+    priority,
+  });
 
   return [
-    {
-      url: SITE_URL,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 1,
-    },
-    {
-      // The page the bio link points at. Highest priority after home.
-      url: `${SITE_URL}/free`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.95,
-    },
-    { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.6 },
-    {
-      // The free checklist the home page points at.
-      url: `${SITE_URL}/free/10-jobs-to-automate-first`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      // The marketing career tier list. Real search demand, and the one page
-      // that can be found for terms the YouTube channel cannot rank for,
-      // because the channel is named after a person.
-      url: `${SITE_URL}/marketing-career-tier-list`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${SITE_URL}/practical-income-method`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/skills`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/blog`,
-      lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: 0.8,
-    },
-    ...freebieRoutes,
-    ...skillRoutes,
+    page("", 1, "weekly"),
+    page("/blog", 0.8, "daily"),
+    page("/about", 0.8, "monthly"),
+    page("/contact", 0.6, "yearly"),
+    page("/free", 0.8, "monthly"),
+    page("/free/10-jobs-to-automate-first", 0.8, "monthly"),
     ...blogRoutes,
     ...categoryRoutes,
   ];

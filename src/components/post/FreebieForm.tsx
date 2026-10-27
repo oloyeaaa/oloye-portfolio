@@ -11,6 +11,7 @@ import type { PostFreebie } from "@/lib/postFreebies";
 export default function FreebieForm({ freebie, source }: { freebie: PostFreebie; source: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState("");
 
@@ -22,7 +23,7 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, list: `post-${freebie.key}`, source }),
+        body: JSON.stringify({ name, email, consent, list: `post-${freebie.key}`, source }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -47,7 +48,9 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
           <p className="display mt-4 text-3xl !text-white">
             {name ? `Thanks, ${name.split(" ")[0]}.` : "Thanks."} Here it is.
           </p>
-          <p className="mt-3 text-white/60">You&apos;re on the list for the occasional useful email. Unsubscribe any time.</p>
+          <p className="mt-3 text-white/60">
+            {consent ? "You're on the list for the occasional useful email. Unsubscribe any time." : "It's yours. We won't send you anything else."}
+          </p>
           <a
             href={freebie.url}
             target={external ? "_blank" : undefined}
@@ -61,7 +64,7 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
         <>
           <p className="display mt-4 text-3xl !text-white sm:text-4xl">{freebie.title}</p>
           <p className="mt-3 max-w-lg text-white/60">{freebie.line}</p>
-          <form onSubmit={submit} className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-[1fr_1.3fr_auto]">
+          <form onSubmit={submit} className="mt-7 grid gap-3 sm:grid-cols-2">
             <label className="sr-only" htmlFor="ff-name">First name (optional)</label>
             <input
               id="ff-name"
@@ -83,10 +86,14 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
               placeholder="Your email"
               className="rounded-lg border border-white/15 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/40 outline-none focus:border-accent"
             />
+            <label className="flex items-start gap-3 text-sm text-white/60 sm:col-span-2">
+              <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#C6F23C]" />
+              <span>Also send me the occasional useful idea by email. (Not ticked? You just get this one.)</span>
+            </label>
             <button
               type="submit"
               disabled={state === "sending"}
-              className="whitespace-nowrap rounded-lg sm:col-span-2 xl:col-span-1 bg-accent px-6 py-3.5 text-sm font-bold text-foreground transition hover:bg-accent-light disabled:opacity-60"
+              className="whitespace-nowrap rounded-lg sm:col-span-2 bg-accent px-6 py-3.5 text-sm font-bold text-foreground transition hover:bg-accent-light disabled:opacity-60"
             >
               {state === "sending" ? "Sending..." : "Get it free"}
             </button>
@@ -94,7 +101,6 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
           {state === "error" && (
             <p className="mt-3 text-sm font-medium text-red-400" role="alert">{error}</p>
           )}
-          <p className="mt-4 text-xs text-white/40">No spam. Unsubscribe any time.</p>
         </>
       )}
     </aside>

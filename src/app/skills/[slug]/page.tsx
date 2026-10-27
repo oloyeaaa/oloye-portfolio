@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description: skill.tagline.slice(0, 155),
     alternates: { canonical: `${SITE_URL}/skills/${skill.slug}` },
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description: skill.tagline.slice(0, 155),

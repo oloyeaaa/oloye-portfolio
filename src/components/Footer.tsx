@@ -18,8 +18,7 @@ const columns = [
     title: "Free",
     links: [
       { name: "10 jobs to automate first", href: CHECKLIST_URL },
-      { name: "Free tools", href: "/free" },
-      { name: "Skills", href: "/skills" },
+      { name: "Free things", href: "/free" },
       { name: "Blog", href: "/blog" },
     ],
   },

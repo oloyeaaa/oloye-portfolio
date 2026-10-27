@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL } from "@/lib/site";
 import { webPageSchema } from "@/lib/schema";
-import { FREEBIES } from "@/lib/freebies";
-import CopyPrompt from "@/components/CopyPrompt";
+import { SITE_URL } from "@/lib/site";
+import { FAQS } from "@/lib/faqs";
+import { POST_FREEBIES } from "@/lib/postFreebies";
+import Faq from "@/components/Faq";
+import OneLiner from "@/components/home/OneLiner";
+import FreeThingsPicker from "@/components/FreeThingsPicker";
+import { LastCall } from "@/components/home/CallToAction";
 
-const TITLE = "Free AI Prompt Engines & Systems Vault — Oloye Adeosun";
-const DESCRIPTION =
-  "Production-grade system prompts for Google AI Studio & Gemini. Copy, paste, and run in 1 click.";
+// Free things (rebuilt 2026-10-27): the checklist plus the five guides the blog
+// posts offer. The old prompt pages under /free/<slug> still work by link but
+// are hidden from Google and no longer listed here.
+
+const TITLE = "Free things";
+const DESCRIPTION = "Free checklists and guides that help small businesses hand over the repeat jobs. Pick one and it opens straight away.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: "Free checklists and guides for small businesses | Oloye" },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/free` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${SITE_URL}/free`,
-    type: "website",
-  },
 };
 
 export default function FreePage() {
+  const items = Object.values(POST_FREEBIES);
+
   return (
     <>
       <JsonLd
@@ -30,68 +32,38 @@ export default function FreePage() {
           path: "/free",
           title: TITLE,
           description: DESCRIPTION,
-          type: "WebPage",
+          type: "CollectionPage",
           breadcrumb: [
             { name: "Home", path: "/" },
-            { name: "Prompt Lab", path: "/free" },
+            { name: TITLE, path: "/free" },
           ],
         })}
       />
 
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 space-y-10 py-8 sm:py-12">
-        {/* Header */}
-        <div className="space-y-2 border-b border-border pb-5">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-2.5 py-0.5 text-[11px] font-medium text-accent">
-            <span>Google AI Studio & Gemini Stack</span>
+      <div className="bg-surface">
+        <section className="px-4 pb-14 pt-20 sm:px-6 sm:pt-28">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow">Free things</p>
+            <h1 className="display mt-6 max-w-4xl text-5xl text-foreground sm:text-7xl">
+              Take one. <span className="lime-mark">It&apos;s free.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
+              Small, useful things to help you hand over the jobs that eat your week. Pick one and it opens straight away.
+            </p>
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-            Free AI Prompt Engines
-          </h1>
-          <p className="text-xs sm:text-sm text-muted max-w-xl">
-            Production-grade system prompts for Google AI Studio & Gemini. Copy, paste, and run in 1 click.
-          </p>
-        </div>
+        </section>
 
-        {/* Prompt Engines Catalog */}
-        <div className="space-y-8">
-          {FREEBIES.map((freebie, idx) => (
-            <article
-              key={freebie.slug}
-              id={freebie.slug}
-              className="rounded-xl border border-border bg-surface p-5 sm:p-6 space-y-4 scroll-mt-24 transition hover:border-accent/40"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-3">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-6 w-6 items-center justify-center rounded bg-surface-raised font-mono text-[11px] font-bold text-accent border border-border">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h2 className="text-base font-bold text-foreground sm:text-lg">
-                      {freebie.name}
-                    </h2>
-                    <p className="text-xs text-muted line-clamp-1">
-                      {freebie.promise}
-                    </p>
-                  </div>
-                </div>
+        <section className="px-4 pb-24 sm:px-6">
+          <div className="mx-auto max-w-5xl">
+            <FreeThingsPicker items={items} />
+          </div>
+        </section>
 
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-background px-2 py-0.5 text-[10px] font-mono text-muted border border-border">
-                    {freebie.time}
-                  </span>
-                  <span className="rounded bg-background px-2 py-0.5 text-[10px] font-mono text-accent border border-border">
-                    Gemini 2.5 Flash
-                  </span>
-                </div>
-              </div>
+        <OneLiner className="pb-8" />
 
-              {/* Execution Prompt Terminal */}
-              <div>
-                <CopyPrompt prompt={freebie.prompt} />
-              </div>
-            </article>
-          ))}
-        </div>
+        <Faq items={FAQS.free} />
+
+        <LastCall />
       </div>
     </>
   );

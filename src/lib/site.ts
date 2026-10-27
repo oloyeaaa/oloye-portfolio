@@ -22,8 +22,8 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/oloyeadeosun",
 };
 
-// PLACEHOLDER: swap in the real booking link (Calendly, Google booking page) when Oloye sends it.
-export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || "#book-a-call";
+// The free call: Oloye's Google Calendar booking page (sent 2026-10-27).
+export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL || "https://calendar.app.google/s8FjtoLAyYZnZ1u98";
 export const CHECKLIST_URL = "/free/10-jobs-to-automate-first";
 
 export const NOTION_PACK_URL = process.env.NEXT_PUBLIC_NOTION_PACK_URL || "";

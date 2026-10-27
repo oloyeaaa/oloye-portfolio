@@ -4,7 +4,7 @@ Do them in this order. Each one is small. Tick it when it's done.
 
 ## Must do before the site goes live
 
-- [ ] **1. Make the booking page.** In Google Calendar: Create > Appointment schedule. Call it "Free call", 30 minutes is a good start. Copy its link and send it to Claude. Every "Book a free call" button then points there (it's one line: `BOOKING_URL` in `src/lib/site.ts`).
+- [x] **1. Make the booking page.** DONE 27 Oct: https://calendar.app.google/s8FjtoLAyYZnZ1u98 is behind every button. In Google Calendar: Create > Appointment schedule. Call it "Free call", 30 minutes is a good start. Copy its link and send it to Claude. Every "Book a free call" button then points there (it's one line: `BOOKING_URL` in `src/lib/site.ts`).
 
 - [ ] **2. Make the email groups in MailerLite.** Right now every form adds people to your "free-tools" group, and the page shows them the link straight away. To also email them the right free thing, make one group per free thing:
   - `post-checklist` (10 jobs to automate first)

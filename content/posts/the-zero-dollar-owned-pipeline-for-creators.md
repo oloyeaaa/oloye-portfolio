@@ -4,7 +4,7 @@ date: "2026-09-30"
 category: "Marketing Automation"
 excerpt: "A practical, 15-minute blueprint showing how solo creators and non-tech founders can capture and route leads from social media using Google Workspace, Gemini and Airtable, at zero cost."
 tags: ["Marketing Automation", "Owned Pipeline", "Google AI", "Airtable", "Solo Builder"]
-coverImage: "/images/blog/the-zero-dollar-owned-pipeline-for-creators.jpg"
+coverImage: "/images/blog/cover-owned-list.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---
 

@@ -7,7 +7,7 @@ category: "Automation & Systems"
 excerpt: "Every day, tech social media screams about the latest AI model. I use those tools too, but 14 years in enterprise operations taught me a different lesson: flashy tools make headlines today, but boring infrastructure wins the decade."
 description: "Every day, tech social media screams about the latest AI model. I use those tools too, but 14 years in enterprise operations taught me a different lesson: flashy tools make headlines today, but boring infrastructure wins the decade."
 tags: ["Google Gemini", "Google Workspace", "Automation", "Enterprise Operations", "Digital Ownership", "Honest Practitioner"]
-coverImage: "/images/blog/google-infrastructure-vs-ai-hype.jpg"
+coverImage: "/images/blog/cover-boring-rails.jpg"
 coverImageCredit: "Project Legacy Engine"
 readingTime: "6 min read"
 featured: true

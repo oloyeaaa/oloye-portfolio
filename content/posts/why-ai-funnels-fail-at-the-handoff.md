@@ -6,7 +6,7 @@ author: "Oloye Adeosun"
 category: "Systems & Operations"
 tags: ["Marketing Automation", "Systems Architecture", "Enterprise Governance", "Airtable", "Make.com", "Pipeline Strategy"]
 description: "Why slapping an AI prompt on a messy marketing funnel just creates faster chaos. The 4 operational principles from 14 years in Tier-1 banking that keep automation pipelines running without dropping leads."
-coverImage: "/images/hero-pipeline.jpg"
+coverImage: "/images/blog/cover-handoff.jpg"
 readingTime: "6 min read"
 featured: true
 ---

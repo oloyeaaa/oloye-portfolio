@@ -9,12 +9,13 @@ import Faq from "@/components/Faq";
 import Reveal from "@/components/home/Reveal";
 import PostTile from "@/components/home/PostTile";
 import { LastCall } from "@/components/home/CallToAction";
+import OneLiner from "@/components/home/OneLiner";
 
 export const revalidate = 60;
 
 const TITLE = "Automation ideas for small businesses";
 const DESCRIPTION =
-  "Plain-English posts on joining up the jobs that eat your week: leads, onboarding, delivery and keeping clients coming back.";
+  "Simple fixes for the jobs that keep small business owners working late: leads, onboarding, delivery and keeping clients coming back.";
 
 export const metadata: Metadata = {
   title: { absolute: `${TITLE} | Oloye blog` },
@@ -61,7 +62,7 @@ export default function BlogPage() {
               Automation ideas for <span className="lime-mark">small businesses.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
-              Plain-English posts on joining up the jobs that eat your week.
+              Simple fixes for the jobs that keep you working late. Written the way we&apos;d explain it to a friend.
             </p>
           </div>
         </section>
@@ -85,6 +86,8 @@ export default function BlogPage() {
             </div>
           </section>
         )}
+
+        <OneLiner className="pt-24 sm:pt-32" />
 
         <section className="px-4 py-24 sm:px-6 sm:py-32">
           <Reveal className="mx-auto max-w-5xl">

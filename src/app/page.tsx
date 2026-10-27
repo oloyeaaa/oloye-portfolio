@@ -12,6 +12,7 @@ import ProcessFlow from "@/components/home/ProcessFlow";
 import LogoMarquee from "@/components/home/LogoMarquee";
 import CountUp from "@/components/home/CountUp";
 import BlogCards from "@/components/home/BlogCards";
+import OneLiner from "@/components/home/OneLiner";
 import { Buttons, LastCall } from "@/components/home/CallToAction";
 import Faq from "@/components/Faq";
 import { FAQS } from "@/lib/faqs";
@@ -166,6 +167,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* The one-liner, said plainly before the example */}
+        <OneLiner className="pb-24 sm:pb-36" />
 
         {/* 3b. See one at work: the process animation */}
         <section id="how-it-works" className="scroll-mt-20 bg-foreground px-4 py-24 sm:px-6 sm:py-36">

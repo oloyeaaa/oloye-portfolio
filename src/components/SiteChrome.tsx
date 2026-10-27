@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
+import OfferBanner from "./OfferBanner";
 
 // Routes that render full-bleed, without the site header/footer (e.g. link-in-bio pages).
 const BARE_PATHS = ["/practical-ai-hub"];
@@ -26,6 +27,7 @@ export default function SiteChrome({
 
   return (
     <>
+      <OfferBanner />
       {header}
       <main className="flex-1">{children}</main>
       {footer}

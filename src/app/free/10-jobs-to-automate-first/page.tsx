@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import SignupForm from "@/components/SignupForm";
 import Reveal from "@/components/home/Reveal";
+import OneLiner from "@/components/home/OneLiner";
 import { webPageSchema } from "@/lib/schema";
 import { SITE_URL, BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 
@@ -48,7 +49,7 @@ export default function ChecklistPage() {
         })}
       />
 
-      <div className="bg-surface px-4 pb-32 pt-20 sm:px-6 sm:pt-28">
+      <div className="bg-surface px-4 pb-16 pt-20 sm:px-6 sm:pt-28">
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">Free checklist</p>
           <h1 className="display mt-6 text-5xl text-foreground sm:text-7xl">
@@ -72,7 +73,14 @@ export default function ChecklistPage() {
             ))}
           </ol>
 
-          <div className="mt-16 rounded-3xl bg-foreground p-8 text-center sm:p-12">
+        </div>
+      </div>
+
+      <OneLiner className="bg-surface" />
+
+      <div className="bg-surface px-4 pb-32 pt-16 sm:px-6">
+        <div className="mx-auto max-w-3xl">
+          <div className="rounded-3xl bg-foreground p-8 text-center sm:p-12">
             <p className="display text-3xl !text-white sm:text-4xl">Ticked three or more?</p>
             <p className="mt-3 text-white/60">Those are the ones we&apos;d build first.</p>
             <a

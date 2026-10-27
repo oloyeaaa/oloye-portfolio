@@ -29,7 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -38,24 +38,20 @@ export const metadata: Metadata = {
   creator: AUTHOR.name,
   publisher: SITE_NAME,
   keywords: [
-    "Product Marketing",
-    "Marketing Operations",
-    "Go-To-Market Strategy",
-    "PMM Consultant",
-    "Marketing Ops Leader",
-    "Story-Led Teardowns",
-    "Counter-Positioning",
-    "The Curb-Cut Effect",
-    "Accessible Technology Marketing",
-    "B2B GTM Strategy",
-    "GTM Signal Studio",
-    "Practical AI Hub",
+    "Process automation",
+    "Business automation UK",
+    "Small business automation",
+    "Automation for coaches",
+    "Airtable automation",
+    "Make.com automation",
+    "Claude automation",
+    "Save time on admin",
   ],
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     type: "website",
     url: SITE_URL,
@@ -64,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   robots: {

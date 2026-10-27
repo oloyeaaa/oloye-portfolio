@@ -12,9 +12,17 @@ import { useState } from "react";
 export default function SignupForm({
   notionUrl,
   list = "free-tools",
+  heading = "Want all five in one place?",
+  body = "Get the whole pack as one Notion page you can duplicate and keep. Free, and the tools stay free on this site either way.",
+  button = "Send me the pack",
+  doneText = "The pack is on its way to your inbox. Every tool is also on this site already, free, with nothing to sign up for.",
 }: {
   notionUrl: string;
   list?: string;
+  heading?: string;
+  body?: string;
+  button?: string;
+  doneText?: string;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -62,16 +70,13 @@ export default function SignupForm({
               href={notionUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-block rounded-md bg-accent px-5 py-3 font-semibold text-background transition hover:bg-accent-light"
+              className="mt-5 inline-block rounded-md bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light"
             >
               Open the pack in Notion
             </a>
           </>
         ) : (
-          <p className="mt-2 text-primary-dim">
-            The pack is on its way to your inbox. Every tool is also on this
-            site already, free, with nothing to sign up for.
-          </p>
+          <p className="mt-2 text-primary-dim">{doneText}</p>
         )}
       </div>
     );
@@ -82,13 +87,8 @@ export default function SignupForm({
       onSubmit={submit}
       className="rounded-lg border border-border bg-surface p-6"
     >
-      <h3 className="font-display text-lg font-bold">
-        Want all five in one place?
-      </h3>
-      <p className="mt-2 max-w-[52ch] text-primary-dim">
-        Get the whole pack as one Notion page you can duplicate and keep. Free,
-        and the tools stay free on this site either way.
-      </p>
+      <h3 className="font-display text-lg font-bold">{heading}</h3>
+      <p className="mt-2 max-w-[52ch] text-primary-dim">{body}</p>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <label className="block">
@@ -128,14 +128,13 @@ export default function SignupForm({
       <button
         type="submit"
         disabled={state === "sending"}
-        className="mt-5 rounded-md bg-accent px-5 py-3 font-semibold text-background transition hover:bg-accent-light disabled:opacity-60"
+        className="mt-5 rounded-md bg-accent px-5 py-3 font-semibold text-foreground transition hover:bg-accent-light disabled:opacity-60"
       >
-        {state === "sending" ? "Sending..." : "Send me the pack"}
+        {state === "sending" ? "Sending..." : button}
       </button>
 
       <p className="mt-3 text-sm text-muted">
-        One email with the pack, then the occasional useful one. Unsubscribe any
-        time.
+        Then the occasional useful email. Unsubscribe any time.
       </p>
     </form>
   );

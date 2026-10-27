@@ -1,324 +1,348 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts } from "@/lib/posts";
-import PostCard from "@/components/PostCard";
+import type { CSSProperties } from "react";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
-import { SITE_URL } from "@/lib/site";
-import AutomationFlowVisualizer from "@/components/AutomationFlowVisualizer";
+import { SITE_URL, SITE_DESCRIPTION, BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
+import Reveal from "@/components/home/Reveal";
+import TypingJobs from "@/components/home/TypingJobs";
+import HoursSlider from "@/components/home/HoursSlider";
+import ProcessFlow from "@/components/home/ProcessFlow";
+import LogoMarquee from "@/components/home/LogoMarquee";
+import CountUp from "@/components/home/CountUp";
 
-const TITLE = "Oloye Adeosun • Marketing Automation, AI Pipelines & Systems Architecture";
-const DESCRIPTION =
-  "Senior Marketing Automation Specialist with 4+ years in automation engineering and 14+ years in Tier-1 UK enterprise operations. Turn social attention into an automated, owned pipeline.";
+// The home page follows the StoryBrand website wireframe (header, stakes, value,
+// guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
+
+const TITLE = "Process automation for small businesses | Oloye";
+const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: SITE_URL },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: SITE_URL,
-    type: "website",
-  },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: SITE_URL, type: "website" },
 };
 
-export default function HomePage() {
-  const posts = getAllPosts().slice(0, 3);
+const FRUSTRATIONS = [
+  "Typing new leads into a spreadsheet",
+  "Chasing payments, one by one",
+  "Writing the same email again",
+  "Forgetting to follow up",
+  "Evenings lost to admin",
+];
 
+const VALUE = [
+  {
+    title: "Save time",
+    text: "The repeat jobs run on their own.",
+    icon: (
+      <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <circle cx="24" cy="24" r="18" />
+        <polyline points="24,13 24,24 32,28" />
+      </svg>
+    ),
+  },
+  {
+    title: "Save money",
+    text: "No extra hire. No pile of software.",
+    icon: (
+      <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <circle cx="24" cy="24" r="18" />
+        <path d="M29 16c-1.5-1.5-3.5-2-5.5-1.6-2.8.6-4 3-4 5.6V33h11M16.5 25h10" />
+      </svg>
+    ),
+  },
+  {
+    title: "Never miss a thing",
+    text: "Every lead, invoice and reminder handled.",
+    icon: (
+      <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <rect x="8" y="8" width="32" height="32" rx="8" />
+        <polyline points="16,24 22,30 33,18" />
+      </svg>
+    ),
+  },
+];
+
+const PLAN = [
+  { n: "1", title: "Tell us the job that eats your week." },
+  { n: "2", title: "We build it with the tools you already use." },
+  { n: "3", title: "You get the hours back." },
+];
+
+function Buttons({ dark = false }: { dark?: boolean }) {
+  return (
+    <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+      <a
+        href={BOOKING_URL}
+        className="inline-flex w-full items-center justify-center rounded-full bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light sm:w-auto"
+      >
+        Book a free call
+      </a>
+      <Link
+        href={CHECKLIST_URL}
+        className={`inline-flex w-full items-center justify-center rounded-full border px-7 py-4 text-sm font-semibold transition sm:w-auto ${
+          dark
+            ? "border-white/25 text-white hover:bg-white/10"
+            : "border-border-strong text-foreground hover:bg-surface-alt"
+        }`}
+      >
+        Get the free checklist
+      </Link>
+    </div>
+  );
+}
+
+export default function HomePage() {
   return (
     <>
-      <JsonLd
-        data={webPageSchema({
-          path: "/",
-          title: TITLE,
-          description: DESCRIPTION,
-          type: "WebPage",
-        })}
-      />
+      <JsonLd data={webPageSchema({ path: "/", title: TITLE, description: DESCRIPTION, type: "WebPage" })} />
 
-      <main className="flex flex-col">
-        {/* =========================================================================
-            1. HERO SECTION: NATURAL.AGENCY INSPIRED PIPELINE ARCHITECTURE
-        ========================================================================= */}
-        <section className="relative overflow-hidden border-b border-border bg-background pt-12 pb-16 sm:pt-20 sm:pb-24">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-              {/* Pill Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-mono font-semibold text-foreground shadow-xs">
-                <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
-                <span>Marketing Automation &amp; AI Systems Architect</span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-6xl sm:leading-[1.1]">
-                Turn Client Attention into an{" "}
-                <span className="bg-gradient-to-r from-foreground via-foreground/90 to-accent-dark bg-clip-text text-transparent underline decoration-accent decoration-4 underline-offset-8">
-                  Automated, Owned Pipeline.
-                </span>
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-base sm:text-lg text-muted leading-relaxed max-w-2xl">
-                4+ years designing high-converting automation funnels (long before ChatGPT) combined with 14+ years in Tier-1 UK enterprise governance. Replace £3,000/mo software bloat with clean, reliable systems using Make.com, Airtable, and Google Workspace.
-              </p>
-
-              {/* Action CTAs */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto pt-2">
-                <Link
-                  href="/free/lean-owned-pipeline-blueprint"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-foreground px-7 py-3.5 text-sm font-bold text-accent shadow-md transition hover:bg-foreground/90 hover:scale-[1.02]"
-                >
-                  ⚡ Get Free Oloye Media OS Template
-                </Link>
-                <Link
-                  href="/portfolio"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-bold text-foreground transition hover:bg-surface-alt"
-                >
-                  Explore Interactive Systems &rarr;
-                </Link>
-              </div>
-
-              {/* Trust Strip */}
-              <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-mono text-muted">
-                <span>✓ 4+ Yrs Automation Engine</span>
-                <span>•</span>
-                <span>✓ 14+ Yrs Enterprise Banking Ops</span>
-                <span>•</span>
-                <span>✓ 0% Code Overwhelm</span>
-              </div>
+      <div className="bg-surface">
+        {/* 1. Header: what we offer, how life gets better, what to do next */}
+        <section className="px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28">
+          <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+            <p className="eyebrow">Process automation for small businesses</p>
+            <h1 className="display mt-6 text-[2.9rem] text-foreground sm:text-7xl lg:text-[5.5rem]">
+              Stop doing the same job <span className="lime-mark">twice.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
+              Simple automations that save your business time and money.
+            </p>
+            <div className="mt-10">
+              <Buttons />
             </div>
-
-            {/* Live Interactive Visualizer */}
-            <div className="mt-12 sm:mt-16">
-              <AutomationFlowVisualizer />
+            <div className="mt-16 flex w-full justify-center">
+              <TypingJobs />
             </div>
           </div>
         </section>
 
-        {/* =========================================================================
-            2. THE 4+ YEARS AUTOMATION CREDIBILITY & ETHOS
-        ========================================================================= */}
-        <section className="py-16 sm:py-20 border-b border-border bg-surface">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-center">
-              <div className="lg:col-span-6 space-y-4">
-                <span className="font-mono text-xs font-bold text-accent-dark uppercase tracking-wider">
-                  The Honest Practitioner Journey
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                  Built on Real Operational Pipes, Not AI Hype.
-                </h2>
-                <p className="text-sm sm:text-base text-muted leading-relaxed">
-                  My automation journey started well before 2022—back when email marketing funnels, webhook handoffs, and relational databases had to be built with zero AI assistance.
-                </p>
-                <p className="text-sm sm:text-base text-muted leading-relaxed">
-                  Managing operations, governance, and risk for over 14 years across Tier-1 UK financial institutions (Lloyds, RBS, OSB) taught me one non-negotiable rule: <strong>Systems don&apos;t fail at the start; they fail at the handoffs.</strong>
-                </p>
-                <div className="pt-2">
-                  <div className="inline-flex items-center gap-3 rounded-lg border border-border bg-background p-3 text-xs font-mono text-foreground">
-                    <span className="text-lg">⏳</span>
-                    <span>North Star: Building lean systems that buy back time for my son.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-border bg-background p-5 shadow-xs space-y-2">
-                  <div className="text-2xl">⚡</div>
-                  <h3 className="text-sm font-bold text-foreground">Zero-Latency Ingestion</h3>
-                  <p className="text-xs text-muted">
-                    Automated webhooks route leads from DMs, forms, and calendars into your owned database in under 200ms.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border bg-background p-5 shadow-xs space-y-2">
-                  <div className="text-2xl">📊</div>
-                  <h3 className="text-sm font-bold text-foreground">Dynamic Google Slides Proposals</h3>
-                  <p className="text-xs text-muted">
-                    Generate customized, branded client proposal decks and PDFs in 60 seconds directly from CRM deal records.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border bg-background p-5 shadow-xs space-y-2">
-                  <div className="text-2xl">🚀</div>
-                  <h3 className="text-sm font-bold text-foreground">1-Click Client Onboarding</h3>
-                  <p className="text-xs text-muted">
-                    Moving a deal to &quot;Won&quot; instantly provisions Google Drive folders, SOW milestone tasks, and kickoff emails.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border bg-background p-5 shadow-xs space-y-2">
-                  <div className="text-2xl">🛡️</div>
-                  <h3 className="text-sm font-bold text-foreground">UK GDPR &amp; Governance</h3>
-                  <p className="text-xs text-muted">
-                    Bank-grade compliance, PECR-compliant opt-in taxonomies, and audit-ready data retention structures.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            3. THE FLAGSHIP LEAD MAGNET: OLOYE MEDIA OS
-        ========================================================================= */}
-        <section id="system" className="py-16 sm:py-24 border-b border-border bg-foreground text-background">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1 text-xs font-bold text-foreground uppercase tracking-wider">
-                  Featured Free System
-                </div>
-                <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
-                  The Oloye Media OS (Airtable + Make.com)
-                </h2>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  The exact 7-table operating system that powers our agency pipeline, client delivery, proposals, and task SLAs. Duplicate the entire base with one click and stop running your business out of messy spreadsheets.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-gray-200 font-mono">
-                  <div className="flex items-center gap-2">
-                    <span className="text-accent font-bold">✓</span>
-                    <span>14-Stage CRM &amp; Deal Flow</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-accent font-bold">✓</span>
-                    <span>Automated Proposal Linkage</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-accent font-bold">✓</span>
-                    <span>5-Step SOW Task Provisioning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-accent font-bold">✓</span>
-                    <span>Google Drive Auto-Creation</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
-                  <Link
-                    href="/free/lean-owned-pipeline-blueprint"
-                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-sm font-bold text-foreground transition hover:bg-accent-light shadow-md"
-                  >
-                    Duplicate Free Airtable OS &rarr;
-                  </Link>
-                  <Link
-                    href="/portfolio/funnel-auditor"
-                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
-                  >
-                    Test Live Funnel Auditor
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Side: Mockup / Card */}
-              <div className="lg:col-span-5">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md space-y-4 shadow-2xl">
-                  <div className="flex items-center justify-between border-white/10 border-b pb-3">
-                    <span className="font-mono text-xs text-accent">OLOYE_MEDIA_OS.AIRTABLE</span>
-                    <span className="rounded-full bg-emerald-500/20 text-emerald-300 px-2 py-0.5 font-mono text-[10px]">
-                      READY TO CLONE
-                    </span>
-                  </div>
-                  <div className="space-y-2.5 text-xs text-gray-300">
-                    <p>• <strong>Companies:</strong> Account segmentation &amp; revenue tiers.</p>
-                    <p>• <strong>Contacts:</strong> Decision-maker tracking &amp; lead sources.</p>
-                    <p>• <strong>Deals:</strong> Discovery ➔ Proposal ➔ Won / Lost pipeline.</p>
-                    <p>• <strong>Proposals:</strong> Scope, goals, and automated deck links.</p>
-                    <p>• <strong>Projects &amp; Tasks:</strong> 5-step turnkey client delivery.</p>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-black/40 p-3.5 font-mono text-[11px] text-gray-400">
-                    <code>make.com/blueprint/oloye-media-os-v2.json</code>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            4. THE 7-DAY TURNKEY IMPLEMENTATION SPRINT (COMMERCIAL OFFER)
-        ========================================================================= */}
-        <section className="py-16 sm:py-24 border-b border-border bg-surface">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto space-y-3">
-              <span className="font-mono text-xs font-bold text-muted uppercase tracking-wider">
-                Productized Service
-              </span>
-              <h2 className="text-3xl font-extrabold text-foreground tracking-tight sm:text-4xl">
-                The 7-Day Owned Pipeline Sprint
+        {/* 2. Stakes: life if nothing changes */}
+        <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-36">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <h2 className="display max-w-3xl text-4xl text-foreground sm:text-6xl">
+                Still doing it all by hand?
               </h2>
-              <p className="text-sm sm:text-base text-muted">
-                Don&apos;t want to spend 40 hours learning Make.com webhooks and Airtable schemas? We build, wire, and test your entire custom Media OS in 7 days.
-              </p>
-            </div>
+              <ul className="mt-12 grid gap-x-12 gap-y-5 sm:grid-cols-2">
+                {FRUSTRATIONS.map((f, i) => (
+                  <li key={f} className="flex items-center gap-4 text-lg text-primary-dim sm:text-xl">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-foreground" />
+                    <span className="strike" style={{ "--d": `${400 + i * 250}ms` } as CSSProperties}>
+                      {f}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
 
-            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="rounded-2xl border border-border bg-background p-7 space-y-4 shadow-xs">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-mono font-bold text-accent">
-                  01
-                </div>
-                <h3 className="text-base font-bold text-foreground">Intake &amp; Architecture Audit</h3>
-                <p className="text-xs text-muted leading-relaxed">
-                  We audit your current lead sources, booking tools, and proposals, mapping out a custom 3-node relational data schema.
-                </p>
+            <Reveal delay={150}>
+              <div className="mt-16 rounded-3xl bg-accent px-6 py-10 text-center sm:py-14">
+                <p className="display text-3xl text-foreground sm:text-5xl">There&apos;s a simpler way.</p>
               </div>
+            </Reveal>
 
-              <div className="rounded-2xl border border-border bg-background p-7 space-y-4 shadow-xs">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-mono font-bold text-accent">
-                  02
-                </div>
-                <h3 className="text-base font-bold text-foreground">Airtable &amp; Make.com Integration</h3>
-                <p className="text-xs text-muted leading-relaxed">
-                  We wire up your webhooks, build Google Slides proposal generators, automate Google Drive client folders, and clean your data.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border bg-background p-7 space-y-4 shadow-xs">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground font-mono font-bold text-accent">
-                  03
-                </div>
-                <h3 className="text-base font-bold text-foreground">QA Testing &amp; Loom Handover</h3>
-                <p className="text-xs text-muted leading-relaxed">
-                  We test end-to-end transactions, deliver a 1-on-1 team Loom video walkthrough, and provide 14 days of dedicated launch support.
-                </p>
-              </div>
-            </div>
+            <Reveal>
+              <HoursSlider />
+            </Reveal>
           </div>
         </section>
 
-        {/* =========================================================================
-            5. WEDNESDAY BLOG & PIPELINE TEARDOWNS
-        ========================================================================= */}
-        <section className="py-16 sm:py-24">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-muted">
-                  Every Wednesday
-                </span>
-                <h2 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
-                  Weekly Pipeline Teardowns &amp; Systems Builds
-                </h2>
-              </div>
-              <Link
-                href="/blog"
-                className="text-sm font-bold text-foreground hover:underline decoration-accent decoration-2"
-              >
-                View all articles &rarr;
-              </Link>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-              {posts.map((post) => (
-                <PostCard key={post.slug} post={post} />
+        {/* 3. Value: three benefits */}
+        <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-36">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <h2 className="display max-w-3xl text-4xl text-foreground sm:text-6xl">
+                Hand over the small jobs.
+              </h2>
+            </Reveal>
+            <div className="mt-14 grid gap-6 sm:grid-cols-3">
+              {VALUE.map((v, i) => (
+                <Reveal key={v.title} delay={i * 150}>
+                  <div className="h-full rounded-3xl border border-border p-8">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent text-foreground">
+                      {v.icon}
+                    </span>
+                    <h3 className="mt-8 text-2xl font-bold">{v.title}</h3>
+                    <p className="mt-2 text-muted">{v.text}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
-      </main>
+
+        {/* 3b. See one at work: the process animation */}
+        <section id="how-it-works" className="scroll-mt-20 bg-foreground px-4 py-24 sm:px-6 sm:py-36">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow !text-accent">An example</p>
+            <h2 className="display mt-5 max-w-3xl text-4xl !text-white sm:text-6xl">
+              One job, start to finish, without you.
+            </h2>
+            <ProcessFlow />
+          </div>
+        </section>
+
+        {/* 4. Guide: empathy, then proof */}
+        <section id="proof" className="scroll-mt-20 px-4 py-24 sm:px-6 sm:py-36">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <h2 className="display max-w-4xl text-4xl text-foreground sm:text-6xl">
+                Admin after a long day is the worst part. It doesn&apos;t have to be yours.
+              </h2>
+            </Reveal>
+
+            <div className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+              <Reveal>
+                <div className="flex h-full flex-col justify-between rounded-3xl border border-border p-8">
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src="/images/brand/oloye-lime.jpg"
+                      alt="Oloye, founder"
+                      width={72}
+                      height={72}
+                      className="h-[72px] w-[72px] rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-bold">Oloye</p>
+                      <p className="text-sm text-muted">Founder</p>
+                    </div>
+                  </div>
+                  <p className="display mt-10 text-3xl sm:text-4xl">New to posting. Not new to building.</p>
+                  <p className="mt-4 text-muted">Over 3 years building marketing systems.</p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={150}>
+                <figure className="flex h-full flex-col rounded-3xl border border-border bg-background p-6 sm:p-8">
+                  <p className="eyebrow">What a client said</p>
+                  <a href="/images/proof/rita-linkedin-review.png" target="_blank" rel="noopener noreferrer" className="mt-5 block">
+                  <Image
+                    src="/images/proof/rita-linkedin-review.png"
+                    alt="Rita Enosegbe's five-star LinkedIn review: through Oloye's guidance she gained clear direction and positioning, and recommends him to anyone looking for clarity and a partner who helps them move forward."
+                    width={771}
+                    height={282}
+                    className="w-full rounded-xl border border-border"
+                  />
+                  </a>
+                  <figcaption className="mt-4 text-sm text-muted">Rita Enosegbe, on LinkedIn. Tap to read it full size.</figcaption>
+                </figure>
+              </Reveal>
+            </div>
+
+            <Reveal>
+              <div className="mt-6 grid items-center gap-8 rounded-3xl border border-border p-6 sm:grid-cols-[1fr_auto] sm:p-10">
+                <div>
+                  <p className="display text-7xl sm:text-8xl">
+                    <span className="lime-mark">
+                      <CountUp to={304} />
+                    </span>
+                  </p>
+                  <p className="mt-4 max-w-sm text-lg text-muted">
+                    sign-ups to Rita&apos;s email list in its first month. Built from scratch.
+                  </p>
+                </div>
+                <Image
+                  src="/images/proof/rita-x-post.jpg"
+                  alt="Rita Enosegbe's post on X: one month after starting her email list she crossed 300, total 304, and thanks @oloyeaa for building everything from scratch."
+                  width={720}
+                  height={1146}
+                  className="w-full max-w-[280px] justify-self-center rounded-2xl border border-border"
+                />
+              </div>
+            </Reveal>
+
+            {/* The tools, moving */}
+            <div className="mt-28">
+              <Reveal>
+                <p className="eyebrow">The tools we use</p>
+                <h3 className="display mt-4 text-3xl sm:text-5xl">Tools you already know, joined up.</h3>
+              </Reveal>
+              <div className="mt-12 -mx-4 sm:-mx-6">
+                <LogoMarquee />
+              </div>
+            </div>
+
+            {/* Case studies */}
+            <div className="mt-28">
+              <Reveal>
+                <p className="eyebrow">Case studies</p>
+                <h3 className="display mt-4 text-3xl sm:text-5xl">Real builds. Coming soon.</h3>
+              </Reveal>
+              <div className="mt-12 grid gap-6 sm:grid-cols-3">
+                {[0, 1, 2].map((i) => (
+                  <Reveal key={i} delay={i * 150}>
+                    <div className="shimmer flex h-64 flex-col justify-between rounded-3xl border border-dashed border-border-strong bg-background p-6">
+                      <span className="self-start rounded-full bg-accent px-3 py-1 text-xs font-bold">Coming soon</span>
+                      <div className="space-y-2.5" aria-hidden="true">
+                        <span className="block h-3 w-3/4 rounded-full bg-surface-alt" />
+                        <span className="block h-3 w-1/2 rounded-full bg-surface-alt" />
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Plan: working with us is easy */}
+        <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-36">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <h2 className="display text-4xl text-foreground sm:text-6xl">Three steps. That&apos;s it.</h2>
+            </Reveal>
+            <ol className="mt-14 grid gap-6 sm:grid-cols-3">
+              {PLAN.map((p, i) => (
+                <Reveal key={p.n} delay={i * 200}>
+                  <li className="h-full rounded-3xl border border-border p-8">
+                    <span className="display text-6xl text-accent-dark">{p.n}</span>
+                    <p className="mt-6 text-xl font-semibold">{p.title}</p>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+            <Reveal>
+              <div className="mt-12 flex justify-center">
+                <Buttons />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 6. The longer paragraph (the BrandScript, in plain words) */}
+        <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-32">
+          <Reveal className="mx-auto max-w-2xl">
+            <p className="eyebrow">In plain words</p>
+            <p className="mt-6 text-lg leading-relaxed text-primary-dim sm:text-xl">
+              You want a business that runs well without doing every small job yourself. To get there, the
+              repeat work needs doing for you. The problem is the same jobs, every day: copying, chasing,
+              sending, reminding. It leaves you tired and behind before the real work starts. You didn&apos;t
+              start a business to do admin. We know how that feels, and we&apos;ve spent over 3 years building
+              marketing systems that take those jobs away. Here&apos;s how it works: tell us the job that eats
+              your week, we build it with the tools you already use, and you get the hours back. So book a free
+              call. Or start with the free checklist. Stop losing evenings to admin, and get back to the work,
+              and the people, you love.
+            </p>
+          </Reveal>
+        </section>
+
+        {/* 8. Last call */}
+        <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 sm:px-6">
+          <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[2rem] bg-foreground px-6 py-20 text-center sm:py-28">
+            <h2 className="display max-w-3xl text-4xl !text-white sm:text-6xl">
+              What job would you hand over <span className="text-accent">first?</span>
+            </h2>
+            <p className="mt-6 max-w-md text-white/60">A free call. We&apos;ll find the first job worth handing over.</p>
+            <div className="mt-10">
+              <Buttons dark />
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -47,7 +47,7 @@ Today, I’m putting this receipt on the record.
 
 ## Flashy Toys vs. Boring Enterprise Rails
 
-In enterprise banking operations—whether managing workflows at Lloyds, RBS, or OSB—you learn a very unglamorous truth:
+In enterprise banking operations, you learn a very unglamorous truth:
 
 > **Stand-alone features make noise today. Deep infrastructure wins the decade.**
 

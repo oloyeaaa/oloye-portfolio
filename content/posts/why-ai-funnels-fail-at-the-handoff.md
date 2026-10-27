@@ -19,7 +19,7 @@ Four years later, most of those shiny "AI funnels" are completely broken.
 
 Here is why: **My automation journey didn't start with ChatGPT. It started over four years earlier**, back when email marketing funnels, webhook routers, API handoffs, and relational databases had to be engineered by hand with zero AI assistance.
 
-And if you combine that with **14+ years managing operational risk, governance, and multi-million-pound handoffs across Tier-1 UK financial institutions** (Lloyds, RBS, OSB), you learn a hard operational law that most modern builders ignore:
+And if you combine that with **14+ years managing operational risk, governance, and multi-million-pound handoffs across Tier-1 UK financial institutions**, you learn a hard operational law that most modern builders ignore:
 
 > **Systems almost never fail at the start. They fail at the handoffs.**
 
@@ -96,7 +96,7 @@ If you run a boutique agency, consultancy, or creator business, here is how you 
 
 ---
 
-## ⏳ The Real Payoff: Buying Back Saturday Mornings
+## ⏳ The Real Payoff: Buying Back Saturday Afternoons
 
 When I sit across the kitchen table with founders, I always tell them the same thing:
 
@@ -106,7 +106,7 @@ The real metric of automation is **peace of mind**.
 
 It’s knowing that when a new client pays on Friday afternoon, your system smoothly creates the project, assigns the tasks, and welcomes the client—without you having to open a laptop over the weekend.
 
-For me, that means Saturday mornings belong entirely to my son's football matches in the rain, family time, and being present.
+For me, that means Saturday afternoons belong entirely to my son's football matches in the rain, family time, and being present.
 
 Stop renting your time to manual admin. Fix the handoffs, own your pipeline, and build systems that work as hard as you do.
 

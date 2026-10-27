@@ -45,7 +45,7 @@ As long as you are "learning," you don't have to put your work out in public. No
 
 You tell yourself you just need one more tutorial, one more tool, or one more video before you are ready.
 
-One Saturday morning, while watching my son play football in the rain, a simple question hit me:
+One Saturday afternoon, while watching my son play football in the rain, a simple question hit me:
 
 > *Why am I spending all this mental energy watching other people build, when I could spend that exact same energy making a messy attempt of my own?*
 

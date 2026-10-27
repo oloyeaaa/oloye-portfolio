@@ -60,7 +60,7 @@ export function personSchema() {
       "https://www.gtmsignalstudio.com",
     ],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Senior Marketing Operations Leader & Buyer Psychology Strategist",
+    jobTitle: "Founder, process automation for small businesses",
     knowsAbout: [
       "Buyer Psychology",
       "Eugene Schwartz 5 Levels of Customer Awareness",

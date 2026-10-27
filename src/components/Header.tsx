@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 
 const navigation = [
-  { name: "How It Works", href: "/#how-it-works" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Free Blueprint", href: "/free/lean-owned-pipeline-blueprint" },
-  { name: "Blog & Tutorials", href: "/blog" },
+  { name: "How it works", href: "/#how-it-works" },
+  { name: "Proof", href: "/#proof" },
+  { name: "Free checklist", href: CHECKLIST_URL },
+  { name: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -17,86 +17,69 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
-        {/* Logo / Brand */}
-        <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-foreground transition hover:opacity-80">
-          <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-border bg-surface">
-            <Image
-              src="/branding/avatar/photo-master.png"
-              alt="Oloye Adeosun"
-              fill
-              sizes="36px"
-              className="object-cover"
-              priority
-            />
-          </div>
-          <span className="text-xl font-black">
-            Oloye<span className="text-accent text-2xl font-black">.</span>
-          </span>
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-surface/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        <Link href="/" className="text-2xl font-black tracking-tight text-foreground" onClick={() => setMobileOpen(false)}>
+          Oloye<span className="text-accent-dark">.</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm font-medium transition ${
-                pathname === item.href
-                  ? "text-foreground font-semibold underline decoration-accent decoration-2 underline-offset-8"
-                  : "text-muted hover:text-foreground"
+              className={`text-sm transition ${
+                pathname === item.href ? "font-semibold text-foreground" : "text-muted hover:text-foreground"
               }`}
             >
               {item.name}
             </Link>
           ))}
-          <Link
-            href="/free/lean-owned-pipeline-blueprint"
-            className="rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-accent transition hover:bg-foreground/90 hover:shadow-md"
+          <a
+            href={BOOKING_URL}
+            className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-accent transition hover:bg-foreground/90"
           >
-            Get Free Blueprint
-          </Link>
+            Book a free call
+          </a>
         </nav>
 
-        {/* Mobile menu toggle */}
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="rounded-lg p-2 text-muted hover:bg-surface md:hidden"
-          aria-label="Toggle Menu"
+          className="rounded-lg p-2 text-foreground md:hidden"
+          aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {mobileOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
             )}
           </svg>
         </button>
       </div>
 
-      {/* Mobile Nav Dropdown */}
       {mobileOpen && (
-        <div className="border-b border-border bg-surface px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
+        <div className="border-t border-border bg-surface px-4 pb-6 pt-2 md:hidden">
+          <nav className="flex flex-col">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium text-muted hover:text-foreground"
+                className="border-b border-border py-4 text-lg font-medium text-foreground"
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/free/lean-owned-pipeline-blueprint"
+            <a
+              href={BOOKING_URL}
               onClick={() => setMobileOpen(false)}
-              className="mt-2 rounded-lg bg-foreground py-2.5 text-center text-sm font-semibold text-accent"
+              className="mt-6 rounded-full bg-accent py-4 text-center text-sm font-bold text-foreground"
             >
-              Get Free Blueprint
-            </Link>
+              Book a free call
+            </a>
           </nav>
         </div>
       )}

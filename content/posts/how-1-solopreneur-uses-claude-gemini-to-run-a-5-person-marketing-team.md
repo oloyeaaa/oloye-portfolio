@@ -1,4 +1,5 @@
 ---
+cardLine: "How one person gets through a small team's work, with Claude doing the first drafts."
 title: "The 1-Person AI Media Engine (Claude & Gemini)"
 slug: "how-1-solopreneur-uses-claude-gemini-to-run-a-5-person-marketing-team"
 date: "2026-09-02"
@@ -6,7 +7,7 @@ author: "Oloye Adeosun"
 category: "AI Workflows"
 tags: ["AI Workflows", "Claude", "Gemini", "Solopreneurs", "Content Automation", "Marketing Operations"]
 description: "How to use AI without producing bland, robotic garbage. The exact prompt frameworks and automated workflows 1 solo builder uses to research, script, and distribute content at scale."
-coverImage: "/images/blog/cover-ai-media-engine.png"
+coverImage: "/images/blog/cover-ai-team.jpg"
 readingTime: "6 min read"
 featured: true
 ---

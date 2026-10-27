@@ -1,10 +1,11 @@
 ---
+cardLine: "Followers can vanish overnight. A list of people you can email is yours."
 title: "Why 10k Followers Mean Nothing Without an Email List"
 date: "2026-09-22"
 category: "Marketing Automation"
 excerpt: "A step-by-step breakdown on how to turn social views into an automated, owned pipeline using simple AI and lean tools."
 tags: ["Marketing Automation", "Owned Pipeline", "Google AI", "Airtable"]
-coverImage: "/images/blog/why-10k-followers-mean-nothing-without-an-email-list.png"
+coverImage: "/images/blog/cover-own-your-list.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---
 

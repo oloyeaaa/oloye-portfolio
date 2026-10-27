@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "How to Build an Audience from Scratch (for $0)"
 slug: "how-to-build-an-audience-from-scratch-0-dollar-marketing"
 date: "2026-09-02"

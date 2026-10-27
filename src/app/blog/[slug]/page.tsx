@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...(post.updated ? { modifiedTime: post.updated } : {}),
     },
     keywords: post.keywords.length ? post.keywords : undefined,
+    ...(post.hidden ? { robots: { index: false, follow: true } } : {}),
   };
 }
 

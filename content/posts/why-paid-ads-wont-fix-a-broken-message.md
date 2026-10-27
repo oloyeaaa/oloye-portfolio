@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "Why Paid Ads Won't Fix a Broken Message"
 slug: "why-paid-ads-wont-fix-a-broken-message"
 date: "2026-09-02"

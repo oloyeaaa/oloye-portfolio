@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "The 5 Automation Channels Actually Worth Watching (How to Escape the Tutorial Trap)"
 slug: "the-5-automation-channels-worth-watching"
 date: "2026-10-14"

@@ -51,4 +51,26 @@ export const FAQS: Record<string, FaqItem[]> = {
         "We talk through the job that eats your week and what it's costing you, then tell you what we'd build first. No pressure to go ahead.",
     },
   ],
+  blog: [
+    {
+      question: "Who are these posts for?",
+      answer:
+        "Small business owners, coaches and creators who want the repeat jobs in their business to run on their own, without learning to code.",
+    },
+    {
+      question: "Can I set these up myself?",
+      answer:
+        "Yes. The posts show the steps in plain words. If you'd rather hand it over, book a free call and we'll build it for you.",
+    },
+    {
+      question: "Do I need to pay for the tools?",
+      answer:
+        "Not to start. Most posts use tools with a free plan, like Google Sheets, Airtable and Make. You only pay if you outgrow the free plan.",
+    },
+    {
+      question: "Where should I start?",
+      answer:
+        "With the free checklist, 10 jobs to automate first. Pick the one that eats most of your week, then read the post that matches it.",
+    },
+  ],
 };

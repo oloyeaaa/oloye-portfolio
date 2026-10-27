@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "How to Steal High-Converting Copy from 1-Star Reviews"
 slug: "how-to-steal-high-converting-copy-from-1-star-competitor-reviews"
 date: "2026-09-02"

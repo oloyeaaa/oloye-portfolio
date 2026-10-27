@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { webPageSchema } from "@/lib/schema";
-import { SITE_URL } from "@/lib/site";
+import { webPageSchema, itemListSchema } from "@/lib/schema";
+import { SITE_URL, CHECKLIST_URL } from "@/lib/site";
 import { getAllPosts } from "@/lib/posts";
-import PostCard from "@/components/PostCard";
+import { FAQS } from "@/lib/faqs";
+import Faq from "@/components/Faq";
+import Reveal from "@/components/home/Reveal";
+import PostTile from "@/components/home/PostTile";
+import { LastCall } from "@/components/home/CallToAction";
 
 export const revalidate = 60;
 
-const TITLE = "Pipeline Architecture, AI Systems & Teardowns \u2014 Oloye Adeosun";
+const TITLE = "Automation ideas for small businesses";
 const DESCRIPTION =
-  "Weekly Wednesday deep dives: turn social views and engagement into an automated, owned pipeline using simple AI and lean tools.";
+  "Plain-English posts on joining up the jobs that eat your week: leads, onboarding, delivery and keeping clients coming back.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: `${TITLE} | Oloye blog` },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
@@ -25,7 +29,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  // Off-story posts are marked hidden and never reach this list.
+  const [featured, ...rest] = getAllPosts();
 
   return (
     <>
@@ -37,32 +42,70 @@ export default function BlogPage() {
           type: "CollectionPage",
           breadcrumb: [
             { name: "Home", path: "/" },
-            { name: "Blog & Tutorials", path: "/blog" },
+            { name: "Blog", path: "/blog" },
           ],
         })}
       />
+      <JsonLd
+        data={itemListSchema({
+          path: "/blog",
+          items: [featured, ...rest].filter(Boolean).map((p) => ({ name: p.title, path: `/blog/${p.slug}` })),
+        })}
+      />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 space-y-10 py-10 sm:py-16">
-        {/* Header */}
-        <div className="space-y-3 border-b border-border pb-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground px-3 py-1 text-xs font-semibold text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            <span>Weekly Wednesday Deep Dives</span>
+      <div className="bg-surface">
+        <section className="px-4 pb-16 pt-20 sm:px-6 sm:pt-28">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow">Blog</p>
+            <h1 className="display mt-6 max-w-4xl text-5xl text-foreground sm:text-7xl">
+              Automation ideas for <span className="lime-mark">small businesses.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
+              Plain-English posts on joining up the jobs that eat your week.
+            </p>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Pipeline Tutorials & System Teardowns
-          </h1>
-          <p className="text-sm sm:text-base text-muted max-w-2xl leading-relaxed">
-            Practical walkthroughs for creators and non-tech founders: escape rented land, build automated lead engines, and simplify your tech stack.
-          </p>
-        </div>
+        </section>
 
-        {/* Grid of Posts */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
+        {featured && (
+          <section className="px-4 sm:px-6">
+            <Reveal className="mx-auto max-w-5xl">
+              <PostTile post={featured} big />
+            </Reveal>
+          </section>
+        )}
+
+        {rest.length > 0 && (
+          <section className="px-4 pt-6 sm:px-6">
+            <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2">
+              {rest.map((post, i) => (
+                <Reveal key={post.slug} delay={(i % 2) * 120}>
+                  <PostTile post={post} />
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section className="px-4 py-24 sm:px-6 sm:py-32">
+          <Reveal className="mx-auto max-w-5xl">
+            <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-accent p-8 sm:flex-row sm:items-center sm:p-12">
+              <div>
+                <p className="display text-3xl text-foreground sm:text-4xl">Not sure where to start?</p>
+                <p className="mt-2 text-foreground/70">10 jobs most businesses can hand over first.</p>
+              </div>
+              <Link
+                href={CHECKLIST_URL}
+                className="inline-flex shrink-0 items-center justify-center rounded-lg bg-foreground px-7 py-4 text-sm font-bold text-accent transition hover:bg-foreground/90"
+              >
+                Get the free checklist
+              </Link>
+            </div>
+          </Reveal>
+        </section>
+
+        <Faq items={FAQS.blog} heading="About the blog" />
+
+        <LastCall />
       </div>
     </>
   );

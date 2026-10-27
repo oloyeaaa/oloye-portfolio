@@ -1,4 +1,5 @@
 ---
+cardLine: "Catch every enquiry in a list you own, with tools you already pay for."
 title: "The $0 Owned Pipeline: How to Route Social Views into an Automated Database Without Expensive SaaS"
 date: "2026-09-30"
 category: "Marketing Automation"

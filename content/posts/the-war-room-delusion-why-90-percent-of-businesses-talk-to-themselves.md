@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "The War Room Delusion: Why 90% of Businesses Get Ignored"
 slug: "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves"
 date: "2026-09-02"

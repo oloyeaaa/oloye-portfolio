@@ -53,6 +53,8 @@ export interface BlogPost {
   publishedDate?: string;
   updated?: string;
   readTimeMinutes?: number;
+  /** Off-story local posts: the page still works, but it is noindexed and left out of the sitemap. */
+  hidden?: boolean;
 }
 
 function getLocalPosts(): BlogPost[] {
@@ -81,6 +83,7 @@ function getLocalPosts(): BlogPost[] {
         readTimeMinutes: data.readingTime
           ? parseInt(String(data.readingTime), 10)
           : undefined,
+        hidden: data.hidden === true,
       };
     });
   } catch (err) {

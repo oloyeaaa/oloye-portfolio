@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "The $1.75 Billion Mistake That Kills 90% of AI & Digital Products (And the 2-Minute Fix)"
 date: "2026-09-16"
 category: "Buyer Psychology"

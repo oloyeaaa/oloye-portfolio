@@ -16,6 +16,10 @@ export interface PostMeta {
   coverImage?: string;
   coverImageCredit?: string;
   coverImageCreditUrl?: string;
+  /** Off-story posts: still live by link, but not listed and not indexed. */
+  hidden?: boolean;
+  /** One short, plain line for the post's card on the home and blog pages. */
+  cardLine?: string;
 }
 
 export interface Post extends PostMeta {
@@ -43,10 +47,12 @@ export function getAllPosts(): PostMeta[] {
         coverImage: data.coverImage,
         coverImageCredit: data.coverImageCredit,
         coverImageCreditUrl: data.coverImageCreditUrl,
+        hidden: data.hidden === true,
+        cardLine: data.cardLine,
       } as PostMeta;
     });
 
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return posts.filter((p) => !p.hidden).sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export function getPostsByCategory(category: string): PostMeta[] {

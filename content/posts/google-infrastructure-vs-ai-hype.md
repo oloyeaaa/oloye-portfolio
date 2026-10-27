@@ -1,4 +1,5 @@
 ---
+cardLine: "Why simple, boring tools keep a business running longer than the latest shiny one."
 title: "The Google Infrastructure Play: Why Boring Rails Beat the AI Hype Cycle"
 slug: "google-infrastructure-vs-ai-hype"
 date: "2026-10-14"

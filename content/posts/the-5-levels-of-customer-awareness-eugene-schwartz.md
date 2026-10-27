@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "The 5 Levels of Customer Awareness (Eugene Schwartz)"
 slug: "the-5-levels-of-customer-awareness-eugene-schwartz"
 date: "2026-09-02"

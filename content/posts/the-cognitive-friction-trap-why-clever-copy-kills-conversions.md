@@ -1,4 +1,6 @@
 ---
+# Off-story since the Oct 2026 redesign: kept live by link, left off the blog list and out of Google.
+hidden: true
 title: "The Cognitive Friction Trap: Why 'Clever' Copy Kills Inbound Conversions"
 slug: "the-cognitive-friction-trap-why-clever-copy-kills-conversions"
 date: "2026-09-06"

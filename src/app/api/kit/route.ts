@@ -27,6 +27,12 @@ export async function POST(req: Request) {
 
   // Count before Make adds them, so the number is right even if Make is a second slow.
   const [already, before] = await Promise.all([onList(email), countList(true)]);
+  const number = before === null ? null : already ? before : before + 1;
+  const intro = already
+    ? "You're already on the list. Here's the link again."
+    : number
+      ? `You're number ${number} of 100. Thank you for being one of the first.`
+      : "You're one of the first 100. Thank you for being here.";
 
   const sent = await sendToMake({
     form: "KIT",
@@ -38,12 +44,12 @@ export async function POST(req: Request) {
     url: KIT.url,
     line: KIT.line,
     source: "oloye.co.uk/100",
+    intro,
   });
   if (sent !== "ok") {
     return NextResponse.json({ error: "Sorry, that didn't go through. Please try again in a minute." }, { status: 502 });
   }
   await addToMailerLite(email, name, NEWSLETTER_GROUP);
 
-  const number = before === null ? null : already ? before : before + 1;
   return NextResponse.json({ ok: true, already: already === true, number });
 }

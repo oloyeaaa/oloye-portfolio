@@ -32,13 +32,19 @@ export default async function ChallengePage() {
     <div className="min-h-svh bg-[#F4F5F7] px-4 pb-10 pt-6 text-[#0E0F12]">
       <div className="mx-auto max-w-[560px]">
         <div className="text-center">
-          <span className="inline-block rounded-full bg-[#C6F23C] px-4 py-1.5 text-[13px] font-black tracking-[0.12em] text-[#0E0F12]">
+          <span className="inline-block rounded-full bg-[#0E0F12] px-4 py-1.5 text-[13px] font-black tracking-[0.12em] text-[#C6F23C]">
             0 TO 100 &middot; LIVE
           </span>
           {count !== null && (
-            <p className="mt-2 text-sm font-semibold text-[#6B7280]">
-              <span className="text-[#446100]">{count}</span> of {GOAL} people so far
-            </p>
+            <div className="mx-auto mt-3 max-w-[260px]">
+              <p className="flex items-center justify-center gap-2 text-sm font-bold text-[#0E0F12]">
+                <span className="rounded-md bg-[#C6F23C] px-2 py-0.5 text-lg font-black leading-tight">{count}</span>
+                of {GOAL} people so far
+              </p>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[#E2E4E8]" aria-hidden="true">
+                <div className="h-full rounded-full bg-[#C6F23C]" style={{ width: `${Math.min(count, GOAL)}%` }} />
+              </div>
+            </div>
           )}
           <h1 className="mt-4 text-[34px] font-black leading-[1.05] tracking-tight sm:text-[40px]">
             Stop losing the people who find you.

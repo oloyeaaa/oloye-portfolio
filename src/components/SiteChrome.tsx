@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import OfferBanner from "./OfferBanner";
 
 // Routes that render full-bleed, without the site header/footer (e.g. link-in-bio pages).
-const BARE_PATHS: string[] = ["/100"];
+const BARE_PATHS: string[] = [];
 
 export default function SiteChrome({
   header,

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
 
 type Done = { number: number | null; already: boolean };
 
+// The /100 sign-up: first name and email, then the person's place on the list.
 export default function KitForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -32,55 +34,40 @@ export default function KitForm() {
 
   if (done) {
     return (
-      <div role="status" className="rounded-lg border border-[#C6F23C] bg-white px-5 py-6 text-center">
-        <p className="text-2xl font-black tracking-tight text-[#0E0F12]">
+      <div role="status" className="rounded-3xl border border-accent bg-surface p-6 text-center sm:p-8">
+        <p className="display text-3xl text-foreground">
           {done.already
             ? "You're already in."
             : done.number
-              ? <>You&apos;re number <span className="bg-[#C6F23C] px-1">{done.number}</span> of 100.</>
+              ? <>You&apos;re number <span className="lime-mark">{done.number}</span> of 100.</>
               : "You're in."}
         </p>
-        <p className="mt-2 text-[#6B7280]">Check your inbox.</p>
+        <p className="mt-3 text-muted">Check your inbox.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={submit} className="space-y-3" noValidate={false}>
-      <label className="block">
-        <span className="sr-only">First name</span>
-        <input
-          name="name"
-          required
-          maxLength={80}
-          autoComplete="given-name"
-          placeholder="First name"
-          className="w-full rounded-lg border border-[#CBD0D8] bg-white px-4 py-3.5 text-base text-[#0E0F12] placeholder:text-[#6B7280] focus:border-[#0E0F12] focus:outline-none focus:ring-2 focus:ring-[#C6F23C]"
-        />
-      </label>
-      <label className="block">
-        <span className="sr-only">Email</span>
-        <input
-          name="email"
-          type="email"
-          required
-          maxLength={254}
-          autoComplete="email"
-          inputMode="email"
-          placeholder="Email"
-          className="w-full rounded-lg border border-[#CBD0D8] bg-white px-4 py-3.5 text-base text-[#0E0F12] placeholder:text-[#6B7280] focus:border-[#0E0F12] focus:outline-none focus:ring-2 focus:ring-[#C6F23C]"
-        />
-      </label>
+    <form onSubmit={submit} className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-medium text-foreground">First name</span>
+          <input name="name" required maxLength={80} autoComplete="given-name" className={INPUT} />
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium text-foreground">Email</span>
+          <input name="email" type="email" required maxLength={254} autoComplete="email" inputMode="email" className={INPUT} />
+        </label>
+      </div>
       {/* Bots fill this in; people never see it. */}
-      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
-      <button
-        type="submit"
-        disabled={busy}
-        className="w-full rounded-lg bg-[#C6F23C] px-4 py-4 text-base font-black text-[#0E0F12] transition hover:bg-[#D9F86A] disabled:opacity-60"
-      >
+      <label className="hidden" aria-hidden="true">
+        <input name="website" tabIndex={-1} autoComplete="off" />
+      </label>
+      <button type="submit" disabled={busy} className={`mt-5 ${BUTTON_PRIMARY}`}>
         {busy ? "Sending..." : "Send me the free kit"}
       </button>
-      {error && <p role="alert" className="text-sm text-[#DC2626]">{error}</p>}
+      {error && <p role="alert" className="mt-3 text-sm font-medium text-alert">{error}</p>}
+      <p className="mt-4 text-center text-sm text-muted">Free. No spam. Leave any time.</p>
     </form>
   );
 }

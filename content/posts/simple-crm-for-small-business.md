@@ -98,4 +98,4 @@ Followers live on someone else's app. If your reach drops, you can't get them ba
 
 A table of names and emails is yours. Nobody can switch it off. And because every person has a stage, nobody who finds you gets lost in the gaps.
 
-If you want our Leads table ready to copy, it's in the form on this page. It's free, with the columns and stages already set up. And if you want more free guides like this one, they're all on our [free things page](/free).
+If you want every column and stage we use on one page, ask for the free guide in the form on this page. It's called "Followers you can't email", and you can copy it into Airtable or a Google Sheet tonight. And if you want more free guides like this one, they're all on our [free things page](/free).

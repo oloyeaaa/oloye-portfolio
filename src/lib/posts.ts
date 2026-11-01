@@ -33,6 +33,8 @@ export interface Post extends PostMeta {
  */
 export function isPublished(date?: string): boolean {
   if (!date) return true;
+  // Private Vercel previews show drafts dated ahead, so a post can be checked before it goes out.
+  if (process.env.VERCEL_ENV === "preview") return true;
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" }); // YYYY-MM-DD
   return String(date).slice(0, 10) <= today;
 }

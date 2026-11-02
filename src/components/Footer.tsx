@@ -73,7 +73,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col justify-between gap-2 border-t border-border pt-6 text-xs text-muted sm:flex-row">
-          <p>© {new Date().getFullYear()} Oloye Adeosun. Kent, UK.</p>
+          <p>
+            © {new Date().getFullYear()} Oloye Adeosun. Kent, UK. ·{" "}
+            <Link href="/privacy" className="underline underline-offset-4 transition hover:text-foreground">Privacy</Link>
+          </p>
           <p>Stop doing the same job twice.</p>
         </div>
       </div>

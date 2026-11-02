@@ -47,6 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/blog", 0.8, "daily"),
     page("/about", 0.8, "monthly"),
     page("/contact", 0.6, "yearly"),
+    page("/privacy", 0.2, "yearly"),
     page("/free", 0.8, "monthly"),
     page("/free/10-jobs-to-automate-first", 0.8, "monthly"),
     ...blogRoutes,

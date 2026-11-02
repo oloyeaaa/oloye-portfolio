@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
+import { ChangeCookieChoice } from "@/components/CookieBanner";
 
 // Privacy policy (2 Nov 2026). Every line is checked against the code: the
-// forms go to Make, then Airtable, MailerLite and Gmail; Google Analytics is in
-// the layout; the leak check sends Claude only our own answer labels.
+// forms go to Make, then Airtable, MailerLite and Gmail; Google Analytics loads
+// only after Accept (CookieBanner); the leak check sends Claude only our own answer labels.
 
 const TITLE = "Privacy";
 const DESCRIPTION = "What we collect when you use oloye.co.uk or our forms, why, who helps us handle it, and how to see or delete it.";
@@ -101,10 +102,16 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
   {
     title: "Cookies",
     body: (
-      <p>
-        This site uses Google Analytics, which sets cookies to count visits and see which pages are read. It doesn&apos;t
-        tell us who you are. We don&apos;t use any other cookies, and no advertising cookies.
-      </p>
+      <>
+        <p>
+          We only use Google Analytics, to count visits and see which pages are read. It doesn&apos;t tell us who you
+          are. It only runs, and only sets its cookies, if you tap Accept on the cookie banner. If you tap Decline, it
+          never loads. We don&apos;t use any advertising cookies.
+        </p>
+        <p>
+          Your choice is saved in your browser so we don&apos;t ask again. <ChangeCookieChoice />
+        </p>
+      </>
     ),
   },
 ];

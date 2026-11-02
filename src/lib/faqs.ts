@@ -142,4 +142,26 @@ export const FAQS: Record<string, FaqItem[]> = {
       answer: "10 jobs to automate first. Tick the jobs that eat your week, then pick the guide that matches the biggest one.",
     },
   ],
+  leakCheck: [
+    {
+      question: "What is a lead leak?",
+      answer: "A spot where people who were interested in you slip away: no easy way to leave their email, names spread across DMs and notes, a slow first reply, or no follow-up. Each one quietly costs you customers.",
+    },
+    {
+      question: "How is the score worked out?",
+      answer: "Your six answers carry points across four areas: catching people, keeping them, following up, and the places they find you. The same answers always give the same score. Claude then explains your three biggest leaks in plain words.",
+    },
+    {
+      question: "Is it free?",
+      answer: "Yes. It takes about two minutes. You see your result straight away, and the full version with a free guide for each fix comes by email.",
+    },
+    {
+      question: "Will you add me to a mailing list?",
+      answer: "Only if you tick the box. If you don't, you just get your result.",
+    },
+    {
+      question: "What happens to my answers?",
+      answer: "They're kept with your email in our own list, so we can send your result and see which leaks are most common. The website itself doesn't store anything.",
+    },
+  ],
 };

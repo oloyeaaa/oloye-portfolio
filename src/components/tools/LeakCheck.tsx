@@ -151,6 +151,7 @@ export default function LeakCheck() {
             <label className="block">
               <span className="text-sm font-medium text-foreground">Email</span>
               <input name="email" type="email" required maxLength={254} autoComplete="email" inputMode="email" className={INPUT} />
+              <span className="mt-1.5 block text-sm text-muted">Free. No spam. Leave any time.</span>
             </label>
           </div>
           <label className="mt-4 block">

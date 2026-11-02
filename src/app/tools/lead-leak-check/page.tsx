@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/tools/lead-leak-check` },
 };
 
+// The next tools. Each one gets its own page under /tools when it's built.
+const COMING = [
+  { name: "Welcome email writer", line: "Answer a few questions and get a welcome email in your own words." },
+  { name: "Follow-up writer", line: "Short, kind follow-ups for the people who went quiet." },
+  { name: "DM reply helper", line: "A reply to a new DM that moves them towards your list." },
+];
+
 export default function LeakCheckPage() {
   return (
     <>
@@ -53,6 +60,22 @@ export default function LeakCheckPage() {
           </div>
         </section>
       </div>
+
+      <section className="px-4 pb-16 sm:px-6" aria-labelledby="more-tools">
+        <div className="mx-auto max-w-2xl">
+          <p className="eyebrow">More free tools</p>
+          <h2 id="more-tools" className="display mt-4 text-3xl text-foreground">Coming soon, one at a time</h2>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+            {COMING.map((t) => (
+              <li key={t.name} className="rounded-3xl border border-border bg-surface p-5">
+                <p className="font-semibold text-foreground">{t.name}</p>
+                <p className="mt-2 text-sm text-muted">{t.line}</p>
+                <p className="mt-3 inline-block rounded-md bg-surface-alt px-2 py-0.5 text-xs font-semibold text-muted">Coming soon</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <Faq items={FAQS.leakCheck} />
     </>

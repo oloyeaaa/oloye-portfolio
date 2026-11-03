@@ -1,6 +1,6 @@
 ---
-title: "Remember the important job the day after it mattered?"
-excerpt: "Tomorrow's jobs at 6pm, today's at 6am, as one clean list. Nothing to do, nothing sent."
+title: "Remember the important task the day after it mattered?"
+excerpt: "Tomorrow's tasks at 6pm, today's at 6am, as one clean list. Nothing to do, nothing sent."
 block: Fulfilment
 tools: [Airtable, Make, Gmail]
 built: 2026-11-01
@@ -12,7 +12,7 @@ freebie: checklist
 
 ## The problem
 
-The jobs that bring in customers are spread everywhere. Some are in a plan. Some are in your notes. Some are only in your head.
+The tasks that bring in customers are spread everywhere. Some are in a plan. Some are in your notes. Some are only in your head.
 
 So the important one slips. You remember it the day after it mattered.
 
@@ -24,14 +24,14 @@ I've been building marketing systems for over 3 years, and I had the same proble
 
 ## What was built
 
-Two short emails a day, made from one list of jobs.
+Two short emails a day, made from one list of tasks.
 
-1. **One list of jobs in Airtable.** Each job has a name, a due date, a status (To do, Doing, Done) and a few details.
-2. **At 6pm: tomorrow's jobs.** An email lists everything due tomorrow, plus anything still open.
-3. **At 6am: today's jobs.** An email lists everything due today, plus anything overdue.
-4. **Each job is one clean bullet.** The job in bold, its date, and the details underneath. No pictures, no tracking, no links.
+1. **One list of tasks in Airtable.** Each task has a name, a due date, a status (To do, Doing, Done) and a few details.
+2. **At 6pm: tomorrow's tasks.** An email lists everything due tomorrow, plus anything still open.
+3. **At 6am: today's tasks.** An email lists everything due today, plus anything overdue.
+4. **Each task is one clean bullet.** The task in bold, its date, and the details underneath. No pictures, no tracking, no links.
 5. **Nothing to do? Nothing is sent.** An empty day means no email.
-6. **Tick a job Done** and it drops off the next email.
+6. **Tick a task Done** and it drops off the next email.
 
 The first version looked like a junk email, so it was rebuilt on 1 Nov 2026 as a clean list. Make sends it through Gmail. It was built by talking to Claude, no code.
 
@@ -45,8 +45,8 @@ The first version looked like a junk email, so it was rebuilt on 1 Nov 2026 as a
 
 - **Running every day since 1 Nov.** Every email so far has gone out on time: 4 out of 4 by 3 Nov.
 - **They land in the Inbox, not Spam.**
-- **Jobs done on time and time saved:** being measured.
+- **Tasks done on time and time saved:** being measured.
 
 ## Your next step
 
-Want to find the first job worth handing over in your own business? Get the free checklist: **10 jobs to automate first.**
+Want to find the first task worth handing over in your own business? Get the free checklist: **10 tasks to automate first.**

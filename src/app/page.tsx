@@ -42,13 +42,13 @@ const FRUSTRATIONS = [
   "Hours every week rebuilding the same reports",
   "Invoices paid late because nobody chased",
   "Past clients who never hear from you again",
-  "Growth capped by the hours in your day",
+  "A business that can only grow as far as your hours go",
 ];
 
 const VALUE = [
   {
     title: "Save time",
-    text: "The repeat jobs run on their own.",
+    text: "The repeat tasks run on their own.",
     icon: (
       <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
         <circle cx="24" cy="24" r="18" />
@@ -67,8 +67,8 @@ const VALUE = [
     ),
   },
   {
-    title: "Never miss a thing",
-    text: "Every lead, invoice and reminder handled.",
+    title: "Never lose a lead",
+    text: "Every enquiry saved and answered, every invoice and reminder sent.",
     icon: (
       <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
         <rect x="8" y="8" width="32" height="32" rx="8" />
@@ -79,8 +79,8 @@ const VALUE = [
 ];
 
 const PLAN = [
-  { n: "1", title: "Tell us the job that eats your week." },
-  { n: "2", title: "We build it with the tools you already use." },
+  { n: "1", title: "Tell us the task that eats your week." },
+  { n: "2", title: "We build the workflow and test it." },
   { n: "3", title: "You get the hours back." },
 ];
 
@@ -106,10 +106,10 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
             <p className="eyebrow">Workflow automation for small businesses</p>
             <h1 className="display mt-6 text-[2.9rem] text-foreground sm:text-7xl lg:text-[5.5rem]">
-              Stop doing the same job <span className="lime-mark">twice.</span>
+              Get your time back. Automate the tasks you repeat <span className="lime-mark">every day.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
-              Simple automations that save your business time and money.
+              Simple AI automation systems for coaches and small businesses. Leads answered, clients welcomed, invoices sent, on their own.
             </p>
             <div className="mt-10">
               <Buttons />
@@ -125,7 +125,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-5xl">
             <Reveal>
               <h2 className="display max-w-3xl text-4xl text-foreground sm:text-6xl">
-                Still doing it all by hand?
+                Still doing it all manually?
               </h2>
               <ul className="mt-12 grid gap-x-12 gap-y-5 sm:grid-cols-2">
                 {FRUSTRATIONS.map((f, i) => (
@@ -156,7 +156,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-5xl">
             <Reveal>
               <h2 className="display max-w-3xl text-4xl text-foreground sm:text-6xl">
-                Hand over the small jobs.
+                Hand over the small tasks.
               </h2>
             </Reveal>
             <div className="mt-14 grid gap-6 sm:grid-cols-3">
@@ -183,7 +183,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow !text-accent">An example</p>
             <h2 className="display mt-5 max-w-3xl text-4xl !text-white sm:text-6xl">
-              One job, start to finish, without you.
+              One workflow, start to finish, without you.
             </h2>
             <ProcessFlow />
           </div>
@@ -194,8 +194,11 @@ export default function HomePage() {
           <div className="mx-auto max-w-5xl">
             <Reveal>
               <h2 className="display max-w-4xl text-4xl text-foreground sm:text-6xl">
-                Admin after a long day is the worst part. It doesn&apos;t have to be yours.
+                Admin after a long day wears anyone down.
               </h2>
+              <p className="mt-5 max-w-2xl text-lg text-muted sm:text-xl">
+                Oloye has spent over 3 years building the systems that take it off you.
+              </p>
             </Reveal>
 
             <div className="mt-16">
@@ -254,7 +257,7 @@ export default function HomePage() {
               <Reveal>
                 <p className="eyebrow">Case studies</p>
                 <div className="mt-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                  <h3 className="display text-3xl sm:text-5xl">Real builds. <span className="lime-mark">Shown start to finish.</span></h3>
+                  <h3 className="display text-3xl sm:text-5xl">Real systems, running in <span className="lime-mark">our own business first.</span></h3>
                   <Link href="/case-studies" className="text-sm font-semibold text-foreground hover:underline decoration-accent decoration-2 underline-offset-4">
                     All case studies →
                   </Link>
@@ -300,14 +303,14 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl">
             <p className="eyebrow">In plain words</p>
             <p className="mt-6 text-lg leading-relaxed text-primary-dim sm:text-xl">
-              You want a business that runs well without doing every small job yourself. To get there, the
-              repeat work needs doing for you. The problem is the same jobs, every day: copying, chasing,
-              sending, reminding. It leaves you tired and behind before the real work starts. You didn&apos;t
-              start a business to do admin. We know how that feels, and we&apos;ve spent over 3 years building
-              marketing systems that take those jobs away. Here&apos;s how it works: tell us the job that eats
-              your week, we build it with the tools you already use, and you get the hours back. So book a free
-              call. Or start with the free checklist. Stop losing evenings to admin, and get back to the work,
-              and the people, you love.
+              You want a business that runs well without doing every small task yourself. The problem is the
+              same tasks, every day: copying names, chasing replies, sending the same email again. Leads go cold
+              while you&apos;re busy, and the admin eats your evenings. You didn&apos;t start a business to do
+              admin. We get it. Oloye has spent over 3 years building marketing systems. Now we build simple AI
+              automations that take those tasks off you. Here&apos;s how it works: tell us the task that eats
+              your week, we build the workflow and test it, and you get the hours back. So book a free call, or
+              start with the free checklist, 10 tasks to automate first. Stop losing evenings to admin, and stop
+              losing the people who find you.
             </p>
           </Reveal>
         </section>

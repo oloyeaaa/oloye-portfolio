@@ -30,9 +30,9 @@ export function LastCall() {
     <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 pt-8 sm:px-6">
       <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[2rem] bg-foreground px-6 py-20 text-center sm:py-28">
         <h2 className="display max-w-3xl text-4xl !text-white sm:text-6xl">
-          What job would you hand over <span className="text-accent">first?</span>
+          What task would you hand over <span className="text-accent">first?</span>
         </h2>
-        <p className="mt-6 max-w-md text-white/60">A free call. We&apos;ll find the first job worth handing over.</p>
+        <p className="mt-6 max-w-md text-white/60">A free call. We&apos;ll find the first task worth automating, and you&apos;ll know the price before anything starts.</p>
         <div className="mt-10">
           <Buttons dark />
         </div>

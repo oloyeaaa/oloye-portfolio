@@ -1,6 +1,6 @@
 ---
-title: "Doing every job in your business yourself?"
-excerpt: "A team of AI agents, each with one job and a job title, working from one rulebook, with a final check before anything is finished."
+title: "Doing every task in your business yourself?"
+excerpt: "A team of AI agents, each with one role and a job title, working from one rulebook, with a final check before anything is finished."
 block: Fulfilment
 tools: [Claude]
 built: 2026-10-31
@@ -14,7 +14,7 @@ freebie: checklist
 
 You're the one who films. You edit. You write the captions, make the posts, look after the website and send the emails.
 
-It all piles up in one place. Things get forgotten. Jobs get done a different way each time, because there's nothing keeping them the same.
+It all piles up in one place. Things get forgotten. Tasks get done a different way each time, because there's nothing keeping them the same.
 
 The trap is the tool trap: one more app won't fix it. What's missing is a way of working.
 
@@ -24,7 +24,7 @@ I've been building marketing systems for over 3 years. When my one long chat wit
 
 ## What was built
 
-A team of AI agents, each with one job and a job title. I'm the CEO.
+A team of AI agents, each with one role and a job title. I'm the CEO.
 
 - **Chief of Staff:** plans the work, hands it out, and does the final check
 - **Video Editor**
@@ -35,14 +35,14 @@ A team of AI agents, each with one job and a job title. I'm the CEO.
 - **Web Developer**
 - **Research Analyst**
 
-Each agent is its own Claude chat with one job, so it stays focused.
+Each agent is its own Claude chat with one role, so it stays focused.
 
 **They all work from one rulebook.** Every agent reads the same files before it makes anything: the voice rules, the brand look, the true stories, the campaign plan. Every correction goes into the rulebook the same day. Why it matters: "because if one deviates from what we already have, then it's going to be obvious."
 
-**How a job moves through the team:**
+**How a task moves through the team:**
 1. I film something or ask for something, from my phone if I want.
 2. The Chief of Staff plans it and hands it to the right agent.
-3. The agent does the job, checks its own work, and sends it back.
+3. The agent does the task, checks its own work, and sends it back.
 4. The Chief of Staff does the final check: the first line, true facts only, plain words, the brand look, the right folder.
 5. Only then do I see it as finished. I post it myself.
 
@@ -65,9 +65,9 @@ Started on 31 Oct 2026. The team was set up by talking to Claude, and no code wa
 - **The TikTok Business Page:** 10 pictures, one for each real system, plus the cover, for about $2.04 in total. Then a step-by-step guide to setting it up, with screenshots.
 - **Filmed one evening, finished by breakfast.** The talking heads landed in Drive between 07:21 and 07:32. By 08:28 the finished video was filed for TikTok and Instagram, with its cover and end card.
 
-**How long these jobs took by hand** (Oloye's estimate of the time by hand):
+**How long these tasks took manually** (Oloye's estimate of the time done manually):
 
-| Job | By hand |
+| Task | Manually |
 | :--- | :--- |
 | Editing a video | 60 minutes |
 | A carousel | 90 minutes |
@@ -81,4 +81,4 @@ Started on 31 Oct 2026. The team was set up by talking to Claude, and no code wa
 
 ## Your next step
 
-Want to find the first job worth handing over in your own business? Get the free checklist: **10 jobs to automate first.**
+Want to find the first task worth handing over in your own business? Get the free checklist: **10 tasks to automate first.**

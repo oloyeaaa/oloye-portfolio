@@ -16,7 +16,7 @@ export default function HoursSlider() {
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         <label className="block">
           <span className="flex items-baseline justify-between text-sm text-muted">
-            Hours a week on repeat jobs
+            Hours a week on repeat tasks
             <strong className="text-2xl font-extrabold text-foreground">{hours}</strong>
           </span>
           <input

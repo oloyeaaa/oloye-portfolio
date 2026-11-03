@@ -28,7 +28,7 @@ I've been building marketing systems for over 3 years. This was the first thing 
 
 A short note that tells you who to reply to first, with a reply already drafted.
 
-1. **One list of people in Airtable.** Everyone goes in, including comments and DMs typed in by hand.
+1. **One list of people in Airtable.** Everyone goes in, including comments and DMs typed in manually.
 2. **A "days waiting" column.** It counts the days since you last spoke, or since they came in.
 3. **Claude reads the list** and writes two things for each person: a suggested reply, and the next step.
 4. **It saves the brief as a Google Doc**, so it's easy to read on your phone.
@@ -50,4 +50,4 @@ Built on 25 Oct 2026, by talking to Claude, no code.
 
 ## Your next step
 
-Want to find the first job worth handing over in your own business? Get the free checklist: **10 jobs to automate first.**
+Want to find the first task worth handing over in your own business? Get the free checklist: **10 tasks to automate first.**

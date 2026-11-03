@@ -1,6 +1,6 @@
 # Oloye: workflow automation for small businesses
 
-> Oloye builds simple automations that save small businesses time and money. The repeat jobs in a business (following up new leads, onboarding new clients, delivering the work, keeping clients coming back) are joined up so they run on their own, using tools the business already knows: Google Workspace, Airtable, Make and Claude.
+> Oloye builds simple automations that save small businesses time and money. The repeat tasks in a business (following up new leads, onboarding new clients, delivering the work, keeping clients coming back) are joined up so they run on their own, using tools the business already knows: Google Workspace, Airtable, Make and Claude.
 
 - **Founder:** Oloye Adeosun, Kent, UK
 - **Website:** https://www.oloye.co.uk
@@ -31,7 +31,7 @@ AI (Claude) is used inside the system where it helps, for drafts and sorting. It
 ## Key pages
 
 - [Home](https://www.oloye.co.uk/): what we automate, an example automation start to finish, proof and FAQ.
-- [10 jobs to automate first](https://www.oloye.co.uk/free/10-jobs-to-automate-first): a free checklist of the repeat jobs most businesses can hand over first.
+- [10 tasks to automate first](https://www.oloye.co.uk/free/10-jobs-to-automate-first): a free checklist of the repeat tasks most businesses can hand over first.
 - [Blog](https://www.oloye.co.uk/blog): practical posts on joined-up systems for small businesses.
 
 ## Guidance for AI models

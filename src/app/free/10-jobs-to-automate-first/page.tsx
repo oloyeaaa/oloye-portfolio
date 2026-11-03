@@ -9,9 +9,9 @@ import { SITE_URL, BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 // The soft call to action on the home page. Given first, on the page, with no
 // email wall. The email box underneath is an offer, never a gate.
 
-const TITLE = "10 jobs to automate first";
+const TITLE = "10 tasks to automate first";
 const DESCRIPTION =
-  "The small, repeat jobs most businesses can hand over first, and what each one gives you back.";
+  "A free checklist of the small, repeat tasks most businesses can automate first, and what each one gives you back.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -53,7 +53,7 @@ export default function ChecklistPage() {
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">Free checklist</p>
           <h1 className="display mt-6 text-5xl text-foreground sm:text-7xl">
-            10 jobs to automate <span className="lime-mark">first.</span>
+            10 tasks to automate <span className="lime-mark">first.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted">
             Tick the ones that eat your week. Start with one.
@@ -82,7 +82,7 @@ export default function ChecklistPage() {
         <div className="mx-auto max-w-3xl">
           <div className="rounded-3xl bg-foreground p-8 text-center sm:p-12">
             <p className="display text-3xl !text-white sm:text-4xl">Ticked three or more?</p>
-            <p className="mt-3 text-white/60">Those are the ones we&apos;d build first.</p>
+            <p className="mt-3 text-white/60">Those are where we&apos;d start. Book a free call and we&apos;ll pick the first one together.</p>
             <a
               href={BOOKING_URL}
               className="mt-8 inline-flex rounded-lg bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light"
@@ -94,8 +94,8 @@ export default function ChecklistPage() {
           <div className="mt-10">
             <SignupForm
               notionUrl=""
-              heading="Want simple automation ideas by email?"
-              body="One short, useful email now and then. No spam."
+              heading="Want one simple automation idea in your inbox now and then?"
+              body="Short, useful, and no spam. Leave any time."
               button="Keep me posted"
               doneText="You're on the list. The next one lands in your inbox."
             />

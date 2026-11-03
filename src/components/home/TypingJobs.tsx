@@ -8,7 +8,7 @@ const BLOCKS = ["Leads", "Onboarding", "Delivery", "Retention"];
 
 const JOBS = [
   { block: 0, text: "Replying to every new lead before it goes cold" },
-  { block: 0, text: "Sorting serious buyers from time-wasters" },
+  { block: 0, text: "Spotting who's ready to buy" },
   { block: 1, text: "Sending the contract, invoice and welcome pack" },
   { block: 1, text: "Setting up every new client the same way" },
   { block: 2, text: "Turning call notes into a clear action plan" },

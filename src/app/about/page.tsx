@@ -17,7 +17,7 @@ import { LastCall } from "@/components/home/CallToAction";
 
 const TITLE = "About the founder";
 const DESCRIPTION =
-  "Oloye Adeosun builds simple automations that save small businesses time and money, with a team of AI agents built on Claude. Based in Kent, UK.";
+  "Oloye Adeosun builds simple AI automation systems that save small businesses time and money, with a team of AI agents built on Claude. Based in Kent, UK.";
 
 export const metadata: Metadata = {
   title: { absolute: "About Oloye Adeosun, founder | Oloye" },
@@ -26,13 +26,17 @@ export const metadata: Metadata = {
   openGraph: { title: "About Oloye Adeosun", description: DESCRIPTION, url: `${SITE_URL}/about`, type: "profile" },
 };
 
-// The team: the five agents Oloye built by talking to Claude, no code.
+// The team: the eight AI agents Oloye set up by talking to Claude, no code,
+// each with its own job title.
 const TEAM = [
-  { name: "The writer", job: "Drafts posts, emails and scripts in plain words." },
-  { name: "The editor", job: "Cuts recordings down and gets videos ready." },
-  { name: "The counter", job: "Pulls the numbers in, so nobody types them by hand." },
-  { name: "The memory", job: "Remembers every decision, so nothing gets asked twice." },
-  { name: "The checker", job: "Checks the work against the rules before it goes out." },
+  { name: "Chief of Staff", job: "Plans the work, hands it out, and does the final check." },
+  { name: "Video Editor", job: "Cuts recordings down and gets videos ready to post." },
+  { name: "Copywriter", job: "Writes posts, emails and pages in plain words." },
+  { name: "Carousel Designer", job: "Turns each idea into step-by-step slides." },
+  { name: "Campaign Manager", job: "Keeps the plan and the dates on track." },
+  { name: "Email Marketing Manager", job: "Writes the emails that go to the list." },
+  { name: "Web Developer", job: "Builds and looks after the website." },
+  { name: "Research Analyst", job: "Checks the facts and writes the step-by-step guides." },
 ];
 
 const BELIEFS = [
@@ -70,7 +74,7 @@ export default function AboutPage() {
                 Meet <span className="lime-mark">Oloye.</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
-                Founder. Builds simple automations that save small businesses time and money, so owners can get back to the work they&apos;re good at.
+                Founder. He builds simple AI automation systems that save small businesses time and money, so owners stop losing the people who find them and get back to the work they&apos;re good at.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
                 {author.links.map((l) => (
@@ -104,7 +108,7 @@ export default function AboutPage() {
                 Every hour a business owner spends copying, chasing and reminding is an hour away from the work they&apos;re good at, and from the people they love.
               </p>
               <p>
-                For Oloye, that&apos;s Saturday afternoons, watching his son play football. The whole business is built to give other owners the same thing: the small jobs handled, and their time back.
+                For Oloye, that&apos;s Saturday afternoons, watching his son play football. The whole business is built to give other owners the same thing: the small tasks handled, and their time back.
               </p>
             </div>
           </Reveal>
@@ -134,8 +138,8 @@ export default function AboutPage() {
               </Reveal>
               <Reveal delay={240}>
                 <div className="h-full rounded-3xl border border-border p-8">
-                  <p className="display text-6xl text-foreground">0</p>
-                  <p className="mt-4 text-muted">lines of code. His own team of agents was built just by talking to Claude.</p>
+                  <p className="display text-6xl text-foreground">No code</p>
+                  <p className="mt-4 text-muted">needed. His team of AI agents was set up just by talking to Claude.</p>
                 </div>
               </Reveal>
             </div>
@@ -163,14 +167,14 @@ export default function AboutPage() {
             <p className="eyebrow !text-accent">The team</p>
             <h2 className="display mt-5 max-w-3xl text-4xl !text-white sm:text-5xl">One person, and a team of AI agents.</h2>
             <p className="mt-6 max-w-xl text-white/60">
-              Oloye plans and checks every build. The agents, built on Claude, do the repeat work. Every one of them was made by talking to Claude in plain English, no code.
+              Oloye plans and checks every build. A team of AI agents, built on Claude, does the repeat work, each with its own job title. Every one was set up by talking to Claude in plain English, and no code was needed.
             </p>
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Reveal>
                 <div className="h-full rounded-2xl border border-accent bg-accent p-6 text-foreground">
                   <p className="font-mono text-xs font-semibold uppercase tracking-wider">Founder</p>
                   <p className="mt-3 text-xl font-bold">Oloye</p>
-                  <p className="mt-2 text-foreground/70">Plans every build, checks every word, and talks to every client.</p>
+                  <p className="mt-2 text-foreground/70">Plans every build, checks every word, and is the person you talk to.</p>
                 </div>
               </Reveal>
               {TEAM.map((t, i) => (

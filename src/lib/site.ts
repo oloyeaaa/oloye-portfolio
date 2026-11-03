@@ -7,7 +7,7 @@ export const SITE_LEGAL_NAME = "Oloye Adeosun";
 export const SITE_TAGLINE = "Simple automations that save your business time and money";
 
 export const SITE_DESCRIPTION =
-  "Simple workflow automation for small businesses. We join up Airtable, Make and Google Workspace so leads, onboarding and follow-ups run on their own.";
+  "Simple AI workflow automation for small businesses. We join up Airtable, Make, Claude and Google Workspace so leads, onboarding and follow-ups run on their own.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",

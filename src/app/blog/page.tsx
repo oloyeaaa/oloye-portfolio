@@ -96,7 +96,7 @@ export default function BlogPage() {
             <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-accent p-8 sm:flex-row sm:items-center sm:p-12">
               <div>
                 <p className="display text-3xl text-foreground sm:text-4xl">Not sure where to start?</p>
-                <p className="mt-2 text-foreground/70">10 jobs most businesses can hand over first.</p>
+                <p className="mt-2 text-foreground/70">10 tasks most businesses can hand over first.</p>
               </div>
               <Link
                 href={CHECKLIST_URL}

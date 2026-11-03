@@ -8,7 +8,7 @@ const columns = [
     links: [
       { name: "Book a free call", href: BOOKING_URL },
       { name: "How it works", href: "/#how-it-works" },
-      { name: "Proof", href: "/#proof" },
+      { name: "Results", href: "/#proof" },
       { name: "Case studies", href: "/case-studies" },
       { name: "About the founder", href: "/about" },
       { name: "Contact", href: "/contact" },
@@ -17,7 +17,7 @@ const columns = [
   {
     title: "Free",
     links: [
-      { name: "10 jobs to automate first", href: CHECKLIST_URL },
+      { name: "10 tasks to automate first", href: CHECKLIST_URL },
       { name: "Free things", href: "/free" },
       { name: "Blog", href: "/blog" },
     ],
@@ -43,7 +43,7 @@ export default function Footer() {
               Oloye<span className="text-accent-dark">.</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted">
-              Simple automations that save your business time and money.
+              Simple AI automation systems that save your business time and money.
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Oloye Adeosun. Kent, UK. ·{" "}
             <Link href="/privacy" className="underline underline-offset-4 transition hover:text-foreground">Privacy</Link>
           </p>
-          <p>Stop doing the same job twice.</p>
+          <p>Get your time back. Automate the tasks you repeat every day.</p>
         </div>
       </div>
     </footer>

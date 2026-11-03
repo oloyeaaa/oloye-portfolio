@@ -8,8 +8,8 @@ export type PostFreebie = { key: string; title: string; line: string; url: strin
 export const POST_FREEBIES: Record<string, PostFreebie> = {
   checklist: {
     key: "checklist",
-    title: "10 jobs to automate first",
-    line: "The repeat jobs most businesses can hand over first, and what each one gives you back.",
+    title: "10 tasks to automate first",
+    line: "The repeat tasks most businesses can hand over first, and what each one gives you back.",
     url: "/free/10-jobs-to-automate-first",
     kind: "checklist",
   },

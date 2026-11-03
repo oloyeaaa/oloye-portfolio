@@ -21,8 +21,10 @@
 8. **The basics.** Google Search Console set up and checked, so we grow from real search numbers.
 
 ## Status
-- [ ] Research: `seo-pages-research.md` in shared notes (Research Analyst, started 3 Nov)
-- [ ] First batch: 3 who-it's-for and 3 task pages, plus a decision on the calculator
+- [x] Research: `seo-pages-research.md` in shared notes (Research Analyst, 3 Nov). No paid volumes; Trends + autocomplete + who ranks.
+- [ ] First batch, approved by Oloye on 3 Nov: /for/small-business, /for/plumbers, /for/barbers, /automate/client-onboarding, /automate/google-review-requests, /automate/client-folders, plus /tools/automation-roi-calculator. The Copywriter is writing them.
+- Next in line: cleaners, coaches, weekly report.
+- [ ] Oloye checks Search Console (which account owns oloye.co.uk; has the sitemap been sent?)
 - [ ] Daily run set up once the first batch is approved
 
 ## Pages live

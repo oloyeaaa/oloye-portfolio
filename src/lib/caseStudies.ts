@@ -98,8 +98,21 @@ export async function renderCaseStudy(body: string): Promise<string> {
     slots.push(what.trim());
     return `\n\nCSSLOT${slots.length - 1}\n\n`;
   });
+  // "[IMAGE: /case-studies/x.png | caption]" is one picture; "[IMAGES: a, b, c | caption]" a row of them.
+  const figures: string[] = [];
+  const withImages = marked.replace(/\[IMAGES?:\s*([^|\]]+)\|\s*([^\]]+)\]/gi, (_m, srcs: string, caption: string) => {
+    const list = srcs.split(",").map((x) => x.trim()).filter((x) => x.startsWith("/case-studies/"));
+    const imgs = list
+      .map((src) => `<img src="${esc(src)}" alt="${list.length > 1 ? "" : esc(caption.trim())}" loading="lazy" decoding="async">`)
+      .join("");
+    const kind = list.length > 4 ? "cs-fig-grid" : list.length > 1 ? "cs-fig-row" : "cs-fig-one";
+    figures.push(
+      `<figure class="cs-fig ${kind} not-prose"><div class="cs-fig-imgs">${imgs}</div><figcaption>${esc(caption.trim())}</figcaption></figure>`
+    );
+    return `\n\nCSFIG${figures.length - 1}\n\n`;
+  });
   const flags: string[] = [];
-  const flagged = marked.replace(/\*?\[FLAG:\s*([^\]]+)\]\*?/gi, (_m, note: string) => {
+  const flagged = withImages.replace(/\*?\[FLAG:\s*([^\]]+)\]\*?/gi, (_m, note: string) => {
     flags.push(note.trim());
     return `CSFLAG${flags.length - 1}`;
   });
@@ -108,6 +121,7 @@ export async function renderCaseStudy(body: string): Promise<string> {
   out = out.replace(/\s*CSFLAG(\d+)/g, (_m, i) =>
     showFlags ? ` <span class="cs-flag">Note for Oloye, not on the live page: ${esc(flags[Number(i)])}</span>` : ""
   );
+  out = out.replace(/<p>CSFIG(\d+)<\/p>|CSFIG(\d+)/g, (_m, a, b) => figures[Number(a ?? b)]);
   return out.replace(/<p>CSSLOT(\d+)<\/p>|CSSLOT(\d+)/g, (_m, a, b) => {
     const what = slots[Number(a ?? b)];
     // The slot text carries blur notes for Oloye, so the live site never shows it.

@@ -36,11 +36,11 @@ A short note that tells you who to reply to first, with a reply already drafted.
 
 Built on 25 Oct 2026, by talking to Claude, no code. *[FLAG: Oloye to confirm this "no code" line.]*
 
-[SCREENSHOT: the gallery picture "Morning lead brief: who to reply to first". Nothing to blur.]
+[IMAGE: /case-studies/02-morning-lead-brief/gallery-morning-lead-brief.jpg | Who to reply to first, in one short note.]
 
 [SCREENSHOT: the Leads table with the Days Waiting and Suggested Reply columns. STILL TO GRAB. Blur every name, handle and message.]
 
-[SCREENSHOT: the brief Doc from 25 Oct. Blur the person's TikTok handle and their comment. Never quote it.]
+[IMAGE: /case-studies/02-morning-lead-brief/brief-doc-25-oct-blurred.png | The first brief, 25 Oct 2026. The person's name and comment are blurred.]
 
 ## The result
 

@@ -37,13 +37,13 @@ One form, one list, and one reply that goes out by itself. Want to build it your
 
 Built on 27 Oct 2026. Claude built it from plain-English asks. No code written by hand. *[FLAG: Oloye to confirm this "no code" line before it goes live.]*
 
-[SCREENSHOT: the flow picture (form, Make, Airtable, email). Nothing to blur.]
+[IMAGE: /case-studies/01-website-forms/flow-form-make-airtable-email.png | The whole flow: the form, Make, Airtable, then the email.]
 
-[SCREENSHOT: the free-thing form on the website. Nothing to blur.]
+[IMAGE: /case-studies/01-website-forms/free-thing-form.png | The free-thing form on the website.]
 
 [SCREENSHOT: the Make scenario. Blur the connection names.]
 
-[SCREENSHOT: the email the person gets, sent to the test address. Nothing to blur.]
+[IMAGE: /case-studies/01-website-forms/email-person-gets-test-address.jpg | The email the person gets straight away (sent to a test address).]
 
 [SCREENSHOT: the Airtable Leads row. STILL TO GRAB. Blur every real name and email.]
 

@@ -35,11 +35,11 @@ Two short emails a day, made from one list of jobs.
 
 The first version looked like a junk email, so it was rebuilt on 1 Nov 2026 as a clean list. Make sends it through Gmail. It was built by talking to Claude, no code. *[FLAG: Oloye to confirm this "no code" line.]*
 
-[SCREENSHOT: a sample 6pm email on a phone, with made-up tasks, labelled "Sample". Make a clean one: the real one shows his campaign and filming plans.]
+[IMAGE: /case-studies/03-daily-task-emails/sample-6pm-email-phone.png | A sample of the 6pm email, with made-up tasks. The real one looks the same.]
 
 [SCREENSHOT: the Make scenario, 5 steps in a row. STILL TO GRAB. Hide the Gmail connection details.]
 
-[SCREENSHOT: the Airtable "My tasks" board. STILL TO GRAB. Blur the real task names, or use a sample board.]
+[IMAGE: /case-studies/03-daily-task-emails/sample-my-tasks-board.png | A drawing of the tasks board, with made-up tasks. Not a screenshot.]
 
 ## The result
 

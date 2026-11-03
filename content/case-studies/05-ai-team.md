@@ -50,13 +50,13 @@ Started on 31 Oct 2026. The team was set up by talking to Claude, and no code wa
 
 [SCREENSHOT: the agents listed side by side in the Claude app, with their job titles. STILL TO GRAB. Hide session ids and any other chats.]
 
-[SCREENSHOT: the rulebook table (who owns which rules). Strip session ids and file paths.]
+[IMAGE: /case-studies/05-ai-team/rulebook-table.png | One rulebook: each set of rules has one owner.]
 
 [SCREENSHOT: one Drive folder showing the video, cover, end card and caption Doc together, e.g. "Nov 04 - Leads spread across WhatsApp, DMs and email (video)". Nothing to blur.]
 
-[SCREENSHOT: two or three end cards. Nothing to blur.]
+[IMAGES: /case-studies/05-ai-team/end-card-leads-spread.png, /case-studies/05-ai-team/end-card-replying-hours-later.png, /case-studies/05-ai-team/end-card-someone-joins-your-list.png | Three of the end cards, one for each video.]
 
-[SCREENSHOT: the TikTok Business Page gallery pictures. Nothing to blur.]
+[IMAGES: /case-studies/05-ai-team/gallery/01-comments-into-leads.jpg, /case-studies/05-ai-team/gallery/02-morning-lead-brief.jpg, /case-studies/05-ai-team/gallery/03-one-list-every-lead.jpg, /case-studies/05-ai-team/gallery/04-welcome-email.jpg, /case-studies/05-ai-team/gallery/05-content-machine.jpg, /case-studies/05-ai-team/gallery/06-carousel-studio.jpg, /case-studies/05-ai-team/gallery/07-video-studio.jpg, /case-studies/05-ai-team/gallery/08-form-to-lead-list.jpg, /case-studies/05-ai-team/gallery/09-tasks-night-before.jpg, /case-studies/05-ai-team/gallery/10-lead-leak-check.jpg | The 10 pictures on the TikTok Business Page, one for each real system.]
 
 ## The result
 

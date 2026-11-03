@@ -3,14 +3,15 @@ import { SITE_URL } from "@/lib/site";
 import { getPublishedPosts } from "@/lib/airtable";
 import { CATEGORIES, getCategory } from "@/lib/categories";
 import { getAllPosts } from "@/lib/posts";
+import { getAllCaseStudies } from "@/lib/caseStudies";
 
 // Re-check every hour, so scheduled posts appear on their day.
 export const revalidate = 3600;
 
 // Rewritten 2026-10-27 for the process automation site. Only pages we want
 // found are listed. Left out on purpose (still live by link, marked noindex):
-// hidden blog posts, tag pages, the old /free/<prompt> pages, /skills, the
-// marketing career tier list, and /case-studies until the first build is up.
+// hidden blog posts, tag pages, the old /free/<prompt> pages, /skills and
+// the marketing career tier list. Case studies are listed from 3 Nov 2026.
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -51,6 +52,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/free", 0.8, "monthly"),
     page("/free/10-jobs-to-automate-first", 0.8, "monthly"),
     page("/tools/lead-leak-check", 0.8, "monthly"),
+    page("/case-studies", 0.7, "monthly"),
+    ...getAllCaseStudies().map((c) => page(`/case-studies/${c.slug}`, 0.7, "monthly")),
     ...blogRoutes,
     ...categoryRoutes,
   ];

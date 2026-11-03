@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { REMOVED_POST_SLUGS } from "./removedPosts";
 
 const API_KEY = process.env.AIRTABLE_API_KEY;
 const BASE_ID = process.env.AIRTABLE_BASE_ID || "appSD2mpRbokvWzU6";
@@ -170,7 +171,9 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
   if (data && data.records) {
     airtablePosts = data.records
       .map(mapRecord)
-      .filter((p): p is BlogPost => p !== null);
+      .filter((p): p is BlogPost => p !== null)
+      // Taken off the site on 3 Nov 2026, even if Airtable still says Published.
+      .filter((p) => !REMOVED_POST_SLUGS.has(p.slug));
   }
 
   // Combine local posts and airtable posts (local posts take precedence by slug)
@@ -195,6 +198,7 @@ export async function getPostBySlug(
 ): Promise<BlogPost | null> {
   const local = getLocalPosts().find((p) => p.slug === slug);
   if (local) return local;
+  if (REMOVED_POST_SLUGS.has(slug)) return null;
 
   const safeSlug = slug.replace(/'/g, "\\'");
   const filter = `AND({Status}='Published',{Slug}='${safeSlug}')`;

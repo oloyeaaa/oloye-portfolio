@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { REMOVED_POSTS } from "./src/lib/removedPosts";
 
 /**
  * Redirects for the 2026-08-17 rebrand.
@@ -25,9 +26,9 @@ import type { NextConfig } from "next";
 
 // "plumbers" left this list on 3 Nov 2026: /for/plumbers is a real page again
 // (the Google pages in content/for/). Never list a slug that has a page there.
+// 3 Nov 2026: coaches and salons have their own closest pages (below), so
+// they're out of this list too.
 const VERTICALS = [
-  "coaches",
-  "salons",
   "ecom",
   "real-estate",
   "restaurants",
@@ -70,6 +71,8 @@ const nextConfig: NextConfig = {
         "how-to-build-an-audience-from-scratch-0-dollar-marketing",
         "why-paid-ads-wont-fix-a-broken-message",
       ].map((slug) => ({ source: `/blog/${slug}`, destination: "/blog", permanent: true })),
+      // The 43 Airtable posts taken off (3 Nov 2026), each to its closest live page.
+      ...REMOVED_POSTS.map((p) => ({ source: `/blog/${p.slug}`, destination: p.to, permanent: true })),
 
       // --- Retired in the Oct 2026 redesign (process automation) ---
       { source: "/portfolio", destination: "/case-studies", permanent: true },
@@ -80,11 +83,13 @@ const nextConfig: NextConfig = {
       // --- Pages about the person or the old agency -> home ---
       // NOTE: /about is NOT here. It was redirected when the agency page was
       // archived, and a real About page was written in its place 2026-08-17.
+      // /services stays on home: home is the "what we do" page.
       { source: "/services", destination: "/", permanent: true },
       { source: "/services/:slug*", destination: "/", permanent: true },
       { source: "/oloye", destination: "/", permanent: true },
       // /contact is NOT here any more: a real Contact page came back 2026-10-27.
-      { source: "/agentic-ai-systems", destination: "/", permanent: true },
+      // 3 Nov 2026: the AI team case study is the closest live page.
+      { source: "/agentic-ai-systems", destination: "/case-studies/ai-team", permanent: true },
       {
         source: "/agentic-ai-systems/how-it-works",
         destination: "/",
@@ -98,7 +103,14 @@ const nextConfig: NextConfig = {
         destination: "/free",
         permanent: true,
       },
-      { source: "/test-drive", destination: "/free", permanent: true },
+      // 3 Nov 2026: the old free test is now the lead leak check.
+      { source: "/test-drive", destination: "/tools/lead-leak-check", permanent: true },
+
+      // Old /for pages linked from taken-off posts (3 Nov 2026). /for/coaches
+      // goes to small business until a coaches page exists; salons share the
+      // barbers' no-show problem.
+      { source: "/for/coaches", destination: "/for/small-business", permanent: false },
+      { source: "/for/salons", destination: "/for/barbers", permanent: true },
 
       // The Front Desk vertical landing pages. Listed explicitly as well as by
       // wildcard so the intent stays readable if the wildcard is ever changed.

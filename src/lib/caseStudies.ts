@@ -10,8 +10,8 @@ import { slugify } from "@/lib/posts";
 // in content/case-studies/, named "01-<slug>.md": the number sets the order,
 // the rest is the web address. Folders starting "_" (the facts) are never read.
 // A line "[SCREENSHOT: what it shows]" becomes a placeholder box until the real,
-// blurred screenshot is ready. A "[FLAG: ...]" note for Oloye shows as a red
-// note on previews only, and is left out of the live page.
+// blurred screenshot is ready. Both the boxes and "[FLAG: ...]" notes for Oloye
+// (a red note) show on previews only, and are left out of the live page.
 
 const dir = path.join(process.cwd(), "content/case-studies");
 
@@ -110,6 +110,8 @@ export async function renderCaseStudy(body: string): Promise<string> {
   );
   return out.replace(/<p>CSSLOT(\d+)<\/p>|CSSLOT(\d+)/g, (_m, a, b) => {
     const what = slots[Number(a ?? b)];
+    // The slot text carries blur notes for Oloye, so the live site never shows it.
+    if (!showFlags) return "";
     return (
       `<figure class="cs-slot not-prose" role="img" aria-label="Screenshot to come: ${esc(what)}">` +
       `<span class="cs-slot-tag">Screenshot to come</span>` +

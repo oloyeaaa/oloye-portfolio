@@ -174,7 +174,7 @@ export default async function FreebiePage({
                 >
                   {o.name}
                 </Link>
-                <span className="text-muted"> — {o.promise}</span>
+                <span className="text-muted">: {o.promise}</span>
               </li>
             ))}
           </ul>

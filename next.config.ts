@@ -23,8 +23,9 @@ import type { NextConfig } from "next";
  * process automation; the free things page has its own email capture).
  */
 
+// "plumbers" left this list on 3 Nov 2026: /for/plumbers is a real page again
+// (the Google pages in content/for/). Never list a slug that has a page there.
 const VERTICALS = [
-  "plumbers",
   "coaches",
   "salons",
   "ecom",
@@ -91,9 +92,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
 
-      // Catch-alls for the dynamic routes, including any vertical or report
-      // slug that was linked somewhere we do not know about.
-      { source: "/for/:slug*", destination: "/", permanent: true },
+      // Catch-all for old report links. (The /for catch-all went on 3 Nov 2026,
+      // when /for became the Google pages; an unknown /for slug now 404s.)
       { source: "/report/:slug*", destination: "/", permanent: true },
 
       // /get/<system> links are printed in PDFs and sat in bios. They used to

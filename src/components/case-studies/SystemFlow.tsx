@@ -10,10 +10,10 @@ import { flowAlt } from "@/lib/caseStudyFlows";
 
 const W = 640;
 const H = 360;
-const TILE = 84;
+const TILE = 78;
 const LEFT = 92;
 const RIGHT = 548;
-const CY = 150;
+const CY = 158;
 const STEP_S = 1;
 
 const SKY = "#38BDF8";
@@ -86,8 +86,8 @@ export default function SystemFlow({ steps, className = "" }: { steps: FlowStep[
       <circle cx={W / 2} cy={CY} r="220" fill={LIME} opacity="0.05" />
 
       {steps.slice(0, -1).map((_, i) => {
-        const x1 = cx(i) + TILE / 2 + 10;
-        const x2 = cx(i + 1) - TILE / 2 - 10;
+        const x1 = cx(i) + TILE / 2 + 7;
+        const x2 = cx(i + 1) - TILE / 2 - 7;
         return (
           <g key={`a${i}`}>
             <line x1={x1} y1={CY} x2={x2 - 6} y2={CY} stroke={SKY} strokeWidth="3" strokeLinecap="round" opacity="0.7" />
@@ -125,9 +125,9 @@ export default function SystemFlow({ steps, className = "" }: { steps: FlowStep[
             />
             <rect x={x} y={y} width={TILE} height={TILE} rx="20" fill="#FFFFFF" />
             {s.logo ? (
-              <image href={`/images/tools/${s.logo}-icon.svg`} x={x + 20} y={y + 20} width={TILE - 40} height={TILE - 40} />
+              <image href={`/images/tools/${s.logo}-icon.svg`} x={x + 18} y={y + 18} width={TILE - 36} height={TILE - 36} />
             ) : s.icon ? (
-              <g transform={`translate(${x + 18} ${y + 18}) scale(${(TILE - 36) / 24})`}>
+              <g transform={`translate(${x + 17} ${y + 17}) scale(${(TILE - 34) / 24})`}>
                 <Icon name={s.icon} />
               </g>
             ) : null}

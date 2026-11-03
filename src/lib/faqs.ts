@@ -75,19 +75,19 @@ export const FAQS: Record<string, FaqItem[]> = {
   ],
   caseStudies: [
     {
-      question: "What will the case studies show?",
+      question: "What do the case studies show?",
       answer:
-        "One business and one job each: what was eating their week, what we built, the tools it uses, and how it runs now, step by step.",
+        "One job each: the problem it caused, what was built, the tools it uses, and where it stands now, step by step.",
     },
     {
-      question: "Are they real businesses?",
+      question: "Are they real?",
       answer:
-        "The first ones are demo builds: a made-up business with a real automation built for it, so you can see exactly how it works. We'll say clearly which is which.",
+        "Yes. Each one is a system built and running in our own business first. We only say what it has really done so far, and any screenshot hides other people's details.",
     },
     {
-      question: "Can I see one before they're ready?",
+      question: "Can I copy one?",
       answer:
-        "Yes. Book a free call and we'll walk you through a build that fits your business.",
+        "Yes. Each study ends with the simple version you can set up yourself, and a free guide to start with.",
     },
   ],
   about: [

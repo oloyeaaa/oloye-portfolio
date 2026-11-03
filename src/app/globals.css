@@ -428,3 +428,46 @@ h1, h2, h3, h4, h5 {
   .post-body table { display: block; overflow-x: auto; }
   .post-body h2 { font-size: 1.55rem; }
 }
+
+/* Case studies: a clear box where a screenshot will go (3 Nov 2026) */
+.cs-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 2.2em 0;
+  min-height: 12rem;
+  padding: 1.5rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: 1.5rem;
+  background: var(--color-surface-alt);
+  text-align: center;
+}
+.cs-slot-tag {
+  border-radius: 0.5rem;
+  background: var(--color-accent);
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-foreground);
+}
+.cs-slot-text {
+  max-width: 32rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+.cs-flag {
+  display: block;
+  margin-top: 0.6rem;
+  border-left: 4px solid var(--color-alert);
+  border-radius: 0.5rem;
+  background: #FEF2F2;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #991B1B;
+}

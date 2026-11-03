@@ -11,12 +11,15 @@ export default function PostList({
   line,
   posts,
   activeCategory,
+  emptyLine,
 }: {
   eyebrow: string;
   title: string;
   line?: string;
   posts: PostMeta[];
   activeCategory?: string;
+  /** What to say when there are no posts yet (the page shows its own links below). */
+  emptyLine?: string;
 }) {
   return (
     <>
@@ -27,8 +30,8 @@ export default function PostList({
             <Link href="/blog" className="hover:text-foreground">Blog</Link>
           </nav>
           <p className="eyebrow mt-10">{eyebrow}</p>
-          <h1 className="display mt-4 text-5xl text-foreground sm:text-7xl">{title}</h1>
-          {line && <p className="mt-6 max-w-xl text-lg text-muted">{line}</p>}
+          <h1 className="display mt-4 max-w-4xl text-4xl text-foreground sm:text-6xl">{title}</h1>
+          {line && <p className="mt-6 max-w-2xl text-lg text-muted">{line}</p>}
           <CategoryChips active={activeCategory} />
         </div>
       </section>
@@ -45,7 +48,8 @@ export default function PostList({
             </div>
           ) : (
             <p className="rounded-3xl border border-dashed border-border-strong p-10 text-center text-muted">
-              Posts for this one are on the way. <Link href="/blog" className="font-semibold text-foreground underline">See all posts</Link>.
+              {emptyLine ?? "Posts for this one are on the way."}{" "}
+              <Link href="/blog" className="font-semibold text-foreground underline">See all posts</Link>.
             </p>
           )}
         </div>

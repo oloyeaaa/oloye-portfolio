@@ -4,7 +4,7 @@ cardLine: "Why simple, boring tools keep a business running longer than the late
 date: "2026-10-14"
 updated: "2026-10-27"
 author: "oloye"
-category: "Tools & systems"
+category: "Tools and AI"
 tags: ["google workspace", "gemini", "notebooklm", "tool trap", "airtable"]
 excerpt: "A new AI tool comes out every week. Here is why the plain tools you already use, like Gmail and Sheets, are the safer place to build your business."
 summary:

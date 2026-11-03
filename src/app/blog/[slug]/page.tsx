@@ -50,7 +50,7 @@ async function loadPost(slug: string): Promise<PostFull | null> {
     slug: remote.slug,
     title: remote.title,
     date: remote.publishedDate || "",
-    category: remote.category || "Tools & systems",
+    category: remote.category || "Tools and AI",
     excerpt: remote.metaDescription || remote.excerpt,
     tags: remote.keywords,
     coverImage: remote.coverImage,

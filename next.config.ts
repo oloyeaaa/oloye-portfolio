@@ -55,6 +55,22 @@ const nextConfig: NextConfig = {
     return [
       { source: "/lab", destination: "/free", permanent: true },
 
+      // --- Blog, 3 Nov 2026: four categories, and seven old posts taken off ---
+      // (the posts are kept in content/_archive-posts/, see its README)
+      { source: "/blog/category/tools-systems", destination: "/blog/category/tools-and-ai", permanent: true },
+      { source: "/blog/category/onboarding", destination: "/blog/category/clients", permanent: true },
+      { source: "/blog/category/retention", destination: "/blog/category/clients", permanent: true },
+      { source: "/blog/category/delivery", destination: "/blog/category/admin-and-invoices", permanent: true },
+      ...[
+        "how-to-steal-high-converting-copy-from-1-star-competitor-reviews",
+        "the-1-75-billion-dollar-mistake-customer-awareness",
+        "the-5-levels-of-customer-awareness-eugene-schwartz",
+        "the-cognitive-friction-trap-why-clever-copy-kills-conversions",
+        "the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves",
+        "how-to-build-an-audience-from-scratch-0-dollar-marketing",
+        "why-paid-ads-wont-fix-a-broken-message",
+      ].map((slug) => ({ source: `/blog/${slug}`, destination: "/blog", permanent: true })),
+
       // --- Retired in the Oct 2026 redesign (process automation) ---
       { source: "/portfolio", destination: "/case-studies", permanent: true },
       { source: "/portfolio/:slug*", destination: "/case-studies", permanent: true },

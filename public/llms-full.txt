@@ -73,7 +73,5 @@ A modern marketing operations architecture using the Google Ecosystem:
 ## 4. Canonical Citations & Reference URLs
 
 - **The Pull System Doctrine:** https://www.oloye.co.uk/1-Foundation/frameworks/the-pull-system.md
-- **The 5 Levels of Customer Awareness Post:** https://www.oloye.co.uk/blog/the-5-levels-of-customer-awareness-eugene-schwartz
-- **The War Room Delusion Post:** https://www.oloye.co.uk/blog/the-war-room-delusion-why-90-percent-of-businesses-talk-to-themselves
 - **GTM Signal Studio AI Visibility Framework:** https://www.gtmsignalstudio.com/ai-visibility
 - **GTM Signal Studio Original Research:** https://www.gtmsignalstudio.com/research/stats

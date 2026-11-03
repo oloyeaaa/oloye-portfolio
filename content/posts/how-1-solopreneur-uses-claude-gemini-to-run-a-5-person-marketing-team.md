@@ -4,7 +4,7 @@ cardLine: "How one person gets through a small team's work, with Claude doing th
 date: "2026-09-02"
 updated: "2026-10-27"
 author: "oloye"
-category: "Tools & systems"
+category: "Tools and AI"
 tags: ["claude", "first drafts", "one recording many posts", "customer words"]
 excerpt: "Three simple ways to use Claude for first drafts, so one person can get through the marketing work of a small team without sounding like a robot."
 summary:

@@ -5,7 +5,7 @@ title: "The 5 Automation Channels Actually Worth Watching (How to Escape the Tut
 slug: "the-5-automation-channels-worth-watching"
 date: "2026-10-14"
 author: "Oloye Adeosun"
-category: "Automation & Systems"
+category: "Tools and AI"
 excerpt: "I wasted six months watching YouTube videos late at night and built nothing. Here are the only five channels that teach real systems—and how to stop watching and start building."
 description: "I wasted six months watching YouTube videos late at night and built nothing. Here are the only five channels that teach real systems—and how to stop watching and start building."
 tags: ["Automation", "YouTube", "No-Code", "Airtable", "n8n", "Honest Practitioner"]

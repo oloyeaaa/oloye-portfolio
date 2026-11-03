@@ -4,7 +4,7 @@ cardLine: "Leads don't get lost at the start. They get lost between the steps."
 date: "2026-10-07"
 updated: "2026-10-27"
 author: "oloye"
-category: "Tools & systems"
+category: "Leads"
 tags: ["handoffs", "lead follow-up", "onboarding", "airtable", "make"]
 excerpt: "A better Claude prompt won't fix a leaky funnel. Most people get lost in the gaps between steps. Here are the three gaps and how we close them."
 summary:

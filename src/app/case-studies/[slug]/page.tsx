@@ -7,6 +7,8 @@ import { SITE_URL } from "@/lib/site";
 import { getAllCaseStudies, getCaseStudy, renderCaseStudy } from "@/lib/caseStudies";
 import { getPostFreebie } from "@/lib/postFreebies";
 import ListStep from "@/components/case-studies/ListStep";
+import SystemFlow from "@/components/case-studies/SystemFlow";
+import { getFlow } from "@/lib/caseStudyFlows";
 
 // One case study (3 Nov 2026). Top to bottom: breadcrumb, the problem as the
 // headline, a strip of plain facts (block, tools, built, where it stands), the
@@ -49,6 +51,7 @@ export default async function CaseStudyPage({ params }: Props) {
   const bodyHtml = await renderCaseStudy(s.body);
   const others = getAllCaseStudies().filter((x) => x.slug !== s.slug);
   const path = `/case-studies/${s.slug}`;
+  const flow = getFlow(s.slug);
 
   const facts: { label: string; value: React.ReactNode; wide?: boolean }[] = [
     ...(s.block ? [{ label: "Fixes", value: s.block }] : []),
@@ -86,6 +89,11 @@ export default async function CaseStudyPage({ params }: Props) {
               <p className="eyebrow mt-10">Case study{s.block ? ` · ${s.block}` : ""}</p>
               <h1 className="display mt-4 text-4xl text-foreground sm:text-6xl">{s.title}</h1>
               {s.excerpt && <p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{s.excerpt}</p>}
+              {flow && (
+                <div className="mt-10 aspect-16/9 w-full overflow-hidden rounded-3xl bg-foreground">
+                  <SystemFlow steps={flow} />
+                </div>
+              )}
             </div>
           </header>
 

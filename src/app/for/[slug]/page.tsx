@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getForPage(slug, "for");
   if (!p) return { title: "Not found" };
   return {
-    title: p.title,
+    // The Copywriter's titles are written to fit 60 characters with " | Oloye".
+    title: { absolute: `${p.title} | Oloye` },
     description: p.description,
     alternates: { canonical: `${SITE_URL}/for/${p.slug}` },
     openGraph: { title: p.title, description: p.description, url: `${SITE_URL}/for/${p.slug}`, type: "website" },

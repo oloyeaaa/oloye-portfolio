@@ -41,6 +41,15 @@ export const POST_FREEBIES: Record<string, PostFreebie> = {
     url: "https://drive.google.com/file/d/14aEAixsK-X7RMOEpMwbkL-R66klIxUsj/view",
     kind: "guide",
   },
+  // The /build page for the Thu 5 Nov TikTok live. The guide (PDF + Doc) lands
+  // Wed 4 Nov 6pm; until then the link is a placeholder.
+  "BUILD-LEAK": {
+    key: "BUILD-LEAK",
+    title: "The lead leak check build guide",
+    line: "It walks you through the 6 questions, the scoring, and the prompts to give Claude. If you don't have a website, start with the simple version.",
+    url: "https://www.oloye.co.uk/build/lead-leak-check?guide=coming-wed-4-nov",
+    kind: "build guide",
+  },
 };
 
 export function getPostFreebie(key?: string): PostFreebie {

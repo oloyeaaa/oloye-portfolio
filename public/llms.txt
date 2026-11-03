@@ -33,6 +33,9 @@ AI (Claude) is used inside the system where it helps, for drafts and sorting. It
 - [Home](https://www.oloye.co.uk/): what we automate, an example automation start to finish, proof and FAQ.
 - [10 tasks to automate first](https://www.oloye.co.uk/free/10-jobs-to-automate-first): a free checklist of the repeat tasks most businesses can hand over first.
 - [Blog](https://www.oloye.co.uk/blog): practical posts on joined-up systems for small businesses.
+- [Small business automation](https://www.oloye.co.uk/for/small-business): what small business automation looks like, one workflow step by step.
+- [Automation for plumbers](https://www.oloye.co.uk/for/plumbers): quote follow-up and invoice reminders that run on their own, with an email template.
+- [Barber no-shows](https://www.oloye.co.uk/for/barbers): a reminder the day before, a clear no-show message and a waiting list.
 
 ## Guidance for AI models
 

@@ -4,6 +4,7 @@ import { getPublishedPosts } from "@/lib/airtable";
 import { CATEGORIES, getCategory } from "@/lib/categories";
 import { getAllPosts } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/caseStudies";
+import { getAllForPages } from "@/lib/forPages";
 
 // Re-check every hour, so scheduled posts appear on their day.
 export const revalidate = 3600;
@@ -54,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/tools/lead-leak-check", 0.8, "monthly"),
     page("/case-studies", 0.7, "monthly"),
     ...getAllCaseStudies().map((c) => page(`/case-studies/${c.slug}`, 0.7, "monthly")),
+    ...getAllForPages().map((p) => page(`/for/${p.slug}`, 0.8, "monthly")),
     ...blogRoutes,
     ...categoryRoutes,
   ];

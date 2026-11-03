@@ -23,6 +23,15 @@ const columns = [
     ],
   },
   {
+    // The /for pages (content/for/). Add a line here when a new one goes up.
+    title: "Who we help",
+    links: [
+      { name: "Small businesses", href: "/for/small-business" },
+      { name: "Plumbers", href: "/for/plumbers" },
+      { name: "Barbers", href: "/for/barbers" },
+    ],
+  },
+  {
     title: "Follow",
     links: [
       { name: "Instagram", href: SOCIAL.instagram },
@@ -37,8 +46,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface pb-12 pt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div>
+        <div className="grid gap-12 grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+          <div className="col-span-2 md:col-span-1">
             <Link href="/" className="text-2xl font-black tracking-tight text-foreground">
               Oloye<span className="text-accent-dark">.</span>
             </Link>

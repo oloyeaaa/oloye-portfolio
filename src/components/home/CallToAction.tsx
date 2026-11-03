@@ -25,14 +25,26 @@ export function Buttons({ dark = false }: { dark?: boolean }) {
   );
 }
 
-export function LastCall() {
+// A page can pass its own heading and line (the last word of the heading goes lime).
+export function LastCall({ heading, line }: { heading?: string; line?: string } = {}) {
+  const words = heading?.trim().split(" ");
   return (
     <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 pt-8 sm:px-6">
       <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[2rem] bg-foreground px-6 py-20 text-center sm:py-28">
         <h2 className="display max-w-3xl text-4xl !text-white sm:text-6xl">
-          What task would you hand over <span className="text-accent">first?</span>
+          {words ? (
+            <>
+              {words.slice(0, -1).join(" ")} <span className="text-accent">{words[words.length - 1]}</span>
+            </>
+          ) : (
+            <>
+              What task would you hand over <span className="text-accent">first?</span>
+            </>
+          )}
         </h2>
-        <p className="mt-6 max-w-md text-white/60">A free call. We&apos;ll find the first task worth automating, and you&apos;ll know the price before anything starts.</p>
+        <p className="mt-6 max-w-md text-white/60">
+          {line ?? "A free call. We'll find the first task worth automating, and you'll know the price before anything starts."}
+        </p>
         <div className="mt-10">
           <Buttons dark />
         </div>

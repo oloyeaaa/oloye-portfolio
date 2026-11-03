@@ -22,7 +22,7 @@ The trap is the tool trap: lots of apps, and nothing joining them up.
 
 ## The guide
 
-I've been building marketing systems for over 3 years. This was the first thing I built to stop losing the people who find me.
+I've been building marketing systems for over 3 years. This was the first thing I built so no lead waits for a reply.
 
 ## What was built
 

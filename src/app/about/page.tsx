@@ -74,7 +74,7 @@ export default function AboutPage() {
                 Meet <span className="lime-mark">Oloye.</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
-                Founder. He builds simple AI automation systems that save small businesses time and money, so owners stop losing the people who find them and get back to the work they&apos;re good at.
+                Founder. He builds simple AI automation systems that save small businesses time and money, so owners can get back to the work they&apos;re good at.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
                 {author.links.map((l) => (

@@ -67,8 +67,8 @@ const VALUE = [
     ),
   },
   {
-    title: "Never lose a lead",
-    text: "Every enquiry saved and answered, every invoice and reminder sent.",
+    title: "Never miss a thing",
+    text: "Every enquiry answered, every invoice and reminder sent.",
     icon: (
       <svg viewBox="0 0 48 48" className="draw h-12 w-12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
         <rect x="8" y="8" width="32" height="32" rx="8" />
@@ -309,8 +309,8 @@ export default function HomePage() {
               admin. We get it. Oloye has spent over 3 years building marketing systems. Now we build simple AI
               automations that take those tasks off you. Here&apos;s how it works: tell us the task that eats
               your week, we build the workflow and test it, and you get the hours back. So book a free call, or
-              start with the free checklist, 10 tasks to automate first. Stop losing evenings to admin, and stop
-              losing the people who find you.
+              start with the free checklist, 10 tasks to automate first. Stop losing evenings to admin, and get
+              back to the work that makes you money.
             </p>
           </Reveal>
         </section>

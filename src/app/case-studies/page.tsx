@@ -16,7 +16,7 @@ import CaseStudyCard from "@/components/case-studies/CaseStudyCard";
 
 const TITLE = "Case studies";
 const DESCRIPTION =
-  "Real systems that stop small businesses losing the people who find them, shown start to finish: the problem, what was built, and how it runs now.";
+  "Real automation systems that save small businesses time and money, shown start to finish: the problem, what was built, and how it runs now.";
 
 export const metadata: Metadata = {
   title: { absolute: "Case studies: real lead and automation systems | Oloye" },
@@ -50,7 +50,7 @@ export default function CaseStudiesPage() {
             </nav>
             <p className="eyebrow mt-10">Case studies</p>
             <h1 className="display mt-6 max-w-4xl text-5xl text-foreground sm:text-7xl">
-              Losing the people who find you? <span className="lime-mark">See the fix.</span>
+              Losing hours to the same tasks? <span className="lime-mark">See the fix.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
               One job that loses leads or eats the week, the system built to fix it, and how it runs now. Shown start to finish.

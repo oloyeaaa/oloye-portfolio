@@ -63,7 +63,7 @@ Started on 31 Oct 2026. The team was set up by talking to Claude, and no code wa
 **What the team has made, checked on 3 Nov:**
 - **33 end cards**, one for every November video, made after the rule came in on 2 Nov.
 - **The TikTok Business Page:** 10 pictures, one for each real system, plus the cover, for about $2.04 in total. Then a step-by-step guide to setting it up, with screenshots.
-- **Last night's filming, finished by breakfast.** The talking heads landed in Drive between 07:21 and 07:32. By 08:28 the finished video was filed for TikTok and Instagram, with its cover and end card.
+- **Filmed one evening, finished by breakfast.** The talking heads landed in Drive between 07:21 and 07:32. By 08:28 the finished video was filed for TikTok and Instagram, with its cover and end card.
 
 **How long these jobs took by hand** (Oloye's estimate of the time by hand):
 

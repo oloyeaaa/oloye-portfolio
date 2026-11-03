@@ -17,6 +17,8 @@ const ALLOWED_HOSTS = new Set([
   new URL(SITE_URL).host.replace(/^www\./, ""),
   "localhost:3000",
   "127.0.0.1:3000",
+  // Vercel preview links for this deployment (set by Vercel, never by a visitor).
+  ...[process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL].filter((h): h is string => !!h),
 ]);
 
 /** True when the request was sent by a page on our own site. */

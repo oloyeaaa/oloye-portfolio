@@ -18,7 +18,7 @@ const DESCRIPTION =
   "A free automation ROI calculator for small businesses. Put in the hours you spend on repeat tasks and see what they cost you in a year.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: `${TITLE} | Oloye` },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}${PATH}`, type: "website" },

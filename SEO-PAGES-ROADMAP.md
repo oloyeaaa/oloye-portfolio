@@ -30,3 +30,13 @@
 ## Pages live
 | Date | Page | Main keyword | URL |
 | :--- | :--- | :--- | :--- |
+| 3 Nov | Small business | small business automation | /for/small-business |
+| 3 Nov | Plumbers | automation for plumbers | /for/plumbers |
+| 3 Nov | Barbers | barber no shows | /for/barbers |
+| 3 Nov | Client onboarding | automate client onboarding | /automate/client-onboarding |
+| 3 Nov | Google review requests | how to ask for google reviews | /automate/google-review-requests |
+| 3 Nov | Client folders | automatically create folders in google drive | /automate/client-folders |
+| 3 Nov | Calculator | automation roi calculator | /tools/automation-roi-calculator |
+| 3 Nov | Blog categories (4) | Leads, Clients, Admin and invoices, Tools and AI | /blog/category/... |
+
+**Blog clean-up, 3 Nov:** the 7 old repo posts are archived, and the 43 Airtable posts are set to Draft, with 301s in place. 8 posts are live. The author is Oloye, never "Leo" (an old agent).

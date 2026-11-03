@@ -1,10 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
-import { BUSINESS_TYPES, QUESTIONS, type Answers } from "@/lib/tools/leak-check";
+import { BUSINESS_TYPES, QUESTIONS, pickLeaks, score, scoreLine, type Answers } from "@/lib/tools/leak-check";
 
-type Result = { total: number; line: string; leaks: { area: string; leak: string; fix: string }[]; emailed: boolean };
+type Result = { total: number; line: string; leaks: { area: string; leak: string; fix: string }[]; emailed: boolean; example?: boolean };
+
+// "?example" opens straight onto a finished result (the 37 / 100 we tested on
+// 2 Nov), for showing on a live if the real check is slow. Our own code and
+// stock wording only: nothing is sent and nobody is saved.
+const EXAMPLE: Answers = {
+  found: ["instagram", "tiktok"],
+  next: ["dm"],
+  where: ["spread"],
+  speed: ["days"],
+  after: ["remember"],
+  notready: ["no"],
+};
+function exampleResult(): Result {
+  const total = score(EXAMPLE).total;
+  const leaks = pickLeaks(EXAMPLE).map(({ area, leak, fix }) => ({ area, leak, fix }));
+  return { total, line: scoreLine(total), leaks, emailed: false, example: true };
+}
 
 // One question per screen, then the details, then the result.
 export default function LeakCheck() {
@@ -14,6 +31,10 @@ export default function LeakCheck() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<Result | null>(null);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("example")) setResult(exampleResult());
+  }, []);
 
   const total = QUESTIONS.length;
   const q = QUESTIONS[step];
@@ -64,7 +85,7 @@ export default function LeakCheck() {
     return (
       <div className="space-y-6" role="status">
         <div className="rounded-3xl border border-border bg-surface p-6 text-center sm:p-8">
-          <p className="eyebrow">Your lead leak score</p>
+          <p className="eyebrow">{result.example ? "Example lead leak score" : "Your lead leak score"}</p>
           <p className="mt-4 flex items-end justify-center gap-2">
             <span className="rounded-xl bg-accent px-4 py-1 text-6xl font-extrabold leading-none text-foreground">{result.total}</span>
             <span className="pb-1 text-2xl font-extrabold text-foreground">/ 100</span>
@@ -85,7 +106,9 @@ export default function LeakCheck() {
         </ol>
 
         <p className="text-center text-muted">
-          {result.emailed
+          {result.example
+            ? "This is an example result. Take the check to get your own."
+            : result.emailed
             ? "The full result, with a free guide for each fix, is on its way to your inbox."
             : "We couldn't send the email just now, but your result is all here."}
         </p>

@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 export const ONE_LINER = {
   problem: "Most small businesses lose hours every week to the same small tasks.",
   solution: "We build simple AI automation systems that do those tasks for you,",
-  result: "so you save time, save money and stop losing the people who find you.",
+  result: "so you save time, save money and get back to the real work.",
 };
 
 export default function OneLiner({ className = "" }: { className?: string }) {

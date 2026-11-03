@@ -16,6 +16,11 @@ import OneLiner from "@/components/home/OneLiner";
 import { Buttons, LastCall } from "@/components/home/CallToAction";
 import Faq from "@/components/Faq";
 import { FAQS } from "@/lib/faqs";
+import { getAllCaseStudies } from "@/lib/caseStudies";
+import CaseStudyCard from "@/components/case-studies/CaseStudyCard";
+
+// The three case studies on the home page: the strongest proof first.
+const HOME_STUDIES = ["website-forms-to-lead-list", "daily-task-emails", "ai-team"];
 
 // The home page follows the StoryBrand website wireframe (header, stakes, value,
 // guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
@@ -80,6 +85,8 @@ const PLAN = [
 ];
 
 export default function HomePage() {
+  const all = getAllCaseStudies();
+  const homeStudies = HOME_STUDIES.map((slug) => all.find((c) => c.slug === slug)).filter((c) => !!c);
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/", title: TITLE, description: DESCRIPTION, type: "WebPage" })} />
@@ -247,22 +254,16 @@ export default function HomePage() {
               <Reveal>
                 <p className="eyebrow">Case studies</p>
                 <div className="mt-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                  <h3 className="display text-3xl sm:text-5xl">Real builds. Coming soon.</h3>
+                  <h3 className="display text-3xl sm:text-5xl">Real builds. <span className="lime-mark">Shown start to finish.</span></h3>
                   <Link href="/case-studies" className="text-sm font-semibold text-foreground hover:underline decoration-accent decoration-2 underline-offset-4">
-                    Case studies →
+                    All case studies →
                   </Link>
                 </div>
               </Reveal>
-              <div className="mt-12 grid gap-6 sm:grid-cols-3">
-                {[0, 1, 2].map((i) => (
-                  <Reveal key={i} delay={i * 150}>
-                    <div className="shimmer flex h-64 flex-col justify-between rounded-3xl border border-dashed border-border-strong bg-background p-6">
-                      <span className="self-start rounded-full bg-accent px-3 py-1 text-xs font-bold">Coming soon</span>
-                      <div className="space-y-2.5" aria-hidden="true">
-                        <span className="block h-3 w-3/4 rounded-full bg-surface-alt" />
-                        <span className="block h-3 w-1/2 rounded-full bg-surface-alt" />
-                      </div>
-                    </div>
+              <div className="mt-12 grid gap-6 md:grid-cols-3">
+                {homeStudies.map((study, i) => (
+                  <Reveal key={study.slug} delay={i * 150}>
+                    <CaseStudyCard study={study} />
                   </Reveal>
                 ))}
               </div>

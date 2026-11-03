@@ -9,6 +9,7 @@ import Reveal from "@/components/home/Reveal";
 import { getAllCaseStudies } from "@/lib/caseStudies";
 import { getPostFreebie } from "@/lib/postFreebies";
 import ListStep from "@/components/case-studies/ListStep";
+import CaseStudyCard from "@/components/case-studies/CaseStudyCard";
 
 // Case studies list (3 Nov 2026). One card per study from content/case-studies/,
 // in file-number order. The page ends on one next step: join the list.
@@ -61,26 +62,7 @@ export default function CaseStudiesPage() {
           <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2">
             {studies.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 2) * 120}>
-                <Link
-                  href={`/case-studies/${s.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-border bg-background p-7 transition hover:-translate-y-1 hover:border-foreground sm:p-8"
-                >
-                  {s.block && <p className="eyebrow">{s.block}</p>}
-                  <h2 className="mt-3 text-2xl font-bold leading-snug text-foreground">{s.title}</h2>
-                  {s.excerpt && <p className="mt-3 text-muted">{s.excerpt}</p>}
-                  {s.tools.length > 0 && (
-                    <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tools">
-                      {s.tools.map((t) => (
-                        <li key={t} className="rounded-lg border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-primary-dim">
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <span className="mt-auto pt-7 text-sm font-semibold text-foreground">
-                    <span className="lime-mark">See how it works</span> →
-                  </span>
-                </Link>
+                <CaseStudyCard study={s} />
               </Reveal>
             ))}
           </div>

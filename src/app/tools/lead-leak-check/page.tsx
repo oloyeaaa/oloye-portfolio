@@ -14,7 +14,7 @@ const DESCRIPTION =
   "Free 2-minute check for coaches and small businesses: a score out of 100, your 3 biggest lead leaks, and the first fix for each.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Lead Leak Check: Free Tool for Coaches and Small Businesses | Oloye" },
+  title: { absolute: "Lead Leak Check: Free Tool for Small Businesses | Oloye" },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/tools/lead-leak-check` },
 };

@@ -49,6 +49,7 @@ async function loadPost(slug: string): Promise<PostFull | null> {
   return {
     slug: remote.slug,
     title: remote.title,
+    seoTitle: remote.seoTitle,
     date: remote.publishedDate || "",
     category: remote.category || "Tools and AI",
     excerpt: remote.metaDescription || remote.excerpt,
@@ -69,7 +70,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `${SITE_URL}/blog/${post.slug}`;
   const author = getAuthor(post.author);
   // Keep the title Google shows under 60 characters: add the brand only if it fits.
-  const pageTitle = post.title.length + 8 <= 60 ? `${post.title} | Oloye` : post.title;
+  // The SEO title (if set) is what Google shows; the post's own title stays the H1.
+  const tabTitle = post.seoTitle || post.title;
+  const pageTitle = tabTitle.length + 8 <= 60 ? `${tabTitle} | Oloye` : tabTitle;
   return {
     title: { absolute: pageTitle },
     description: post.excerpt,

@@ -1,5 +1,6 @@
 ---
 title: "How one person gets a small team's marketing done with Claude"
+seoTitle: "How One Person Does a Team's Marketing With Claude"
 cardLine: "How one person gets through a small team's work, with Claude doing the first drafts."
 date: "2026-09-02"
 updated: "2026-10-27"

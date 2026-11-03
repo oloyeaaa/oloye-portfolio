@@ -129,6 +129,8 @@ export type Heading = { id: string; text: string };
 
 export interface PostFull extends PostMeta {
   body: string;
+  /** The tab title Google shows, if it differs from the H1 (frontmatter `seoTitle`, Airtable "SEO Title"). */
+  seoTitle?: string;
   author?: string;
   updated?: string;
   summary: string[];
@@ -145,6 +147,7 @@ export function getPostFull(slug: string): PostFull | null {
   return {
     slug,
     title: data.title,
+    seoTitle: data.seoTitle,
     date: data.date,
     category: data.category,
     excerpt: data.excerpt || data.description || "",

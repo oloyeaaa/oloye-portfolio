@@ -4,7 +4,7 @@ export const SITE_URL =
 export const SITE_NAME = "Oloye Adeosun";
 export const SITE_SHORT_NAME = "Oloye";
 export const SITE_LEGAL_NAME = "Oloye Adeosun";
-export const SITE_TAGLINE = "Simple automations that save your business time and money";
+export const SITE_TAGLINE = "Simple AI automation for small businesses";
 
 export const SITE_DESCRIPTION =
   "Simple AI workflow automation for small businesses. We join up Airtable, Make, Claude and Google Workspace so leads, onboarding and follow-ups run on their own.";

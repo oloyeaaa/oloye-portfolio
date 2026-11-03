@@ -50,6 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/privacy", 0.2, "yearly"),
     page("/free", 0.8, "monthly"),
     page("/free/10-jobs-to-automate-first", 0.8, "monthly"),
+    page("/tools/lead-leak-check", 0.8, "monthly"),
     ...blogRoutes,
     ...categoryRoutes,
   ];

@@ -20,10 +20,21 @@ export type LeadPayload = {
 };
 
 export async function sendToMake(lead: LeadPayload): Promise<"ok" | "off" | "failed"> {
-  const url = process.env.MAKE_FORMS_WEBHOOK_URL;
-  const secret = process.env.MAKE_FORMS_SECRET;
+  return postToMake(process.env.MAKE_FORMS_WEBHOOK_URL, process.env.MAKE_FORMS_SECRET, lead, "forms");
+}
+
+/**
+ * Hands a free tool's result to the Make scenario "oloye.co.uk tools" (its own
+ * webhook and secret: MAKE_TOOLS_WEBHOOK_URL, MAKE_TOOLS_SECRET). Make saves the
+ * person in Leads and emails them their result.
+ */
+export async function sendToolToMake(payload: Record<string, unknown>): Promise<"ok" | "off" | "failed"> {
+  return postToMake(process.env.MAKE_TOOLS_WEBHOOK_URL, process.env.MAKE_TOOLS_SECRET, payload, "tools");
+}
+
+async function postToMake(url: string | undefined, secret: string | undefined, lead: object, name: string): Promise<"ok" | "off" | "failed"> {
   if (!url || !secret) {
-    console.error("Make forms webhook is not configured");
+    console.error(`Make ${name} webhook is not configured`);
     return "off";
   }
   // Make sometimes closes a kept-alive connection; one retry on a network error covers it.

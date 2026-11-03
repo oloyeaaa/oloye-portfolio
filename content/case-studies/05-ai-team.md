@@ -46,7 +46,7 @@ Each agent is its own Claude chat with one job, so it stays focused.
 4. The Chief of Staff does the final check: the first line, true facts only, plain words, the brand look, the right folder.
 5. Only then do I see it as finished. I post it myself.
 
-Started on 31 Oct 2026. The team was set up by talking to Claude, and no code was needed. *[FLAG: Oloye to confirm this "no code" line for the team.]*
+Started on 31 Oct 2026. The team was set up by talking to Claude, and no code was needed.
 
 [SCREENSHOT: the agents listed side by side in the Claude app, with their job titles. STILL TO GRAB. Hide session ids and any other chats.]
 

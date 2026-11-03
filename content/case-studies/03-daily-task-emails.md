@@ -33,7 +33,7 @@ Two short emails a day, made from one list of jobs.
 5. **Nothing to do? Nothing is sent.** An empty day means no email.
 6. **Tick a job Done** and it drops off the next email.
 
-The first version looked like a junk email, so it was rebuilt on 1 Nov 2026 as a clean list. Make sends it through Gmail. It was built by talking to Claude, no code. *[FLAG: Oloye to confirm this "no code" line.]*
+The first version looked like a junk email, so it was rebuilt on 1 Nov 2026 as a clean list. Make sends it through Gmail. It was built by talking to Claude, no code.
 
 [IMAGE: /case-studies/03-daily-task-emails/sample-6pm-email-phone.png | A sample of the 6pm email, with made-up tasks. The real one looks the same.]
 

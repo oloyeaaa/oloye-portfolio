@@ -35,7 +35,7 @@ One form, one list, and one reply that goes out by itself. Want to build it your
    - **Asked for a free thing?** They get an email with the link straight away, and their row moves to "Free thing sent".
    - **Sent a message?** It comes to me, and hitting reply goes straight back to them.
 
-Built on 27 Oct 2026. Claude built it from plain-English asks. No code written by hand. *[FLAG: Oloye to confirm this "no code" line before it goes live.]*
+Built on 27 Oct 2026. Claude built it from plain-English asks. No code written by hand.
 
 [IMAGE: /case-studies/01-website-forms/flow-form-make-airtable-email.png | The whole flow: the form, Make, Airtable, then the email.]
 

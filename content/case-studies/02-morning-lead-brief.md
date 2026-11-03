@@ -34,7 +34,7 @@ A short note that tells you who to reply to first, with a reply already drafted.
 4. **It saves the brief as a Google Doc**, so it's easy to read on your phone.
 5. **Drafts only.** Nothing is sent for you. You read it, you send each reply yourself, and the list gets updated.
 
-Built on 25 Oct 2026, by talking to Claude, no code. *[FLAG: Oloye to confirm this "no code" line.]*
+Built on 25 Oct 2026, by talking to Claude, no code.
 
 [IMAGE: /case-studies/02-morning-lead-brief/gallery-morning-lead-brief.jpg | Who to reply to first, in one short note.]
 

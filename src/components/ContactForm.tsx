@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { INPUT } from "@/lib/ui";
 
 // The message form on the Contact page. It lands in the Airtable Leads table.
 export default function ContactForm() {
@@ -45,8 +46,7 @@ export default function ContactForm() {
     );
   }
 
-  const input =
-    "mt-1.5 w-full rounded-lg border border-border-strong bg-surface px-4 py-3.5 text-foreground outline-none transition focus:border-foreground";
+  const input = INPUT;
 
   return (
     <form onSubmit={submit} className="rounded-3xl border border-border bg-background p-6 sm:p-8">

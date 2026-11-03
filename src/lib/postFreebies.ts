@@ -41,13 +41,13 @@ export const POST_FREEBIES: Record<string, PostFreebie> = {
     url: "https://drive.google.com/file/d/14aEAixsK-X7RMOEpMwbkL-R66klIxUsj/view",
     kind: "guide",
   },
-  // The /build page for the Thu 5 Nov TikTok live. The guide (PDF + Doc) lands
-  // Wed 4 Nov 6pm; until then the link is a placeholder.
+  // The /build page for the Thu 5 Nov TikTok live. The guide PDF is the
+  // Research Analyst, passed 3 Nov. Must be "anyone with the link" before go-live.
   "BUILD-LEAK": {
     key: "BUILD-LEAK",
     title: "The lead leak check build guide",
     line: "It walks you through the 6 questions, the scoring, and the prompts to give Claude. If you don't have a website, start with the simple version.",
-    url: "https://www.oloye.co.uk/build/lead-leak-check?guide=coming-wed-4-nov",
+    url: "https://drive.google.com/file/d/1NL6hBG-_YIU8OyVIj_z4dcuLDcgBwz-d/view",
     kind: "build guide",
   },
 };

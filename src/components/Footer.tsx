@@ -19,16 +19,20 @@ const columns = [
     links: [
       { name: "10 tasks to automate first", href: CHECKLIST_URL },
       { name: "Free things", href: "/free" },
+      { name: "Automation ROI calculator", href: "/tools/automation-roi-calculator" },
       { name: "Blog", href: "/blog" },
     ],
   },
   {
-    // The /for pages (content/for/). Add a line here when a new one goes up.
+    // The Google pages (content/for/ and content/automate/). Add a line here when a new one goes up.
     title: "Who we help",
     links: [
       { name: "Small businesses", href: "/for/small-business" },
       { name: "Plumbers", href: "/for/plumbers" },
       { name: "Barbers", href: "/for/barbers" },
+      { name: "Client onboarding", href: "/automate/client-onboarding" },
+      { name: "Google review requests", href: "/automate/google-review-requests" },
+      { name: "Client folders", href: "/automate/client-folders" },
     ],
   },
   {

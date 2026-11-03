@@ -29,7 +29,7 @@ const JOBS = [
   { job: "Make a folder for every new customer", why: "Everything in one place from day one." },
   { job: "Send invoices when the work is done", why: "You get paid sooner." },
   { job: "Chase late payments politely", why: "The awkward email isn't yours to write." },
-  { job: "Ask happy customers for a review", why: "More reviews, without remembering to ask." },
+  { job: "Ask every customer for a review", why: "More reviews, without remembering to ask." },
   { job: "Get a weekly summary of your numbers", why: "See how the week went in one look." },
 ];
 

@@ -169,4 +169,22 @@ export const FAQS: Record<string, FaqItem[]> = {
       answer: "They're kept with your email in our own list, so we can send your result and see which leaks are most common. The website itself doesn't store anything.",
     },
   ],
+  roiCalculator: [
+    {
+      question: "Is this calculator free?",
+      answer: "Yes. Nothing to sign up for.",
+    },
+    {
+      question: "How do I work out what an hour of my time is worth?",
+      answer: "Use what you charge per hour. If you don't charge by the hour, take what you earned last month and divide it by the hours you worked.",
+    },
+    {
+      question: "Are these real savings?",
+      answer: "They're an estimate from your own numbers. The real saving depends on which tasks you automate and how. That's what the free call is for.",
+    },
+    {
+      question: "What counts as a repeat task?",
+      answer: "Anything you do the same way every time: saving a new enquiry, sending a welcome email, chasing an invoice, asking for a review, making a client folder.",
+    },
+  ],
 };

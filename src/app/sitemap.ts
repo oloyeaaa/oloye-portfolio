@@ -55,7 +55,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/tools/lead-leak-check", 0.8, "monthly"),
     page("/case-studies", 0.7, "monthly"),
     ...getAllCaseStudies().map((c) => page(`/case-studies/${c.slug}`, 0.7, "monthly")),
-    ...getAllForPages().map((p) => page(`/for/${p.slug}`, 0.8, "monthly")),
+    ...getAllForPages("for").map((p) => page(`/for/${p.slug}`, 0.8, "monthly")),
+    ...getAllForPages("automate").map((p) => page(`/automate/${p.slug}`, 0.8, "monthly")),
+    page("/tools/automation-roi-calculator", 0.8, "monthly"),
     ...blogRoutes,
     ...categoryRoutes,
   ];

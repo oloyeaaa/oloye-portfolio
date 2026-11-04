@@ -1,18 +1,16 @@
 import { NextResponse } from "next/server";
 import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
 import { POST_FREEBIES } from "@/lib/postFreebies";
-import { sendToMake, addToMailerLite } from "@/lib/leads";
+import { sendToMake } from "@/lib/leads";
 
 /**
  * Free-thing forms (blog posts and the Free things page).
  *
  * The title and link of the free thing come from our own list, never from the
  * form, so nobody can make the email point somewhere else. Make saves the lead
- * and emails the free thing. People who ticked "yes to emails" also join the
- * MailerLite list.
+ * and emails the free thing. People who ticked "yes to emails" reach MailerLite
+ * from Leads, through Make (one door, set 4 Nov 2026), never from here.
  */
-
-const NEWSLETTER_GROUP = "196047739383973099"; // MailerLite "free-tools"
 
 export async function POST(req: Request) {
   if (!fromOurSite(req)) return NextResponse.json({ error: "Invalid request." }, { status: 403 });
@@ -45,7 +43,6 @@ export async function POST(req: Request) {
     line: freebie.line,
     source,
   });
-  if (consent) await addToMailerLite(email, name, NEWSLETTER_GROUP);
 
   // The page shows the free thing straight away either way; this only says
   // whether the email copy is on its way.

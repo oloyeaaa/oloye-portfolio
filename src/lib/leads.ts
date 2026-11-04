@@ -60,22 +60,3 @@ async function postToMake(url: string | undefined, secret: string | undefined, l
   }
   return "failed";
 }
-
-/** Adds someone who said yes to emails to MailerLite. Status only in logs. */
-export async function addToMailerLite(email: string, name: string, group: string): Promise<boolean> {
-  const key = process.env.MAILERLITE_API_KEY;
-  if (!key) return false;
-  try {
-    const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ email, groups: [group], ...(name ? { fields: { name } } : {}) }),
-    });
-    // 422 usually means already subscribed, which is fine.
-    if (!res.ok && res.status !== 422) console.error("MailerLite subscribe failed", res.status);
-    return res.ok || res.status === 422;
-  } catch (err) {
-    console.error("MailerLite subscribe error", err instanceof Error ? err.message : "unknown");
-    return false;
-  }
-}

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
-import { sendToMake, addToMailerLite } from "@/lib/leads";
+import { sendToMake } from "@/lib/leads";
 import { KIT, countList, onList } from "@/lib/challenge";
 
 /**
@@ -8,8 +8,6 @@ import { KIT, countList, onList } from "@/lib/challenge";
  * (Keyword KIT, Platform Website); Make saves them in Leads and emails the kit.
  * Signing up here is joining the list, so it counts as a yes to emails.
  */
-
-const NEWSLETTER_GROUP = "196047739383973099"; // MailerLite "free-tools"
 
 export async function POST(req: Request) {
   if (!fromOurSite(req)) return NextResponse.json({ error: "Invalid request." }, { status: 403 });
@@ -49,7 +47,6 @@ export async function POST(req: Request) {
   if (sent !== "ok") {
     return NextResponse.json({ error: "Sorry, that didn't go through. Please try again in a minute." }, { status: 502 });
   }
-  await addToMailerLite(email, name, NEWSLETTER_GROUP);
 
   return NextResponse.json({ ok: true, already: already === true, number });
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fromOurSite, tooMany, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
-import { sendToMake, addToMailerLite } from "@/lib/leads";
+import { sendToMake } from "@/lib/leads";
 
 /**
  * Contact form, handed to Make (27 Oct 2026). Make saves the person in the
@@ -10,8 +10,6 @@ import { sendToMake, addToMailerLite } from "@/lib/leads";
  * The website holds no Airtable or Gmail sign-in; it only knows the webhook
  * address and its secret, as server settings.
  */
-
-const NEWSLETTER_GROUP = "196047739383973099"; // MailerLite "free-tools"
 
 export async function POST(req: Request) {
   if (!fromOurSite(req)) {
@@ -62,6 +60,5 @@ export async function POST(req: Request) {
       { status: 502 }
     );
   }
-  if (consent) await addToMailerLite(email, name, NEWSLETTER_GROUP);
   return NextResponse.json({ ok: true });
 }

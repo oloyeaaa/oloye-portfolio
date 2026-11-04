@@ -3,7 +3,9 @@
 import { useState } from "react";
 
 /**
- * Name and email, into MailerLite.
+ * Name and email, into Leads through /api/lead like every other form (one door,
+ * set 4 Nov 2026). This form has no tick box because asking to be kept posted is
+ * itself the yes, so it sends consent: true. Make emails them the free thing.
  *
  * On success it hands over the Notion link immediately rather than saying
  * "check your inbox". Making somebody wait for an email to get the thing they
@@ -11,14 +13,14 @@ import { useState } from "react";
  */
 export default function SignupForm({
   notionUrl,
-  list = "free-tools",
+  freebie = "checklist",
   heading = "Want all five in one place?",
   body = "Get the whole pack as one Notion page you can duplicate and keep. Free, and the tools stay free on this site either way.",
   button = "Send me the pack",
   doneText = "The pack is on its way to your inbox. Every tool is also on this site already, free, with nothing to sign up for.",
 }: {
   notionUrl: string;
-  list?: string;
+  freebie?: string;
   heading?: string;
   body?: string;
   button?: string;
@@ -36,13 +38,14 @@ export default function SignupForm({
     setState("sending");
     setError("");
     try {
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, list }),
+        body: JSON.stringify({ name, email, freebie, consent: true, source: window.location.pathname }),
       });
       const data = await res.json();
-      if (!res.ok) {
+      // emailed: false means they never reached Make, so they aren't on the list.
+      if (!res.ok || data?.emailed === false) {
         setError(data?.error || "Something went wrong. Try again.");
         setState("error");
         return;
@@ -93,11 +96,11 @@ export default function SignupForm({
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm font-medium">
-            First name{" "}
-            <span className="font-normal text-muted">(optional)</span>
+            First name
           </span>
           <input
             type="text"
+            required
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoComplete="given-name"

@@ -56,6 +56,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/lab", destination: "/free", permanent: true },
 
+      // --- Old prompt pages retired, 4 Nov 2026 (old brand, hidden from Google) ---
+      ...["lean-owned-pipeline-blueprint", "problem-awareness-scanner", "value-prop-translator", "zero-friction-blueprint", "market-research-engine", "idea-scorecard", "first-section", "thirty-posts", "camera-answer", "finished-thing"].map((slug) => ({ source: `/free/${slug}`, destination: "/free", permanent: true })),
+
       // --- Blog, 3 Nov 2026: four categories, and seven old posts taken off ---
       // (the posts are kept in content/_archive-posts/, see its README)
       { source: "/blog/category/tools-systems", destination: "/blog/category/tools-and-ai", permanent: true },

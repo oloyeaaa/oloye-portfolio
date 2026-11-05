@@ -1,7 +1,7 @@
 ---
 title: "Simple CRM for Small Business: One List in Airtable"
 cardLine: "Everyone who finds you, in one table you own."
-date: "2026-11-04"
+date: "2026-11-06"
 author: "oloye"
 category: "Leads"
 tags: ["simple crm for small business", "free crm for small business", "airtable crm", "lead tracking", "email list"]

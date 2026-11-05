@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: Props) {
         line={c.intro}
         posts={posts}
         activeCategory={c.slug}
-        emptyLine="The first guides for this one are on the way, every Wednesday. Until then, these show how it works."
+        emptyLine="The first guides for this one are on the way, every week. Until then, these show how it works."
       />
 
       <section className="px-4 pb-20 sm:px-6">

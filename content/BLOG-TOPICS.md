@@ -22,7 +22,6 @@ Three posts a week since 5 Nov 2026 (Oloye: "Yes, three a week"). The blog write
 
 | Status | Date | Topic | Category | System step | Built? | What's real (check on the day) | Seed keywords to test |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| drafted | Fri 6 Nov | Every sign-up into one list, with no copying | Leads | Step 3, the pipes | Yes | Our Make scenarios: website forms into Leads (SOP-06), then people who said yes into MailerLite. ManyChat is built but paused with Instagram, so don't show it as running. Link the 28 Oct forms post rather than repeat it. Branch `draft/make-com-automation-sign-ups-one-list` | make.com automation, lead automation, automate lead capture |
 | planned | Mon 9 Nov | How to follow up with leads before they go cold | Leads | Step 7, follow-up (the why) | Yes | Our welcome email and the morning list. Sourced numbers only (RESEARCH-is-it-a-real-problem.md: HBR wording) | how to follow up with leads, lead follow up, follow up email |
 | next | Wed 11 Nov | A morning list of who to reply to today | Leads | Step 7, the morning follow-up | Yes | Our morning lead brief (built 25 Oct): suggested reply, days waiting, the daily Doc. It runs when asked, not on a timer, and it never sends anything | lead follow up system, crm for coaches, marketing automation for small business |
 | planned | Fri 13 Nov | Free thing ideas that get coaches real sign-ups | Leads | Step 1, a free thing | Yes | Our free things: the guides and the 0 to 100 Kit. No sign-up numbers unless they're real | lead magnet ideas, lead magnet for coaches, freebie ideas |
@@ -64,6 +63,7 @@ Not built, so off the list until they are (Marketing Director, 5 Nov).
 
 | Status | Topic | Category | What's real | Seed keywords |
 | :--- | :--- | :--- | :--- | :--- |
+| done 2026-11-06 | Every sign-up into one list, with no copying ([post](https://www.oloye.co.uk/blog/make-com-automation-sign-ups-one-list), merged 5 Nov, set to appear on 6 Nov) | Leads | Our Make scenarios | make.com automation, lead automation |
 | done 2026-11-05 | One list for every lead: a simple Airtable CRM ([live](https://www.oloye.co.uk/blog/simple-crm-for-small-business)) | Leads | Our Leads table | simple crm for small business, airtable crm |
 | done 2026-10-28 | Website forms to Airtable with Make | Leads | Our own build (SOP-06) | airtable forms, make.com automation |
 

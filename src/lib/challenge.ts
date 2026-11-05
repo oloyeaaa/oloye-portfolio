@@ -3,7 +3,8 @@
  *
  * The count is read from Airtable Leads on the server, never typed by hand, with
  * the same rule as tools/counter_card.py: a lead counts when it has an email, it
- * isn't Oloye's own address, and the first name doesn't start with "Test".
+ * said yes to emails (Consent to Email ticked; Oloye, 5 Nov), it isn't Oloye's own
+ * address, and the first name doesn't start with "Test".
  *
  * Needs AIRTABLE_LEADS_TOKEN: a read-only token for the Content Engine base only
  * (data.records:read). With no token the page still works, it just hides the number.
@@ -23,7 +24,7 @@ const LEADS = "tbloe7mcslN4BJwPa";
 const NOT_LEADS = ["info@oloyeaa.com"];
 
 const COUNTS =
-  `AND({Email}!='',` +
+  `AND({Email}!='',{Consent to Email},` +
   NOT_LEADS.map((e) => `LOWER({Email})!='${e}'`).join(",") +
   `,NOT(REGEX_MATCH(LOWER({First Name}&''),'^test')))`;
 

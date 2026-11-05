@@ -10,7 +10,7 @@ export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "0 to 100: the free kit",
-  description: "Stop losing the people who find you. Get the free 0 to 100 Kit: the leads table, Claude skills, and something new every Sunday.",
+  description: "Stop losing the people who find you. Get the free 0 to 100 Kit: the leads table, Claude skills, and new things as we build them.",
   alternates: { canonical: "/100" },
   robots: { index: false, follow: true },
 };
@@ -22,7 +22,7 @@ const POSTER = "/images/brand/oloye-lime.jpg";
 const IN_THE_KIT = [
   "The leads table, ready to copy, so nobody who finds you gets lost",
   "Claude skills like the Hook Slide, the Carousel Writer and the Skill Builder. Not templates.",
-  "Something new every Sunday, in the same folder, yours to keep",
+  "New things land as we build them, in the same folder, yours to keep",
 ];
 
 export default async function ChallengePage() {
@@ -50,7 +50,7 @@ export default async function ChallengePage() {
             <h1 className="display mt-6 text-4xl text-foreground sm:text-6xl">
               Stop losing the people <span className="lime-mark">who find you.</span>
             </h1>
-            <p className="mt-4 text-muted sm:text-lg">A free kit to catch and keep every lead, built in public. Something new every Sunday.</p>
+            <p className="mt-4 text-muted sm:text-lg">A free kit to catch and keep every lead, built in public. New things land as we build them.</p>
           </div>
 
           <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-3xl border border-border bg-accent">

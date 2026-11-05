@@ -16,7 +16,7 @@ export const KIT = {
   title: "The 0 to 100 Kit",
   url: "https://drive.google.com/drive/folders/1iFbRiUTqNqXdIlOkP-tA54eB3b3ggszv",
   // The welcome email itself lives in Make (route "0 to 100 Kit"), from content/challenge-0-to-100/WELCOME-EMAIL.md.
-  line: "Start with folder 2, 'Followers you can't email'. New things land every Sunday.",
+  line: "Start with folder 2, 'Followers you can't email'. New things land as we build them.",
 };
 
 const BASE = "appm6XGHyuXjnhSAo";

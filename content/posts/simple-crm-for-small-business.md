@@ -1,7 +1,7 @@
 ---
 title: "Simple CRM for Small Business: One List in Airtable"
 cardLine: "Everyone who finds you, in one table you own."
-date: "2026-11-06"
+date: "2026-11-05"
 author: "oloye"
 category: "Leads"
 tags: ["simple crm for small business", "free crm for small business", "airtable crm", "lead tracking", "email list"]
@@ -9,7 +9,7 @@ excerpt: "A simple CRM for small business doesn't need a big tool. One Airtable 
 summary:
   - "Why leads spread across DMs, forms and inboxes get forgotten."
   - "The columns and stages we use in our own Leads table."
-  - "How to set up a simple CRM in Airtable in about 20 minutes."
+  - "How to set up a simple CRM in Airtable."
   - "How the table fills itself once the rest of the system is joined up."
 faq:
   - question: "Do I need a paid CRM to start?"
@@ -72,7 +72,7 @@ We also keep a "Not now" stage. Some people aren't ready, and that's fine. They 
 
 ## How to set it up in Airtable
 
-You can do this tonight in about 20 minutes. No code.
+You can do this tonight. No code.
 
 1. **Make a free Airtable account** and a new base. Call it something plain, like "My business".
 2. **Add one table called Leads.** If you'd rather start from a template, Airtable has a [lightweight CRM template](https://www.airtable.com/templates/lightweight-crm/expGObpa2AGjv2Z8t) you can trim down.
@@ -84,7 +84,7 @@ You can do this tonight in about 20 minutes. No code.
 
 ## Let the table fill itself
 
-Typing names in by hand is fine for the first week. After that it becomes another job you skip.
+Typing names in manually is fine for the first week. After that it becomes another task you skip.
 
 So the next step is joining the doors to the table. Our website forms already land in Leads on their own, through a tool called Make. We showed exactly how in [website forms to Airtable with Make](/blog/website-forms-to-airtable-with-make). If you don't have a website, an [Airtable form](https://support.airtable.com/articles/8588280258-getting-started-with-airtable-form-views) writes straight into the table, and we walked through that in [a free way to catch every enquiry from your posts](/blog/the-zero-dollar-owned-pipeline-for-creators).
 

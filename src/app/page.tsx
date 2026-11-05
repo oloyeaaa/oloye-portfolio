@@ -25,6 +25,10 @@ const HOME_STUDIES = ["website-forms-to-lead-list", "daily-task-emails", "ai-tea
 // The home page follows the StoryBrand website wireframe (header, stakes, value,
 // guide, plan, explanatory paragraph, last call). See REDESIGN-PLAN.md.
 
+// The blog tiles show the newest posts, so a post dated ahead appears on its day
+// without a deploy. Same as blog/page.tsx.
+export const revalidate = 60;
+
 const TITLE = "Workflow Automation for Small Businesses | Oloye";
 const DESCRIPTION = SITE_DESCRIPTION;
 
@@ -315,7 +319,7 @@ export default function HomePage() {
           </Reveal>
         </section>
 
-        {/* 7. From the blog: three posts that tell the same story */}
+        {/* 7. From the blog: the three newest posts */}
         <section className="border-t border-border px-4 py-24 sm:px-6 sm:py-32">
           <div className="mx-auto max-w-5xl">
             <Reveal>

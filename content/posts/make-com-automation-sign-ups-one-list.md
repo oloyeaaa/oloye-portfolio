@@ -86,8 +86,8 @@ No tick, and they stay in the table. They get what they asked for and nothing mo
 4. **Test it on yourself, twice.** Sign up two times with your own email. You should see one row, not two.
 5. **Then add the next door.** Send it to the same webhook with its own label. No new table, no new list.
 
-> **Try this:** start with step 1 tonight. Most people find a door they'd forgotten about, and the people who used it are sitting there unanswered.
+> **Try this:** start with step 1 tonight. You may find a door you'd forgotten about, with people still waiting behind it.
 
-No website yet? [A free form and an Airtable base](/blog/the-zero-dollar-owned-pipeline-for-creators) does the same job. If you're not sure which task to automate first, the free checklist of [10 tasks to automate first](/free/10-jobs-to-automate-first) will help you pick.
+No website yet? [A free form and an Airtable base](/blog/the-zero-dollar-owned-pipeline-for-creators) does the same thing. If you're not sure which task to automate first, the free checklist of [10 tasks to automate first](/free/10-jobs-to-automate-first) will help you pick.
 
-If you'd like this set up for your own sign-ups, [book a free call](/contact) and we'll look at it together.
+If all of this still feels like a lot, ask for the free checklist in the form on this page. It's called "The 3-piece starter checklist": two pages on one way in, one list and one message, so you can get one piece working first. And if you want more free guides like this one, they're all on our [free things page](/free).

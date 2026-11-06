@@ -79,7 +79,7 @@ export async function POST(req: Request) {
   const said = [
     `Lead leak check: ${s.total}/100 (catch ${s.areas.catch}/35, keep ${s.areas.keep}/25, follow up ${s.areas["follow up"]}/30, reach ${s.areas.reach}/10).`,
     business ? `Business: ${business}.` : "",
-    from ? `Came from blog post: ${from}.` : "",
+    from === "100" ? "Came from the /100 page." : from ? `Came from blog post: ${from}.` : "",
     ...words.map((w) => `${w.question} ${w.answer}`),
     ...leaks.map((l, i) => `Leak ${i + 1} (${l.area}): ${l.leak} Fix: ${l.fix}`),
   ]

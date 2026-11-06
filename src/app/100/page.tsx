@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import KitForm from "@/components/challenge/KitForm";
 import { GOAL, countList } from "@/lib/challenge";
 
@@ -52,13 +51,6 @@ export default async function ChallengePage() {
               Stop losing the people <span className="lime-mark">who find you.</span>
             </h1>
             <p className="mt-4 text-muted sm:text-lg">A free kit to catch and keep every lead, built in public. New things land as we build them.</p>
-            {/* TikTok captions say "Free check, link in bio", and this is the bio link. */}
-            <p className="mt-3 text-sm text-foreground">
-              Here for the free check?{" "}
-              <Link href="/tools/lead-leak-check?from=100" className="font-semibold underline decoration-accent-dark decoration-2 underline-offset-4">
-                Take the Lead leak check →
-              </Link>
-            </p>
           </div>
 
           <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-3xl border border-border bg-accent">

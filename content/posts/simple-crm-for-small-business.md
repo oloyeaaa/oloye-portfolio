@@ -86,7 +86,7 @@ You can do this tonight. No code.
 
 Typing names in manually is fine for the first week. After that it becomes another task you skip.
 
-So the next step is joining the doors to the table. Our website forms already land in Leads on their own, through a tool called Make. We showed exactly how in [website forms to Airtable with Make](/blog/website-forms-to-airtable-with-make). If you don't have a website, an [Airtable form](https://support.airtable.com/articles/8588280258-getting-started-with-airtable-form-views) writes straight into the table, and we walked through that in [a free way to catch every enquiry from your posts](/blog/the-zero-dollar-owned-pipeline-for-creators).
+So the next step is joining the doors to the table. Our website forms already land in Leads on their own, through a tool called Make. We showed exactly how in [website forms to Airtable with Make](/blog/website-forms-to-airtable-with-make). Got more than one place people sign up? Here's how to [get every sign-up into one list](/blog/make-com-automation-sign-ups-one-list). If you don't have a website, an [Airtable form](https://support.airtable.com/articles/8588280258-getting-started-with-airtable-form-views) writes straight into the table, and we walked through that in [a free way to catch every enquiry from your posts](/blog/the-zero-dollar-owned-pipeline-for-creators).
 
 Once the rows come in by themselves, the table stops being a chore. It's just where you look each morning.
 

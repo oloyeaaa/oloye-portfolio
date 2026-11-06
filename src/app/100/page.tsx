@@ -55,7 +55,7 @@ export default async function ChallengePage() {
             {/* TikTok captions say "Free check, link in bio", and this is the bio link. */}
             <p className="mt-3 text-sm text-foreground">
               Here for the free check?{" "}
-              <Link href="/tools/lead-leak-check?from=100" className="whitespace-nowrap font-semibold underline decoration-accent-dark decoration-2 underline-offset-4">
+              <Link href="/tools/lead-leak-check?from=100" className="font-semibold underline decoration-accent-dark decoration-2 underline-offset-4">
                 Take the Lead leak check →
               </Link>
             </p>

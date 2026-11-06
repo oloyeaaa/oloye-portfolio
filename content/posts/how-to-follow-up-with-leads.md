@@ -4,7 +4,7 @@ cardLine: "Quiet doesn't mean no. A short plan, so nobody gets forgotten."
 date: "2026-11-09"
 author: "oloye"
 category: "Leads"
-tags: ["how to follow up with leads", "lead follow up", "follow up leads without being pushy", "lead follow up system", "small business"]
+tags: ["how to follow up with leads", "lead follow up", "follow up leads without being pushy", "small business"]
 excerpt: "How to follow up with leads without being pushy: a first reply the same day, a short plan to copy, and one list so nobody gets forgotten."
 summary:
   - "Why a slow first reply costs you, with the numbers and where they come from."
@@ -80,15 +80,13 @@ Being pushy usually means asking for something every time. So keep to a few simp
 
 > **Good to know:** these are one-to-one replies to someone who got in touch with you. Your email list is a separate thing. We only add people who ticked yes to emails, and we explained how in [getting every sign-up into one list](/blog/make-com-automation-sign-ups-one-list).
 
-## A lead follow up system, so nobody gets forgotten
+## Keep one list, so nobody gets forgotten
 
 A plan only works if you know who's due today. That's where the list comes in.
 
 Keep one table, with one row per person. [Airtable](https://www.airtable.com) is what we use, and we went through the columns in [a simple CRM for small business](/blog/simple-crm-for-small-business). Ours has a stage for each person and a column that shows how many days they've been waiting.
 
 Then look at it each morning.
-
-![The morning follow-up: look at your list, make a short list of who to reply to with a reply to start from, reply in your own words, then move them to the next stage](/images/blog/how-to-follow-up-with-leads/morning-follow-up.png)
 
 We ask [Claude](https://www.anthropic.com/claude) to read the table for us. It tells us who's new and who's been waiting, flags anyone waiting 3 days or more, and writes a reply to start from. It never sends anything. We read it, change it and send it ourselves.
 

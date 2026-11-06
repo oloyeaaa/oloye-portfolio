@@ -60,4 +60,4 @@ For more how-tos, see the [Tools and AI guides](/blog/category/tools-and-ai), or
 
 ## Your next step
 
-Not sure which task to start with? [Book a free call](https://calendar.app.google/s8FjtoLAyYZnZ1u98) and we'll find the first one worth automating. You'll know the price before anything starts. Or start with the free checklist: [10 tasks to automate first](/free/10-jobs-to-automate-first).
+Not sure which task to start with? [Book a free call](https://calendar.app.google/s8FjtoLAyYZnZ1u98) and we'll find the first one worth automating. You'll know the price before anything starts. Or start with the free guide in the form on this page: 7 tools, one job each.

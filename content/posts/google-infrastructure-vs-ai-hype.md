@@ -21,7 +21,6 @@ faq:
     answer: "Keep your notes in a Google Doc or NotebookLM, keep your leads in a Google Sheet or Airtable, and use Gemini inside the Google apps you already pay for."
   - question: "Why not just buy the newest tool?"
     answer: "Every new app means another login, another monthly bill, and copying text back and forth. Tools that live where your work already is tend to get used. A lot of new ones get dropped."
-freebie: "TOOLS"
 coverImage: "/images/blog/cover-boring-rails.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---

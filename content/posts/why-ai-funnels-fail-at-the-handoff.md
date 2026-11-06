@@ -21,7 +21,6 @@ faq:
     answer: "We use Airtable as the one place the records live, Make to move things between steps, and Google Workspace for folders, documents and emails. No big expensive software."
   - question: "What should I automate first?"
     answer: "Only the jobs that happen three or more times a week. Start with the gap where people wait the longest."
-freebie: "checklist"
 coverImage: "/images/blog/cover-handoff.jpg"
 ---
 
@@ -70,7 +69,7 @@ These are the rules we build by, so a small system keeps working without someone
 | Get told when it breaks | Set up an email or Slack alert if a step fails, or if a lead sits untouched. |
 | Only build what repeats | Automate jobs that happen three or more times a week. Keep it simple enough to explain in plain words. |
 
-> **Try this:** write down every step from "someone finds you" to "they start working with you". Next to each one, write who does it and how long it usually takes. The longest wait is your first gap to close. Our free [10 jobs to automate first](/free/10-jobs-to-automate-first) checklist can help you spot it.
+> **Try this:** write down every step from "someone finds you" to "they start working with you". Next to each one, write who does it and how long it usually takes. The longest wait is your first gap to close. Our free [Lead leak check](/tools/lead-leak-check?from=why-ai-funnels-fail-at-the-handoff) can help you spot it.
 
 ## What it's really for
 

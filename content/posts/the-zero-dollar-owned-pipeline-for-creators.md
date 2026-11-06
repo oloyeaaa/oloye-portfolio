@@ -21,7 +21,6 @@ faq:
     answer: "No. Airtable has its own automations. When a new record comes in, it can send an email straight away."
   - question: "What should the first email send them?"
     answer: "The exact thing you promised in your post, like a checklist, a template or a Google Doc."
-freebie: "TABLE"
 coverImage: "/images/blog/cover-owned-list.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---

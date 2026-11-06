@@ -1,8 +1,8 @@
 import { slugify } from "./posts";
 
 /**
- * The four blog categories (set 3 Nov 2026, replacing Leads / Onboarding /
- * Delivery / Retention / Tools & systems). A post's `category` must match a
+ * The five blog categories (set 3 Nov 2026, replacing Leads / Onboarding /
+ * Delivery / Retention / Tools & systems; Content added 6 Nov). A post's `category` must match a
  * name here, or one of its `aliases` (older names still in some posts).
  * Copy is the Copywriter's (shared notes seo-pages/08-blog-categories.md).
  * `links` are the Google pages and case studies each category points to, so a
@@ -79,6 +79,21 @@ const LIST: Omit<Category, "slug">[] = [
       "Make passes information from one app to the next, Airtable keeps your list, and Claude writes the first drafts. These guides show how to use them together, step by step. AI is a tool inside the workflow, not the point of it.",
     links: [{ label: "Case study: a team of AI agents", href: "/case-studies/ai-team" }],
     aliases: ["Tools & systems", "Automation & Systems"],
+  },
+  {
+    name: "Content",
+    line: "Turning posts into people on your own list.",
+    title: "Turn Content Into Leads and an Email List",
+    description:
+      "Turn the content you post into leads you keep. Guides for small business owners: get people from your posts onto your own email list, in one system.",
+    h1: "Content: turn your posts into people on your list.",
+    intro:
+      "Someone finds you through a post, likes it, then scrolls on, and you have no way to reach them again. These guides show how to move people from your content onto your own email list and into one system, with tools like forms, Airtable and MailerLite. You keep them, whatever the app does next.",
+    links: [
+      { label: "Lead Leak Check: free tool", href: "/tools/lead-leak-check" },
+      { label: "Case study: website forms into one lead list", href: "/case-studies/website-forms-to-lead-list" },
+      { label: "Small business automation", href: "/for/small-business" },
+    ],
   },
 ];
 

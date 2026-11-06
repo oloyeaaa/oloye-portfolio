@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { PostFreebie } from "@/lib/postFreebies";
+import { rememberOfferDone } from "@/lib/offerMemory";
 
 /**
  * The mid-post form: "Get the free [thing]". Name is optional, email is not.
@@ -31,6 +32,7 @@ export default function FreebieForm({ freebie, source }: { freebie: PostFreebie;
         setState("error");
         return;
       }
+      rememberOfferDone();
       setState("done");
     } catch {
       setError("Could not reach the server. Try again.");

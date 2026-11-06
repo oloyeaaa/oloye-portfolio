@@ -9,7 +9,7 @@ import { CATEGORIES, getCategory } from "@/lib/categories";
 import PostList from "@/components/post/PostList";
 import { LastCall } from "@/components/home/CallToAction";
 
-// One blog category (4 since 3 Nov 2026): the Copywriter's heading and intro,
+// One blog category (5 since 6 Nov 2026): the Copywriter's heading and intro,
 // its posts, then the Google pages and case studies that match, so a category
 // with no posts yet still has somewhere useful to send people.
 
@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: Props) {
         line={c.intro}
         posts={posts}
         activeCategory={c.slug}
-        emptyLine="The first guides for this one are on the way, every Wednesday. Until then, these show how it works."
+        emptyLine="The first guides for this one are on the way, every week. Until then, these show how it works."
       />
 
       <section className="px-4 pb-20 sm:px-6">

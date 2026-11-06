@@ -62,7 +62,7 @@ Skip the list of 35 ideas. Look at your own messages instead.
 
 ## How to make it and share it
 
-![A free thing: pick one problem your people have this week, make one small thing that fixes it, give it a one-word name, put it where a link can reach it, then give people a door to ask, a form or a link](/images/blog/lead-magnet-ideas-for-coaches/free-thing.png)
+![Make your free thing: pick one problem your people have this week, make one small thing that fixes it, give it a one-word name, put it where a link can reach it, then give people a door to ask, and get it to them](/images/blog/lead-magnet-ideas-for-coaches/free-thing.png)
 
 Write it in a Google Doc, in the words you'd use across a table. Save it as a PDF and put it in [Google Drive](https://www.google.com/drive/) with a link anyone can open.
 

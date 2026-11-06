@@ -20,7 +20,6 @@ faq:
     answer: "No. Only the people who ticked yes go on the email list. Everyone else stays in your table, gets what they asked for and nothing more."
   - question: "Which tools does this use?"
     answer: "Make to pass things along, Airtable for the list, and MailerLite for the email list. You could use a different email tool, as long as Make can connect to it."
-freebie: "PIECES"
 coverImage: "/images/blog/make-com-automation-sign-ups-one-list/cover.jpg"
 ---
 
@@ -88,6 +87,6 @@ No tick, and they stay in the table. They get what they asked for and nothing mo
 
 > **Try this:** start with step 1 tonight. You may find a door you'd forgotten about, with people still waiting behind it.
 
-No website yet? [A free form and an Airtable base](/blog/the-zero-dollar-owned-pipeline-for-creators) does the same thing. If you're not sure which task to automate first, the free checklist of [10 tasks to automate first](/free/10-jobs-to-automate-first) will help you pick.
+No website yet? [A free form and an Airtable base](/blog/the-zero-dollar-owned-pipeline-for-creators) does the same thing.
 
-If all of this still feels like a lot, ask for the free checklist in the form on this page. It's called "The 3-piece starter checklist": two pages on one way in, one list and one message, so you can get one piece working first. And if you want more free guides like this one, they're all on our [free things page](/free).
+Not sure which of your doors is losing people? Take the free [Lead leak check](/tools/lead-leak-check?from=make-com-automation-sign-ups-one-list). It's 6 quick questions, and you get a score out of 100, your 3 biggest leaks, and the first fix for each.

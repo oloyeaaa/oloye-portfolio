@@ -20,7 +20,6 @@ faq:
     answer: "A short label for where each person is, like New, Free thing sent, Replied or Call booked. You move it along as you talk, so you always know who needs you next."
   - question: "How do people get into the table?"
     answer: "You can type them in at first. Later, a tool like Make can add every new sign-up for you, from your website forms or an Instagram keyword."
-freebie: "TABLE"
 coverImage: "/images/blog/simple-crm-for-small-business/cover.jpg"
 ---
 
@@ -98,4 +97,4 @@ Followers live on someone else's app. If your reach drops, you can't get them ba
 
 A table of names and emails is yours. Nobody can switch it off. And because every person has a stage, nobody who finds you gets lost in the gaps.
 
-If you want every column and stage we use on one page, ask for the free guide in the form on this page. It's called "Followers you can't email", and you can copy it into Airtable or a Google Sheet tonight. And if you want more free guides like this one, they're all on our [free things page](/free).
+Not sure where people are slipping through? Take the free [Lead leak check](/tools/lead-leak-check?from=simple-crm-for-small-business). It's 6 quick questions, and you get a score out of 100, your 3 biggest leaks, and the first fix for each.

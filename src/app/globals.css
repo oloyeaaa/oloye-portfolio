@@ -493,3 +493,8 @@ h1, h2, h3, h4, h5 {
   line-height: 1.5;
   color: var(--color-muted);
 }
+
+/* The small offer card on blog posts slides up from the bottom. */
+@keyframes offer-in { from { opacity: 0; transform: translateY(1.5rem); } }
+.offer-popup { animation: offer-in 0.45s ease-out; }
+@media (prefers-reduced-motion: reduce) { .offer-popup { animation: none; } }

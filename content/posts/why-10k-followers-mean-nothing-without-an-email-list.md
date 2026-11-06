@@ -21,7 +21,6 @@ faq:
     answer: "Send the free thing they asked for straight away, then two short, plain emails over the next few days asking what they are stuck on."
   - question: "How does Claude help with this?"
     answer: "Paste in the comments and messages you get, and Claude sorts them by what each person needs and drafts a short reply for each one."
-freebie: "PIECES"
 coverImage: "/images/blog/cover-own-your-list.jpg"
 coverImageCredit: "Project Legacy Engine"
 ---

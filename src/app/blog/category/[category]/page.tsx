@@ -9,7 +9,7 @@ import { CATEGORIES, getCategory } from "@/lib/categories";
 import PostList from "@/components/post/PostList";
 import { LastCall } from "@/components/home/CallToAction";
 
-// One blog category (4 since 3 Nov 2026): the Copywriter's heading and intro,
+// One blog category (5 since 6 Nov 2026): the Copywriter's heading and intro,
 // its posts, then the Google pages and case studies that match, so a category
 // with no posts yet still has somewhere useful to send people.
 

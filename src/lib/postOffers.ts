@@ -2,8 +2,9 @@ import { POST_FREEBIES, type PostFreebie } from "./postFreebies";
 
 /**
  * The one free offer on a blog post, set by its category (Oloye, 6 Nov 2026):
- * Leads gets the Lead leak check, Tools and AI gets TOOLS, everything else gets
- * the 10 tasks checklist. The post's form and pop-up both use this.
+ * Leads gets the Lead leak check, Tools and AI gets TOOLS, Content gets LOOP,
+ * everything else gets the 10 tasks checklist. The post's form and pop-up both
+ * use this.
  *
  * A post's `freebie` frontmatter overrides it. Only set one on purpose.
  */
@@ -28,6 +29,7 @@ export function getPostOffer(category: string, freebie?: string): PostOffer {
   if (freebie && POST_FREEBIES[freebie]) return form(freebie);
   if (category === "Leads") return LEAK_CHECK;
   if (category === "Tools and AI") return form("TOOLS");
+  if (category === "Content") return form("LOOP");
   return form("checklist");
 }
 

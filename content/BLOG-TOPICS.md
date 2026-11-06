@@ -24,10 +24,7 @@ Three posts a week since 5 Nov 2026 (Oloye: "Yes, three a week"). The blog write
 
 | Status | Date | Topic | Category | System step | Built? | What's real (check on the day) | Seed keywords to test |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| planned | Mon 9 Nov | How to follow up with leads before they go cold | Leads | Step 7, follow-up (the why) | Yes | Our welcome email and the morning list. Sourced numbers only (RESEARCH-is-it-a-real-problem.md: HBR wording) | how to follow up with leads, lead follow up, follow up email |
-| next | Wed 11 Nov | A morning list of who to reply to today | Leads | Step 7, the morning follow-up | Yes | Our morning lead brief (built 25 Oct): suggested reply, days waiting, the daily Doc. It runs when asked, not on a timer, and it never sends anything | lead follow up system, crm for coaches, marketing automation for small business |
-| planned | Fri 13 Nov | Free thing ideas that get coaches real sign-ups | Leads | Step 1, a free thing | Yes | Our free things: the guides and the 0 to 100 Kit. No sign-up numbers unless they're real | lead magnet ideas, lead magnet for coaches, freebie ideas |
-| planned | Mon 16 Nov | Park new ideas so you finish what you started | Admin and invoices | Not in the system | Yes | Our Roadmap table: every new idea goes in as Parked, and nothing gets built until he says so. Spare build, to fill the gap when the order changed on 5 Nov | project backlog small business, idea list template, airtable project tracker |
+| next | Mon 16 Nov | Park new ideas so you finish what you started | Admin and invoices | Not in the system | Yes | Our Roadmap table: every new idea goes in as Parked, and nothing gets built until he says so. Spare build, to fill the gap when the order changed on 5 Nov | project backlog small business, idea list template, airtable project tracker |
 | planned | Wed 18 Nov | Write a task down once: a simple SOP with screenshots | Admin and invoices | Not in the system | Yes | Our SOPs library (`SOPS/`) | how to write an sop, sop template small business, standard operating procedure |
 | planned | Fri 20 Nov | One link in bio that turns followers into emails | Leads | Step 2, the sign-up doors | Yes | oloye.co.uk/100, live since 3 Nov. Check the page on the day (its video was still open on 3 Nov) | link in bio landing page, email sign up page, landing page for coaches |
 | planned | Mon 23 Nov | What is Make.com? A plain guide for small businesses | Tools and AI | Not in the system | Yes | Our forms and free tool scenarios. Check Make's pricing page on the day | what is make.com, make.com automation, make.com pricing |
@@ -73,6 +70,9 @@ Not built, so off the list until they are (Marketing Director, 5 Nov).
 
 | Status | Topic | Category | What's real | Seed keywords |
 | :--- | :--- | :--- | :--- | :--- |
+| done 2026-11-13 | Lead magnet ideas for coaches ([post](https://www.oloye.co.uk/blog/lead-magnet-ideas-for-coaches), merged 6 Nov, set to appear on 13 Nov) | Leads | Our free things as examples | lead magnet ideas for coaches, what is a lead magnet |
+| done 2026-11-11 | A morning list of who to reply to ([post](https://www.oloye.co.uk/blog/lead-follow-up-system), merged 6 Nov, set to appear on 11 Nov) | Leads | Our morning lead brief | lead follow up system |
+| done 2026-11-09 | How to follow up with leads before they go cold ([post](https://www.oloye.co.uk/blog/how-to-follow-up-with-leads), merged 6 Nov, set to appear on 9 Nov) | Leads | HBR numbers, our follow-up plan | how to follow up with leads |
 | done 2026-11-06 | Every sign-up into one list, with no copying ([post](https://www.oloye.co.uk/blog/make-com-automation-sign-ups-one-list), merged 5 Nov, set to appear on 6 Nov) | Leads | Our Make scenarios | make.com automation, lead automation |
 | done 2026-11-05 | One list for every lead: a simple Airtable CRM ([live](https://www.oloye.co.uk/blog/simple-crm-for-small-business)) | Leads | Our Leads table | simple crm for small business, airtable crm |
 | done 2026-10-28 | Website forms to Airtable with Make | Leads | Our own build (SOP-06) | airtable forms, make.com automation |

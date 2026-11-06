@@ -59,9 +59,11 @@ export async function POST(req: Request) {
   }
 
   const s = score(answers);
-  const picked = pickLeaks(answers);
+  // A perfect score has nothing to fix, so there are no leaks to list or word.
+  const perfect = s.total >= 100;
+  const picked = perfect ? [] : pickLeaks(answers);
   const words = answersInWords(answers);
-  const worded = await wordLeaks({ business, answers: words, total: s.total, leaks: picked });
+  const worded = perfect ? null : await wordLeaks({ business, answers: words, total: s.total, leaks: picked });
 
   const leaks = picked.map((l, i) => ({
     area: l.area,
@@ -82,7 +84,9 @@ export async function POST(req: Request) {
     .join("\n");
 
   const sent = await sendToolToMake({
-    form: "LEAK",
+    // Make emails the 3 leaks only when form is "LEAK", so a perfect score saves
+    // the person in Leads and sends no empty email.
+    form: perfect ? "LEAK-100" : "LEAK",
     tool: "Lead leak check",
     email,
     name,
@@ -101,5 +105,6 @@ export async function POST(req: Request) {
     line,
     leaks: leaks.map(({ area, leak, fix }) => ({ area, leak, fix })),
     emailed: sent === "ok",
+    perfect,
   });
 }

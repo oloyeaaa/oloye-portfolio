@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
 import { BUSINESS_TYPES, QUESTIONS, pickLeaks, score, scoreLine, type Answers } from "@/lib/tools/leak-check";
 
-type Result = { total: number; line: string; leaks: { area: string; leak: string; fix: string }[]; emailed: boolean; example?: boolean };
+type Result = { total: number; line: string; leaks: { area: string; leak: string; fix: string }[]; emailed: boolean; example?: boolean; perfect?: boolean };
 
 // "?example" opens straight onto a finished result (the 37 / 100 we tested on
 // 2 Nov), for showing on a live if the real check is slow. Our own code and
@@ -93,6 +93,7 @@ export default function LeakCheck() {
           <p className="mx-auto mt-5 max-w-md text-muted">{result.line}</p>
         </div>
 
+        {result.leaks.length > 0 && (
         <ol className="space-y-4">
           {result.leaks.map((l, i) => (
             <li key={i} className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
@@ -104,9 +105,12 @@ export default function LeakCheck() {
             </li>
           ))}
         </ol>
+        )}
 
         <p className="text-center text-muted">
-          {result.example
+          {result.perfect
+            ? "There's nothing to fix, so there's no email to send you. Keep doing what you're doing."
+            : result.example
             ? "This is an example result. Take the check to get your own."
             : result.emailed
             ? "The full result, with a free guide for each fix, is on its way to your inbox."

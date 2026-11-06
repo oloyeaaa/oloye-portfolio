@@ -54,6 +54,8 @@ export async function POST(req: Request) {
   if (!name) return NextResponse.json({ error: "Please add your first name." }, { status: 400 });
   const business = (BUSINESS_TYPES as readonly string[]).includes(String(body.business)) ? String(body.business) : null;
   const consent = body.consent === true;
+  // Which blog post sent them. It only goes in the Leads note, never the email.
+  const from = typeof body.from === "string" && /^[a-z0-9-]{1,120}$/.test(body.from) ? body.from : "";
   if (emailTooOften(email)) {
     return NextResponse.json({ error: "That's the most checks for this email today. Please come back tomorrow." }, { status: 429 });
   }
@@ -75,6 +77,7 @@ export async function POST(req: Request) {
   const said = [
     `Lead leak check: ${s.total}/100 (catch ${s.areas.catch}/35, keep ${s.areas.keep}/25, follow up ${s.areas["follow up"]}/30, reach ${s.areas.reach}/10).`,
     business ? `Business: ${business}.` : "",
+    from ? `Came from blog post: ${from}.` : "",
     ...words.map((w) => `${w.question} ${w.answer}`),
     ...leaks.map((l, i) => `Leak ${i + 1} (${l.area}): ${l.leak} Fix: ${l.fix}`),
   ]

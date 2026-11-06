@@ -22,7 +22,6 @@ faq:
     answer: "No. You need a transcript, from a tool like Descript or Whisper, and Claude to clean it up and pull out the short pieces."
   - question: "Does Claude replace the thinking?"
     answer: "No. You bring what you know and what you have lived. Claude does the first draft, and you check and fix it."
-freebie: "LOOP"
 coverImage: "/images/blog/cover-ai-team.jpg"
 ---
 
@@ -89,4 +88,4 @@ Ask Claude for three short pieces from the same transcript, each one able to sta
 
 The trap here is thinking the tool will do the thinking. It won't. If you give it nothing, you get nothing much back.
 
-What works is the other way round. You bring the real problems, the real words and the real story. Claude helps you get them down faster and in more places. Start with one recording this week and see how far it goes. For ideas on what else to hand over, our free [10 jobs to automate first](/free/10-jobs-to-automate-first) checklist is a good place to start.
+What works is the other way round. You bring the real problems, the real words and the real story. Claude helps you get them down faster and in more places. Start with one recording this week and see how far it goes. To keep the rest of your tools simple, ask for the free guide in the form on this page: 7 tools, one job each.

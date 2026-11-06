@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
+import { rememberOfferDone } from "@/lib/offerMemory";
 import { BUSINESS_TYPES, QUESTIONS, pickLeaks, score, scoreLine, type Answers } from "@/lib/tools/leak-check";
 
 type Result = { total: number; line: string; leaks: { area: string; leak: string; fix: string }[]; emailed: boolean; example?: boolean };
@@ -31,9 +32,16 @@ export default function LeakCheck() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<Result | null>(null);
+  const [from, setFrom] = useState(""); // The blog post that sent them, if any.
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).has("example")) setResult(exampleResult());
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("example")) setResult(exampleResult());
+    const post = params.get("from");
+    if (post) {
+      setFrom(post);
+      rememberOfferDone();
+    }
   }, []);
 
   const total = QUESTIONS.length;
@@ -68,11 +76,13 @@ export default function LeakCheck() {
           business: f.get("business") || null,
           consent: f.get("consent") === "on",
           website: f.get("website"),
+          from,
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
       setResult(data);
+      rememberOfferDone();
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");

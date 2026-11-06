@@ -9,17 +9,19 @@ import { getAllSlugs, getPostBySlug } from "@/lib/airtable";
 import { getPostFull, renderPostBody, getRelatedPosts, slugify, isPublished, type PostFull } from "@/lib/posts";
 import { getCategory } from "@/lib/categories";
 import { getAuthor } from "@/lib/authors";
-import { getPostFreebie } from "@/lib/postFreebies";
+import { getPostOffer } from "@/lib/postOffers";
 import Faq from "@/components/Faq";
 import TableOfContents from "@/components/post/TableOfContents";
 import FreebieForm from "@/components/post/FreebieForm";
+import ToolOffer from "@/components/post/ToolOffer";
+import OfferPopup from "@/components/post/OfferPopup";
 import AuthorCard from "@/components/post/AuthorCard";
 import PostTile from "@/components/home/PostTile";
 import { LastCall } from "@/components/home/CallToAction";
 
 // The single post template (2026-10). Top to bottom: breadcrumb, title, cover,
 // "In short" summary, then the article with "On this page" on the left and the
-// free-thing form in the middle, tags, author card, the post's own FAQ, related
+// free offer in the middle (by category, see lib/postOffers), tags, author card, the post's own FAQ, related
 // posts, and the last call.
 
 export const revalidate = 300;
@@ -113,7 +115,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const category = getCategory(post.category);
   const author = getAuthor(post.author);
-  const freebie = getPostFreebie(post.freebie);
+  const offer = getPostOffer(post.category, post.freebie);
   const { first, second, headings } = await renderPostBody(post.body, post.coverImage);
   const related = getRelatedPosts(post.slug, post.category);
   const path = `/blog/${post.slug}`;
@@ -222,7 +224,13 @@ export default async function BlogPostPage({ params }: Props) {
                 )}
 
                 <div className="post-body prose" dangerouslySetInnerHTML={{ __html: first }} />
-                <FreebieForm freebie={freebie} source={post.slug} />
+                <div id="post-offer">
+                  {offer.kind === "tool" ? (
+                    <ToolOffer offer={offer} slug={post.slug} />
+                  ) : (
+                    <FreebieForm freebie={offer.freebie} source={post.slug} />
+                  )}
+                </div>
                 {second && <div className="post-body prose" dangerouslySetInnerHTML={{ __html: second }} />}
 
                 {post.tags.length > 0 && (
@@ -263,6 +271,7 @@ export default async function BlogPostPage({ params }: Props) {
         )}
 
         <LastCall />
+        <OfferPopup offer={offer} slug={post.slug} />
       </div>
     </>
   );

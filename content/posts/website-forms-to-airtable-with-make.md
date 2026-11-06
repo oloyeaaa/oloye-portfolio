@@ -20,7 +20,6 @@ faq:
     answer: "Make checks a secret key on every form before it does anything. No key, nothing is saved and nothing is sent. The website also limits repeat sends and only accepts forms from its own pages."
   - question: "Can I add more forms later?"
     answer: "Yes. Each form carries a label, like CONTACT or the name of a free thing. A new label just needs its own branch in Make."
-freebie: "TABLE"
 coverImage: "/images/blog/website-forms/cover.jpg"
 ---
 
@@ -100,4 +99,4 @@ A few small things do most of the work:
 
 Nobody waits for a reply to a free thing. Every enquiry is in [one simple list](/blog/simple-crm-for-small-business), with a stage, so you can see who needs a reply today. It also closes the first of [the gaps where most funnels lose people](/blog/why-ai-funnels-fail-at-the-handoff). And you stop digging through your inbox on a Friday night.
 
-We built it with tools we already used. If you'd like this set up for your own forms, [book a free call](/contact) and we'll look at it together.
+We built it with tools we already used. Not sure where else people are slipping through? Take the free [Lead leak check](/tools/lead-leak-check?from=website-forms-to-airtable-with-make). It's 6 quick questions, and you get a score out of 100, your 3 biggest leaks, and the first fix for each.

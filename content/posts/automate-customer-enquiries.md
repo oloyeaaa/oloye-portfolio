@@ -55,4 +55,4 @@ For more on the leads side, see the [Leads guides](/blog/category/leads), or rea
 
 ## Your next step
 
-Want help setting it up? [Book a free call](https://calendar.app.google/s8FjtoLAyYZnZ1u98) and we'll find the first task worth automating. You'll know the price before anything starts. Or start with the free checklist: [10 tasks to automate first](/free/10-jobs-to-automate-first).
+Want help setting it up? [Book a free call](https://calendar.app.google/s8FjtoLAyYZnZ1u98) and we'll find the first task worth automating. You'll know the price before anything starts. Or start with the free [Lead leak check](/tools/lead-leak-check?from=automate-customer-enquiries), 6 quick questions that show where your leads slip away.

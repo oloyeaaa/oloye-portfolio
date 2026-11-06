@@ -200,7 +200,7 @@ export function pickLeaks(a: Answers): Leak[] {
 
 /** One plain line on what the score means. No shaming at a low score. */
 export function scoreLine(total: number): string {
-  if (total >= 100) return "Nothing's leaking. From your answers, you're catching the people who find you and keeping in touch with them.";
+  if (total >= 100) return "Nothing's leaking. From your answers, you catch new enquiries and keep in touch with them.";
   if (total >= 80) return "You're catching most of the people who find you. A few small fixes will close the last gaps.";
   if (total >= 55) return "Some people are getting through, but a fair few are slipping away between steps.";
   if (total >= 30) return "Most of the people who find you are slipping away. The good news: the first fixes are small.";

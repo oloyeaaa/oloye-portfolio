@@ -67,11 +67,7 @@ DATETIME_DIFF(TODAY(), IF({Last Contact}, {Last Contact}, {Date In}), 'days')
 
 **Step 4: Ask Claude for the replies.** Paste your list in with this prompt:
 
-```
-Here is my list of leads. Put anyone new that I haven't replied to first, then whoever has waited longest. Mark anyone waiting 3 days or more as "reply today".
-
-For each person, write a reply I can start from: one or two short sentences, plain and warm. Thank them, answer what they asked, then ask one question about them. No pitch, no price, no links. Don't make anything up about them. If you can't tell what they meant, say so.
-```
+> **Copy this:** Here is my list of leads. Put anyone new that I haven't replied to first, then whoever has waited longest. Mark anyone waiting 3 days or more as "reply today". For each person, write a reply I can start from: one or two short sentences, plain and warm. Thank them, answer what they asked, then ask one question about them. No pitch, no price, no links. Don't make anything up about them. If you can't tell what they meant, say so.
 
 > **Good to know:** this is real people's information. Leave out anything Claude doesn't need, like phone numbers.
 

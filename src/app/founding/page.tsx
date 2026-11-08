@@ -9,22 +9,22 @@ import FoundingForm from "@/components/founding/FoundingForm";
 
 export const metadata: Metadata = {
   title: "The founding group",
-  description: "Turn what you already know into a channel, with a small founding group and Claude doing the heavy lifting.",
+  description: "A small founding group for creators. Turn what you already know into videos, with a content machine built on Claude doing the heavy parts.",
   alternates: { canonical: "/founding" },
   robots: { index: false, follow: true },
 };
 
 const STEPS = [
-  { title: "Find it", line: "What you already know, in one line, and the years behind it." },
+  { title: "Find it", line: "The thing people already come to you for, said in one line." },
   { title: "Check it", line: "Who needs it, and the questions they keep asking." },
-  { title: "Make it", line: "Claude does the heavy lifting on the videos. You check them and add what only you know." },
-  { title: "Share it", line: "Post, see which questions people care about, and make more of those." },
+  { title: "Make it", line: "The machine does the heavy parts of the videos. You check each one and add what only you know." },
+  { title: "Share it", line: "Post, see which questions people care about most, and make more of those." },
 ];
 
 const STRAIGHT = [
-  { q: "What does it cost?", a: "Not set yet. Join the list and you'll hear first." },
-  { q: "When does it start?", a: "Not set yet either. The list hears first." },
-  { q: "Will I make money from it?", a: "There are no promises of money, views or followers here. What you know is the value." },
+  { q: "What does it cost?", a: "There's no price yet. Join the list and you'll hear first." },
+  { q: "When does it start?", a: "There's no date yet either. The list hears first." },
+  { q: "Will I make money from it?", a: "Nobody can promise you money, views or followers, and we won't. What you know is the value. The machine helps you share it more often." },
 ];
 
 export default function FoundingPage() {
@@ -40,7 +40,7 @@ export default function FoundingPage() {
               Turn <span className="lime-mark">what you already know</span> into a channel.
             </h1>
             <p className="mt-4 text-muted sm:text-lg">
-              A small group, building it together. Your years at work are the content. Claude helps make the videos.
+              A small group, building it together. What you already know is the content. A content machine built with Claude does the heavy parts of the videos.
             </p>
           </div>
 

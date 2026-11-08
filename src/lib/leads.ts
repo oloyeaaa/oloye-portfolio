@@ -8,7 +8,7 @@
  */
 
 export type LeadPayload = {
-  form: string; // CONTACT, KIT, CHECKLIST, TABLE, TOOLS, PIECES, LOOP
+  form: string; // CONTACT, KIT, FOUNDING, CHECKLIST, TABLE, TOOLS, PIECES, LOOP
   email: string;
   name: string;
   said: string;

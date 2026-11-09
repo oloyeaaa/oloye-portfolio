@@ -12,8 +12,9 @@ import { cleanAnswers } from "@/lib/tools/what-to-post";
  * ideas were shown. The ideas go to Make for the results email, once that
  * route is added on Oloye's yes.
  *
- * Limits, so nobody can run up the bill (Product Lead's hand-over): 1 run an
- * hour per IP, 3 a day per email, a bot trap, and anything sent in under 6
+ * Limits, so nobody can run up the bill (Product Lead's hand-over, raised by
+ * the Director 9 Nov so "Add a bit more" works): 2 runs an hour per IP, 3 a
+ * day per email, a bot trap, and anything sent in under 6
  * seconds is ignored. These live in one server's memory, so they're a speed
  * bump: the Claude workspace's monthly spend cap is the real wall.
  *

@@ -327,6 +327,7 @@ function ResultsView({
   const [sent, setSent] = useState("");
   const [sendError, setSendError] = useState("");
   const [sendLine, setSendLine] = useState(0);
+  const [pdfUrl, setPdfUrl] = useState("");
 
   useEffect(() => {
     if (!sending) return;
@@ -364,6 +365,10 @@ function ResultsView({
       if (data.status === "unclear") throw new Error(data.message);
       // The picks email replaces the plain ideas email.
       emailSent.current = true;
+      if (typeof data.pdf === "string" && data.pdf) {
+        const bytes = Uint8Array.from(atob(data.pdf), (c) => c.charCodeAt(0));
+        setPdfUrl(URL.createObjectURL(new Blob([bytes], { type: "application/pdf" })));
+      }
       setSent("Sent. Check your inbox for your picks and the PDF.");
     } catch (err) {
       setSendError(err instanceof Error ? err.message : "Something went wrong. Try again in a minute.");
@@ -496,7 +501,19 @@ function ResultsView({
       })}
 
       {sent ? (
-        <p className="rounded-3xl border border-accent bg-surface p-6 text-center text-xl font-semibold text-foreground">{sent}</p>
+        <div className="rounded-3xl border border-accent bg-surface p-6 text-center">
+          <p className="text-xl font-semibold text-foreground">{sent}</p>
+          {pdfUrl && (
+            <a
+              href={pdfUrl}
+              download="Your plan - what to post and what to sell.pdf"
+              onClick={() => count(track, "downloaded")}
+              className={`mt-5 text-base ${BUTTON_PRIMARY}`}
+            >
+              Download your PDF
+            </a>
+          )}
+        </div>
       ) : (
         pickedCount > 0 && (
           <div>

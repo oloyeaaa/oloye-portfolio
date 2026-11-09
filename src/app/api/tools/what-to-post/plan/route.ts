@@ -23,7 +23,7 @@ export const maxDuration = 60;
 export async function POST(req: Request) {
   if (!fromOurSite(req)) return NextResponse.json({ error: "Invalid request." }, { status: 403 });
   if (tooMany(req, "what-to-post-plan", 3, HOUR)) {
-    return NextResponse.json({ error: "You've had lots of ideas already. Come back in an hour." }, { status: 429 });
+    return NextResponse.json({ error: "You've made a few plans already. Come back in an hour." }, { status: 429 });
   }
   const body = await readSmallJson(req, 40_000);
   if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
@@ -84,5 +84,11 @@ export async function POST(req: Request) {
     planned.delete(token);
     return NextResponse.json({ error: "Something went wrong. Try again in a minute." }, { status: 502 });
   }
-  return NextResponse.json({ ok: true, status: "sent", picks: Object.keys(picks).filter((k) => picks[k as SectionId]) });
+  // The PDF comes back too, for the download button on the page.
+  return NextResponse.json({
+    ok: true,
+    status: "sent",
+    picks: Object.keys(picks).filter((k) => picks[k as SectionId]),
+    pdf: Buffer.from(pdf).toString("base64"),
+  });
 }

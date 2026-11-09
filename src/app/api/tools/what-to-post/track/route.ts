@@ -37,6 +37,9 @@ export async function POST(req: Request) {
     case "copied":
       await updateRow(id, { "Copied ideas": true });
       break;
+    case "downloaded":
+      await updateRow(id, { "Downloaded PDF": true });
+      break;
     case "founding":
       await updateRow(id, { "Clicked founding group": true });
       break;

@@ -20,6 +20,8 @@ export type LeadPayload = {
   intro?: string; // the 0 to 100 welcome email's first line
   subject?: string; // What to post results email: finished subject
   html?: string; // What to post results email: finished body, built on our server
+  pdf?: string; // What to post v2: the plan PDF, base64
+  pdfName?: string; // its file name
 };
 
 export async function sendToMake(lead: LeadPayload): Promise<"ok" | "off" | "failed"> {

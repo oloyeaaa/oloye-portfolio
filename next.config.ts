@@ -49,6 +49,8 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // The What to post plan PDF reads its brand fonts (Inter, JetBrains Mono) from here.
+  outputFileTracingIncludes: { "/api/tools/what-to-post/plan": ["./src/assets/pdf-fonts/**"] },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },

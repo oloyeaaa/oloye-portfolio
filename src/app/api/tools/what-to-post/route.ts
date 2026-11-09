@@ -13,7 +13,7 @@ import { cleanAnswers } from "@/lib/tools/what-to-post";
  * route is added on Oloye's yes.
  *
  * Limits, so nobody can run up the bill (Product Lead's hand-over): 1 run an
- * hour per IP, 2 a day per email, a bot trap, and anything sent in under 6
+ * hour per IP, 3 a day per email, a bot trap, and anything sent in under 6
  * seconds is ignored. These live in one server's memory, so they're a speed
  * bump: the Claude workspace's monthly spend cap is the real wall.
  *
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
   if (!fromOurSite(req)) return NextResponse.json({ error: "Invalid request." }, { status: 403 });
   const open = limitsOff();
   const ipKey = `ip:${ipOf(req)}`;
-  if (!open && usedUp(ipKey, 1, HOUR)) {
+  if (!open && usedUp(ipKey, 2, HOUR)) {
     return NextResponse.json({ error: TOO_MANY }, { status: 429 });
   }
   const body = await readSmallJson(req);
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
   if (!name) return NextResponse.json({ error: "Please add your first name." }, { status: 400 });
   const consent = body.consent === true;
   const emailKey = `email:${email}`;
-  if (!open && usedUp(emailKey, 2, DAY)) return NextResponse.json({ error: TOO_MANY }, { status: 429 });
+  if (!open && usedUp(emailKey, 3, DAY)) return NextResponse.json({ error: TOO_MANY }, { status: 429 });
 
   const stamp = Date.now();
   markUsed(stamp, ipKey, emailKey);

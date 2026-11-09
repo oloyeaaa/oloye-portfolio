@@ -24,6 +24,14 @@ export type Question = {
   placeholder?: string;
 };
 
+/**
+ * The care line the page shows, above the four lists, when Claude flags that
+ * the answers point to a job with rules on advice (health, care, money, law).
+ * Words: the Copywriter (WORDS.md ba1575e). Claude's own care_note text is only
+ * the flag; it's never shown.
+ */
+export const CARE_LINE = "If your posts give advice, stick to what you're trained and allowed to say.";
+
 /** The tap that opens the typed box. Sent along with the other taps. */
 export const OTHER = "Something else";
 export const Q1_OTHER = "Something else (use the box)";

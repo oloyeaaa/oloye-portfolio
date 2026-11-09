@@ -129,7 +129,7 @@ export default function WhatToPost() {
           }}
           className={`mt-6 text-base ${BUTTON_PRIMARY}`}
         >
-          Start the questions again
+          Add a bit more to your answers
         </button>
       </div>
     );
@@ -269,10 +269,9 @@ function ResultsView({ answers, first }: { answers: Answers; first: Done }) {
       <div className="rounded-3xl border border-accent bg-surface p-6 text-center sm:p-8">
         <p className="display text-4xl text-foreground">Your ideas</p>
         <p className="mt-3 text-lg text-muted">They&apos;re ideas to try, not answers. Not right? Tap &quot;5 more&quot; on any section.</p>
-        {first.careNote && (
-          <p className="mt-4 rounded-xl bg-surface-alt px-4 py-3 text-base font-semibold text-foreground">{first.careNote}</p>
-        )}
       </div>
+
+      {first.careNote && <p className="rounded-2xl bg-surface-alt px-5 py-4 text-lg text-foreground">{first.careNote}</p>}
 
       {SECTIONS.map((s) => {
         const used = asked[s.id] || 0;

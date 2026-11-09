@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { SECTIONS, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
-import { CARE_NOTE, FULL_RUN_SYSTEM, NEW_5_SYSTEM, UNCLEAR } from "@/lib/tools/what-to-post-prompts";
+import { CARE_LINE, SECTIONS, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
+import { FULL_RUN_SYSTEM, NEW_5_SYSTEM, UNCLEAR } from "@/lib/tools/what-to-post-prompts";
 
 /**
  * Claude for "What to post and what to sell". Server only: the key is read from
@@ -142,7 +142,12 @@ export async function fullRun(answers: Answers): Promise<FullResult | null> {
     lists[s.id] = tidyList(parsed[s.id]);
     if (lists[s.id].length < 5) return null;
   }
-  return { status: "ideas", lists, careNote: parsed.care_note === CARE_NOTE ? CARE_NOTE : "" };
+  // Any care note from Claude is just the flag: the page shows the Copywriter's line.
+  return {
+    status: "ideas",
+    lists,
+    careNote: typeof parsed.care_note === "string" && parsed.care_note.trim() ? CARE_LINE : "",
+  };
 }
 
 /** Five new ideas for one list, none of them already shown. */

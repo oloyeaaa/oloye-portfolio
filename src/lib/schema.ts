@@ -58,7 +58,7 @@ export function personSchema() {
       "https://www.gtmsignalstudio.com",
     ],
     worksFor: { "@id": ORG_ID },
-    jobTitle: "Founder, process automation for small businesses",
+    jobTitle: "Founder, AI Automation Systems",
     knowsAbout: [
       "Business process automation",
       "Marketing automation",

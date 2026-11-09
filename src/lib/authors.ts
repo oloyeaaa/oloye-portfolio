@@ -19,7 +19,7 @@ export const AUTHORS: Record<string, Author> = {
     key: "oloye",
     name: "Oloye Adeosun",
     role: "Founder",
-    bio: "Oloye builds simple automations that save small businesses time and money, and has been building marketing systems for over 3 years. He lives in Kent with his family, and the whole point is the same for him as for you: more time for the work and the people that matter.",
+    bio: "Oloye builds AI systems for content creators and business owners, and has been building marketing systems for over 3 years. Creators get a content machine. Business owners, coaches included, get workflows that stop them losing leads. He lives in Kent with his family, and the point is the same for him as for you: more time for the work and the people that matter.",
     image: "/images/brand/oloye-lime.jpg",
     url: `${SITE_URL}/about`,
     links: [

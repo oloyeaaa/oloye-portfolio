@@ -191,24 +191,3 @@ export function cleanAnswers(raw: unknown): Answers | null {
   }
   return any ? out : null;
 }
-
-/** The answers as plain lines, for the Leads note. */
-export function answersInWords(answers: Answers): string[] {
-  return QUESTIONS.map((q) => {
-    const a = answers[q.id];
-    const parts = [...a.picked, ...(a.other ? [`Something else: ${a.other}`] : [])];
-    return `${q.text} ${parts.length ? parts.join("; ") : "(skipped)"}`;
-  });
-}
-
-/** Ideas a visitor sends back for "5 more": cleaned, capped. */
-export function cleanShown(raw: unknown): Idea[] {
-  if (!Array.isArray(raw)) return [];
-  return raw
-    .map((i) => ({
-      title: typeof i?.title === "string" ? clean(i.title, 120) : "",
-      why: typeof i?.why === "string" ? clean(i.why, 200) : "",
-    }))
-    .filter((i) => i.title)
-    .slice(0, 25);
-}

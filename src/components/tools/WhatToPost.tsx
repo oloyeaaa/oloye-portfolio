@@ -10,7 +10,17 @@ import { OTHER, OTHER_MAX, QUESTIONS, SECTIONS, boxShows, type Answers, type Ide
 // (content/find-your-channel/WORDS.md). Built big for a phone held up on a
 // TikTok live, and it's his link in bio.
 
-const MORE_PER_SECTION = 3;
+// Shown while Claude works (about 15 seconds), one after another, so the
+// screen is never still. DRAFT lines from the Product Lead's hand-over: the
+// Copywriter is writing the final ones.
+const WAITING = [
+  "Reading your answers...",
+  "Finding what you could post about...",
+  "Working out who it's for...",
+  "Thinking of a free thing to give away...",
+  "Finding something you could sell...",
+  "Nearly there...",
+];
 const STEPS = ["Answer a few quick questions.", "Leave your email.", "Get 5 ideas for each of four things.", "Not right? Tap for 5 more."];
 const empty = () => Object.fromEntries(QUESTIONS.map((q) => [q.id, { picked: [], other: "" }])) as Answers;
 
@@ -25,7 +35,25 @@ export default function WhatToPost() {
   const [error, setError] = useState("");
   const [unclear, setUnclear] = useState("");
   const [done, setDone] = useState<Done | null>(null);
+  const [me, setMe] = useState({ name: "", email: "", consent: false });
+  const [wait, setWait] = useState(0);
   const box = useRef<HTMLDivElement>(null);
+
+  // Change the waiting line every few seconds while Claude works.
+  useEffect(() => {
+    if (!busy) return;
+    const t = setInterval(() => setWait((w) => Math.min(w + 1, WAITING.length - 1)), 3000);
+    return () => clearInterval(t);
+  }, [busy]);
+
+  // Back to question 1 with every answer kept, so they only add what's missing.
+  function addMore() {
+    setDone(null);
+    setUnclear("");
+    setError("");
+    setStep(0);
+    window.scrollTo({ top: 0 });
+  }
 
   // On a phone the next card can start above the screen: bring it back into view.
   useEffect(() => {
@@ -33,7 +61,7 @@ export default function WhatToPost() {
     if (started && top !== undefined && top < 0) box.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step, started]);
 
-  if (done) return <ResultsView answers={answers} first={done} />;
+  if (done) return <ResultsView first={done} onAddMore={addMore} />;
 
   if (!started) {
     return (
@@ -86,7 +114,11 @@ export default function WhatToPost() {
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (busy) return;
     const f = new FormData(e.currentTarget);
+    const who = { name: String(f.get("name") || ""), email: String(f.get("email") || ""), consent: f.get("consent") === "on" };
+    setMe(who);
+    setWait(0);
     setBusy(true);
     setError("");
     try {
@@ -96,9 +128,7 @@ export default function WhatToPost() {
         body: JSON.stringify({
           answers,
           startedAt,
-          name: f.get("name"),
-          email: f.get("email"),
-          consent: f.get("consent") === "on",
+          ...who,
           website: f.get("website"),
         }),
       });
@@ -123,10 +153,7 @@ export default function WhatToPost() {
         <p className="display text-3xl leading-tight text-foreground">{unclear}</p>
         <button
           type="button"
-          onClick={() => {
-            setUnclear("");
-            setStep(0);
-          }}
+          onClick={addMore}
           className={`mt-6 text-base ${BUTTON_PRIMARY}`}
         >
           Add a bit more to your answers
@@ -212,23 +239,28 @@ export default function WhatToPost() {
           <div className="mt-6 grid gap-4">
             <label className="block">
               <span className="text-base font-medium text-foreground">First name</span>
-              <input name="name" required maxLength={80} autoComplete="given-name" className={`${INPUT} text-lg`} />
+              <input name="name" required maxLength={80} autoComplete="given-name" defaultValue={me.name} className={`${INPUT} text-lg`} />
             </label>
             <label className="block">
               <span className="text-base font-medium text-foreground">Email</span>
-              <input name="email" type="email" required maxLength={254} autoComplete="email" inputMode="email" className={`${INPUT} text-lg`} />
+              <input name="email" type="email" required maxLength={254} autoComplete="email" inputMode="email" defaultValue={me.email} className={`${INPUT} text-lg`} />
             </label>
           </div>
           <label className="hidden" aria-hidden="true">
             <input name="website" tabIndex={-1} autoComplete="off" />
           </label>
           <label className="mt-5 flex items-start gap-3 text-base text-muted">
-            <input type="checkbox" name="consent" className="mt-1 h-5 w-5 shrink-0 accent-[#446100]" />
+            <input type="checkbox" name="consent" defaultChecked={me.consent} className="mt-1 h-5 w-5 shrink-0 accent-[#446100]" />
             <span>Also send me the occasional useful email. (Not ticked? You just get this email with your ideas.)</span>
           </label>
           <button type="submit" disabled={busy} className={`mt-6 text-base ${BUTTON_PRIMARY}`}>
             {busy ? "Finding your ideas..." : "See the ideas"}
           </button>
+          {busy && (
+            <p key={wait} role="status" className="card-in mt-4 text-center text-xl font-semibold text-foreground">
+              {WAITING[wait]}
+            </p>
+          )}
           {error && <p role="alert" className="mt-3 text-base font-medium text-alert">{error}</p>}
           <p className="mt-4 text-center text-base text-muted">Free. Leave any time.</p>
         </form>
@@ -237,30 +269,26 @@ export default function WhatToPost() {
   );
 }
 
-function ResultsView({ answers, first }: { answers: Answers; first: Done }) {
-  const [lists, setLists] = useState<Lists>(first.lists);
-  const [busy, setBusy] = useState<SectionId | null>(null);
-  const [asked, setAsked] = useState<Record<string, number>>({});
-  const [error, setError] = useState<Record<string, string>>({});
+function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void }) {
+  const lists = first.lists;
+  const [more, setMore] = useState<Partial<Record<SectionId, boolean>>>({});
+  const [copied, setCopied] = useState(false);
 
-  async function more(section: SectionId) {
-    setBusy(section);
-    setError((e) => ({ ...e, [section]: "" }));
+  // Every idea they've seen, as plain text, for "Copy my ideas". Nothing is stored.
+  function seenText(): string {
+    return SECTIONS.map((s) => {
+      const seen = more[s.id] ? lists[s.id] : lists[s.id].slice(0, 5);
+      return [s.title, ...seen.map((i) => `- ${i.title}: ${i.why}`)].join("\n");
+    }).join("\n\n");
+  }
+
+  async function copy() {
     try {
-      const res = await fetch("/api/tools/what-to-post/more", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, section, shown: lists[section] }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong. Try again in a minute.");
-      if (data.status !== "ideas") throw new Error(data.message || "Something went wrong. Try again in a minute.");
-      setLists((l) => ({ ...l, [section]: [...l[section], ...(data.ideas as Idea[])] }));
-      setAsked((n) => ({ ...n, [section]: (n[section] || 0) + 1 }));
-    } catch (err) {
-      setError((e) => ({ ...e, [section]: err instanceof Error ? err.message : "Something went wrong. Try again in a minute." }));
-    } finally {
-      setBusy(null);
+      await navigator.clipboard.writeText(seenText());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      setCopied(false);
     }
   }
 
@@ -274,37 +302,48 @@ function ResultsView({ answers, first }: { answers: Answers; first: Done }) {
       {first.careNote && <p className="rounded-2xl bg-surface-alt px-5 py-4 text-lg text-foreground">{first.careNote}</p>}
 
       {SECTIONS.map((s) => {
-        const used = asked[s.id] || 0;
+        const all = lists[s.id];
+        const opened = !!more[s.id];
+        const extra = all.slice(5);
         return (
           <section key={s.id} className="rounded-3xl border border-border bg-surface p-5 sm:p-8" aria-labelledby={`h-${s.id}`}>
             <h2 id={`h-${s.id}`} className="display text-3xl text-foreground">{s.title}</h2>
-            <ol className="mt-5 space-y-5">
-              {lists[s.id].map((idea, i) => (
-                <li key={`${i}-${idea.title}`} className="card-in flex gap-4">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-base font-extrabold text-foreground">
-                    {i + 1}
-                  </span>
-                  <span>
-                    <span className="block text-xl font-semibold leading-snug text-foreground">{idea.title}</span>
-                    <span className="mt-1 block text-lg text-muted">{idea.why}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-            {used < MORE_PER_SECTION && (
+            {opened ? (
+              <>
+                <IdeaList ideas={extra} start={6} />
+                <details className="mt-5 rounded-xl border border-border px-4 py-3">
+                  <summary className="cursor-pointer text-base font-semibold text-foreground">Earlier ideas (5)</summary>
+                  <IdeaList ideas={all.slice(0, 5)} start={1} />
+                </details>
+              </>
+            ) : (
+              <IdeaList ideas={all.slice(0, 5)} start={1} />
+            )}
+            {!opened && extra.length > 0 ? (
               <button
                 type="button"
-                onClick={() => more(s.id)}
-                disabled={busy !== null}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-lg border-2 border-foreground px-6 py-4 text-base font-bold text-foreground transition hover:bg-accent disabled:opacity-60"
+                onClick={() => setMore((m) => ({ ...m, [s.id]: true }))}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-lg border-2 border-foreground px-6 py-4 text-base font-bold text-foreground transition hover:bg-accent"
               >
-                {busy === s.id ? "Finding 5 more..." : "5 more ideas"}
+                5 more ideas
               </button>
+            ) : (
+              <div className="mt-6 rounded-xl bg-surface-alt p-4 text-center">
+                <p className="text-lg text-foreground">
+                  Those are the best fits for your answers. Add a bit more to your answers for fresh ones.
+                </p>
+                <button type="button" onClick={onAddMore} className="mt-3 text-base font-bold text-foreground underline underline-offset-4">
+                  Add a bit more to your answers
+                </button>
+              </div>
             )}
-            {error[s.id] && <p role="alert" className="mt-3 text-base font-medium text-alert">{error[s.id]}</p>}
           </section>
         );
       })}
+
+      <button type="button" onClick={copy} className={`text-base ${BUTTON_PRIMARY}`}>
+        {copied ? "Copied" : "Copy my ideas"}
+      </button>
 
       <p className="px-2 text-lg text-foreground">
         Posting gets people&apos;s attention. A free thing and something to sell give that attention somewhere to go. Pick the idea that feels most like you, post about it three times this week, and see which one people ask questions about.
@@ -320,5 +359,23 @@ function ResultsView({ answers, first }: { answers: Answers; first: Done }) {
         </Link>
       </div>
     </div>
+  );
+}
+
+function IdeaList({ ideas, start }: { ideas: Idea[]; start: number }) {
+  return (
+    <ol className="mt-5 space-y-5">
+      {ideas.map((idea, i) => (
+        <li key={`${start + i}-${idea.title}`} className="card-in flex gap-4">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-base font-extrabold text-foreground">
+            {start + i}
+          </span>
+          <span className="min-w-0">
+            <span className="block break-words text-xl font-semibold leading-snug text-foreground">{idea.title}</span>
+            <span className="mt-1 block text-lg text-muted">{idea.why}</span>
+          </span>
+        </li>
+      ))}
+    </ol>
   );
 }

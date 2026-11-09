@@ -18,6 +18,9 @@ const WAITING = [
   "Working out what you could post about...",
   "Putting your ideas together...",
 ];
+// While the plan is made (about 10 seconds), these take turns on the button.
+// Words: the Copywriter (WORDS.md a70b014).
+const SENDING = ["Writing your plan...", "Making your PDF..."];
 const STEPS = ["Answer a few quick questions.", "Leave your email.", "Get 5 ideas for each of four things.", "Not right? Tap for 5 more."];
 const empty = () => Object.fromEntries(QUESTIONS.map((q) => [q.id, { picked: [], other: "" }])) as Answers;
 
@@ -323,6 +326,13 @@ function ResultsView({
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState("");
   const [sendError, setSendError] = useState("");
+  const [sendLine, setSendLine] = useState(0);
+
+  useEffect(() => {
+    if (!sending) return;
+    const t = setInterval(() => setSendLine((n) => (n + 1) % SENDING.length), 3000);
+    return () => clearInterval(t);
+  }, [sending]);
   const pickedCount = Object.values(picks).filter((v) => v !== undefined).length;
 
   function pickIdea(section: SectionId, index: number) {
@@ -331,6 +341,7 @@ function ResultsView({
 
   async function sendPicks() {
     if (sending || !first.token) return;
+    setSendLine(0);
     setSending(true);
     setSendError("");
     try {
@@ -490,7 +501,7 @@ function ResultsView({
         pickedCount > 0 && (
           <div>
             <button type="button" onClick={sendPicks} disabled={sending} className={`text-base ${BUTTON_PRIMARY}`}>
-              {sending ? "Sending..." : "Send your picks"}
+              {sending ? SENDING[sendLine] : "Send your picks"}
             </button>
             {sendError && <p role="alert" className="mt-3 text-base font-medium text-alert">{sendError}</p>}
           </div>

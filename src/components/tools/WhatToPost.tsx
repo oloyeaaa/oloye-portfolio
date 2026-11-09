@@ -11,15 +11,12 @@ import { OTHER, OTHER_MAX, QUESTIONS, SECTIONS, boxShows, type Answers, type Ide
 // TikTok live, and it's his link in bio.
 
 // Shown while Claude works (about 15 seconds), one after another, so the
-// screen is never still. DRAFT lines from the Product Lead's hand-over: the
-// Copywriter is writing the final ones.
+// screen is never still. Words: the Copywriter (WORDS.md 3161d60).
 const WAITING = [
   "Reading your answers...",
-  "Finding what you could post about...",
-  "Working out who it's for...",
-  "Thinking of a free thing to give away...",
-  "Finding something you could sell...",
-  "Nearly there...",
+  "Finding who it could be for...",
+  "Working out what you could post about...",
+  "Putting your ideas together...",
 ];
 const STEPS = ["Answer a few quick questions.", "Leave your email.", "Get 5 ideas for each of four things.", "Not right? Tap for 5 more."];
 const empty = () => Object.fromEntries(QUESTIONS.map((q) => [q.id, { picked: [], other: "" }])) as Answers;
@@ -330,7 +327,7 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
             ) : (
               <div className="mt-6 rounded-xl bg-surface-alt p-4 text-center">
                 <p className="text-lg text-foreground">
-                  Those are the best fits for your answers. Add a bit more to your answers for fresh ones.
+                  These are the best fits for your answers.
                 </p>
                 <button type="button" onClick={onAddMore} className="mt-3 text-base font-bold text-foreground underline underline-offset-4">
                   Add a bit more to your answers

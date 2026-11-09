@@ -118,7 +118,7 @@ export function buildPicksEmail(name: string, plan: Plan): { subject: string; ht
     picks ? `<p ${P}>${picks}</p>` : "",
     `<p ${P}><strong>Your first 3 posts:</strong><br>${posts}</p>`,
     step ? `<p ${P}><strong>Your first step:</strong> ${esc(step)}</p>` : "",
-    `<p ${P}>The PDF has all of this on one page, to keep or print.</p>`,
+    `<p ${P}>The PDF has all of this, to keep or print.</p>`,
     `<p ${P}>Hit reply and say which idea you're going with.</p>`,
     `<p ${P}>If you want help making the posts, there's a founding group. It's a small group, building it together: what you already know, made into videos with a content machine built with Claude. No price or dates yet. The list hears first.</p>`,
     `<p ${P}>Join the founding group: <a href="https://www.oloye.co.uk/founding">oloye.co.uk/founding</a></p>`,

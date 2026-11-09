@@ -71,7 +71,7 @@ export function firstName(name: string): string {
 export function firstStepText(plan: Plan): string {
   if (plan.sell.firstStep) return plan.sell.firstStep;
   const post = plan.firstPosts[0]?.title;
-  return post ? `Post "${post}" this week. Then see which post people ask about, and make more like it.` : "";
+  return post ? `Post "${post}" this week. Then see which posts people ask about, and make more like them.` : "";
 }
 
 /** File name for the attachment and the download: "{first-name}-plan-oloye.pdf". */
@@ -217,7 +217,7 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
   }
 
   // ---- 2. Your first 3 posts (shown even when "what to post" was blank)
-  const about = plan.pickTitles.what_to_post ? `About: ${plan.pickTitles.what_to_post}` : "";
+  const about = plan.pickTitles.what_to_post ? `Posts about: ${plan.pickTitles.what_to_post}` : "";
   section("Your first 3 posts", (about ? heightOf(about, BODY) : 0) + lineH(15) + lineH(13), () => {
     if (about) {
       para(about, BODY);
@@ -252,10 +252,10 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
     });
   }
 
-  // ---- 5. Your thing to sell
+  // ---- 5. Something to sell
   if (picks.something_to_sell && plan.sell.whatItIs) {
     const pick = plan.pickTitles.something_to_sell;
-    section("Your thing to sell", (pick ? lineH(15) : 0) + heightOf(plan.sell.whatItIs, BODY), () => {
+    section("Something to sell", (pick ? lineH(15) : 0) + heightOf(plan.sell.whatItIs, BODY), () => {
       if (pick) para(pick, ITEM);
       para(plan.sell.whatItIs, BODY);
     });

@@ -33,7 +33,7 @@ const EMAIL_AFTER_MS = 10 * 60 * 1000;
 
 type Track = { id: string; sig: string };
 
-/** Where they came from: the ?from= tag on the link (rita, tiktok, bio, live). */
+/** Where they came from: the ?from= tag on the link (rita, tiktok, bio, live, blog). */
 const fromTag = () => new URLSearchParams(window.location.search).get("from") || "";
 
 /** Counting steps (no name, email or IP: see what-to-post-track.ts). Never blocks the page. */

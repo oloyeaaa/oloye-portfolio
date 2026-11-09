@@ -78,7 +78,11 @@ export function firstStepText(plan: Plan): string {
 
 /** File name for the attachment and the download: "{first-name}-plan-oloye.pdf". */
 export function pdfFileName(name: string): string {
-  const slug = firstName(name)
+  // Letters with no plain form in Unicode (Ł, Ø, ß…) are swapped by hand first.
+  const plain: Record<string, string> = { Ł: "L", ł: "l", Ø: "O", ø: "o", Đ: "D", đ: "d", ß: "ss", Æ: "Ae", æ: "ae", Œ: "Oe", œ: "oe" };
+  const slug = Array.from(firstName(name))
+    .map((c) => plain[c] ?? c)
+    .join("")
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
     .toLowerCase()

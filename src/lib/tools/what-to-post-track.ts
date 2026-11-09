@@ -18,7 +18,7 @@ import { QUESTIONS, SECTIONS, type Answers, type SectionId } from "@/lib/tools/w
 const BASE = "appm6XGHyuXjnhSAo";
 const TABLE = "tblTPXs6jziGOyCbL";
 
-export const SOURCES = ["direct", "rita", "tiktok", "bio", "live"] as const;
+export const SOURCES = ["direct", "rita", "tiktok", "bio", "live", "blog"] as const;
 
 /** The ?from= tag, as one of our sources. No tag is "direct", anything else is "other". */
 export function cleanSource(v: unknown): string {
@@ -80,12 +80,11 @@ async function airtable(method: "POST" | "PATCH", path: string, fields: Record<s
 /** A new row when someone taps "Start the questions". */
 export async function startRow(source: string): Promise<{ id: string; sig: string } | null> {
   const run = `WTP-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${randomBytes(3).toString("hex")}`;
-  const id = await airtable("POST", "", {
-    Run: run,
-    Date: new Date().toISOString().slice(0, 10),
-    Source: source,
-    Started: true,
-  });
+  const row = (src: string) =>
+    airtable("POST", "", { Run: run, Date: new Date().toISOString().slice(0, 10), Source: src, Started: true });
+  // A new source (like "blog") needs its choice in the Source field. If Airtable
+  // won't take it, count the visit as "other" rather than lose it.
+  const id = (await row(source)) || (source !== "other" ? await row("other") : null);
   return id ? { id, sig: signId(id) } : null;
 }
 

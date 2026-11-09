@@ -1,8 +1,21 @@
 import Link from "next/link";
 import { BOOKING_URL, CHECKLIST_URL } from "@/lib/site";
 
+export type Ask = { label: string; href: string };
+
 // The two buttons every page ends on: book a call, or start with the free checklist.
-export function Buttons({ dark = false }: { dark?: boolean }) {
+// A page with its own one ask (like /for/content-creators to /founding) shows just that.
+export function Buttons({ dark = false, ask }: { dark?: boolean; ask?: Ask }) {
+  if (ask) {
+    return (
+      <Link
+        href={ask.href}
+        className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-7 py-4 text-sm font-bold text-foreground transition hover:bg-accent-light sm:w-auto"
+      >
+        {ask.label}
+      </Link>
+    );
+  }
   return (
     <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
       <a
@@ -26,7 +39,7 @@ export function Buttons({ dark = false }: { dark?: boolean }) {
 }
 
 // A page can pass its own heading and line (the last word of the heading goes lime).
-export function LastCall({ heading, line }: { heading?: string; line?: string } = {}) {
+export function LastCall({ heading, line, ask }: { heading?: string; line?: string; ask?: Ask } = {}) {
   const words = heading?.trim().split(" ");
   return (
     <section id="book-a-call" className="scroll-mt-20 px-4 pb-32 pt-8 sm:px-6">
@@ -46,7 +59,7 @@ export function LastCall({ heading, line }: { heading?: string; line?: string } 
           {line ?? "A free call. We'll find the first task worth automating, and you'll know the price before anything starts."}
         </p>
         <div className="mt-10">
-          <Buttons dark />
+          <Buttons dark ask={ask} />
         </div>
       </div>
     </section>

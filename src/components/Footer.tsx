@@ -30,6 +30,7 @@ const columns = [
       { name: "Small businesses", href: "/for/small-business" },
       { name: "Plumbers", href: "/for/plumbers" },
       { name: "Barbers", href: "/for/barbers" },
+      { name: "Content creators", href: "/for/content-creators" },
       { name: "Client onboarding", href: "/automate/client-onboarding" },
       { name: "Google review requests", href: "/automate/google-review-requests" },
       { name: "Client folders", href: "/automate/client-folders" },

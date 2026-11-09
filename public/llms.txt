@@ -36,6 +36,7 @@ AI (Claude) is used inside the system where it helps, for drafts and sorting. It
 - [Small business automation](https://www.oloye.co.uk/for/small-business): what small business automation looks like, one workflow step by step.
 - [Automation for plumbers](https://www.oloye.co.uk/for/plumbers): quote follow-up and invoice reminders that run on their own, with an email template.
 - [Barber no-shows](https://www.oloye.co.uk/for/barbers): a reminder the day before, a clear no-show message and a waiting list.
+- [AI content creation system for content creators](https://www.oloye.co.uk/for/content-creators): a content machine that turns one idea into scripts, carousels and short videos with Claude.
 - [Automate client onboarding](https://www.oloye.co.uk/automate/client-onboarding): the welcome email, form, folder and first call, step by step, with a checklist.
 - [How to ask for Google reviews](https://www.oloye.co.uk/automate/google-review-requests): one short ask to every finished customer, inside Google's rules, with a template.
 - [Automatically create folders in Google Drive](https://www.oloye.co.uk/automate/client-folders): a folder for every new client with the template files copied in.

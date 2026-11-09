@@ -49,7 +49,7 @@ export default function SeoPage({
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{p.under}</p>
             <div className="mt-9">
-              <Buttons />
+              <Buttons ask={p.ask} />
             </div>
           </div>
         </header>
@@ -82,7 +82,7 @@ export default function SeoPage({
           </section>
         )}
 
-        <LastCall heading={p.lastHeading} line={p.lastLine} />
+        <LastCall heading={p.lastHeading} line={p.lastLine} ask={p.ask} />
       </div>
     </>
   );

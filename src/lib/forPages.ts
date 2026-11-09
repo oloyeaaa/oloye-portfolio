@@ -44,6 +44,8 @@ export interface ForPageMeta {
   faqs: FaqItem[];
   lastHeading: string;
   lastLine: string;
+  /** Optional one ask in place of the call and checklist buttons (frontmatter askLabel + askHref, a page on this site). */
+  ask?: { label: string; href: string };
 }
 
 export interface ForPage extends ForPageMeta {
@@ -74,6 +76,10 @@ function parse(section: SeoSection, file: string): ForPage {
     faqs: Array.isArray(data.faqs) ? data.faqs : [],
     lastHeading: data.lastHeading || "What task would you hand over first?",
     lastLine: data.lastLine || "",
+    ask:
+      typeof data.askHref === "string" && data.askHref.startsWith("/") && typeof data.askLabel === "string"
+        ? { label: data.askLabel, href: data.askHref }
+        : undefined,
     body: content.trim(),
   };
 }

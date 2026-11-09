@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { CARE_LINE, SECTIONS, type Answers, type Idea, type Lists } from "@/lib/tools/what-to-post";
 import { FULL_RUN_SYSTEM, UNCLEAR } from "@/lib/tools/what-to-post-prompts";
+import { hasStrayMoney, theirAmounts } from "@/lib/tools/what-to-post-money";
 
 /**
  * Claude for "What to post and what to sell". Server only: the key is read from
@@ -68,7 +69,10 @@ function tidy(text: unknown, max: number): string {
     .slice(0, max);
 }
 
-function tidyList(list: unknown): Idea[] {
+/** Counts ideas dropped for naming money the visitor never gave (see what-to-post-money.ts). */
+let moneyDropped = 0;
+
+function tidyList(list: unknown, theirs: Set<string>): Idea[] {
   if (!Array.isArray(list)) return [];
   const seen = new Set<string>();
   const out: Idea[] = [];
@@ -78,6 +82,10 @@ function tidyList(list: unknown): Idea[] {
     const title = tidy((item as Idea)?.title, 120);
     const why = tidy((item as Idea)?.why, 200);
     if (!title || !why || seen.has(title.toLowerCase())) continue;
+    if (hasStrayMoney(`${title} ${why}`, theirs)) {
+      moneyDropped++;
+      continue;
+    }
     seen.add(title.toLowerCase());
     out.push({ title, why });
     if (out.length === PER_LIST) break;
@@ -119,12 +127,12 @@ async function ask(answers: Answers, timeoutMs: number): Promise<Record<string, 
   }
 }
 
-function read(parsed: Record<string, unknown> | null): FullResult | null {
+function read(parsed: Record<string, unknown> | null, theirs: Set<string>): FullResult | null {
   if (!parsed) return null;
   if (parsed.status === "unclear") return { status: "unclear" };
   const lists = {} as Lists;
   for (const s of SECTIONS) {
-    lists[s.id] = tidyList(parsed[s.id]);
+    lists[s.id] = tidyList(parsed[s.id], theirs);
     // At least the first 5 must be there; "5 more" shows whatever is left.
     if (lists[s.id].length < 5) return null;
   }
@@ -145,11 +153,17 @@ export async function fullRun(answers: Answers): Promise<FullResult | null> {
     console.error("What to post: no Claude key is set");
     return null;
   }
+  const theirs = theirAmounts(answers);
   const started = Date.now();
-  const first = read(await ask(answers, 45_000));
-  if (first) return first;
+  moneyDropped = 0;
+  const first = read(await ask(answers, 45_000), theirs);
+  // A clean reply is used as it is. One that broke the shape, or named money
+  // the visitor never gave, gets one more try while there's time.
+  if (first && moneyDropped === 0) return first;
   const left = 55_000 - (Date.now() - started);
-  if (left < 20_000) return null;
-  console.error("What to post: reply not usable, trying once more");
-  return read(await ask(answers, left));
+  if (left < 20_000) return first; // no time: the money lines are already dropped
+  console.error(first ? "What to post: money in the ideas, trying once more" : "What to post: reply not usable, trying once more");
+  moneyDropped = 0;
+  const second = read(await ask(answers, left), theirs);
+  return second || first;
 }

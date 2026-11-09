@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { CARE_LINE, type Answers, type Idea, type SectionId } from "@/lib/tools/what-to-post";
 import { PLAN_SYSTEM, PLAN_UNCLEAR } from "@/lib/tools/what-to-post-prompts";
+import { hasStrayMoney, stripStrayMoney, theirAmounts } from "@/lib/tools/what-to-post-money";
 
 /**
  * Version 2 of "What to post": a short plan for the ideas they picked (the
@@ -119,6 +120,34 @@ ${JSON.stringify(picks, null, 2)}
 
 type PlanResult = { status: "plan"; plan: Plan } | { status: "unclear" };
 
+/** True when any line of the plan names money the visitor never gave. */
+function hasMoney(plan: Plan, theirs: Set<string>): boolean {
+  const all = [
+    plan.whyItFits,
+    ...Object.values(plan.pickTitles),
+    ...plan.firstPosts.flatMap((p) => [p.title, p.whatToShow]),
+    ...plan.freeThing,
+    plan.sell.whatItIs,
+    plan.sell.firstStep,
+  ];
+  return all.some((t) => hasStrayMoney(t, theirs));
+}
+
+/** Drops those lines. Titles that must stay lose just the amount. */
+function dropMoney(plan: Plan, theirs: Set<string>): Plan {
+  const keep = (t: string) => (hasStrayMoney(t, theirs) ? "" : t);
+  const titles = {} as Record<SectionId, string>;
+  for (const [k, v] of Object.entries(plan.pickTitles)) titles[k as SectionId] = stripStrayMoney(v, theirs);
+  return {
+    ...plan,
+    pickTitles: titles,
+    whyItFits: keep(plan.whyItFits),
+    firstPosts: plan.firstPosts.map((p) => ({ title: stripStrayMoney(p.title, theirs), whatToShow: keep(p.whatToShow) })),
+    freeThing: plan.freeThing.filter((l) => !hasStrayMoney(l, theirs)),
+    sell: { whatItIs: keep(plan.sell.whatItIs), firstStep: keep(plan.sell.firstStep) },
+  };
+}
+
 function read(p: Record<string, unknown> | null, picks: Picks): PlanResult | null {
   if (!p) return null;
   if (p.status === "unclear") return { status: "unclear" };
@@ -158,11 +187,14 @@ export async function planRun(answers: Answers, picks: Picks): Promise<PlanResul
     console.error("What to post plan: no Claude key is set");
     return null;
   }
+  const theirs = theirAmounts(answers);
+  const clean = (r: PlanResult | null) => !r || r.status !== "plan" || !hasMoney(r.plan, theirs);
   const started = Date.now();
   const first = read(await ask(answers, picks), picks);
-  if (first) return first;
-  // One more try, only while it still fits inside the server's 60 seconds.
-  if (Date.now() - started > 25_000) return null;
-  console.error("What to post plan: trying once more");
-  return read(await ask(answers, picks), picks);
+  if (first && clean(first)) return first;
+  // One more try (bad reply, or money they never gave), only while it fits in the server's 60 seconds.
+  const second = Date.now() - started > 25_000 ? null : (console.error("What to post plan: trying once more"), read(await ask(answers, picks), picks));
+  const best = second && clean(second) ? second : second || first;
+  if (best && best.status === "plan" && !clean(best)) return { status: "plan", plan: dropMoney(best.plan, theirs) };
+  return best;
 }

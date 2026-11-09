@@ -328,6 +328,7 @@ function ResultsView({
   const [sendError, setSendError] = useState("");
   const [sendLine, setSendLine] = useState(0);
   const [pdfUrl, setPdfUrl] = useState("");
+  const [pdfName, setPdfName] = useState("your-plan-oloye.pdf");
 
   useEffect(() => {
     if (!sending) return;
@@ -361,17 +362,18 @@ function ResultsView({
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong. Try again in a minute.");
+      if (!res.ok) throw new Error(data.error || "We couldn't make your plan just now. Press it again.");
       if (data.status === "unclear") throw new Error(data.message);
       // The picks email replaces the plain ideas email.
       emailSent.current = true;
       if (typeof data.pdf === "string" && data.pdf) {
         const bytes = Uint8Array.from(atob(data.pdf), (c) => c.charCodeAt(0));
         setPdfUrl(URL.createObjectURL(new Blob([bytes], { type: "application/pdf" })));
+        if (typeof data.pdfName === "string") setPdfName(data.pdfName);
       }
       setSent("Sent. Check your inbox for your picks and the PDF.");
     } catch (err) {
-      setSendError(err instanceof Error ? err.message : "Something went wrong. Try again in a minute.");
+      setSendError(err instanceof Error ? err.message : "We couldn't make your plan just now. Press it again.");
     } finally {
       setSending(false);
     }
@@ -506,7 +508,7 @@ function ResultsView({
           {pdfUrl && (
             <a
               href={pdfUrl}
-              download="Your plan - what to post and what to sell.pdf"
+              download={pdfName}
               onClick={() => count(track, "downloaded")}
               className={`mt-5 text-base ${BUTTON_PRIMARY}`}
             >

@@ -1,214 +1,321 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import fontkit from "@pdf-lib/fontkit";
-import { PDFDocument, pushGraphicsState, popGraphicsState, rgb, setCharacterSpacing, type PDFFont, type PDFPage } from "pdf-lib";
-import { SECTIONS, type Idea, type SectionId } from "@/lib/tools/what-to-post";
+import {
+  PDFDocument,
+  PDFString,
+  popGraphicsState,
+  pushGraphicsState,
+  rgb,
+  setCharacterSpacing,
+  type PDFFont,
+  type PDFPage,
+  type RGB,
+} from "pdf-lib";
+import type { Idea, SectionId } from "@/lib/tools/what-to-post";
 import type { Plan } from "@/lib/claude-what-to-post-plan";
 
 /**
- * The version 2 PDF: "Your plan: what to post and what to sell".
- * Words: the Copywriter (WORDS.md section 6). Look: the brand rules in the
- * Product Lead's hand-over (product-team/BRAND.md):
- * - Inter (headings bold, -0.02em; body 400/500), JetBrains Mono for small labels
- * - Obsidian headings, Slate body, Muted small print, light borders, rounded boxes
- * - Lime once, on the one thing to look at: the "Your first step" box, with olive text
- * - the care note on a Chip-grey box, never red
- * Fonts are the OFL files in src/assets/pdf-fonts. Server only.
+ * The version 2 PDF: their plan, made for their picks.
+ *
+ * Layout from the UI review (Projects/live-find-your-channel/ui-review-v2-pdf.md),
+ * brand from product-team/BRAND.md, words from the Copywriter (WORDS.md 6)
+ * and the review:
+ * - A4, 44pt margins, phone-sized type (body 14, headings 20, title 30), line gap 1.45
+ * - order: why it fits, first 3 posts, who you're talking to, free thing,
+ *   thing to sell, first step; a blank part leaves no heading and no gap
+ * - lime once, on the first step box; the care note on chip grey, never red
+ * - Inter and JetBrains Mono embedded (src/assets/pdf-fonts, OFL), subset so
+ *   every reader shows them; any letter the fonts can't draw is swapped, never fatal
+ * - a second page when needed, never a heading alone at the foot of a page
+ * Server only.
  */
 
 const hex = (h: string) => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255);
 const INK = hex("#0E0F12");
-const BODY = hex("#374151");
+const SLATE = hex("#374151");
 const MUTED = hex("#6B7280");
 const LIME = hex("#C6F23C");
 const OLIVE = hex("#446100");
-const BORDER = hex("#E2E4E8");
+const LINE = hex("#E2E4E8");
 const CHIP = hex("#E9EBEF");
-const WHITE = hex("#FFFFFF");
+const CHIP_BORDER = hex("#CBD0D8");
+const SKY = hex("#0284C7");
 
 const W = 595.28; // A4
 const H = 841.89;
 const M = 44;
-const INNER = W - 2 * M;
+const COL = W - 2 * M;
+const FOOT = 40; // space kept for the footer
+const GAP = 1.45; // line height
 
+const FOUNDING_URL = "https://oloye.co.uk/founding";
 const FONT_DIR = path.join(process.cwd(), "src/assets/pdf-fonts");
-const font = (name: string) => readFileSync(path.join(FONT_DIR, `${name}.woff`));
+const fontFile = (name: string) => readFileSync(path.join(FONT_DIR, `${name}.woff`));
 
-/** The fonts carry Western letters: swap the usual curly marks, drop anything they can't draw. */
-function safe(s: string): string {
-  return s
-    .replace(/[‘’‚′]/g, "'")
-    .replace(/[“”„″]/g, '"')
-    .replace(/[—–‐‑]/g, ", ")
-    .replace(/…/g, "...")
-    .replace(/[^\x20-\x7E\xA0-\xFF]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+/** The date as DD/MM/YYYY, UK time. */
+export function ukDate(d = new Date()): string {
+  return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", day: "2-digit", month: "2-digit", year: "numeric" }).format(d);
 }
 
-function wrap(text: string, f: PDFFont, size: number, width: number): string[] {
-  const words = safe(text).split(" ");
-  const lines: string[] = [];
-  let line = "";
-  for (const w of words) {
-    const test = line ? `${line} ${w}` : w;
-    if (f.widthOfTextAtSize(test, size) > width && line) {
-      lines.push(line);
-      line = w;
-    } else line = test;
-  }
-  if (line) lines.push(line);
-  return lines;
+/** First name as typed, first letter a capital, at most 24 characters. */
+export function firstName(name: string): string {
+  const n = name.trim().split(/\s+/)[0] || "";
+  return n ? (n.charAt(0).toUpperCase() + n.slice(1)).slice(0, 24) : "";
 }
 
-/** A rounded box (pdf-lib has no corner radius, so it's drawn as a path). */
-function box(page: PDFPage, x: number, top: number, w: number, h: number, r: number, fill: ReturnType<typeof rgb>, border?: ReturnType<typeof rgb>) {
-  const d = `M ${r} 0 H ${w - r} Q ${w} 0 ${w} ${r} V ${h - r} Q ${w} ${h} ${w - r} ${h} H ${r} Q 0 ${h} 0 ${h - r} V ${r} Q 0 0 ${r} 0 Z`;
-  // drawSvgPath puts (0,0) at the top left and y grows downwards.
-  page.drawSvgPath(d, { x, y: top, color: fill, borderColor: border, borderWidth: border ? 1 : 0 });
+/**
+ * The one step: their sell pick's first step, or, without one, built from
+ * their own first post (the UI review, must-fix 4). Shared with the email.
+ */
+export function firstStepText(plan: Plan): string {
+  if (plan.sell.firstStep) return plan.sell.firstStep;
+  const post = plan.firstPosts[0]?.title;
+  return post ? `Post "${post}" this week. Then see which post people ask about, and make more like it.` : "";
+}
+
+/** File name for the attachment and the download: "{first-name}-plan-oloye.pdf". */
+export function pdfFileName(name: string): string {
+  const slug = firstName(name)
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `${slug || "your"}-plan-oloye.pdf`;
 }
 
 export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea | null>, plan: Plan): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   doc.registerFontkit(fontkit);
-  doc.setTitle("Your plan: what to post and what to sell");
+  const first = firstName(name);
+  const title = first ? `${first}'s plan` : "Your plan";
+  doc.setTitle(title);
   doc.setAuthor("Oloye");
-  const regular = await doc.embedFont(font("inter-latin-400-normal"), { subset: true });
-  const medium = await doc.embedFont(font("inter-latin-500-normal"), { subset: true });
-  const bold = await doc.embedFont(font("inter-latin-700-normal"), { subset: true });
-  const heavy = await doc.embedFont(font("inter-latin-800-normal"), { subset: true });
-  const mono = await doc.embedFont(font("jetbrains-mono-latin-500-normal"), { subset: true });
+  doc.setLanguage("en-GB");
+
+  const regular = await doc.embedFont(fontFile("inter-latin-400-normal"), { subset: true });
+  const medium = await doc.embedFont(fontFile("inter-latin-500-normal"), { subset: true });
+  const bold = await doc.embedFont(fontFile("inter-latin-700-normal"), { subset: true });
+  const heavy = await doc.embedFont(fontFile("inter-latin-800-normal"), { subset: true });
+  const mono = await doc.embedFont(fontFile("jetbrains-mono-latin-500-normal"), { subset: true });
+
+  // Letters the fonts can draw. Anything else becomes its plain letter (Ł to L), or goes.
+  const known = new Set(regular.getCharacterSet());
+  const extra: Record<string, string> = { Ł: "L", ł: "l", Ø: "O", ø: "o", Đ: "D", đ: "d", ß: "ss" };
+  const safe = (s: string): string =>
+    Array.from(s.replace(/\s*[—–]\s*/g, ", ").replace(/\s+/g, " ").trim())
+      .map((ch) => {
+        if (known.has(ch.codePointAt(0)!)) return ch;
+        const plain = ch.normalize("NFD").replace(/[̀-ͯ]/g, "");
+        if (plain && Array.from(plain).every((c) => known.has(c.codePointAt(0)!))) return plain;
+        return extra[ch] ?? "";
+      })
+      .join("");
+
+  const wrap = (text: string, f: PDFFont, size: number, width: number): string[] => {
+    const out: string[] = [];
+    let line = "";
+    for (const word of safe(text).split(" ")) {
+      // A word longer than the line is broken by letters, so nothing runs off the page.
+      let w = word;
+      while (f.widthOfTextAtSize(w, size) > width) {
+        let cut = w.length - 1;
+        while (cut > 1 && f.widthOfTextAtSize(w.slice(0, cut), size) > width) cut--;
+        if (line) {
+          out.push(line);
+          line = "";
+        }
+        out.push(w.slice(0, cut));
+        w = w.slice(cut);
+      }
+      const test = line ? `${line} ${w}` : w;
+      if (line && f.widthOfTextAtSize(test, size) > width) {
+        out.push(line);
+        line = w;
+      } else line = test;
+    }
+    if (line) out.push(line);
+    return out;
+  };
 
   let page: PDFPage = doc.addPage([W, H]);
   let y = H - M;
-  // While measuring a card, nothing is drawn and no page is added.
-  let dry = false;
-  // Words inside a card sit this far in from the card's edge.
-  let inset = 0;
-  const room = (h: number) => {
-    if (!dry && y - h < M + 20) {
-      page = doc.addPage([W, H]);
-      y = H - M;
+  const newPage = () => {
+    page = doc.addPage([W, H]);
+    y = H - M;
+  };
+  const left = () => y - (M + FOOT);
+  const lineH = (size: number) => size * GAP;
+
+  type Style = { font: PDFFont; size: number; color: RGB; x?: number; width?: number; tight?: boolean };
+  const lines = (text: string, s: Style) => wrap(text, s.font, s.size, s.width ?? COL - (s.x ?? 0));
+  const heightOf = (text: string, s: Style) => lines(text, s).length * lineH(s.size);
+
+  /** Writes a paragraph, moving to a new page between lines when needed. */
+  const para = (text: string, s: Style) => {
+    for (const l of lines(text, s)) {
+      if (left() < lineH(s.size)) newPage();
+      if (s.tight) page.pushOperators(pushGraphicsState(), setCharacterSpacing(-0.02 * s.size));
+      page.drawText(l, { x: M + (s.x ?? 0), y: y - s.size, size: s.size, font: s.font, color: s.color });
+      if (s.tight) page.pushOperators(popGraphicsState());
+      y -= lineH(s.size);
     }
   };
 
-  /** Writes wrapped lines. Headings get the brand's -0.02em letter spacing. */
-  const text = (t: string, f: PDFFont, size: number, color = BODY, opts: { indent?: number; lead?: number; tight?: boolean; width?: number } = {}) => {
-    const indent = opts.indent || 0;
-    const lead = opts.lead ?? size * 0.55;
-    const lines = wrap(t, f, size, (opts.width || INNER) - indent - 2 * inset);
-    for (const l of lines) {
-      room(size + lead);
-      if (!dry) {
-        if (opts.tight) page.pushOperators(pushGraphicsState(), setCharacterSpacing(-0.02 * size));
-        page.drawText(l, { x: M + inset + indent, y: y - size, size, font: f, color });
-        if (opts.tight) page.pushOperators(popGraphicsState());
-      }
-      y -= size + lead;
-    }
+  /** A rounded box: (x, top) is the top-left corner. */
+  const box = (x: number, top: number, w: number, h: number, fill: RGB, border: RGB) => {
+    const r = 12;
+    const d = `M ${r} 0 H ${w - r} Q ${w} 0 ${w} ${r} V ${h - r} Q ${w} ${h} ${w - r} ${h} H ${r} Q 0 ${h} 0 ${h - r} V ${r} Q 0 0 ${r} 0 Z`;
+    page.drawSvgPath(d, { x, y: top, color: fill, borderColor: border, borderWidth: 1 });
   };
-  const label = (t: string, color = MUTED) => text(t.toUpperCase(), mono, 8.5, color, { lead: 6 });
 
-  // Title
-  label("oloye.co.uk  /  what to post and what to sell");
-  y -= 8;
-  text("Your plan: what to post and what to sell", heavy, 24, INK, { tight: true, lead: 5 });
-  y -= 2;
-  text(`Made for ${name.trim() || "you"}, from your answers.`, medium, 12, MUTED);
-  if (plan.whyItFits) {
+  const BODY: Style = { font: regular, size: 14, color: SLATE };
+  const HEAD: Style = { font: bold, size: 20, color: INK, tight: true };
+  const ITEM: Style = { font: bold, size: 15, color: INK };
+  const SMALL: Style = { font: regular, size: 13, color: SLATE };
+
+  /**
+   * A section: a light rule, the heading, then its content. The heading never
+   * sits alone at the foot of a page: it moves over with its first 2 lines.
+   */
+  const section = (heading: string, firstLines: number, body: () => void) => {
+    const need = 22 + lineH(HEAD.size) + 4 + firstLines;
+    if (left() < need) newPage();
+    else {
+      y -= 8;
+      page.drawLine({ start: { x: M, y }, end: { x: W - M, y }, thickness: 1, color: LINE });
+      y -= 14;
+    }
+    para(heading, HEAD);
     y -= 2;
-    text(plan.whyItFits, regular, 12, BODY, { lead: 6 });
-  }
+    body();
+  };
 
-  // Care note: Obsidian text on a Chip-grey box, never red.
+  // ---- Title and subtitle
+  para(title, { font: heavy, size: 30, color: INK, tight: true });
+  const parts = plan.sell.whatItIs ? "What to post and what to sell" : "What to post";
+  para(`${parts}, made from your answers on ${ukDate()}.`, { font: regular, size: 13, color: MUTED });
+  y -= 8;
+
+  // ---- Care note: Obsidian on chip grey, never red.
   if (plan.careNote) {
-    y -= 6;
-    const lines = wrap(plan.careNote, medium, 11.5, INNER - 32);
-    const h = lines.length * 17 + 24;
-    room(h);
-    box(page, M, y, INNER, h, 12, CHIP);
-    let ty = y - 12;
-    for (const l of lines) {
-      page.drawText(l, { x: M + 16, y: ty - 11.5, size: 11.5, font: medium, color: INK });
-      ty -= 17;
-    }
-    y -= h;
-  }
-
-  // The four parts, each in a light card. A part with no pick is left out;
-  // the 3 first posts still show, as Claude builds them from the other picks.
-  let n = 0;
-  for (const s of SECTIONS) {
-    const pick = picks[s.id];
-    if (!pick && !(s.id === "what_to_post" && plan.firstPosts.length)) continue;
-    n++;
-    const pad = 12;
-    const draw = () => {
-      label(`0${n}  ${s.title}`, MUTED);
-      y -= 1;
-      if (pick) text(pick.title, bold, 13.5, INK, { tight: true, lead: 6 });
-      if (s.id === "what_to_post") {
-        y -= 3;
-        label("Your first 3 posts", MUTED);
-        plan.firstPosts.forEach((p, i) => {
-          text(`${i + 1}.  ${p.title}`, bold, 11, INK, { lead: 3 });
-          text(p.whatToShow, regular, 10.5, BODY, { indent: 16, lead: 4 });
-        });
-      } else if (s.id === "who_its_for" && pick) {
-        text(pick.why, regular, 11, BODY, { lead: 6 });
-      } else if (s.id === "free_thing") {
-        for (const l of plan.freeThing) text(`-  ${l}`, regular, 11, BODY, { lead: 4 });
-      } else if (s.id === "something_to_sell") {
-        if (plan.sell.whatItIs) text(plan.sell.whatItIs, regular, 11, BODY, { lead: 6 });
-        if (plan.sell.firstStep) text(`Where to start: ${plan.sell.firstStep}`, medium, 11, INK, { lead: 6 });
-      }
-    };
-    // Measure first, so the card fits whole on a page, then draw the card and its words.
-    y -= 5;
-    inset = pad;
-    dry = true;
-    const top = y;
-    draw();
-    const h = top - y + 2 * pad - 4;
-    dry = false;
-    y = top;
-    room(h);
-    box(page, M, y, INNER, h, 14, WHITE, BORDER);
+    const s: Style = { font: medium, size: 14, color: INK, x: 14, width: COL - 28 };
+    const pad = 14;
+    const h = heightOf(plan.careNote, s) - (lineH(14) - 14) + 2 * pad;
+    if (left() < h) newPage();
+    box(M, y, COL, h, CHIP, CHIP_BORDER);
     y -= pad;
-    draw();
-    y -= pad - 4;
-    inset = 0;
+    para(plan.careNote, s);
+    y -= pad - (lineH(14) - 14);
+    y -= 4;
   }
 
-  // The one lime thing on the page: "Your first step", olive text.
-  y -= 10;
-  const stepLines = wrap(
-    "Post about your idea three times this week. See which posts people ask questions about, and make more of those.",
-    medium,
-    12,
-    INNER - 32,
-  );
-  const stepH = 20 + 18 + stepLines.length * 17 + 6;
-  room(stepH);
-  box(page, M, y, INNER, stepH, 14, LIME);
-  let sy = y - 12;
-  page.pushOperators(pushGraphicsState(), setCharacterSpacing(-0.02 * 16));
-  page.drawText("Your first step", { x: M + 16, y: sy - 16, size: 16, font: heavy, color: OLIVE });
-  page.pushOperators(popGraphicsState());
-  sy -= 26;
-  for (const l of stepLines) {
-    page.drawText(l, { x: M + 16, y: sy - 12, size: 12, font: medium, color: OLIVE });
-    sy -= 17;
+  // ---- 1. Why this fits you
+  if (plan.whyItFits) {
+    section("Why this fits you", heightOf(plan.whyItFits, BODY), () => para(plan.whyItFits, BODY));
   }
-  y -= stepH;
 
-  y -= 10;
-  text("Want help making the posts? Join the founding group, a small group building it together: oloye.co.uk/founding", medium, 11.5, INK, { lead: 7 });
+  // ---- 2. Your first 3 posts (shown even when "what to post" was blank)
+  const about = plan.pickTitles.what_to_post ? `About: ${plan.pickTitles.what_to_post}` : "";
+  section("Your first 3 posts", (about ? heightOf(about, BODY) : 0) + lineH(15) + lineH(13), () => {
+    if (about) {
+      para(about, BODY);
+      y -= 4;
+    }
+    plan.firstPosts.forEach((p, i) => {
+      if (left() < lineH(15) + lineH(13)) newPage();
+      // The number hangs on the left, so a wrapped title lines up under itself.
+      page.drawText(`${i + 1}.`, { x: M, y: y - 15, size: 15, font: bold, color: INK });
+      para(p.title, { ...ITEM, x: 22 });
+      para(p.whatToShow, { ...SMALL, x: 22 });
+      y -= 6;
+    });
+  });
 
-  // Footer on every page
-  for (const p of doc.getPages()) {
-    p.drawLine({ start: { x: M, y: M - 4 }, end: { x: W - M, y: M - 4 }, thickness: 1, color: BORDER });
-    p.drawText("OLOYE.CO.UK", { x: M, y: M - 20, size: 8.5, font: mono, color: MUTED });
+  // ---- 3. Who you're talking to (one line: the pick's title only)
+  if (plan.pickTitles.who_its_for) {
+    section("Who you're talking to", heightOf(plan.pickTitles.who_its_for, BODY), () => para(plan.pickTitles.who_its_for, BODY));
   }
+
+  // ---- 4. Your free thing
+  if (picks.free_thing && (plan.pickTitles.free_thing || plan.freeThing.length)) {
+    section("Your free thing", lineH(15) + lineH(14), () => {
+      if (plan.pickTitles.free_thing) para(plan.pickTitles.free_thing, ITEM);
+      y -= 2;
+      for (const l of plan.freeThing) {
+        if (left() < lineH(14)) newPage();
+        // A real bullet, with a hanging indent so wrapped lines line up with the text.
+        page.drawCircle({ x: M + 5, y: y - 14 * 0.62, size: 2.2, color: INK });
+        para(l, { ...BODY, x: 16 });
+      }
+    });
+  }
+
+  // ---- 5. Your thing to sell
+  if (picks.something_to_sell && plan.sell.whatItIs) {
+    const pick = plan.pickTitles.something_to_sell;
+    section("Your thing to sell", (pick ? lineH(15) : 0) + heightOf(plan.sell.whatItIs, BODY), () => {
+      if (pick) para(pick, ITEM);
+      para(plan.sell.whatItIs, BODY);
+    });
+  }
+
+  // ---- 6. Your first step: the one lime thing on the page
+  const step = firstStepText(plan);
+  if (step) {
+    const s: Style = { font: bold, size: 15, color: INK, x: 16, width: COL - 32 };
+    const pad = 16;
+    const h = pad + lineH(11) + 2 + heightOf(step, s) - (lineH(15) - 15) + pad;
+    y -= 20;
+    if (left() < h) newPage();
+    box(M, y, COL, h, LIME, OLIVE);
+    y -= pad;
+    page.drawText("YOUR FIRST STEP", { x: M + 16, y: y - 11, size: 11, font: mono, color: OLIVE });
+    y -= lineH(11) + 2;
+    para(step, s);
+    y -= pad - (lineH(15) - 15);
+  }
+
+  // ---- The founding group line, with a link you can tap
+  {
+    y -= 20;
+    const lead = "Want help making the posts? Join the founding group, a small group building it together: ";
+    const link = "oloye.co.uk/founding";
+    const ls = lines(lead + link, { font: medium, size: 14, color: INK });
+    if (left() < ls.length * lineH(14)) newPage();
+    for (const l of ls) {
+      const at = l.indexOf(link);
+      const baseY = y - 14;
+      if (at === -1) {
+        page.drawText(l, { x: M, y: baseY, size: 14, font: medium, color: INK });
+      } else {
+        const before = l.slice(0, at);
+        const bx = M + medium.widthOfTextAtSize(before, 14);
+        const lw = medium.widthOfTextAtSize(link, 14);
+        if (before) page.drawText(before, { x: M, y: baseY, size: 14, font: medium, color: INK });
+        page.drawText(link, { x: bx, y: baseY, size: 14, font: medium, color: SKY });
+        page.drawLine({ start: { x: bx, y: baseY - 2.5 }, end: { x: bx + lw, y: baseY - 2.5 }, thickness: 0.8, color: SKY });
+        const annot = doc.context.register(
+          doc.context.obj({
+            Type: "Annot",
+            Subtype: "Link",
+            Rect: [bx, baseY - 5, bx + lw, baseY + 15],
+            Border: [0, 0, 0],
+            A: { Type: "Action", S: "URI", URI: PDFString.of(FOUNDING_URL) },
+          }),
+        );
+        page.node.addAnnot(annot);
+      }
+      y -= lineH(14);
+    }
+  }
+
+  // ---- Footer on every page: "oloye.co.uk · DD/MM/YYYY · Page 1 of 2"
+  const pages = doc.getPages();
+  pages.forEach((p, i) => {
+    p.drawLine({ start: { x: M, y: M + 14 }, end: { x: W - M, y: M + 14 }, thickness: 1, color: LINE });
+    p.drawText(`oloye.co.uk  ·  ${ukDate()}  ·  Page ${i + 1} of ${pages.length}`, { x: M, y: M - 2, size: 11, font: regular, color: MUTED });
+  });
   return doc.save();
 }

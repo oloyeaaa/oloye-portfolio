@@ -1,5 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { SECTIONS, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
+import type { Plan } from "@/lib/claude-what-to-post-plan";
+import { firstStepText } from "@/lib/tools/what-to-post-pdf";
 
 /**
  * The "What to post" results email (WORDS.md section 4, the Copywriter).
@@ -96,21 +98,27 @@ export function buildEmail(
 }
 
 /**
- * Version 2: the picks email (WORDS.md section 6). Lists the ideas they picked
- * (a section with no pick is left out); the plan itself is in the PDF.
+ * Version 2: the picks email (WORDS.md section 6, 7a460e3, laid out for
+ * phones). The picks (without v1's format words), the first 3 posts and the
+ * first step are in the body; the PDF is attached. A section with no pick is
+ * left out.
  */
-export function buildPicksEmail(name: string, picks: Partial<Record<SectionId, Idea | null>>): { subject: string; html: string } {
+export function buildPicksEmail(name: string, plan: Plan): { subject: string; html: string } {
   const first = name.trim() || "there";
-  const lines = SECTIONS.filter((s) => picks[s.id])
-    .map((s) => `${esc(s.title)}: <strong>${esc(picks[s.id]!.title)}</strong>`)
+  const picks = SECTIONS.filter((s) => plan.pickTitles[s.id])
+    .map((s) => `${esc(s.title)}: <strong>${esc(plan.pickTitles[s.id])}</strong>`)
     .join("<br>");
+  const posts = plan.firstPosts.map((p, i) => `${i + 1}. ${esc(p.title)}`).join("<br>");
+  const step = firstStepText(plan);
   const html = [
-    '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.55;color:#111;max-width:600px">',
+    '<div style="font-family:Inter,Arial,sans-serif;font-size:16px;line-height:1.55;color:#111;max-width:600px">',
     '<span style="display:none;max-height:0;overflow:hidden;opacity:0">The ideas you picked, and a PDF to keep.</span>',
     `<p ${P}>Hi ${esc(first)},</p>`,
-    `<p ${P}>Here are the ideas you picked. They're in the PDF too, so you can keep them or print them.</p>`,
-    `<p ${P}>${lines}</p>`,
-    `<p ${P}>Posting gets people's attention. A free thing and something to sell give that attention somewhere to go. One way to start: post about your idea three times this week, and see which posts people ask questions about.</p>`,
+    `<p ${P}>Here are the ideas you picked.</p>`,
+    picks ? `<p ${P}>${picks}</p>` : "",
+    `<p ${P}><strong>Your first 3 posts:</strong><br>${posts}</p>`,
+    step ? `<p ${P}><strong>Your first step:</strong> ${esc(step)}</p>` : "",
+    `<p ${P}>The PDF has all of this on one page, to keep or print.</p>`,
     `<p ${P}>Hit reply and say which idea you're going with.</p>`,
     `<p ${P}>If you want help making the posts, there's a founding group. It's a small group, building it together: what you already know, made into videos with a content machine built with Claude. No price or dates yet. The list hears first.</p>`,
     `<p ${P}>Join the founding group: <a href="https://www.oloye.co.uk/founding">oloye.co.uk/founding</a></p>`,

@@ -4,7 +4,7 @@ import { sendToMake } from "@/lib/leads";
 import { CARE_LINE, SECTIONS, cleanAnswers, type Idea, type SectionId } from "@/lib/tools/what-to-post";
 import { buildPicksEmail, readLists, verify } from "@/lib/tools/what-to-post-email";
 import { planRun, PLAN_UNCLEAR, type Picks } from "@/lib/claude-what-to-post-plan";
-import { buildPlanPdf } from "@/lib/tools/what-to-post-pdf";
+import { buildPlanPdf, pdfFileName } from "@/lib/tools/what-to-post-pdf";
 import { checkId, updateRow } from "@/lib/tools/what-to-post-track";
 
 /**
@@ -44,7 +44,9 @@ export async function POST(req: Request) {
   const picks = {} as Picks;
   for (const s of SECTIONS) {
     const i = raw[s.id];
-    picks[s.id] = typeof i === "number" && Number.isInteger(i) && i >= 0 && i < lists[s.id].length ? lists[s.id][i] : null;
+    const idea = typeof i === "number" && Number.isInteger(i) && i >= 0 && i < lists[s.id].length ? lists[s.id][i] : null;
+    // Strip anything that looks like our tags, so nobody can close a tag early.
+    picks[s.id] = idea ? { title: idea.title.replace(/[<>]/g, ""), why: idea.why.replace(/[<>]/g, "") } : null;
   }
   if (!SECTIONS.some((s) => picks[s.id])) return NextResponse.json({ ok: true, status: "unclear", message: PLAN_UNCLEAR });
 
@@ -53,7 +55,7 @@ export async function POST(req: Request) {
   const result = await planRun(answers, picks);
   if (!result) {
     planned.delete(token);
-    return NextResponse.json({ error: "Something went wrong. Try again in a minute." }, { status: 503 });
+    return NextResponse.json({ error: "We couldn't make your plan just now. Press it again." }, { status: 503 });
   }
   if (result.status === "unclear") {
     planned.delete(token);
@@ -61,7 +63,7 @@ export async function POST(req: Request) {
   }
 
   const pdf = await buildPlanPdf(name, picks, result.plan);
-  const { subject, html } = buildPicksEmail(name, picks);
+  const { subject, html } = buildPicksEmail(name, result.plan);
   const picked = SECTIONS.filter((s) => picks[s.id]).map((s) => `${s.title}: ${(picks[s.id] as Idea).title}`);
 
   // The counting row gets the picked ideas as text. Never the person.
@@ -78,11 +80,11 @@ export async function POST(req: Request) {
     subject,
     html,
     pdf: Buffer.from(pdf).toString("base64"),
-    pdfName: "Your plan - what to post and what to sell.pdf",
+    pdfName: pdfFileName(name),
   });
   if (sent !== "ok") {
     planned.delete(token);
-    return NextResponse.json({ error: "Something went wrong. Try again in a minute." }, { status: 502 });
+    return NextResponse.json({ error: "We couldn't make your plan just now. Press it again." }, { status: 502 });
   }
   // The PDF comes back too, for the download button on the page.
   return NextResponse.json({
@@ -90,5 +92,6 @@ export async function POST(req: Request) {
     status: "sent",
     picks: Object.keys(picks).filter((k) => picks[k as SectionId]),
     pdf: Buffer.from(pdf).toString("base64"),
+    pdfName: pdfFileName(name),
   });
 }

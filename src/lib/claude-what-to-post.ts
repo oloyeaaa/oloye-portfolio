@@ -19,10 +19,17 @@ import { FULL_RUN_SYSTEM, UNCLEAR } from "@/lib/tools/what-to-post-prompts";
 
 export { UNCLEAR };
 
-// Settings, not code: the model and effort can change without a code change.
+// Settings, not code: model, effort and max_tokens can change without a code
+// change (Product Lead's hand-over, must-have 9).
 const MODEL = process.env.WHAT_TO_POST_MODEL || "claude-sonnet-5-5";
 const EFFORT = (process.env.WHAT_TO_POST_EFFORT || "low") as "low" | "medium" | "high";
+const MAX_TOKENS = Number(process.env.WHAT_TO_POST_MAX_TOKENS) || 10000;
 const PER_LIST = 10;
+
+// Its own key if one is set (WHAT_TO_POST_ANTHROPIC_KEY), so this page can live
+// in its own Claude workspace with its own spend cap. Until then it shares the
+// site's key with the Lead leak check.
+const API_KEY = () => process.env.WHAT_TO_POST_ANTHROPIC_KEY || process.env.ANTHROPIC_API_KEY;
 
 const IDEA = {
   type: "object",
@@ -78,18 +85,13 @@ function tidyList(list: unknown): Idea[] {
   return out;
 }
 
-/** All four lists, up to 10 each, best first. Null if Claude isn't available or the reply is wrong. */
-export async function fullRun(answers: Answers): Promise<FullResult | null> {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error("What to post: ANTHROPIC_API_KEY is not set");
-    return null;
-  }
-  const client = new Anthropic({ timeout: 55_000, maxRetries: 0 });
-  let parsed: Record<string, unknown>;
+/** One call. Null if it fails or the reply can't be read. */
+async function ask(answers: Answers, timeoutMs: number): Promise<Record<string, unknown> | null> {
+  const client = new Anthropic({ apiKey: API_KEY(), timeout: timeoutMs, maxRetries: 0 });
   try {
     const response = await client.beta.messages.create({
       model: MODEL,
-      max_tokens: 6000,
+      max_tokens: MAX_TOKENS,
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       // The system prompt is the same for every visitor, so it's cached.
@@ -108,14 +110,17 @@ export async function fullRun(answers: Answers): Promise<FullResult | null> {
     }
     const text = response.content.find((b) => b.type === "text");
     if (!text || text.type !== "text") return null;
-    parsed = JSON.parse(text.text);
+    return JSON.parse(text.text);
   } catch (err) {
     // Status only, never the request or the key.
     const status = err instanceof Anthropic.APIError ? err.status : "network";
     console.error("What to post: Claude call failed", status);
     return null;
   }
+}
 
+function read(parsed: Record<string, unknown> | null): FullResult | null {
+  if (!parsed) return null;
   if (parsed.status === "unclear") return { status: "unclear" };
   const lists = {} as Lists;
   for (const s of SECTIONS) {
@@ -129,4 +134,22 @@ export async function fullRun(answers: Answers): Promise<FullResult | null> {
     lists,
     careNote: typeof parsed.care_note === "string" && parsed.care_note.trim() ? CARE_LINE : "",
   };
+}
+
+/**
+ * All four lists, up to 10 each, best first. If the reply can't be used, one
+ * more try, but only while there's time left inside the server's 60 seconds.
+ */
+export async function fullRun(answers: Answers): Promise<FullResult | null> {
+  if (!API_KEY()) {
+    console.error("What to post: no Claude key is set");
+    return null;
+  }
+  const started = Date.now();
+  const first = read(await ask(answers, 45_000));
+  if (first) return first;
+  const left = 55_000 - (Date.now() - started);
+  if (left < 20_000) return null;
+  console.error("What to post: reply not usable, trying once more");
+  return read(await ask(answers, left));
 }

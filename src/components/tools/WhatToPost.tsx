@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
 import { OTHER, OTHER_MAX, QUESTIONS, SECTIONS, boxShows, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
@@ -21,7 +21,12 @@ const WAITING = [
 const STEPS = ["Answer a few quick questions.", "Leave your email.", "Get 5 ideas for each of four things.", "Not right? Tap for 5 more."];
 const empty = () => Object.fromEntries(QUESTIONS.map((q) => [q.id, { picked: [], other: "" }])) as Answers;
 
-type Done = { lists: Lists; careNote: string; emailed: boolean };
+type Done = { lists: Lists; careNote: string; token: string; name: string; email: string };
+
+// The results email goes once they've seen what they want: when they leave
+// the results (switch app, close the tab, or tap "Add a bit more"), or after
+// 10 minutes, whichever comes first. It lists every idea they saw.
+const EMAIL_AFTER_MS = 10 * 60 * 1000;
 
 export default function WhatToPost() {
   const [started, setStarted] = useState(false);
@@ -134,7 +139,7 @@ export default function WhatToPost() {
       if (data.status === "unclear") {
         setUnclear(data.message);
       } else {
-        setDone({ lists: data.lists, careNote: data.careNote || "", emailed: !!data.emailed });
+        setDone({ lists: data.lists, careNote: data.careNote || "", token: data.token || "", name: who.name, email: who.email });
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch (err) {
@@ -270,6 +275,52 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
   const lists = first.lists;
   const [more, setMore] = useState<Partial<Record<SectionId, boolean>>>({});
   const [copied, setCopied] = useState(false);
+  const seenRef = useRef(more);
+  const emailSent = useRef(false);
+
+  useEffect(() => {
+    seenRef.current = more;
+  }, [more]);
+
+  // Send the results email once. keepalive lets it finish even as the page closes.
+  const sendEmail = useCallback(() => {
+    if (emailSent.current || !first.token) return;
+    emailSent.current = true;
+    fetch("/api/tools/what-to-post/email", {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: first.email,
+        name: first.name,
+        lists: first.lists,
+        careNote: first.careNote,
+        token: first.token,
+        seen: seenRef.current,
+      }),
+    }).catch(() => {
+      emailSent.current = false;
+    });
+  }, [first]);
+
+  useEffect(() => {
+    const onHide = () => {
+      if (document.visibilityState === "hidden") sendEmail();
+    };
+    const timer = setTimeout(sendEmail, EMAIL_AFTER_MS);
+    document.addEventListener("visibilitychange", onHide);
+    window.addEventListener("pagehide", sendEmail);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", onHide);
+      window.removeEventListener("pagehide", sendEmail);
+    };
+  }, [sendEmail]);
+
+  function addMore() {
+    sendEmail();
+    onAddMore();
+  }
 
   // Every idea they've seen, as plain text, for "Copy my ideas". Nothing is stored.
   function seenText(): string {
@@ -329,7 +380,7 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
                 <p className="text-lg text-foreground">
                   These are the best fits for your answers.
                 </p>
-                <button type="button" onClick={onAddMore} className="mt-3 text-base font-bold text-foreground underline underline-offset-4">
+                <button type="button" onClick={addMore} className="mt-3 text-base font-bold text-foreground underline underline-offset-4">
                   Add a bit more to your answers
                 </button>
               </div>

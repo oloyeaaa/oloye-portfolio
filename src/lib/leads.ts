@@ -18,8 +18,8 @@ export type LeadPayload = {
   line?: string;
   source?: string;
   intro?: string; // the 0 to 100 welcome email's first line
-  results?: Record<string, { title: string; why: string }[]>; // What to post: the four lists
-  care?: string; // What to post: "Check with a qualified person..." or empty
+  subject?: string; // What to post results email: finished subject
+  html?: string; // What to post results email: finished body, built on our server
 };
 
 export async function sendToMake(lead: LeadPayload): Promise<"ok" | "off" | "failed"> {

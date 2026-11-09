@@ -3,14 +3,15 @@ import { fromOurSite, cleanEmail, cleanText, readSmallJson } from "@/lib/guard";
 import { sendToMake } from "@/lib/leads";
 import { fullRun, UNCLEAR } from "@/lib/claude-what-to-post";
 import { cleanAnswers } from "@/lib/tools/what-to-post";
+import { sign } from "@/lib/tools/what-to-post-email";
 
 /**
  * What to post and what to sell: the answers, then first name and email, then
  * one Claude call for four lists of 10 (the page shows 5, then 5 more). The
  * person goes to Make as form CHANNEL (the website forms scenario), which saves
  * them in Leads. Their answers are never saved: the Leads note only says the
- * ideas were shown. The ideas go to Make for the results email, once that
- * route is added on Oloye's yes.
+ * ideas were shown. The results email goes later, from /email, once they've
+ * seen what they want (it lists any "5 more" too).
  *
  * Limits, so nobody can run up the bill (Product Lead's hand-over, raised by
  * the Director 9 Nov so "Add a bit more" works): 2 runs an hour per IP, 3 a
@@ -100,10 +101,18 @@ export async function POST(req: Request) {
       ? "What to post: ideas shown."
       : "What to post: answers too thin, asked them to add a bit more.",
     source: "oloye.co.uk/what-to-post",
-    ...(ideas ? { results: ideas.lists, care: ideas.careNote } : {}),
   });
 
   if (!result) return NextResponse.json({ error: "Something went wrong. Try again in a minute." }, { status: 503 });
   if (!ideas) return NextResponse.json({ ok: true, status: "unclear", message: UNCLEAR });
-  return NextResponse.json({ ok: true, status: "ideas", lists: ideas.lists, careNote: ideas.careNote, emailed: sent === "ok" });
+  // The page keeps the ideas and sends them back for the results email, with
+  // this signature, so only these ideas can go to this email (see /email).
+  return NextResponse.json({
+    ok: true,
+    status: "ideas",
+    lists: ideas.lists,
+    careNote: ideas.careNote,
+    token: sign(email, name, ideas.lists, ideas.careNote),
+    saved: sent === "ok",
+  });
 }

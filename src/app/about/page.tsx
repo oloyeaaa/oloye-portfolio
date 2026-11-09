@@ -17,10 +17,10 @@ import { LastCall } from "@/components/home/CallToAction";
 
 const TITLE = "About the founder";
 const DESCRIPTION =
-  "Oloye Adeosun builds simple AI automation systems that save small businesses time and money, with a team of AI agents built on Claude. Based in Kent, UK.";
+  "Oloye Adeosun builds AI systems for content creators and business owners. Get your time back and stop losing leads. Based in Kent, UK.";
 
 export const metadata: Metadata = {
-  title: { absolute: "About Oloye Adeosun, founder | Oloye" },
+  title: { absolute: "About Oloye Adeosun | AI Automation Systems" },
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/about` },
   openGraph: { title: "About Oloye Adeosun", description: DESCRIPTION, url: `${SITE_URL}/about`, type: "profile" },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 // The team: the eight AI agents Oloye set up by talking to Claude, no code,
 // each with its own job title.
 const TEAM = [
-  { name: "Chief of Staff", job: "Plans the work, hands it out, and does the final check." },
+  { name: "Marketing Director", job: "Plans the work, hands it out, and does the final check." },
   { name: "Video Editor", job: "Cuts recordings down and gets videos ready to post." },
   { name: "Copywriter", job: "Writes posts, emails and pages in plain words." },
   { name: "Carousel Designer", job: "Turns each idea into step-by-step slides." },
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 Meet <span className="lime-mark">Oloye.</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg text-muted sm:text-xl">
-                Founder. He builds simple AI automation systems that save small businesses time and money, so owners can get back to the work they&apos;re good at.
+                Founder. He builds AI systems that help you get your time back and stop losing leads: a content machine for content creators, and workflows for business owners, coaches included.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
                 {author.links.map((l) => (

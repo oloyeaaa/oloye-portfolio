@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
 import { QUESTIONS, SECTIONS, type Answers, type Idea, type Results, type SectionId } from "@/lib/tools/find-channel";
@@ -18,6 +18,14 @@ export default function FindChannel() {
   const [error, setError] = useState("");
   const [results, setResults] = useState<Results | null>(null);
   const [emailed, setEmailed] = useState(false);
+
+  const box = useRef<HTMLDivElement>(null);
+
+  // On a phone the next card can start above the screen: bring it back into view.
+  useEffect(() => {
+    const top = box.current?.getBoundingClientRect().top;
+    if (step > 0 && top !== undefined && top < 0) box.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [step]);
 
   const total = QUESTIONS.length;
   const q = QUESTIONS[step];
@@ -73,7 +81,7 @@ export default function FindChannel() {
   if (results) return <ResultsView answers={answers} first={results} emailed={emailed} />;
 
   return (
-    <div className="rounded-3xl border border-border bg-surface p-5 sm:p-8">
+    <div ref={box} className="scroll-mt-20 rounded-3xl border border-border bg-surface p-5 sm:p-8">
       <div className="flex items-center justify-between text-base text-muted">
         <span className="font-semibold">{step < total ? `Question ${step + 1} of ${total}` : "Last step"}</span>
         {step > 0 && !busy && (

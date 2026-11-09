@@ -36,13 +36,13 @@ export default function FindYourChannelPage() {
       />
 
       <div className="bg-background">
-        <section className="px-4 pb-8 pt-10 sm:px-6 sm:pt-16">
+        <section className="px-4 pb-6 pt-8 sm:px-6 sm:pt-16">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Free &middot; For content creators</p>
-            <h1 className="display mt-5 text-5xl leading-tight text-foreground sm:text-6xl">
+            <h1 className="display mt-4 text-4xl leading-tight text-foreground sm:text-6xl">
               Find your channel in <span className="lime-mark">what you already know.</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-xl text-muted">
+            <p className="mx-auto mt-4 max-w-xl text-lg text-muted sm:text-xl">
               A few quick taps. Then ideas for who it&apos;s for, a free thing to give, something to sell and what it&apos;s about.
             </p>
           </div>

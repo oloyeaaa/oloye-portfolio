@@ -130,6 +130,17 @@ const nextConfig: NextConfig = {
       // would have become a 404 the moment that page was archived.
       { source: "/get/marketing-team", destination: "/free", permanent: true },
       { source: "/get/:slug*", destination: "/free", permanent: true },
+
+      // Free things audit (Oloye, 9 Nov 2026): the old Claude Code skills directory
+      // and the old prompt pages were in the old voice. They're gone; any old link
+      // lands on /free. /free/10-jobs-to-automate-first is the live checklist and stays.
+      { source: "/skills", destination: "/free", permanent: true },
+      { source: "/skills/:slug*", destination: "/free", permanent: true },
+      ...["lean-owned-pipeline-blueprint", "problem-awareness-scanner", "value-prop-translator", "zero-friction-blueprint", "market-research-engine", "idea-scorecard", "first-section", "thirty-posts", "camera-answer", "finished-thing"].map((slug) => ({
+        source: `/free/${slug}`,
+        destination: "/free",
+        permanent: true,
+      })),
     ];
   },
 };

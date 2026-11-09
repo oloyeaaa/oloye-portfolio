@@ -17,6 +17,7 @@ const columns = [
   {
     title: "Free",
     links: [
+      { name: "Lead leak check", href: "/tools/lead-leak-check" },
       { name: "10 tasks to automate first", href: CHECKLIST_URL },
       { name: "Free things", href: "/free" },
       { name: "Automation ROI calculator", href: "/tools/automation-roi-calculator" },

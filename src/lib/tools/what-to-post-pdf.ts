@@ -130,7 +130,7 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
       if (plan.sell.whatItIs) text(plan.sell.whatItIs, regular, 11.5, BODY);
       if (plan.sell.firstStep) {
         space(2);
-        text(`First step: ${plan.sell.firstStep}`, regular, 11.5, BODY);
+        text(`Where to start: ${plan.sell.firstStep}`, regular, 11.5, BODY);
       }
     }
   }

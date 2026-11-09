@@ -30,7 +30,7 @@ export const CASE_STUDY_FLOWS: Record<string, FlowStep[]> = {
   ],
   "ai-team": [
     { icon: "person", label: "You", sub: "ask" },
-    { logo: "claude", label: "Chief of Staff", sub: "plans it" },
+    { logo: "claude", label: "Marketing Director", sub: "plans it" },
     { logo: "claude", label: "Agent", sub: "does the task" },
     { icon: "check", label: "Final check", sub: "then you see it" },
   ],

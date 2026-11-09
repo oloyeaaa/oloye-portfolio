@@ -8,7 +8,7 @@
  */
 
 export type LeadPayload = {
-  form: string; // CONTACT, KIT, FOUNDING, CHECKLIST, TABLE, TOOLS, PIECES, LOOP
+  form: string; // CONTACT, KIT, FOUNDING, CHANNEL, CHECKLIST, TABLE, TOOLS, PIECES, LOOP
   email: string;
   name: string;
   said: string;
@@ -18,6 +18,8 @@ export type LeadPayload = {
   line?: string;
   source?: string;
   intro?: string; // the 0 to 100 welcome email's first line
+  subject?: string; // What to post results email: finished subject
+  html?: string; // What to post results email: finished body, built on our server
 };
 
 export async function sendToMake(lead: LeadPayload): Promise<"ok" | "off" | "failed"> {

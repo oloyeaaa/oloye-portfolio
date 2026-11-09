@@ -15,13 +15,18 @@ import { LastCall } from "@/components/home/CallToAction";
 // /skills now redirect here (next.config.ts).
 
 // Tools open straight away, no email needed to start. The Lead leak check is
-// the bio link, so it goes first. "What to post and what to sell" joins this
-// list when it goes live. Lines are taken from each page's own description.
+// the bio link, so it goes first. Lines are taken from each page's own
+// description.
 const TOOLS = [
   {
     href: "/tools/lead-leak-check",
     title: "Lead leak check",
     line: "6 quick questions. A score out of 100, your 3 biggest lead leaks, and the first fix for each.",
+  },
+  {
+    href: "/what-to-post",
+    title: "What to post and what to sell",
+    line: "Answer a few quick questions and get free content ideas, who they're for and a product idea.",
   },
   {
     href: "/100",

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { INPUT, BUTTON_PRIMARY } from "@/lib/ui";
-import { OTHER_MAX, QUESTIONS, SECTIONS, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
+import { OTHER, OTHER_MAX, QUESTIONS, SECTIONS, boxShows, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
 
 // What to post and what to sell: the steps, then one question card at a time,
 // then the email step, then four lists of five. Words: the Copywriter
@@ -71,13 +71,17 @@ export default function WhatToPost() {
 
   function pick(label: string) {
     if (!q || !a) return;
-    if (q.max === 1) {
-      setAnswer(q.id, [label], a.other);
-      if (!a.other.trim()) setStep(step + 1);
-      return;
-    }
-    const picked = a.picked.includes(label) ? a.picked.filter((x) => x !== label) : [...a.picked, label].slice(-q.max);
-    setAnswer(q.id, picked, a.other);
+    const picked =
+      q.max === 1
+        ? [label]
+        : a.picked.includes(label)
+        ? a.picked.filter((x) => x !== label)
+        : [...a.picked, label].slice(-q.max);
+    // Typed words only stay while their box is showing.
+    const other = boxShows(q, picked) ? a.other : "";
+    setAnswer(q.id, picked, other);
+    // One-tap cards move on by themselves, unless a box needs filling in.
+    if (q.max === 1 && !boxShows(q, picked)) setStep(step + 1);
   }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -125,18 +129,19 @@ export default function WhatToPost() {
           }}
           className={`mt-6 text-base ${BUTTON_PRIMARY}`}
         >
-          Back to the questions
+          Start the questions again
         </button>
       </div>
     );
   }
 
   const answered = !!a && (a.picked.length > 0 || a.other.trim().length > 0);
+  const showBox = !!q && !!a && boxShows(q, a.picked);
 
   return (
     <div ref={box} className="scroll-mt-20 rounded-3xl border border-border bg-surface p-5 sm:p-8">
       <div className="flex items-center justify-between text-base text-muted">
-        <span className="font-semibold">{step < total ? `Question ${step + 1} of ${total}` : "Last step"}</span>
+        <span className="font-semibold">{step < total ? `${step + 1} of ${total}` : "Last step"}</span>
         {step > 0 && !busy && (
           <button type="button" onClick={() => setStep(step - 1)} className="font-medium text-foreground underline underline-offset-4">
             Back
@@ -150,7 +155,8 @@ export default function WhatToPost() {
       {q && a ? (
         <fieldset key={q.id} className="card-in mt-7">
           <legend className="display text-3xl leading-tight text-foreground sm:text-4xl">{q.text}</legend>
-          {q.max > 1 && <p className="mt-2 text-base text-muted">Pick up to {q.max}.</p>}
+          {q.hint && <p className="mt-2 text-base text-muted">{q.hint}</p>}
+          {q.max > 1 && <p className="mt-2 text-base text-muted">Pick up to {q.max}</p>}
           <div className="mt-6 grid gap-3">
             {q.options.map((label) => {
               const on = a.picked.includes(label);
@@ -169,17 +175,21 @@ export default function WhatToPost() {
               );
             })}
           </div>
-          <label className="mt-4 block">
-            <span className="text-base font-medium text-foreground">Something else?</span>
-            <input
-              value={a.other}
-              onChange={(e) => setAnswer(q.id, a.picked, e.target.value)}
-              maxLength={OTHER_MAX}
-              placeholder="Type it in a few words"
-              className={`${INPUT} text-lg`}
-            />
-          </label>
-          {(q.max > 1 || a.other.trim()) && (
+          {showBox && (
+            <label className="mt-4 block">
+              {q.boxLabel && <span className="text-base font-medium text-foreground">{q.boxLabel}</span>}
+              <input
+                value={a.other}
+                onChange={(e) => setAnswer(q.id, a.picked, e.target.value)}
+                maxLength={OTHER_MAX}
+                placeholder={q.placeholder || "In a few words"}
+                aria-label={q.boxLabel || OTHER}
+                autoFocus={q.box === "other"}
+                className={`${INPUT} text-lg`}
+              />
+            </label>
+          )}
+          {(q.max > 1 || showBox) && (
             <button type="button" disabled={!answered} onClick={() => setStep(step + 1)} className={`mt-6 text-base ${BUTTON_PRIMARY}`}>
               Next
             </button>
@@ -192,7 +202,7 @@ export default function WhatToPost() {
             }}
             className="mt-4 block w-full py-2 text-center text-base font-medium text-muted underline underline-offset-4"
           >
-            Skip
+            Skip this one
           </button>
         </fieldset>
       ) : (

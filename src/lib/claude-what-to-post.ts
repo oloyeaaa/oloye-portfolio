@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { SECTIONS, type Answers, type Idea, type Lists, type SectionId } from "@/lib/tools/what-to-post";
-import { FULL_RUN_SYSTEM, NEW_5_SYSTEM } from "@/lib/tools/what-to-post-prompts";
+import { CARE_NOTE, FULL_RUN_SYSTEM, NEW_5_SYSTEM, UNCLEAR } from "@/lib/tools/what-to-post-prompts";
 
 /**
  * Claude for "What to post and what to sell". Server only: the key is read from
@@ -55,9 +55,7 @@ const MORE_SCHEMA = {
   $defs: { idea: IDEA },
 };
 
-// The only fixed lines the prompts allow. Anything else is dropped.
-const CARE_NOTE = "Check with a qualified person before giving advice.";
-export const UNCLEAR = "Tell me a bit more about what you do.";
+export { UNCLEAR };
 
 export type FullResult = { status: "ideas"; lists: Lists; careNote: string } | { status: "unclear" };
 export type MoreResult = { status: "ideas"; ideas: Idea[] } | { status: "unclear" };

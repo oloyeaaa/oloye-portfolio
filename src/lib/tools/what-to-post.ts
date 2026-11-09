@@ -9,92 +9,137 @@
  * wording later: change it here and nowhere else.
  */
 
-export type Question = { id: string; text: string; max: number; options: string[] };
+/**
+ * box: "always" = the typed box shows on the card (Q1, the job);
+ * "other" = it shows once they tap "Something else"; "none" = no box (Q2, Q7).
+ */
+export type Question = {
+  id: string;
+  text: string;
+  hint?: string;
+  max: number;
+  options: string[];
+  box: "always" | "other" | "none";
+  boxLabel?: string;
+  placeholder?: string;
+};
 
+/** The tap that opens the typed box. Sent along with the other taps. */
+export const OTHER = "Something else";
+export const Q1_OTHER = "Something else (use the box)";
+
+// Wording: the Copywriter, WORDS.md section 5 (bf1d54c). Taps, limits and box
+// rules: the Product Lead's questions.md after the 9 Nov UX review.
 export const QUESTIONS: Question[] = [
   {
     id: "q1_day",
     text: "What do you spend most of your day doing?",
-    max: 2,
+    max: 1,
+    box: "always",
+    boxLabel: "What's the job, in a few words?",
+    placeholder: "ward nurse, school cook, van driver, mum of three",
     options: [
       "I look after people",
       "I fix or build things",
+      "I do hands-on work (driving, cleaning, warehouse)",
       "I teach or explain things",
       "I serve or sell to customers",
-      "I sort out admin, money or numbers",
+      "I do admin, money or numbers",
       "I make things (food, designs, words, photos)",
+      "I look after my home and family",
+      "I'm studying or between jobs",
+      Q1_OTHER,
     ],
   },
   {
     id: "q2_years",
     text: "How long have you been doing it?",
     max: 1,
+    box: "none",
     options: ["Less than 2 years", "2 to 5 years", "5 to 10 years", "10 to 20 years", "More than 20 years"],
   },
   {
     id: "q3_come_to_you",
     text: "What do people come to you for?",
     max: 2,
+    box: "other",
+    placeholder: "What do they ask you most?",
     options: [
       "To fix a problem for them",
-      "Advice before a big decision",
+      "Advice before a big choice",
       "To show them how to do something",
-      "A recommendation (what to buy, where to go)",
-      "To calm them down or talk it through",
+      "What to buy or where to go",
+      "To calm them down or talk things through",
+      OTHER,
     ],
   },
   {
     id: "q4_hard_way",
     text: "What did you have to work out the hard way?",
+    hint: "Only pick what you'd be happy to post about.",
     max: 2,
+    box: "other",
     options: [
       "A skill at work nobody taught me",
       "Money, bills or budgeting",
-      "My health or body",
+      "My health or my body",
       "Starting again (new job, new town, new country)",
       "Being a parent or carer",
-      "A tool, app or piece of software",
+      "An app or piece of software",
+      OTHER,
     ],
   },
   {
     id: "q5_five_years_ago",
     text: "Who were you five years ago?",
+    hint: "Only pick what you'd be happy to post about.",
     max: 1,
+    box: "other",
     options: [
-      "Just starting out in my job",
+      "Just starting out in my work",
       "Stuck in a job I didn't like",
       "New to the country or the area",
       "A new parent or carer",
       "Studying or training",
-      "About where I am now",
+      "Much the same as now",
+      OTHER,
     ],
   },
   {
     id: "q6_show_up",
     text: "How would you like to show up in your posts?",
     max: 1,
-    options: ["Face on camera", "My voice, no face", "Just my hands or the work", "Text and pictures only", "Not sure yet"],
+    box: "other",
+    options: ["Face on camera", "My voice, no face", "Just my hands or the work", "Text and pictures only", "Not sure yet", OTHER],
   },
   {
     id: "q7_time",
-    text: "How much time could you give it each week?",
+    text: "How much time could you give this each week?",
     max: 1,
+    box: "none",
     options: ["Under 1 hour", "1 to 3 hours", "3 to 5 hours", "More than 5 hours"],
   },
   {
     id: "q8_sell",
     text: "If you sold something one day, what would feel right?",
     max: 2,
+    box: "other",
     options: [
       "A guide or checklist people download",
       "A short course or workshop",
-      "My time (calls, help, done for them)",
+      "My time (calls, help, or doing it for them)",
       "Templates or tools",
-      "Something I make by hand",
+      "Something I make myself",
       "Not sure yet",
+      OTHER,
     ],
   },
 ];
+
+/** True when this card's typed box should show. */
+export function boxShows(q: Question, picked: string[]): boolean {
+  return q.box === "always" || (q.box === "other" && picked.includes(OTHER));
+}
 
 // The order the Copywriter set: what to post first, then who, free, sell.
 export const SECTIONS = [
@@ -132,7 +177,7 @@ export function cleanAnswers(raw: unknown): Answers | null {
     const picked = Array.isArray(a.picked)
       ? [...new Set(a.picked.filter((p): p is string => typeof p === "string" && q.options.includes(p)))].slice(0, q.max)
       : [];
-    const other = typeof a.other === "string" ? clean(a.other, OTHER_MAX) : "";
+    const other = q.box !== "none" && typeof a.other === "string" ? clean(a.other, OTHER_MAX) : "";
     if (picked.length || other) any = true;
     out[q.id] = { picked, other };
   }

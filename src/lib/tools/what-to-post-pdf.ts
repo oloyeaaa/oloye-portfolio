@@ -25,7 +25,9 @@ import type { Plan } from "@/lib/claude-what-to-post-plan";
  * - order: why it fits, first 3 posts, who you're talking to, free thing,
  *   thing to sell, first step; a blank part leaves no heading and no gap
  * - lime once, on the first step box; the care note on chip grey, never red
- * - Inter and JetBrains Mono embedded (src/assets/pdf-fonts, OFL), subset so
+ * - Inter (from the full font, cut to Latin and Central European letters as TTF,
+ *   so names like Łukasz, Zoë and Siân print right) and
+ *   JetBrains Mono embedded (src/assets/pdf-fonts, OFL), subset so
  *   every reader shows them; any letter the fonts can't draw is swapped, never fatal
  * - a second page when needed, never a heading alone at the foot of a page
  * Server only.
@@ -51,7 +53,7 @@ const GAP = 1.45; // line height
 
 const FOUNDING_URL = "https://oloye.co.uk/founding";
 const FONT_DIR = path.join(process.cwd(), "src/assets/pdf-fonts");
-const fontFile = (name: string) => readFileSync(path.join(FONT_DIR, `${name}.woff`));
+const fontFile = (file: string) => readFileSync(path.join(FONT_DIR, file));
 
 /** The date as DD/MM/YYYY, UK time. */
 export function ukDate(d = new Date()): string {
@@ -71,7 +73,7 @@ export function firstName(name: string): string {
 export function firstStepText(plan: Plan): string {
   if (plan.sell.firstStep) return plan.sell.firstStep;
   const post = plan.firstPosts[0]?.title;
-  return post ? `Post "${post}" this week. Then see which posts people ask about, and make more like them.` : "";
+  return post ? `Post “${post}” this week. Then see which posts people ask about, and make more like them.` : "";
 }
 
 /** File name for the attachment and the download: "{first-name}-plan-oloye.pdf". */
@@ -89,22 +91,28 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
   const doc = await PDFDocument.create();
   doc.registerFontkit(fontkit);
   const first = firstName(name);
-  const title = first ? `${first}'s plan` : "Your plan";
+  const title = first ? `${first}’s plan` : "Your plan";
   doc.setTitle(title);
   doc.setAuthor("Oloye");
   doc.setLanguage("en-GB");
 
-  const regular = await doc.embedFont(fontFile("inter-latin-400-normal"), { subset: true });
-  const medium = await doc.embedFont(fontFile("inter-latin-500-normal"), { subset: true });
-  const bold = await doc.embedFont(fontFile("inter-latin-700-normal"), { subset: true });
-  const heavy = await doc.embedFont(fontFile("inter-latin-800-normal"), { subset: true });
-  const mono = await doc.embedFont(fontFile("jetbrains-mono-latin-500-normal"), { subset: true });
+  const regular = await doc.embedFont(fontFile("Inter-Regular.ttf"), { subset: true });
+  const medium = await doc.embedFont(fontFile("Inter-Medium.ttf"), { subset: true });
+  const bold = await doc.embedFont(fontFile("Inter-Bold.ttf"), { subset: true });
+  const heavy = await doc.embedFont(fontFile("Inter-ExtraBold.ttf"), { subset: true });
+  const mono = await doc.embedFont(fontFile("jetbrains-mono-latin-500-normal.woff"), { subset: true });
 
   // Letters the fonts can draw. Anything else becomes its plain letter (Ł to L), or goes.
   const known = new Set(regular.getCharacterSet());
   const extra: Record<string, string> = { Ł: "L", ł: "l", Ø: "O", ø: "o", Đ: "D", đ: "d", ß: "ss" };
   const safe = (s: string): string =>
-    Array.from(s.replace(/\s*[—–]\s*/g, ", ").replace(/\s+/g, " ").trim())
+    Array.from(
+      s
+        .replace(/\s*[—–]\s*/g, ", ")
+        .replace(/([\p{L}\p{N}])'([\p{L}\p{N}])/gu, "$1’$2") // one kind of apostrophe throughout: curly
+        .replace(/\s+/g, " ")
+        .trim(),
+    )
       .map((ch) => {
         if (known.has(ch.codePointAt(0)!)) return ch;
         const plain = ch.normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -240,7 +248,9 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
 
   // ---- 4. Your free thing
   if (picks.free_thing && (plan.pickTitles.free_thing || plan.freeThing.length)) {
-    section("Your free thing", lineH(15) + lineH(14), () => {
+    // The whole free thing moves together, so its list is never split.
+    const all = (plan.pickTitles.free_thing ? heightOf(plan.pickTitles.free_thing, ITEM) : 0) + 2 + plan.freeThing.reduce((h, l) => h + heightOf(l, { ...BODY, x: 16 }), 0);
+    section("Your free thing", all, () => {
       if (plan.pickTitles.free_thing) para(plan.pickTitles.free_thing, ITEM);
       y -= 2;
       for (const l of plan.freeThing) {
@@ -252,21 +262,27 @@ export async function buildPlanPdf(name: string, picks: Record<SectionId, Idea |
     });
   }
 
+  // The first step box, measured here so "Something to sell" and the box move together.
+  const step = firstStepText(plan);
+  const stepStyle: Style = { font: bold, size: 15, color: INK, x: 16, width: COL - 32 };
+  const stepPad = 16;
+  const stepH = step ? stepPad + lineH(11) + 2 + heightOf(step, stepStyle) - (lineH(15) - 15) + stepPad : 0;
+
   // ---- 5. Something to sell
   if (picks.something_to_sell && plan.sell.whatItIs) {
     const pick = plan.pickTitles.something_to_sell;
-    section("Something to sell", (pick ? lineH(15) : 0) + heightOf(plan.sell.whatItIs, BODY), () => {
+    const sellH = (pick ? heightOf(pick, ITEM) : 0) + heightOf(plan.sell.whatItIs, BODY);
+    section("Something to sell", sellH + (stepH ? 20 + stepH : 0), () => {
       if (pick) para(pick, ITEM);
       para(plan.sell.whatItIs, BODY);
     });
   }
 
   // ---- 6. Your first step: the one lime thing on the page
-  const step = firstStepText(plan);
   if (step) {
-    const s: Style = { font: bold, size: 15, color: INK, x: 16, width: COL - 32 };
-    const pad = 16;
-    const h = pad + lineH(11) + 2 + heightOf(step, s) - (lineH(15) - 15) + pad;
+    const s = stepStyle;
+    const pad = stepPad;
+    const h = stepH;
     y -= 20;
     if (left() < h) newPage();
     box(M, y, COL, h, LIME, OLIVE);

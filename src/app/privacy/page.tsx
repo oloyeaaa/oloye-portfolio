@@ -39,6 +39,11 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           <li>If you use our lead form on TikTok, the answers you give there, like what best describes you.</li>
           <li>Whether you ticked the box to get our occasional emails.</li>
         </ul>
+        <p>
+          On What to post and what to sell: your name and email go on our list, so we can send you your ideas. Your
+          answers and picks are kept apart from them. We only count them, with nothing that says who you are, to learn
+          what helps.
+        </p>
       </>
     ),
   },
@@ -67,6 +72,10 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           <li>
             <strong>Anthropic (Claude)</strong> rewrites the wording of your lead leak check result. It only gets the
             answers you picked and your type of business. It never gets your name or email.
+          </li>
+          <li>
+            <strong>Anthropic (Claude)</strong> also writes the ideas and the plan on What to post and what to sell,
+            from your answers and picks. It never gets your name or email.
           </li>
         </ul>
       </>
@@ -138,7 +147,7 @@ export default function PrivacyPage() {
             <h1 className="display mt-6 text-5xl text-foreground sm:text-6xl">
               Your data, <span className="lime-mark">in plain words.</span>
             </h1>
-            <p className="mt-7 text-lg text-muted">Last updated: 2 November 2026</p>
+            <p className="mt-7 text-lg text-muted">Last updated: 9 November 2026</p>
           </div>
         </section>
 

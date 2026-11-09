@@ -85,7 +85,7 @@ export default function WhatToPost() {
     if (started && top !== undefined && top < 0) box.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step, started]);
 
-  if (done) return <ResultsView first={done} onAddMore={addMore} track={track} />;
+  if (done) return <ResultsView first={done} onAddMore={addMore} track={track} answers={answers} />;
 
   if (!started) {
     return (
@@ -297,14 +297,69 @@ export default function WhatToPost() {
           )}
           {error && <p role="alert" className="mt-3 text-base font-medium text-alert">{error}</p>}
           <p className="mt-4 text-center text-base text-muted">Free. Leave any time.</p>
+          <p className="mt-2 text-center text-sm text-muted">
+            Your email is for sending your ideas. Your answers are counted with nothing that says who you are.
+          </p>
         </form>
       )}
     </div>
   );
 }
 
-function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () => void; track: Track | null }) {
+function ResultsView({
+  first,
+  onAddMore,
+  track,
+  answers,
+}: {
+  first: Done;
+  onAddMore: () => void;
+  track: Track | null;
+  answers: Answers;
+}) {
   const lists = first.lists;
+  // Version 2: one pick per section, by its place in the list.
+  const [picks, setPicks] = useState<Partial<Record<SectionId, number>>>({});
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState("");
+  const [sendError, setSendError] = useState("");
+  const pickedCount = Object.values(picks).filter((v) => v !== undefined).length;
+
+  function pickIdea(section: SectionId, index: number) {
+    setPicks((p) => ({ ...p, [section]: index }));
+  }
+
+  async function sendPicks() {
+    if (sending || !first.token) return;
+    setSending(true);
+    setSendError("");
+    try {
+      const res = await fetch("/api/tools/what-to-post/plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: first.email,
+          name: first.name,
+          lists: first.lists,
+          careNote: first.careNote,
+          token: first.token,
+          answers,
+          picks,
+          track,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong. Try again in a minute.");
+      if (data.status === "unclear") throw new Error(data.message);
+      // The picks email replaces the plain ideas email.
+      emailSent.current = true;
+      setSent("Sent. Check your inbox for your picks and the PDF.");
+    } catch (err) {
+      setSendError(err instanceof Error ? err.message : "Something went wrong. Try again in a minute.");
+    } finally {
+      setSending(false);
+    }
+  }
   const [more, setMore] = useState<Partial<Record<SectionId, boolean>>>({});
   const [copied, setCopied] = useState(false);
   const seenRef = useRef(more);
@@ -378,6 +433,9 @@ function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () =
       <div className="rounded-3xl border border-accent bg-surface p-6 text-center sm:p-8">
         <p className="display text-4xl text-foreground">Your ideas</p>
         <p className="mt-3 text-lg text-muted">They&apos;re ideas to try, not answers. Not right? Tap &quot;5 more&quot; on any section.</p>
+        <p className="mt-3 text-lg font-semibold text-foreground">
+          Tap &quot;Pick this one&quot; on your favourite in each section. We&apos;ll email you a simple PDF made for your picks.
+        </p>
       </div>
 
       {first.careNote && <p className="rounded-2xl bg-surface-alt px-5 py-4 text-lg text-foreground">{first.careNote}</p>}
@@ -391,14 +449,14 @@ function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () =
             <h2 id={`h-${s.id}`} className="display text-3xl text-foreground">{s.title}</h2>
             {opened ? (
               <>
-                <IdeaList ideas={extra} start={6} />
+                <IdeaList ideas={extra} start={6} picked={picks[s.id]} onPick={sent ? undefined : (i) => pickIdea(s.id, i)} />
                 <details className="mt-5 rounded-xl border border-border px-4 py-3">
                   <summary className="cursor-pointer text-base font-semibold text-foreground">Earlier ideas (5)</summary>
-                  <IdeaList ideas={all.slice(0, 5)} start={1} />
+                  <IdeaList ideas={all.slice(0, 5)} start={1} picked={picks[s.id]} onPick={sent ? undefined : (i) => pickIdea(s.id, i)} />
                 </details>
               </>
             ) : (
-              <IdeaList ideas={all.slice(0, 5)} start={1} />
+              <IdeaList ideas={all.slice(0, 5)} start={1} picked={picks[s.id]} onPick={sent ? undefined : (i) => pickIdea(s.id, i)} />
             )}
             {!opened && extra.length > 0 ? (
               <button
@@ -426,6 +484,19 @@ function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () =
         );
       })}
 
+      {sent ? (
+        <p className="rounded-3xl border border-accent bg-surface p-6 text-center text-xl font-semibold text-foreground">{sent}</p>
+      ) : (
+        pickedCount > 0 && (
+          <div>
+            <button type="button" onClick={sendPicks} disabled={sending} className={`text-base ${BUTTON_PRIMARY}`}>
+              {sending ? "Sending..." : "Send your picks"}
+            </button>
+            {sendError && <p role="alert" className="mt-3 text-base font-medium text-alert">{sendError}</p>}
+          </div>
+        )
+      )}
+
       <button type="button" onClick={copy} className={`text-base ${BUTTON_PRIMARY}`}>
         {copied ? "Copied" : "Copy my ideas"}
       </button>
@@ -447,7 +518,17 @@ function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () =
   );
 }
 
-function IdeaList({ ideas, start }: { ideas: Idea[]; start: number }) {
+function IdeaList({
+  ideas,
+  start,
+  picked,
+  onPick,
+}: {
+  ideas: Idea[];
+  start: number;
+  picked?: number;
+  onPick?: (index: number) => void;
+}) {
   return (
     <ol className="mt-5 space-y-5">
       {ideas.map((idea, i) => (
@@ -458,6 +539,19 @@ function IdeaList({ ideas, start }: { ideas: Idea[]; start: number }) {
           <span className="min-w-0">
             <span className="block break-words text-xl font-semibold leading-snug text-foreground">{idea.title}</span>
             <span className="mt-1 block text-lg text-muted">{idea.why}</span>
+            {(onPick || picked === start - 1 + i) && (
+              <button
+                type="button"
+                onClick={() => onPick?.(start - 1 + i)}
+                disabled={!onPick}
+                aria-pressed={picked === start - 1 + i}
+                className={`mt-2 rounded-lg border-2 px-4 py-2 text-base font-bold transition ${
+                  picked === start - 1 + i ? "border-foreground bg-accent text-foreground" : "border-border-strong text-foreground hover:border-foreground"
+                }`}
+              >
+                {picked === start - 1 + i ? "Picked" : "Pick this one"}
+              </button>
+            )}
           </span>
         </li>
       ))}

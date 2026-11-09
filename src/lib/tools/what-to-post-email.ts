@@ -94,3 +94,31 @@ export function buildEmail(
     : "Your ideas for what to post and what to sell";
   return { subject, html, count };
 }
+
+/**
+ * Version 2: the picks email (WORDS.md section 6). Lists the ideas they picked
+ * (a section with no pick is left out); the plan itself is in the PDF.
+ */
+export function buildPicksEmail(name: string, picks: Partial<Record<SectionId, Idea | null>>): { subject: string; html: string } {
+  const first = name.trim() || "there";
+  const lines = SECTIONS.filter((s) => picks[s.id])
+    .map((s) => `${esc(s.title)}: <strong>${esc(picks[s.id]!.title)}</strong>`)
+    .join("<br>");
+  const html = [
+    '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.55;color:#111;max-width:600px">',
+    '<span style="display:none;max-height:0;overflow:hidden;opacity:0">The ideas you picked, and a PDF to keep.</span>',
+    `<p ${P}>Hi ${esc(first)},</p>`,
+    `<p ${P}>Here are the ideas you picked. They're in the PDF too, so you can keep them or print them.</p>`,
+    `<p ${P}>${lines}</p>`,
+    `<p ${P}>Posting gets people's attention. A free thing and something to sell give that attention somewhere to go. One way to start: post about your idea three times this week, and see which posts people ask questions about.</p>`,
+    `<p ${P}>Hit reply and say which idea you're going with.</p>`,
+    `<p ${P}>If you want help making the posts, there's a founding group. It's a small group, building it together: what you already know, made into videos with a content machine built with Claude. No price or dates yet. The list hears first.</p>`,
+    `<p ${P}>Join the founding group: <a href="https://www.oloye.co.uk/founding">oloye.co.uk/founding</a></p>`,
+    `<p ${P}>Oloye</p>`,
+    "</div>",
+  ].join("");
+  const subject = name.trim()
+    ? `${name.trim()}, your picks: what to post and what to sell`
+    : "Your picks: what to post and what to sell";
+  return { subject, html };
+}

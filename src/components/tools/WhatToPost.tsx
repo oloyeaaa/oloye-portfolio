@@ -28,6 +28,22 @@ type Done = { lists: Lists; careNote: string; token: string; name: string; email
 // 10 minutes, whichever comes first. It lists every idea they saw.
 const EMAIL_AFTER_MS = 10 * 60 * 1000;
 
+type Track = { id: string; sig: string };
+
+/** Where they came from: the ?from= tag on the link (rita, tiktok, bio, live). */
+const fromTag = () => new URLSearchParams(window.location.search).get("from") || "";
+
+/** Counting steps (no name, email or IP: see what-to-post-track.ts). Never blocks the page. */
+function count(track: Track | null, event: string, extra: Record<string, unknown> = {}) {
+  if (!track) return;
+  fetch("/api/tools/what-to-post/track", {
+    method: "POST",
+    keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, id: track.id, sig: track.sig, ...extra }),
+  }).catch(() => {});
+}
+
 export default function WhatToPost() {
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0);
@@ -39,7 +55,13 @@ export default function WhatToPost() {
   const [done, setDone] = useState<Done | null>(null);
   const [me, setMe] = useState({ name: "", email: "", consent: false });
   const [wait, setWait] = useState(0);
+  const [track, setTrack] = useState<Track | null>(null);
   const box = useRef<HTMLDivElement>(null);
+
+  // Count the answers once they reach the email step (taps and the Q1 job only).
+  useEffect(() => {
+    if (step === QUESTIONS.length) count(track, "answers", { answers });
+  }, [step, track, answers]);
 
   // Change the waiting line every few seconds while Claude works.
   useEffect(() => {
@@ -63,7 +85,7 @@ export default function WhatToPost() {
     if (started && top !== undefined && top < 0) box.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step, started]);
 
-  if (done) return <ResultsView first={done} onAddMore={addMore} />;
+  if (done) return <ResultsView first={done} onAddMore={addMore} track={track} />;
 
   if (!started) {
     return (
@@ -81,6 +103,14 @@ export default function WhatToPost() {
           onClick={() => {
             setStarted(true);
             setStartedAt(Date.now());
+            fetch("/api/tools/what-to-post/track", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ event: "start", from: fromTag() }),
+            })
+              .then((r) => r.json())
+              .then((d) => d.ok && setTrack({ id: d.id, sig: d.sig }))
+              .catch(() => {});
           }}
           className={`mt-7 text-base ${BUTTON_PRIMARY}`}
         >
@@ -131,6 +161,8 @@ export default function WhatToPost() {
           answers,
           startedAt,
           ...who,
+          from: fromTag(),
+          track,
           website: f.get("website"),
         }),
       });
@@ -271,7 +303,7 @@ export default function WhatToPost() {
   );
 }
 
-function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void }) {
+function ResultsView({ first, onAddMore, track }: { first: Done; onAddMore: () => void; track: Track | null }) {
   const lists = first.lists;
   const [more, setMore] = useState<Partial<Record<SectionId, boolean>>>({});
   const [copied, setCopied] = useState(false);
@@ -334,6 +366,7 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
     try {
       await navigator.clipboard.writeText(seenText());
       setCopied(true);
+      count(track, "copied");
       setTimeout(() => setCopied(false), 2500);
     } catch {
       setCopied(false);
@@ -370,7 +403,11 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
             {!opened && extra.length > 0 ? (
               <button
                 type="button"
-                onClick={() => setMore((m) => ({ ...m, [s.id]: true }))}
+                onClick={() => {
+                  const next = { ...more, [s.id]: true };
+                  setMore(next);
+                  count(track, "more", { sections: Object.keys(next).filter((k) => next[k as SectionId]) });
+                }}
                 className="mt-6 inline-flex w-full items-center justify-center rounded-lg border-2 border-foreground px-6 py-4 text-base font-bold text-foreground transition hover:bg-accent"
               >
                 5 more ideas
@@ -402,7 +439,7 @@ function ResultsView({ first, onAddMore }: { first: Done; onAddMore: () => void 
         <p className="mx-auto mt-3 max-w-md text-lg text-background/80">
           The founding group is a small group, building it together. What you already know is the content, and a content machine built with Claude does the heavy parts of the videos. No price or dates yet. The list hears first.
         </p>
-        <Link href="/founding" className={`mt-6 text-base ${BUTTON_PRIMARY}`}>
+        <Link href="/founding" onClick={() => count(track, "founding")} className={`mt-6 text-base ${BUTTON_PRIMARY}`}>
           Join the founding group
         </Link>
       </div>

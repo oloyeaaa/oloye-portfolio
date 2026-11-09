@@ -4,6 +4,7 @@ import { sendToMake } from "@/lib/leads";
 import { fullRun, UNCLEAR } from "@/lib/claude-what-to-post";
 import { cleanAnswers } from "@/lib/tools/what-to-post";
 import { sign } from "@/lib/tools/what-to-post-email";
+import { checkId, cleanSource, updateRow } from "@/lib/tools/what-to-post-track";
 
 /**
  * What to post and what to sell: the answers, then first name and email, then
@@ -80,6 +81,9 @@ export async function POST(req: Request) {
   const name = cleanText(body.name, 80);
   if (!name) return NextResponse.json({ error: "Please add your first name." }, { status: 400 });
   const consent = body.consent === true;
+  const from = cleanSource(body.from);
+  const track = body.track as { id?: unknown; sig?: unknown } | undefined;
+  const rowId = track && checkId(track.id, track.sig) ? (track.id as string) : null;
   const emailKey = `email:${email}`;
   if (!open && usedUp(emailKey, 3, DAY)) return NextResponse.json({ error: TOO_MANY }, { status: 429 });
 
@@ -90,16 +94,27 @@ export async function POST(req: Request) {
   // No ideas (Claude failed, or answers too thin): the go doesn't count.
   if (!ideas) handBack(stamp, ipKey, emailKey);
 
+  // The counting row gets the steps only. It never sees the name or email.
+  if (rowId) {
+    await updateRow(rowId, {
+      "Left email": true,
+      "Yes to emails": consent,
+      "Ideas shown": !!ideas,
+      "Too thin": result?.status === "unclear",
+    });
+  }
+
   const sent = await sendToMake({
     form: "CHANNEL",
     email,
     name,
     consent,
-    said: !result
-      ? "What to post: Claude didn't answer, no ideas shown."
-      : ideas
-      ? "What to post: ideas shown."
-      : "What to post: answers too thin, asked them to add a bit more.",
+    said:
+      (!result
+        ? "What to post: Claude didn't answer, no ideas shown."
+        : ideas
+        ? "What to post: ideas shown."
+        : "What to post: answers too thin, asked them to add a bit more.") + ` Came from: ${from}.`,
     source: "oloye.co.uk/what-to-post",
   });
 

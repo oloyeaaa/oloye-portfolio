@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -9,116 +11,85 @@ interface OgProps {
   sub?: string;
 }
 
-const BG = "#0E0F12";
+// The light site look (globals.css), with Oloye's lime headshot on the right
+// (Oloye, 10 Nov: "our light color and have a picture of me").
+const BG = "#F4F5F7";
+const FG = "#0E0F12";
 const ACCENT = "#C6F23C";
-const FG = "#EDEDED";
-const DIM = "#8A8F98";
-const BORDER = "#2A2D35";
+const ACCENT_DARK = "#446100";
+const DIM = "#374151";
+const MUTED = "#6B7280";
+const BORDER = "#E2E4E8";
 
-export function renderOg({ kicker, title, sub }: OgProps) {
+const PHOTO_W = 440;
+
+let photo: Promise<string> | null = null;
+function photoData(): Promise<string> {
+  photo ??= readFile(join(process.cwd(), "public/images/brand/oloye-lime.jpg")).then(
+    (b) => `data:image/jpeg;base64,${b.toString("base64")}`
+  );
+  return photo;
+}
+
+export async function renderOg({ kicker, title, sub }: OgProps) {
+  const src = await photoData();
   return new ImageResponse(
     (
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
           width: "100%",
           height: "100%",
           background: BG,
-          padding: "80px",
           fontFamily: "'Inter', system-ui, sans-serif",
-          justifyContent: "space-between",
         }}
       >
-        {/* Top: wordmark */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            fontSize: 44,
-            fontWeight: 700,
-            color: FG,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Oloye Adeosun<span style={{ color: ACCENT, marginLeft: 4 }}>.</span>
-        </div>
-
-        {/* Middle: title block */}
+        {/* Left: words */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            justifyContent: "space-between",
+            width: OG_SIZE.width - PHOTO_W,
+            height: "100%",
+            padding: "64px 56px 56px 72px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              fontSize: 18,
-              fontWeight: 600,
-              color: ACCENT,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-            }}
-          >
-            {kicker}
+          <div style={{ display: "flex", alignItems: "center", fontSize: 40, fontWeight: 700, color: FG, letterSpacing: "-0.02em" }}>
+            Oloye Adeosun
+            <span style={{ display: "flex", width: 12, height: 12, borderRadius: 6, background: ACCENT, marginLeft: 6, marginTop: 14 }} />
           </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 64,
-              fontWeight: 700,
-              color: FG,
-              lineHeight: 1.08,
-              letterSpacing: "-0.02em",
-              maxWidth: 1000,
-            }}
-          >
-            {title}
-          </div>
-          {sub ? (
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <div
               style={{
                 display: "flex",
-                fontSize: 26,
-                color: DIM,
-                lineHeight: 1.35,
-                maxWidth: 900,
-                marginTop: 6,
+                fontSize: 18,
+                fontWeight: 700,
+                color: ACCENT_DARK,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
               }}
             >
-              {sub}
+              {kicker}
             </div>
-          ) : null}
-        </div>
+            <div style={{ display: "flex", fontSize: 58, fontWeight: 700, color: FG, lineHeight: 1.08, letterSpacing: "-0.02em" }}>
+              {title}
+            </div>
+            {sub ? (
+              <div style={{ display: "flex", fontSize: 26, color: DIM, lineHeight: 1.35, marginTop: 4 }}>{sub}</div>
+            ) : null}
+          </div>
 
-        {/* Bottom: divider + tagline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 18,
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: 1,
-              background: BORDER,
-            }}
-          />
-          <div
-            style={{
-              display: "flex",
-              fontSize: 20,
-              color: DIM,
-              letterSpacing: "0.02em",
-            }}
-          >
-            Coaches • Creators • Local businesses · oloye.co.uk
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ width: "100%", height: 1, background: BORDER }} />
+            <div style={{ display: "flex", fontSize: 20, color: MUTED }}>Content creators • Business owners · oloye.co.uk</div>
           </div>
         </div>
+
+        {/* Right: the photo, full height */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt="" width={PHOTO_W} height={OG_SIZE.height} style={{ width: PHOTO_W, height: OG_SIZE.height, objectFit: "cover" }} />
       </div>
     ),
     { ...OG_SIZE }

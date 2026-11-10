@@ -60,7 +60,10 @@ export default function StartJourney() {
     window.scrollTo({ top: 0 });
   }, [screen]);
 
-  const go = useCallback((to: RouteId) => {
+  const go = useCallback((to: RouteId, route: number) => {
+    // Count the route in Google Analytics (only for visitors who said yes to
+    // cookies, see CookieBanner). Free; shows as the "start_route" event.
+    (window as { gtag?: (...args: unknown[]) => void }).gtag?.("event", "start_route", { route });
     steppedHere = true;
     window.history.pushState(null, "", `#${to}`);
     window.dispatchEvent(new PopStateEvent("popstate"));
@@ -88,7 +91,7 @@ export default function StartJourney() {
                 <li key={r.label}>
                   <button
                     type="button"
-                    onClick={() => go(r.goes)}
+                    onClick={() => go(r.goes, i + 1)}
                     data-route={i + 1}
                     className="group flex w-full items-center gap-3 rounded-2xl border border-border bg-surface p-4 text-left shadow-sm transition hover:border-border-strong hover:shadow-md active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
                   >

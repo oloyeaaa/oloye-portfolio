@@ -4,14 +4,14 @@ export const SITE_URL =
 export const SITE_NAME = "Oloye Adeosun";
 export const SITE_SHORT_NAME = "Oloye";
 export const SITE_LEGAL_NAME = "Oloye Adeosun";
-export const SITE_TAGLINE = "Simple AI automation for small businesses";
+export const SITE_TAGLINE = "AI Automation Systems";
 
 export const SITE_DESCRIPTION =
-  "Simple AI workflow automation for small businesses. We join up Airtable, Make, Claude and Google Workspace so leads, onboarding and follow-ups run on their own.";
+  "Get your time back and stop losing leads. AI systems built for your business.";
 
 export const AUTHOR = {
   name: "Oloye Adeosun",
-  title: "Founder, process automation for small businesses",
+  title: "Founder, AI Automation Systems",
   url: `${SITE_URL}/about`,
 };
 

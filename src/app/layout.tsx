@@ -9,6 +9,7 @@ import { organizationSchema, websiteSchema, personSchema } from "@/lib/schema";
 import {
   SITE_URL,
   SITE_NAME,
+  SITE_SHORT_NAME,
   SITE_TAGLINE,
   SITE_DESCRIPTION,
   AUTHOR,
@@ -29,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    default: `${SITE_SHORT_NAME} | ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -38,20 +39,20 @@ export const metadata: Metadata = {
   creator: AUTHOR.name,
   publisher: SITE_NAME,
   keywords: [
-    "Workflow automation for small business",
-    "Marketing automation for small business",
-    "Business process automation",
-    "Small business automation UK",
-    "Airtable forms",
+    "AI automation systems",
+    "AI systems for business owners",
+    "Content machine for content creators",
+    "Automation for coaches",
+    "Stop losing leads",
+    "Lead follow-up automation",
     "Airtable CRM",
     "Make.com automation",
-    "Automation for coaches",
   ],
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    title: `${SITE_SHORT_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     type: "website",
     url: SITE_URL,
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    title: `${SITE_SHORT_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   robots: {

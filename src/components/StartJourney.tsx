@@ -16,6 +16,10 @@ function fromHash(): Screen {
   return h === "creators" || h === "business" ? h : "welcome";
 }
 
+// True once this visit has stepped forward with go(), so Back can use the
+// browser's history. A shared #business link has nothing of ours to go back to.
+let steppedHere = false;
+
 function subscribe(onChange: () => void) {
   window.addEventListener("popstate", onChange);
   return () => window.removeEventListener("popstate", onChange);
@@ -57,12 +61,13 @@ export default function StartJourney() {
   }, [screen]);
 
   const go = useCallback((to: RouteId) => {
+    steppedHere = true;
     window.history.pushState(null, "", `#${to}`);
     window.dispatchEvent(new PopStateEvent("popstate"));
   }, []);
 
   const back = useCallback(() => {
-    if (window.history.length > 1) window.history.back();
+    if (steppedHere) window.history.back();
     else {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
       window.dispatchEvent(new PopStateEvent("popstate"));

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { BACK, BUSINESS, CREATORS, FOOTER, ROUTES, WELCOME, type RouteId } from "@/lib/startJourney";
 
 // /start, the welcome journey. All on one page: picking a route swaps the
@@ -14,6 +14,11 @@ type Screen = "welcome" | RouteId;
 function fromHash(): Screen {
   const h = typeof window === "undefined" ? "" : window.location.hash.slice(1);
   return h === "creators" || h === "business" ? h : "welcome";
+}
+
+function subscribe(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  return () => window.removeEventListener("popstate", onChange);
 }
 
 const PRIMARY =
@@ -41,16 +46,10 @@ function BackLink({ onBack }: { onBack: () => void }) {
 }
 
 export default function StartJourney() {
-  const [screen, setScreen] = useState<Screen>("welcome");
+  // The screen comes from the address (#creators, #business), so a shared
+  // link opens on the right screen and back/forward just work.
+  const screen = useSyncExternalStore(subscribe, fromHash, () => "welcome" as Screen);
   const top = useRef<HTMLDivElement>(null);
-
-  // Open on the right screen (a shared #business link works) and follow back/forward.
-  useEffect(() => {
-    setScreen(fromHash());
-    const onPop = () => setScreen(fromHash());
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
 
   useEffect(() => {
     top.current?.focus({ preventScroll: true });
@@ -59,12 +58,15 @@ export default function StartJourney() {
 
   const go = useCallback((to: RouteId) => {
     window.history.pushState(null, "", `#${to}`);
-    setScreen(to);
+    window.dispatchEvent(new PopStateEvent("popstate"));
   }, []);
 
   const back = useCallback(() => {
-    if (window.location.hash) window.history.back();
-    else setScreen("welcome");
+    if (window.history.length > 1) window.history.back();
+    else {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }
   }, []);
 
   return (

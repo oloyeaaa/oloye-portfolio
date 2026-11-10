@@ -40,7 +40,7 @@ export const BUSINESS = {
   line: "Simple systems can take repeat tasks off your plate, in marketing, sales, onboarding and the everyday running of your business. Pick where you are.",
   choices: [
     {
-      title: "Not sure where your business is losing time?",
+      title: "Not sure where to start?",
       text: "Start with the free lead leak check. 6 quick questions about how you catch and follow up with the people who find you. You get a score out of 100, your 3 biggest leaks and the first fix for each.",
       button: "Check my business",
       href: "/tools/lead-leak-check?from=bio",

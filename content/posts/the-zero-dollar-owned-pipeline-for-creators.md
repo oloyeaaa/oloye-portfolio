@@ -91,6 +91,6 @@ Now every person who signs up gets what they asked for within a minute, even if 
 
 ## Once it is running
 
-Once this is in place, your days get simpler. You make one honest post. You invite people who want the guide to click the link in your bio. The form catches them, the table keeps them, and the email gives them what you promised.
+Once this is in place, your days get simpler. You make [one honest post](/blog/what-to-post-on-tiktok-when-you-have-no-ideas). You invite people who want the guide to click the link in your bio. The form catches them, the table keeps them, and the email gives them what you promised.
 
 You don't need a big software bill to do this. What you need is a simple setup and the nerve to press post today. Start with the three questions. You can add more later, once people are coming in. Then the next job is [what happens after they sign up](/blog/why-ai-funnels-fail-at-the-handoff).
